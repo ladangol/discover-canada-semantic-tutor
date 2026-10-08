@@ -1,0 +1,8 @@
+[theme]
+base = "light"
+primaryColor = "#c8102e"
+[browser]
+gatherUsageStats = false
+[server]
+# Streamlit's watcher otherwise crawls every transformers submodule and spams errors.
+fileWatcherType = "none"

@@ -1,0 +1,12 @@
+# Verified with Python 3.11 (conda env "canada-rag"). Lower bounds are the tested versions.
+streamlit>=1.50
+plotly>=6.0
+chromadb>=1.5
+sentence-transformers>=5.0
+umap-learn>=0.5.9
+pandas>=2.2
+numpy>=2.0
+joblib>=1.4
+openai>=1.50
+python-dotenv>=1.0
+pytest>=8.0

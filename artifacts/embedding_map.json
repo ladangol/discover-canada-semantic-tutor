@@ -1,0 +1,2376 @@
+{
+ "meta": {
+  "embedding_model": "sentence-transformers/all-MiniLM-L6-v2",
+  "umap_params": {
+   "n_components": 2,
+   "metric": "cosine",
+   "n_neighbors": 15,
+   "min_dist": 0.1,
+   "random_state": 42
+  },
+  "n_chunks": 236,
+  "note": "UMAP coordinates are for visualization only."
+ },
+ "points": [
+  {
+   "chunk_id": "discover-canada:window:p2-body-i0",
+   "page": "2",
+   "section": "Understanding the Oath",
+   "block_type": "body",
+   "chapter": "Understanding the Oath",
+   "preview": "In Canada, we profess our loyalty to a person who represents all Canadians and not to a document such as a constitution, a banner such as a flag, or a geopolit…",
+   "x": 5.0103983879089355,
+   "y": 5.470659255981445
+  },
+  {
+   "chunk_id": "discover-canada:window:p8b7-p8b8",
+   "page": "8",
+   "section": "Rights and Responsibilities of Citizenship",
+   "block_type": "body",
+   "chapter": "Rights and Responsibilities of Citizenship",
+   "preview": "Canadian citizens have rights and responsibilities. These come to us from our history, are secured by Canadian law, and reflect our shared traditions, identity…",
+   "x": 5.181780815124512,
+   "y": 3.7030913829803467
+  },
+  {
+   "chunk_id": "discover-canada:window:p8b8-p8b17-18",
+   "page": "8",
+   "section": "Rights and Responsibilities of Citizenship",
+   "block_type": "body",
+   "chapter": "Rights and Responsibilities of Citizenship",
+   "preview": "Canadian law has several sources, including laws passed by Parliament and the provincial legislatures, English common law, the civil code of France and the unw…",
+   "x": 4.898611068725586,
+   "y": 3.889911413192749
+  },
+  {
+   "chunk_id": "discover-canada:window:p8b17-18-p8b14",
+   "page": "8",
+   "section": "Rights and Responsibilities of Citizenship",
+   "block_type": "body",
+   "chapter": "Rights and Responsibilities of Citizenship",
+   "preview": "The Constitution of Canada was amended in 1982 to entrench the Canadian Charter of Rights and Freedoms, which begins with the words, “Whereas Canada is founded…",
+   "x": 4.933448791503906,
+   "y": 4.05784797668457
+  },
+  {
+   "chunk_id": "discover-canada:window:p8b14-p8b22",
+   "page": "8",
+   "section": "Rights and Responsibilities of Citizenship",
+   "block_type": "body",
+   "chapter": "Rights and Responsibilities of Citizenship",
+   "preview": "• Freedom of peaceful assembly; and • Freedom of association. Habeas corpus, the right to challenge unlawful detention by the state, comes from English common …",
+   "x": 4.991625785827637,
+   "y": 3.5888259410858154
+  },
+  {
+   "chunk_id": "discover-canada:window:p8b22-p8b23",
+   "page": "8",
+   "section": "Rights and Responsibilities of Citizenship",
+   "block_type": "body",
+   "chapter": "Rights and Responsibilities of Citizenship",
+   "preview": "• Official Language Rights and Minority Language Educational Rights — French and English have equal status in Parliament and throughout the government. • Multi…",
+   "x": 4.825584888458252,
+   "y": 3.341716766357422
+  },
+  {
+   "chunk_id": "discover-canada:window:p9b1-p9b2",
+   "page": "9",
+   "section": "Defending Canada",
+   "block_type": "body",
+   "chapter": "Rights and Responsibilities of Citizenship",
+   "preview": "There is no compulsory military service in Canada. However, serving in the regular Canadian Forces (navy, army and air force) is a noble way to contribute to C…",
+   "x": 5.735888481140137,
+   "y": 3.5914804935455322
+  },
+  {
+   "chunk_id": "discover-canada:window:p9b10",
+   "page": "9",
+   "section": "The Equality of Women and Men",
+   "block_type": "body",
+   "chapter": "Rights and Responsibilities of Citizenship",
+   "preview": "In Canada, men and women are equal under the law. Canada’s openness and generosity do not extend to barbaric cultural practices that tolerate spousal abuse, “h…",
+   "x": 5.3428754806518555,
+   "y": 3.617239475250244
+  },
+  {
+   "chunk_id": "discover-canada:window:p9b13-p9b16",
+   "page": "9",
+   "section": "Citizenship Responsibilities",
+   "block_type": "body",
+   "chapter": "Rights and Responsibilities of Citizenship",
+   "preview": "In Canada, rights come with responsibilities. These include: • Obeying the law — One of Canada’s founding principles is the rule of law. Individuals and govern…",
+   "x": 5.578751087188721,
+   "y": 3.710571765899658
+  },
+  {
+   "chunk_id": "discover-canada:window:p9b16-p9b18",
+   "page": "9",
+   "section": "Citizenship Responsibilities",
+   "block_type": "body",
+   "chapter": "Rights and Responsibilities of Citizenship",
+   "preview": "• Serving on a jury — When called to do so, you are legally required to serve. Serving on a jury is a privilege that makes the justice system work as it depend…",
+   "x": 5.672049522399902,
+   "y": 3.6078221797943115
+  },
+  {
+   "chunk_id": "discover-canada:window:p9b18-p9b19",
+   "page": "9",
+   "section": "Citizenship Responsibilities",
+   "block_type": "body",
+   "chapter": "Rights and Responsibilities of Citizenship",
+   "preview": "• Helping others in the community — Millions of volunteers freely donate their time to help others without pay—helping people in need, assisting at your child’…",
+   "x": 5.589512348175049,
+   "y": 3.4620766639709473
+  },
+  {
+   "chunk_id": "discover-canada:window:p10b9",
+   "page": "10",
+   "section": "Who We Are",
+   "block_type": "body",
+   "chapter": "Who We Are",
+   "preview": "Canada is known around the world as a strong and free country. Canadians are proud of their unique identity. We have inherited the oldest continuous constituti…",
+   "x": 4.573369026184082,
+   "y": 5.244306564331055
+  },
+  {
+   "chunk_id": "discover-canada:window:p10b9-p10b10",
+   "page": "10",
+   "section": "Who We Are",
+   "block_type": "body",
+   "chapter": "Who We Are",
+   "preview": "Canada is known around the world as a strong and free country. Canadians are proud of their unique identity. We have inherited the oldest continuous constituti…",
+   "x": 4.286113739013672,
+   "y": 5.157700538635254
+  },
+  {
+   "chunk_id": "discover-canada:window:p10b24-25-p10b22",
+   "page": "10",
+   "section": "Aboriginal peoples",
+   "block_type": "body",
+   "chapter": "Who We Are",
+   "preview": "From the 1800s until the 1980s, the federal government placed many Aboriginal children in residential schools to educate and assimilate them into mainstream Ca…",
+   "x": 3.3108952045440674,
+   "y": 3.8672385215759277
+  },
+  {
+   "chunk_id": "discover-canada:window:p10b22-p10b23",
+   "page": "10",
+   "section": "Aboriginal peoples",
+   "block_type": "body",
+   "chapter": "Who We Are",
+   "preview": "The ancestors of Aboriginal peoples are believed to have migrated from Asia many thousands of years ago. They were well established here long before explorers …",
+   "x": 3.3042452335357666,
+   "y": 3.928701162338257
+  },
+  {
+   "chunk_id": "discover-canada:window:p10b23-p10b26",
+   "page": "10",
+   "section": "Aboriginal peoples",
+   "block_type": "body",
+   "chapter": "Who We Are",
+   "preview": "Aboriginal and treaty rights are in the Canadian Constitution. Territorial rights were first guaranteed through the Royal Proclamation of 1763 by King George I…",
+   "x": 3.593815803527832,
+   "y": 4.033066749572754
+  },
+  {
+   "chunk_id": "discover-canada:window:p10b26-p10b27-28",
+   "page": "10",
+   "section": "Aboriginal peoples",
+   "block_type": "body",
+   "chapter": "Who We Are",
+   "preview": "In today’s Canada, Aboriginal peoples enjoy renewed pride and confidence, and have made significant achievements in agriculture, the environment, business and …",
+   "x": 3.3059146404266357,
+   "y": 3.7712507247924805
+  },
+  {
+   "chunk_id": "discover-canada:window:p11b12-p11b19",
+   "page": "11",
+   "section": "Unity in Diversity",
+   "block_type": "body",
+   "chapter": "Who We Are",
+   "preview": "John Buchan, the 1st Baron Tweedsmuir, was a popular Governor General of Canada (1935–40). Immigrant groups, he said, “should retain their individuality and ea…",
+   "x": 3.480633497238159,
+   "y": 3.5594193935394287
+  },
+  {
+   "chunk_id": "discover-canada:window:p11b19-p11b21",
+   "page": "11",
+   "section": "Unity in Diversity",
+   "block_type": "body",
+   "chapter": "Who We Are",
+   "preview": "The Inuit, which means “the people” in the Inuktitut language, live in small, scattered communities across the Arctic. Their knowledge of the land, sea and wil…",
+   "x": 3.511465072631836,
+   "y": 3.3545944690704346
+  },
+  {
+   "chunk_id": "discover-canada:window:p11b23",
+   "page": "11",
+   "section": "English and French",
+   "block_type": "body",
+   "chapter": "Who We Are",
+   "preview": "Canadian society today stems largely from the English-speaking and French-speaking Christian civilizations that were brought here from Europe by settlers. Engl…",
+   "x": 4.0889410972595215,
+   "y": 3.004075765609741
+  },
+  {
+   "chunk_id": "discover-canada:window:p11b23-p11b24",
+   "page": "11",
+   "section": "English and French",
+   "block_type": "body",
+   "chapter": "Who We Are",
+   "preview": "Canadian society today stems largely from the English-speaking and French-speaking Christian civilizations that were brought here from Europe by settlers. Engl…",
+   "x": 4.0181756019592285,
+   "y": 2.8767282962799072
+  },
+  {
+   "chunk_id": "discover-canada:window:p11b24-p11b25",
+   "page": "11",
+   "section": "English and French",
+   "block_type": "body",
+   "chapter": "Who We Are",
+   "preview": "Today, there are 18 million Anglophones—people who speak English as a first language—and seven million Francophones—people who speak French as their first lang…",
+   "x": 3.6406798362731934,
+   "y": 2.765658140182495
+  },
+  {
+   "chunk_id": "discover-canada:window:p11b25-p11b26",
+   "page": "11",
+   "section": "English and French",
+   "block_type": "body",
+   "chapter": "Who We Are",
+   "preview": "The Acadians are the descendants of French colonists who began settling in what are now the Maritime provinces in 1604. Between 1755 and 1763, during the war b…",
+   "x": 3.80806040763855,
+   "y": 2.8815369606018066
+  },
+  {
+   "chunk_id": "discover-canada:window:p12b7-p12b16-17",
+   "page": "12",
+   "section": "Becoming Canadian",
+   "block_type": "body",
+   "chapter": "Who We Are",
+   "preview": "Some Canadians immigrate from places where they have experienced warfare or conflict. Such experiences do not justify bringing to Canada violent, extreme or ha…",
+   "x": 3.87290096282959,
+   "y": 2.961937665939331
+  },
+  {
+   "chunk_id": "discover-canada:window:p12b27-p12b28",
+   "page": "12",
+   "section": "Diversity in Canada",
+   "block_type": "body",
+   "chapter": "Who We Are",
+   "preview": "The majority of Canadians were born in this country and this has been true since the 1800s. However, Canada is often referred to as a land of immigrants becaus…",
+   "x": 3.7450637817382812,
+   "y": 2.916694402694702
+  },
+  {
+   "chunk_id": "discover-canada:window:p12b28-p13b14",
+   "page": "12-13",
+   "section": "Diversity in Canada",
+   "block_type": "body",
+   "chapter": "Who We Are",
+   "preview": "Many ethnic and religious groups live and work in peace as proud Canadians. The largest groups are the English, French, Scottish, Irish, German, Italian, Chine…",
+   "x": 3.7206649780273438,
+   "y": 2.596889019012451
+  },
+  {
+   "chunk_id": "discover-canada:window:p13b14-p13b15",
+   "page": "13",
+   "section": "Diversity in Canada",
+   "block_type": "body",
+   "chapter": "Who We Are",
+   "preview": "Non-official languages are widely spoken in Canadian homes. Chinese languages are the second most-spoken at home, after English, in two of Canada’s biggest cit…",
+   "x": 3.7794904708862305,
+   "y": 2.5231258869171143
+  },
+  {
+   "chunk_id": "discover-canada:window:p13b15-p13b17",
+   "page": "13",
+   "section": "Diversity in Canada",
+   "block_type": "body",
+   "chapter": "Who We Are",
+   "preview": "The great majority of Canadians identify as Christians. The largest religious affiliation is Catholic, followed by various Protestant churches. The numbers of …",
+   "x": 4.345035076141357,
+   "y": 2.9541375637054443
+  },
+  {
+   "chunk_id": "discover-canada:window:p13b17-p13b18",
+   "page": "13",
+   "section": "Diversity in Canada",
+   "block_type": "body",
+   "chapter": "Who We Are",
+   "preview": "Canada’s diversity includes gay and lesbian Canadians, who enjoy the full protection of and equal treatment under the law, including access to civil marriage. …",
+   "x": 4.396762847900391,
+   "y": 3.015907049179077
+  },
+  {
+   "chunk_id": "discover-canada:window:p14b9-10",
+   "page": "14",
+   "section": "Aboriginal peoples",
+   "block_type": "body",
+   "chapter": "Canada’s History",
+   "preview": "When Europeans explored Canada they found all regions occupied by native peoples they called Indians, because the first explorers thought they had reached the …",
+   "x": 2.9666266441345215,
+   "y": 3.80314302444458
+  },
+  {
+   "chunk_id": "discover-canada:window:p14b9-10-p14b11",
+   "page": "14",
+   "section": "Aboriginal peoples",
+   "block_type": "body",
+   "chapter": "Canada’s History",
+   "preview": "When Europeans explored Canada they found all regions occupied by native peoples they called Indians, because the first explorers thought they had reached the …",
+   "x": 2.9642269611358643,
+   "y": 3.971228837966919
+  },
+  {
+   "chunk_id": "discover-canada:window:p14b15-p14b16",
+   "page": "14",
+   "section": "The First Europeans",
+   "block_type": "body",
+   "chapter": "Canada’s History",
+   "preview": "The Vikings from Iceland who colonized Greenland 1,000 years ago also reached Labrador and the island of Newfoundland. The remains of their settlement, l’Anse …",
+   "x": 2.418009042739868,
+   "y": 4.086142063140869
+  },
+  {
+   "chunk_id": "discover-canada:window:p14b18",
+   "page": "14",
+   "section": "Exploring a river, naming Canada",
+   "block_type": "body",
+   "chapter": "Canada’s History",
+   "preview": "Between 1534 and 1542, Jacques Cartier made three voyages across the Atlantic, claiming the land for King Francis I of France. Cartier heard two captured guide…",
+   "x": 2.513270139694214,
+   "y": 4.033596992492676
+  },
+  {
+   "chunk_id": "discover-canada:window:p15b14",
+   "page": "15",
+   "section": "Royal New France",
+   "block_type": "body",
+   "chapter": "Canada’s History",
+   "preview": "In 1604, the first European settlement north of Florida was established by French explorers Pierre de Monts and Samuel de Champlain, first on St. Croix Island …",
+   "x": 2.501950740814209,
+   "y": 4.518877983093262
+  },
+  {
+   "chunk_id": "discover-canada:window:p15b14-p15b15",
+   "page": "15",
+   "section": "Royal New France",
+   "block_type": "body",
+   "chapter": "Canada’s History",
+   "preview": "In 1604, the first European settlement north of Florida was established by French explorers Pierre de Monts and Samuel de Champlain, first on St. Croix Island …",
+   "x": 2.3995003700256348,
+   "y": 4.532074928283691
+  },
+  {
+   "chunk_id": "discover-canada:window:p15b17",
+   "page": "15",
+   "section": "Struggle for a continent",
+   "block_type": "body",
+   "chapter": "Canada’s History",
+   "preview": "In 1670, King Charles II of England granted the Hudson’s Bay Company exclusive trading rights over the watershed draining into Hudson Bay. For the next 100 yea…",
+   "x": 2.1663930416107178,
+   "y": 4.183628559112549
+  },
+  {
+   "chunk_id": "discover-canada:window:p15b17-p15b18",
+   "page": "15",
+   "section": "Struggle for a continent",
+   "block_type": "body",
+   "chapter": "Canada’s History",
+   "preview": "In 1670, King Charles II of England granted the Hudson’s Bay Company exclusive trading rights over the watershed draining into Hudson Bay. For the next 100 yea…",
+   "x": 2.2217369079589844,
+   "y": 5.005372047424316
+  },
+  {
+   "chunk_id": "discover-canada:window:p15b20",
+   "page": "15",
+   "section": "The province of Quebec",
+   "block_type": "body",
+   "chapter": "Canada’s History",
+   "preview": "Following the war, Great Britain renamed the colony the “Province of Quebec.” The French-speaking Catholic people, known as habitants or Canadiens, strove to p…",
+   "x": 3.276578426361084,
+   "y": 4.414308071136475
+  },
+  {
+   "chunk_id": "discover-canada:window:p15b22",
+   "page": "15",
+   "section": "A tradition of accommodation",
+   "block_type": "body",
+   "chapter": "Canada’s History",
+   "preview": "To better govern the French Roman Catholic majority, the British Parliament passed the Quebec Act of 1774. One of the constitutional foundations of Canada, the…",
+   "x": 4.394382953643799,
+   "y": 4.18642520904541
+  },
+  {
+   "chunk_id": "discover-canada:window:p15b24s0",
+   "page": "15",
+   "section": "United empire loyalists",
+   "block_type": "body",
+   "chapter": "Canada’s History",
+   "preview": "In 1776, the 13 British colonies to the south of Quebec declared independence and formed the United States. North America was again divided by war. More than 4…",
+   "x": 2.8623859882354736,
+   "y": 5.2856645584106445
+  },
+  {
+   "chunk_id": "discover-canada:window:p15b24s0-p15b24s1",
+   "page": "15",
+   "section": "United empire loyalists",
+   "block_type": "body",
+   "chapter": "Canada’s History",
+   "preview": "In 1776, the 13 British colonies to the south of Quebec declared independence and formed the United States. North America was again divided by war. More than 4…",
+   "x": 2.88167667388916,
+   "y": 5.2463274002075195
+  },
+  {
+   "chunk_id": "discover-canada:window:p16b6-p16b7",
+   "page": "16",
+   "section": "The Beginnings of Democracy",
+   "block_type": "body",
+   "chapter": "Canada’s History",
+   "preview": "Democratic institutions developed gradually and peacefully. The first representative assembly was elected in Halifax, Nova Scotia, in 1758. Prince Edward Islan…",
+   "x": 3.8789780139923096,
+   "y": 4.96382999420166
+  },
+  {
+   "chunk_id": "discover-canada:window:p16b14",
+   "page": "16",
+   "section": "Abolition of slavery",
+   "block_type": "body",
+   "chapter": "Canada’s History",
+   "preview": "Slavery has existed all over the world, from Asia, Africa and the Middle East to the Americas. The first movement to abolish the transatlantic slave trade emer…",
+   "x": 3.222109794616699,
+   "y": 5.012581825256348
+  },
+  {
+   "chunk_id": "discover-canada:window:p16b16-p16b17",
+   "page": "16",
+   "section": "A growing economy",
+   "block_type": "body",
+   "chapter": "Canada’s History",
+   "preview": "The first companies in Canada were formed during the French and British regimes and competed for the fur trade. The Hudson’s Bay Company, with French, British …",
+   "x": 1.9918246269226074,
+   "y": 3.4703786373138428
+  },
+  {
+   "chunk_id": "discover-canada:window:p17b6s0",
+   "page": "17",
+   "section": "The War of 1812: The Fight for Canada",
+   "block_type": "body",
+   "chapter": "Canada’s History",
+   "preview": "After the defeat of Napoleon Bonaparte’s fleet in the Battle of Trafalgar (1805), the Royal Navy ruled the waves. The British Empire, which included Canada, fo…",
+   "x": 1.8172087669372559,
+   "y": 6.532153606414795
+  },
+  {
+   "chunk_id": "discover-canada:window:p17b6s1",
+   "page": "17",
+   "section": "The War of 1812: The Fight for Canada",
+   "block_type": "body",
+   "chapter": "Canada’s History",
+   "preview": "In 1813, Lieutenant-Colonel Charles de Salaberry and 460 soldiers, mostly French Canadiens, turned back 4,000 American invaders at Châteauguay, south of Montre…",
+   "x": 1.9791431427001953,
+   "y": 6.281326770782471
+  },
+  {
+   "chunk_id": "discover-canada:window:p17b6s1-p17b4",
+   "page": "17",
+   "section": "The War of 1812: The Fight for Canada",
+   "block_type": "body",
+   "chapter": "Canada’s History",
+   "preview": "In 1813, Lieutenant-Colonel Charles de Salaberry and 460 soldiers, mostly French Canadiens, turned back 4,000 American invaders at Châteauguay, south of Montre…",
+   "x": 2.050522804260254,
+   "y": 6.238001823425293
+  },
+  {
+   "chunk_id": "discover-canada:window:p17b19-20-p17b21",
+   "page": "17",
+   "section": "Rebellions of 1837–38",
+   "block_type": "body",
+   "chapter": "Canada’s History",
+   "preview": "In the 1830s, reformers in Upper and Lower Canada believed that progress toward full democracy was too slow. Some believed Canada should adopt American republi…",
+   "x": 3.119847536087036,
+   "y": 5.3774518966674805
+  },
+  {
+   "chunk_id": "discover-canada:window:p17b21-p18b10",
+   "page": "17-18",
+   "section": "Rebellions of 1837–38",
+   "block_type": "body",
+   "chapter": "Canada’s History",
+   "preview": "Lord Durham, an English reformer sent to report on the rebellions, recommended that Upper and Lower Canada be merged and given responsible government. This mea…",
+   "x": 3.2186062335968018,
+   "y": 5.1979594230651855
+  },
+  {
+   "chunk_id": "discover-canada:window:p18b10-p18b11",
+   "page": "18",
+   "section": "Rebellions of 1837–38",
+   "block_type": "body",
+   "chapter": "Canada’s History",
+   "preview": "the Crown must have the support of a majority of the elected representatives in order to govern. Controversially, Lord Durham also said that the quickest way f…",
+   "x": 3.360995292663574,
+   "y": 5.131412982940674
+  },
+  {
+   "chunk_id": "discover-canada:window:p18b6",
+   "page": "18",
+   "section": "Dominion from Sea to Sea",
+   "block_type": "body",
+   "chapter": "Canada’s History",
+   "preview": "Sir Leonard Tilley, an elected official and Father of Confederation from New Brunswick, suggested the term Dominion of Canada in 1864. He was inspired by Psalm…",
+   "x": 4.097224235534668,
+   "y": 5.276444435119629
+  },
+  {
+   "chunk_id": "discover-canada:window:p18b13-p18b15",
+   "page": "18",
+   "section": "Responsible government",
+   "block_type": "body",
+   "chapter": "Canada’s History",
+   "preview": "In 1840, Upper and Lower Canada were united as the Province of Canada. Reformers such as Sir Louis-Hippolyte La Fontaine and Robert Baldwin, in parallel with J…",
+   "x": 4.323971748352051,
+   "y": 4.799901008605957
+  },
+  {
+   "chunk_id": "discover-canada:window:p18b17",
+   "page": "18",
+   "section": "Confederation",
+   "block_type": "body",
+   "chapter": "Canada’s History",
+   "preview": "From 1864 to 1867, representatives of Nova Scotia, New Brunswick and the Province of Canada, with British support, worked together to establish a new country. …",
+   "x": 3.7759294509887695,
+   "y": 5.070622444152832
+  },
+  {
+   "chunk_id": "discover-canada:window:p18b17-p18b18",
+   "page": "18",
+   "section": "Confederation",
+   "block_type": "body",
+   "chapter": "Canada’s History",
+   "preview": "From 1864 to 1867, representatives of Nova Scotia, New Brunswick and the Province of Canada, with British support, worked together to establish a new country. …",
+   "x": 3.962618112564087,
+   "y": 5.358940124511719
+  },
+  {
+   "chunk_id": "discover-canada:window:p19b3-4",
+   "page": "19",
+   "section": "Expansion of the Dominion",
+   "block_type": "body",
+   "chapter": "Canada’s History",
+   "preview": "1867 – Ontario, Quebec, Nova Scotia, New Brunswick 1870 – Manitoba, Northwest Territories 1871 – British Columbia 1873 – Prince Edward Island 1880 – Transfer o…",
+   "x": 2.7847368717193604,
+   "y": 4.364071846008301
+  },
+  {
+   "chunk_id": "discover-canada:window:p19b6-p19b7",
+   "page": "19",
+   "section": "Canada’s First Prime Minister",
+   "block_type": "body",
+   "chapter": "Canada’s History",
+   "preview": "In 1867, Sir John Alexander Macdonald, a Father of Confederation, became Canada’s first Prime Minister. Born in Scotland on January 11, 1815, he came to Upper …",
+   "x": 3.122016191482544,
+   "y": 4.754358768463135
+  },
+  {
+   "chunk_id": "discover-canada:window:p19b19-20",
+   "page": "19",
+   "section": "Challenge in the west",
+   "block_type": "body",
+   "chapter": "Canada’s History",
+   "preview": "Ottawa sent soldiers to retake Fort Garry in 1870. Riel fled to the United States and Canada established a new province: Manitoba. Riel was elected to Parliame…",
+   "x": 2.5549893379211426,
+   "y": 5.453658103942871
+  },
+  {
+   "chunk_id": "discover-canada:window:p19b19-20-p19b18",
+   "page": "19",
+   "section": "Challenge in the west",
+   "block_type": "body",
+   "chapter": "Canada’s History",
+   "preview": "Ottawa sent soldiers to retake Fort Garry in 1870. Riel fled to the United States and Canada established a new province: Manitoba. Riel was elected to Parliame…",
+   "x": 2.4527688026428223,
+   "y": 5.3645477294921875
+  },
+  {
+   "chunk_id": "discover-canada:window:p19b18-p19b21",
+   "page": "19",
+   "section": "Challenge in the west",
+   "block_type": "body",
+   "chapter": "Canada’s History",
+   "preview": "When Canada took over the vast northwest region from the Hudson’s Bay Company in 1869, the 12,000 Métis of the Red River were not consulted. In response, Louis…",
+   "x": 2.265352964401245,
+   "y": 5.318143367767334
+  },
+  {
+   "chunk_id": "discover-canada:window:p20b7",
+   "page": "20",
+   "section": "A Railway from Sea to Sea",
+   "block_type": "body",
+   "chapter": "Canada’s History",
+   "preview": "British Columbia joined Canada in 1871 after Ottawa promised to build a railway to the West Coast. On November 7, 1885, a powerful symbol of unity was complete…",
+   "x": 1.8277544975280762,
+   "y": 4.379501819610596
+  },
+  {
+   "chunk_id": "discover-canada:window:p20b7-p20b12",
+   "page": "20",
+   "section": "A Railway from Sea to Sea",
+   "block_type": "body",
+   "chapter": "Canada’s History",
+   "preview": "British Columbia joined Canada in 1871 after Ottawa promised to build a railway to the West Coast. On November 7, 1885, a powerful symbol of unity was complete…",
+   "x": 1.671669602394104,
+   "y": 4.2809271812438965
+  },
+  {
+   "chunk_id": "discover-canada:window:p20b12-p20b13",
+   "page": "20",
+   "section": "A Railway from Sea to Sea",
+   "block_type": "body",
+   "chapter": "Canada’s History",
+   "preview": "Canada’s economy grew and became more industrialized during the economic boom of the 1890s and early 1900s. One million British and one million Americans immig…",
+   "x": 1.947542428970337,
+   "y": 3.9525578022003174
+  },
+  {
+   "chunk_id": "discover-canada:window:p21b5-6",
+   "page": "21",
+   "section": "The First World War",
+   "block_type": "body",
+   "chapter": "Canada’s History",
+   "preview": "On the battlefield, the Canadians proved to be tough, innovative soldiers. Canada shared in the tragedy and triumph of the Western Front. The Canadian Corps ca…",
+   "x": 2.370670795440674,
+   "y": 7.1830244064331055
+  },
+  {
+   "chunk_id": "discover-canada:window:p21b5-6-p21b3",
+   "page": "21",
+   "section": "The First World War",
+   "block_type": "body",
+   "chapter": "Canada’s History",
+   "preview": "On the battlefield, the Canadians proved to be tough, innovative soldiers. Canada shared in the tragedy and triumph of the Western Front. The Canadian Corps ca…",
+   "x": 2.4724035263061523,
+   "y": 7.243746757507324
+  },
+  {
+   "chunk_id": "discover-canada:window:p21b3-p21b4",
+   "page": "21",
+   "section": "The First World War",
+   "block_type": "body",
+   "chapter": "Canada’s History",
+   "preview": "Most Canadians were proud to be part of the British Empire. Over 7,000 volunteered to fight in the South African War (1899–1902), popularly known as the Boer W…",
+   "x": 2.4190433025360107,
+   "y": 7.39572811126709
+  },
+  {
+   "chunk_id": "discover-canada:window:p21b4-p21b7",
+   "page": "21",
+   "section": "The First World War",
+   "block_type": "body",
+   "chapter": "Canada’s History",
+   "preview": "When Germany attacked Belgium and France in 1914 and Britain declared war, Ottawa formed the Canadian Expeditionary Force (later the Canadian Corps). More than…",
+   "x": 2.1304407119750977,
+   "y": 7.492019176483154
+  },
+  {
+   "chunk_id": "discover-canada:window:p21b7-p21b8",
+   "page": "21",
+   "section": "The First World War",
+   "block_type": "body",
+   "chapter": "Canada’s History",
+   "preview": "Regrettably, from 1914 to 1920, Ottawa interned over 8,000 former Austro-Hungarian subjects, mainly Ukrainian men, as “enemy aliens” in 24 labour camps across …",
+   "x": 2.235292911529541,
+   "y": 7.304197788238525
+  },
+  {
+   "chunk_id": "discover-canada:window:p21b23-24",
+   "page": "21",
+   "section": "Women get the vote",
+   "block_type": "body",
+   "chapter": "Canada’s History",
+   "preview": "In 1917, thanks to the leadership of women such as Dr. Stowe and other suffragettes, the federal government of Sir Robert Borden gave women the right to vote i…",
+   "x": 4.006509780883789,
+   "y": 4.367022514343262
+  },
+  {
+   "chunk_id": "discover-canada:window:p21b23-24-p21b22",
+   "page": "21",
+   "section": "Women get the vote",
+   "block_type": "body",
+   "chapter": "Canada’s History",
+   "preview": "In 1917, thanks to the leadership of women such as Dr. Stowe and other suffragettes, the federal government of Sir Robert Borden gave women the right to vote i…",
+   "x": 3.930297613143921,
+   "y": 4.4485182762146
+  },
+  {
+   "chunk_id": "discover-canada:window:p22b12-p22b13",
+   "page": "22",
+   "section": "Between the wars",
+   "block_type": "body",
+   "chapter": "Canada’s History",
+   "preview": "Canadians remember the sacrifices of our veterans and brave fallen in all wars up to the present day in which Canadians took part, each year on November 11: Re…",
+   "x": 2.9616334438323975,
+   "y": 6.531944751739502
+  },
+  {
+   "chunk_id": "discover-canada:window:p22b13-p22b15",
+   "page": "22",
+   "section": "Between the wars",
+   "block_type": "body",
+   "chapter": "Canada’s History",
+   "preview": "In Flanders fields the poppies blow Between the crosses, row on row, That mark our place; and in the sky The larks, still bravely singing, fly Scarce heard ami…",
+   "x": 2.8678019046783447,
+   "y": 6.234086990356445
+  },
+  {
+   "chunk_id": "discover-canada:window:p22b15-p22b17",
+   "page": "22",
+   "section": "Between the wars",
+   "block_type": "body",
+   "chapter": "Canada’s History",
+   "preview": "Take up our quarrel with the foe: To you from failing hands we throw The torch; be yours to hold it high. If ye break faith with us who die We shall not sleep,…",
+   "x": 3.08107852935791,
+   "y": 6.087332248687744
+  },
+  {
+   "chunk_id": "discover-canada:window:p22b17-p22b18",
+   "page": "22",
+   "section": "Between the wars",
+   "block_type": "body",
+   "chapter": "Canada’s History",
+   "preview": "After the First World War, the British Empire evolved into a free association of states known as the British Commonwealth of Nations. Canada remains a leading …",
+   "x": 1.7433241605758667,
+   "y": 3.296933650970459
+  },
+  {
+   "chunk_id": "discover-canada:window:p22b18-p22b19",
+   "page": "22",
+   "section": "Between the wars",
+   "block_type": "body",
+   "chapter": "Canada’s History",
+   "preview": "The “Roaring Twenties” were boom times, with prosperity for businesses and low unemployment. The stock market crash of 1929, however, led to the Great Depressi…",
+   "x": 1.75313401222229,
+   "y": 3.4932751655578613
+  },
+  {
+   "chunk_id": "discover-canada:window:p23b1",
+   "page": "23",
+   "section": "The D-Day Invasion, June 6, 1944",
+   "block_type": "body",
+   "chapter": "Canada’s History",
+   "preview": "In order to defeat Nazism and Fascism, the Allies invaded Nazi-occupied Europe. Canadians took part in the liberation of Italy in 1943–44. In the epic invasion…",
+   "x": 2.132187843322754,
+   "y": 7.106499195098877
+  },
+  {
+   "chunk_id": "discover-canada:window:p23b11-p23b13",
+   "page": "23",
+   "section": "The Second World War",
+   "block_type": "body",
+   "chapter": "Canada’s History",
+   "preview": "The Second World War began in 1939 when Adolf Hitler, the National Socialist (Nazi) dictator of Germany, invaded Poland and conquered much of Europe. Canada jo…",
+   "x": 1.8538150787353516,
+   "y": 7.409158229827881
+  },
+  {
+   "chunk_id": "discover-canada:window:p23b13-p23b14",
+   "page": "23",
+   "section": "The Second World War",
+   "block_type": "body",
+   "chapter": "Canada’s History",
+   "preview": "The Canadians fought bravely and suffered losses in the unsuccessful defence of Hong Kong (1941) from attack by Imperial Japan, and in a failed raid on Nazi-co…",
+   "x": 1.8428659439086914,
+   "y": 7.4156365394592285
+  },
+  {
+   "chunk_id": "discover-canada:window:p23b14-p23b15",
+   "page": "23",
+   "section": "The Second World War",
+   "block_type": "body",
+   "chapter": "Canada’s History",
+   "preview": "The Royal Canadian Air Force (RCAF) took part in the Battle of Britain and provided a high proportion of Commonwealth aircrew in bombers and fighter planes ove…",
+   "x": 1.928475022315979,
+   "y": 7.432877063751221
+  },
+  {
+   "chunk_id": "discover-canada:window:p23b15-p23b16",
+   "page": "23",
+   "section": "The Second World War",
+   "block_type": "body",
+   "chapter": "Canada’s History",
+   "preview": "The Royal Canadian Navy (RCN) saw its finest hour in the Battle of the Atlantic, protecting convoys of merchant ships against German submarines. Canada’s Merch…",
+   "x": 1.6372666358947754,
+   "y": 7.152902126312256
+  },
+  {
+   "chunk_id": "discover-canada:window:p23b16-p23b17",
+   "page": "23",
+   "section": "The Second World War",
+   "block_type": "body",
+   "chapter": "Canada’s History",
+   "preview": "In the Pacific war, Japan invaded the Aleutian Islands, attacked a lighthouse on Vancouver Island, launched fire balloons over B.C. and the Prairies, and gross…",
+   "x": 1.6333030462265015,
+   "y": 7.158392906188965
+  },
+  {
+   "chunk_id": "discover-canada:window:p24b12s0",
+   "page": "24",
+   "section": "Trade and economic growth",
+   "block_type": "body",
+   "chapter": "Modern Canada",
+   "preview": "Postwar Canada enjoyed record prosperity and material progress. The world’s restrictive trading policies in the Depression era were opened up by such treaties …",
+   "x": 1.7531874179840088,
+   "y": 3.041327714920044
+  },
+  {
+   "chunk_id": "discover-canada:window:p24b12s0-p24b12s1",
+   "page": "24",
+   "section": "Trade and economic growth",
+   "block_type": "body",
+   "chapter": "Modern Canada",
+   "preview": "Postwar Canada enjoyed record prosperity and material progress. The world’s restrictive trading policies in the Depression era were opened up by such treaties …",
+   "x": 1.6356714963912964,
+   "y": 3.118701219558716
+  },
+  {
+   "chunk_id": "discover-canada:window:p24b12s1-p24b13",
+   "page": "24",
+   "section": "Trade and economic growth",
+   "block_type": "body",
+   "chapter": "Modern Canada",
+   "preview": "Today, Canadians enjoy one of the world’s highest standards of living—maintained by the hard work of Canadians and by trade with other nations, in particular t…",
+   "x": 1.6653614044189453,
+   "y": 3.5191073417663574
+  },
+  {
+   "chunk_id": "discover-canada:window:p24b13-p24b17",
+   "page": "24",
+   "section": "Trade and economic growth",
+   "block_type": "body",
+   "chapter": "Modern Canada",
+   "preview": "As prosperity grew, so did the ability to support social assistance programs. The Canada Health Act ensures common elements and a basic standard of coverage. U…",
+   "x": 1.565428614616394,
+   "y": 3.5021259784698486
+  },
+  {
+   "chunk_id": "discover-canada:window:p24b15-p24b16",
+   "page": "24",
+   "section": "International engagement",
+   "block_type": "body",
+   "chapter": "Modern Canada",
+   "preview": "Like Australia, New Zealand and other countries, Canada developed its autonomy gradually with a capacity to make significant contributions internationally. The…",
+   "x": 1.831100344657898,
+   "y": 7.541393280029297
+  },
+  {
+   "chunk_id": "discover-canada:window:p24b19",
+   "page": "24",
+   "section": "Canada and Quebec",
+   "block_type": "body",
+   "chapter": "Modern Canada",
+   "preview": "French-Canadian society and culture flourished in the postwar years. Quebec experienced an era of rapid change in the 1960s known as the Quiet Revolution. Many…",
+   "x": 4.291754722595215,
+   "y": 3.7259297370910645
+  },
+  {
+   "chunk_id": "discover-canada:window:p24b19-p24b20",
+   "page": "24",
+   "section": "Canada and Quebec",
+   "block_type": "body",
+   "chapter": "Modern Canada",
+   "preview": "French-Canadian society and culture flourished in the postwar years. Quebec experienced an era of rapid change in the 1960s known as the Quiet Revolution. Many…",
+   "x": 4.325122833251953,
+   "y": 3.896285057067871
+  },
+  {
+   "chunk_id": "discover-canada:window:p25b13-p25b14",
+   "page": "25",
+   "section": "A Changing Society",
+   "block_type": "body",
+   "chapter": "Modern Canada",
+   "preview": "As social values changed over more than 50 years, Canada became a more flexible and open society. Many took advantage of expanding secondary and postsecondary …",
+   "x": 4.0923285484313965,
+   "y": 4.04271125793457
+  },
+  {
+   "chunk_id": "discover-canada:window:p25b14-p25b15",
+   "page": "25",
+   "section": "A Changing Society",
+   "block_type": "body",
+   "chapter": "Modern Canada",
+   "preview": "Most Canadians of Asian descent had in the past been denied the vote in federal and provincial elections. In 1948 the last of these, the Japanese- Canadians, g…",
+   "x": 3.950594425201416,
+   "y": 3.8814010620117188
+  },
+  {
+   "chunk_id": "discover-canada:window:p25b15-p25b16",
+   "page": "25",
+   "section": "A Changing Society",
+   "block_type": "body",
+   "chapter": "Modern Canada",
+   "preview": "Canada welcomed thousands of refugees from Communist oppression, including about 37,000 who escaped Soviet tyranny in Hungary in 1956. With the Communist victo…",
+   "x": 4.078636646270752,
+   "y": 3.577889919281006
+  },
+  {
+   "chunk_id": "discover-canada:window:p25b18",
+   "page": "25",
+   "section": "Arts and culture in Canada",
+   "block_type": "body",
+   "chapter": "Modern Canada",
+   "preview": "Canadian artists have a long history of achievement in which Canadians take pride. Artists from all regions reflect and define our culture and forms of creativ…",
+   "x": 0.2873484790325165,
+   "y": 4.928024768829346
+  },
+  {
+   "chunk_id": "discover-canada:window:p25b18-p25b19",
+   "page": "25",
+   "section": "Arts and culture in Canada",
+   "block_type": "body",
+   "chapter": "Modern Canada",
+   "preview": "Canadian artists have a long history of achievement in which Canadians take pride. Artists from all regions reflect and define our culture and forms of creativ…",
+   "x": 0.366077721118927,
+   "y": 4.954848766326904
+  },
+  {
+   "chunk_id": "discover-canada:window:p25b19-p25b20",
+   "page": "25",
+   "section": "Arts and culture in Canada",
+   "block_type": "body",
+   "chapter": "Modern Canada",
+   "preview": "Canadians have made significant contributions to literature in English and in French. Novelists, poets, historians, educators and musicians have had a signific…",
+   "x": 0.4533814489841461,
+   "y": 5.006629467010498
+  },
+  {
+   "chunk_id": "discover-canada:window:p25b20-p25b21",
+   "page": "25",
+   "section": "Arts and culture in Canada",
+   "block_type": "body",
+   "chapter": "Modern Canada",
+   "preview": "In the visual arts, Canada is historically perhaps best known for the Group of Seven, founded in 1920, who developed a style of painting to capture the rugged …",
+   "x": 0.3685333728790283,
+   "y": 4.835763931274414
+  },
+  {
+   "chunk_id": "discover-canada:window:p25b21-p25b22",
+   "page": "25",
+   "section": "Arts and culture in Canada",
+   "block_type": "body",
+   "chapter": "Modern Canada",
+   "preview": "Canada has a long and respected performing arts history, with a network of regional theatres and world-renowned performing arts companies. The films of Denys A…",
+   "x": 0.3350011706352234,
+   "y": 4.93258810043335
+  },
+  {
+   "chunk_id": "discover-canada:window:p25b22-p26b21-22",
+   "page": "25-26",
+   "section": "Arts and culture in Canada",
+   "block_type": "body",
+   "chapter": "Modern Canada",
+   "preview": "The films of Denys Arcand have been popular in Quebec and across the country, and have won international awards. Other noteworthy Canadian filmmakers include N…",
+   "x": 0.6688557267189026,
+   "y": 4.869372367858887
+  },
+  {
+   "chunk_id": "discover-canada:window:p26b21-22-p26b20",
+   "page": "26",
+   "section": "Arts and culture in Canada",
+   "block_type": "body",
+   "chapter": "Modern Canada",
+   "preview": "In 1980, Terry Fox, a British Columbian who lost his right leg to cancer at the age of 18, began a cross-country run, the “Marathon of Hope,” to raise money fo…",
+   "x": 0.8604528903961182,
+   "y": 4.740993976593018
+  },
+  {
+   "chunk_id": "discover-canada:window:p26b20-p26b23",
+   "page": "26",
+   "section": "Arts and culture in Canada",
+   "block_type": "body",
+   "chapter": "Modern Canada",
+   "preview": "Sports have flourished as all provinces and territories have produced amateur and professional star athletes and Olympic medal winners. Basketball was invented…",
+   "x": 0.9527581334114075,
+   "y": 4.768006801605225
+  },
+  {
+   "chunk_id": "discover-canada:window:p27b2-p27b6",
+   "page": "27",
+   "section": "GREAT CANADIAN DISCOVERIES AND INVENTIONS",
+   "block_type": "body",
+   "chapter": "Modern Canada",
+   "preview": "Canadians have made various discoveries and inventions. Some of the most famous are listed below. • Alexander Graham Bell — hit on the idea of the telephone at…",
+   "x": 0.7082445621490479,
+   "y": 4.175843238830566
+  },
+  {
+   "chunk_id": "discover-canada:window:p27b6-p27b0",
+   "page": "27",
+   "section": "GREAT CANADIAN DISCOVERIES AND INVENTIONS",
+   "block_type": "body",
+   "chapter": "Modern Canada",
+   "preview": "• Matthew Evans and Henry Woodward — together invented the first electric light bulb and later sold the patent to Thomas Edison who, more famously, commerciali…",
+   "x": 0.587689995765686,
+   "y": 4.250738143920898
+  },
+  {
+   "chunk_id": "discover-canada:window:p27b0-p27b18-19",
+   "page": "27",
+   "section": "GREAT CANADIAN DISCOVERIES AND INVENTIONS",
+   "block_type": "body",
+   "chapter": "Modern Canada",
+   "preview": "Want to learn more about Canada’s history? Visit a museum or national historic site! Through artifacts, works of art, stories, images and documents, museums ex…",
+   "x": 0.4048522710800171,
+   "y": 4.394913673400879
+  },
+  {
+   "chunk_id": "discover-canada:window:p27b18-19-p27b10",
+   "page": "27",
+   "section": "GREAT CANADIAN DISCOVERIES AND INVENTIONS",
+   "block_type": "body",
+   "chapter": "Modern Canada",
+   "preview": "The prosperity and diversity of our country depend on all Canadians working together to face challenges of the future. In seeking to become a citizen, you are …",
+   "x": 0.7618348598480225,
+   "y": 4.145225524902344
+  },
+  {
+   "chunk_id": "discover-canada:window:p27b10-p27b20",
+   "page": "27",
+   "section": "GREAT CANADIAN DISCOVERIES AND INVENTIONS",
+   "block_type": "body",
+   "chapter": "Modern Canada",
+   "preview": "• SPAR Aerospace / National Research Council — invented the Canadarm, a robotic arm used in outer space. • Mike Lazaridis and Jim Balsillie — of Research in Mo…",
+   "x": 0.6208748817443848,
+   "y": 4.223989963531494
+  },
+  {
+   "chunk_id": "discover-canada:window:p28b3",
+   "page": "28",
+   "section": "How Canadians Govern Themselves",
+   "block_type": "body",
+   "chapter": "How Canadians Govern Themselves",
+   "preview": "There are three key facts about Canada’s system of government: our country is a federal state, a parliamentary democracy and a constitutional monarchy.",
+   "x": 5.833005905151367,
+   "y": 5.166293144226074
+  },
+  {
+   "chunk_id": "discover-canada:window:p28b11",
+   "page": "28",
+   "section": "Federal state",
+   "block_type": "body",
+   "chapter": "How Canadians Govern Themselves",
+   "preview": "There are federal, provincial, territorial and municipal governments in Canada. The responsibilities of the federal and provincial governments were defined in …",
+   "x": 5.959805488586426,
+   "y": 5.165223598480225
+  },
+  {
+   "chunk_id": "discover-canada:window:p28b11-p28b12",
+   "page": "28",
+   "section": "Federal state",
+   "block_type": "body",
+   "chapter": "How Canadians Govern Themselves",
+   "preview": "There are federal, provincial, territorial and municipal governments in Canada. The responsibilities of the federal and provincial governments were defined in …",
+   "x": 6.009724140167236,
+   "y": 5.087830066680908
+  },
+  {
+   "chunk_id": "discover-canada:window:p28b12-p28b13",
+   "page": "28",
+   "section": "Federal state",
+   "block_type": "body",
+   "chapter": "How Canadians Govern Themselves",
+   "preview": "In our federal state, the federal government takes responsibility for matters of national and international concern. These include defence, foreign policy, int…",
+   "x": 6.226797580718994,
+   "y": 5.330672740936279
+  },
+  {
+   "chunk_id": "discover-canada:window:p28b15-p28b16",
+   "page": "28",
+   "section": "Parliamentary democracy",
+   "block_type": "body",
+   "chapter": "How Canadians Govern Themselves",
+   "preview": "In Canada’s parliamentary democracy, the people elect members to the House of Commons in Ottawa and to the provincial and territorial legislatures. These repre…",
+   "x": 6.4840216636657715,
+   "y": 5.198698997497559
+  },
+  {
+   "chunk_id": "discover-canada:window:p28b16-p28b17",
+   "page": "28",
+   "section": "Parliamentary democracy",
+   "block_type": "body",
+   "chapter": "How Canadians Govern Themselves",
+   "preview": "Parliament has three parts: the Sovereign (Queen or King), the Senate and the House of Commons. Provincial legislatures comprise the Lieutenant Governor and th…",
+   "x": 6.632928371429443,
+   "y": 5.038352012634277
+  },
+  {
+   "chunk_id": "discover-canada:window:p28b17-p29b15",
+   "page": "28-29",
+   "section": "Parliamentary democracy",
+   "block_type": "body",
+   "chapter": "How Canadians Govern Themselves",
+   "preview": "In the federal government, the Prime Minister selects the Cabinet ministers and is responsible for the operations and policy of the government. The House of Co…",
+   "x": 6.814472675323486,
+   "y": 5.232281684875488
+  },
+  {
+   "chunk_id": "discover-canada:window:p29b15-p29b20",
+   "page": "29",
+   "section": "Parliamentary democracy",
+   "block_type": "body",
+   "chapter": "How Canadians Govern Themselves",
+   "preview": "Living in a democracy, Canadian citizens have the right and the responsibility to participate in making decisions that affect them. It is important for Canadia…",
+   "x": 6.768798351287842,
+   "y": 5.323446750640869
+  },
+  {
+   "chunk_id": "discover-canada:window:p29b20-p29b21",
+   "page": "29",
+   "section": "Parliamentary democracy",
+   "block_type": "body",
+   "chapter": "How Canadians Govern Themselves",
+   "preview": "The interplay between the three branches of government—the Executive, Legislative and Judicial—which work together but also sometimes in creative tension, help…",
+   "x": 6.547319412231445,
+   "y": 5.3566813468933105
+  },
+  {
+   "chunk_id": "discover-canada:window:p29b17s0",
+   "page": "29",
+   "section": "Constitutional monarchy",
+   "block_type": "body",
+   "chapter": "How Canadians Govern Themselves",
+   "preview": "As a constitutional monarchy, Canada’s Head of State is a hereditary Sovereign (Queen or King), who reigns in accordance with the Constitution: the rule of law…",
+   "x": 5.243844985961914,
+   "y": 5.341643333435059
+  },
+  {
+   "chunk_id": "discover-canada:window:p29b17s0-p29b17s1",
+   "page": "29",
+   "section": "Constitutional monarchy",
+   "block_type": "body",
+   "chapter": "How Canadians Govern Themselves",
+   "preview": "As a constitutional monarchy, Canada’s Head of State is a hereditary Sovereign (Queen or King), who reigns in accordance with the Constitution: the rule of law…",
+   "x": 5.191632270812988,
+   "y": 5.273673057556152
+  },
+  {
+   "chunk_id": "discover-canada:window:p29b17s1-p29b19",
+   "page": "29",
+   "section": "Constitutional monarchy",
+   "block_type": "body",
+   "chapter": "How Canadians Govern Themselves",
+   "preview": "Other constitutional monarchies include Denmark, Norway, Sweden, Australia, New Zealand, The Netherlands, Spain, Thailand, Japan, Jordan and Morocco. There is …",
+   "x": 5.727294921875,
+   "y": 5.293686866760254
+  },
+  {
+   "chunk_id": "discover-canada:window:p29b19-p29b22",
+   "page": "29",
+   "section": "Constitutional monarchy",
+   "block_type": "body",
+   "chapter": "How Canadians Govern Themselves",
+   "preview": "The Sovereign is represented in Canada by the Governor General, who is appointed by the Sovereign on the advice of the Prime Minister, usually for five years. …",
+   "x": 5.884289741516113,
+   "y": 5.237395763397217
+  },
+  {
+   "chunk_id": "discover-canada:window:p30b2-p30b7",
+   "page": "30",
+   "section": "Federal Elections",
+   "block_type": "body",
+   "chapter": "Federal Elections",
+   "preview": "Canadians vote in elections for the people they want to represent them in the House of Commons. In each election, voters may re-elect the same members of the H…",
+   "x": 7.3773722648620605,
+   "y": 5.330705642700195
+  },
+  {
+   "chunk_id": "discover-canada:window:p30b7-p30b9",
+   "page": "30",
+   "section": "Federal Elections",
+   "block_type": "body",
+   "chapter": "Federal Elections",
+   "preview": "Under legislation passed by Parliament, federal elections must be held on the third Monday in October every four years following the most recent general electi…",
+   "x": 7.412384510040283,
+   "y": 5.425642967224121
+  },
+  {
+   "chunk_id": "discover-canada:window:p30b9-p30b10",
+   "page": "30",
+   "section": "Federal Elections",
+   "block_type": "body",
+   "chapter": "Federal Elections",
+   "preview": "Canadian citizens who are 18 years old or older may run in a federal election. The people who run for office are called candidates. There can be many candidate…",
+   "x": 7.5339674949646,
+   "y": 5.409075736999512
+  },
+  {
+   "chunk_id": "discover-canada:window:p30b12-p30b16",
+   "page": "30",
+   "section": "Voting",
+   "block_type": "body",
+   "chapter": "Federal Elections",
+   "preview": "One of the privileges of Canadian citizenship is the right to vote. You are eligible to vote in a federal election or cast a ballot in a federal referendum if …",
+   "x": 7.647363662719727,
+   "y": 5.587799072265625
+  },
+  {
+   "chunk_id": "discover-canada:window:p30b16-p30b17",
+   "page": "30",
+   "section": "Voting",
+   "block_type": "body",
+   "chapter": "Federal Elections",
+   "preview": "The voters’ lists used during federal elections and referendums are produced from the National Register of Electors by a neutral agency of Parliament called El…",
+   "x": 7.860000133514404,
+   "y": 5.702694416046143
+  },
+  {
+   "chunk_id": "discover-canada:window:p30b17-p30b19",
+   "page": "30",
+   "section": "Voting",
+   "block_type": "body",
+   "chapter": "Federal Elections",
+   "preview": "Once an election has been called, Elections Canada mails a voter information card to each elector whose name is in the National Register of Electors. The card …",
+   "x": 7.906095027923584,
+   "y": 5.715109825134277
+  },
+  {
+   "chunk_id": "discover-canada:window:p31b6-7",
+   "page": "31",
+   "section": "Secret ballot",
+   "block_type": "body",
+   "chapter": "Federal Elections",
+   "preview": "The Prime Minister and the party in power run the government as long as they have the support or confidence of the majority of the MPs. When the House of Commo…",
+   "x": 7.530573844909668,
+   "y": 5.19857120513916
+  },
+  {
+   "chunk_id": "discover-canada:window:p31b6-7-p31b3",
+   "page": "31",
+   "section": "Secret ballot",
+   "block_type": "body",
+   "chapter": "Federal Elections",
+   "preview": "The Prime Minister and the party in power run the government as long as they have the support or confidence of the majority of the MPs. When the House of Commo…",
+   "x": 7.874738693237305,
+   "y": 5.340862274169922
+  },
+  {
+   "chunk_id": "discover-canada:window:p31b3-p31b8",
+   "page": "31",
+   "section": "Secret ballot",
+   "block_type": "body",
+   "chapter": "Federal Elections",
+   "preview": "Canadian law secures the right to a secret ballot. This means that no one can watch you vote and no one should look at how you voted. You may choose to discuss…",
+   "x": 7.615015029907227,
+   "y": 5.370960235595703
+  },
+  {
+   "chunk_id": "discover-canada:window:p31b5",
+   "page": "31",
+   "section": "After an election",
+   "block_type": "body",
+   "chapter": "Federal Elections",
+   "preview": "Ordinarily, after an election, the leader of the political party with the most seats in the House of Commons is invited by the Governor General to form the gov…",
+   "x": 7.1829752922058105,
+   "y": 5.267719745635986
+  },
+  {
+   "chunk_id": "discover-canada:window:p31b5-p31b9",
+   "page": "31",
+   "section": "After an election",
+   "block_type": "body",
+   "chapter": "Federal Elections",
+   "preview": "Ordinarily, after an election, the leader of the political party with the most seats in the House of Commons is invited by the Governor General to form the gov…",
+   "x": 7.214029788970947,
+   "y": 5.238674163818359
+  },
+  {
+   "chunk_id": "discover-canada:window:p32b3",
+   "page": "32",
+   "section": "1. Voter information card",
+   "block_type": "body",
+   "chapter": "Federal Elections",
+   "preview": "Electors whose information is in the National Register of Electors will receive a voter information card. This confirms that your name is on the voters’ list a…",
+   "x": 7.983832836151123,
+   "y": 5.857335567474365
+  },
+  {
+   "chunk_id": "discover-canada:window:p32b8",
+   "page": "32",
+   "section": "2. I did not get a card",
+   "block_type": "body",
+   "chapter": "Federal Elections",
+   "preview": "If you do not receive a voter information card, call your local elections office to ensure that you are on the voters’ list. If you do not have the number, cal…",
+   "x": 7.9604949951171875,
+   "y": 5.738758563995361
+  },
+  {
+   "chunk_id": "discover-canada:window:p32b10",
+   "page": "32",
+   "section": "4. On election day",
+   "block_type": "body",
+   "chapter": "Federal Elections",
+   "preview": "Go to your polling station. The location is on your voter information card. Bring this card and proof of your identity and address to the polling station.",
+   "x": 8.094475746154785,
+   "y": 5.7649712562561035
+  },
+  {
+   "chunk_id": "discover-canada:window:p32b12",
+   "page": "32",
+   "section": "6. Voting is secret",
+   "block_type": "body",
+   "chapter": "Federal Elections",
+   "preview": "Your vote is secret. You will be invited to go behind the screen to mark your ballot. Once marked, fold it and present it to the poll officials.",
+   "x": 8.230578422546387,
+   "y": 5.66201114654541
+  },
+  {
+   "chunk_id": "discover-canada:window:p32b14",
+   "page": "32",
+   "section": "3. Advance poll and special ballot",
+   "block_type": "body",
+   "chapter": "Federal Elections",
+   "preview": "If you cannot or do not wish to vote on election day, you can vote at the advance polls or by special ballot. The dates and location are on your voter informat…",
+   "x": 8.16053581237793,
+   "y": 5.799521446228027
+  },
+  {
+   "chunk_id": "discover-canada:window:p32b16",
+   "page": "32",
+   "section": "5. Marking the ballot",
+   "block_type": "body",
+   "chapter": "Federal Elections",
+   "preview": "Mark an “X” in the circle next to the name of the candidate of your choice.",
+   "x": 8.195218086242676,
+   "y": 5.718871593475342
+  },
+  {
+   "chunk_id": "discover-canada:window:p32b18",
+   "page": "32",
+   "section": "7. The ballot box",
+   "block_type": "body",
+   "chapter": "Federal Elections",
+   "preview": "The poll official will tear off the ballot number and give your ballot back to you to deposit in the ballot box.",
+   "x": 8.28231143951416,
+   "y": 5.716779708862305
+  },
+  {
+   "chunk_id": "discover-canada:window:p32b20",
+   "page": "32",
+   "section": "8. The election results",
+   "block_type": "body",
+   "chapter": "Federal Elections",
+   "preview": "When the polls close, every ballot is counted and the results are made public. You can see the results on television or on the Elections Canada website (www.el…",
+   "x": 7.957812309265137,
+   "y": 5.583347797393799
+  },
+  {
+   "chunk_id": "discover-canada:window:p33b7-8",
+   "page": "33",
+   "section": "Other levels of government in Canada",
+   "block_type": "body",
+   "chapter": "Federal Elections",
+   "preview": "Local or municipal government plays an important role in the lives of our citizens. Municipal governments usually have a council that passes laws called “by-la…",
+   "x": 6.7643866539001465,
+   "y": 5.534513473510742
+  },
+  {
+   "chunk_id": "discover-canada:window:p33b7-8-p33b10-11",
+   "page": "33",
+   "section": "Other levels of government in Canada",
+   "block_type": "body",
+   "chapter": "Federal Elections",
+   "preview": "Local or municipal government plays an important role in the lives of our citizens. Municipal governments usually have a council that passes laws called “by-la…",
+   "x": 6.72750997543335,
+   "y": 5.6388020515441895
+  },
+  {
+   "chunk_id": "discover-canada:window:p33b10-11-p33b9",
+   "page": "33",
+   "section": "Other levels of government in Canada",
+   "block_type": "body",
+   "chapter": "Federal Elections",
+   "preview": "The First Nations have band chiefs and councillors who have major responsibilities on First Nations reserves, including housing, schools and other services. Th…",
+   "x": 7.239713191986084,
+   "y": 5.678986549377441
+  },
+  {
+   "chunk_id": "discover-canada:window:p36b5-p36b6",
+   "page": "36",
+   "section": "The Justice System",
+   "block_type": "body",
+   "chapter": "The Justice System",
+   "preview": "The Canadian justice system guarantees everyone due process under the law. Our judicial system is founded on the presumption of innocence in criminal matters, …",
+   "x": 6.370344638824463,
+   "y": 4.157135009765625
+  },
+  {
+   "chunk_id": "discover-canada:window:p36b6-p36b13-14",
+   "page": "36",
+   "section": "The Justice System",
+   "block_type": "body",
+   "chapter": "The Justice System",
+   "preview": "Canada’s legal system is based on a heritage that includes the rule of law, freedom under the law, democratic principles and due process. Due process is the pr…",
+   "x": 6.264755725860596,
+   "y": 4.294567108154297
+  },
+  {
+   "chunk_id": "discover-canada:window:p37b13",
+   "page": "37",
+   "section": "Courts",
+   "block_type": "body",
+   "chapter": "The Justice System",
+   "preview": "The Supreme Court of Canada is our country’s highest court. The Federal Court of Canada deals with matters concerning the federal government. In most provinces…",
+   "x": 6.344741344451904,
+   "y": 4.268226146697998
+  },
+  {
+   "chunk_id": "discover-canada:window:p37b13-p37b16",
+   "page": "37",
+   "section": "Courts",
+   "block_type": "body",
+   "chapter": "The Justice System",
+   "preview": "The Supreme Court of Canada is our country’s highest court. The Federal Court of Canada deals with matters concerning the federal government. In most provinces…",
+   "x": 6.381270408630371,
+   "y": 4.1501359939575195
+  },
+  {
+   "chunk_id": "discover-canada:window:p37b16-p37b17",
+   "page": "37",
+   "section": "Courts",
+   "block_type": "body",
+   "chapter": "The Justice System",
+   "preview": "There are different types of police in Canada. There are provincial police forces in Ontario and Quebec and municipal police departments in all provinces. The …",
+   "x": 6.446104049682617,
+   "y": 4.134921073913574
+  },
+  {
+   "chunk_id": "discover-canada:window:p37b15",
+   "page": "37",
+   "section": "Police",
+   "block_type": "body",
+   "chapter": "The Justice System",
+   "preview": "The police are there to keep people safe and to enforce the law. You can ask the police for help in all kinds of situations—if there’s been an accident, if som…",
+   "x": 6.53270959854126,
+   "y": 3.9812920093536377
+  },
+  {
+   "chunk_id": "discover-canada:window:p37b19",
+   "page": "37",
+   "section": "Getting legal help",
+   "block_type": "body",
+   "chapter": "The Justice System",
+   "preview": "Lawyers can help you with legal problems and act for you in court. If you cannot pay for a lawyer, in most communities there are legal aid services available f…",
+   "x": 6.437572479248047,
+   "y": 4.074064254760742
+  },
+  {
+   "chunk_id": "discover-canada:window:p38b5",
+   "page": "38",
+   "section": "Canadian Symbols",
+   "block_type": "body",
+   "chapter": "Canadian Symbols",
+   "preview": "Canada has many important symbols — objects, events, and people that have special meaning. Together they help explain what it means to be Canadian and express …",
+   "x": 4.442944526672363,
+   "y": 6.686336994171143
+  },
+  {
+   "chunk_id": "discover-canada:window:p38b26-27-p38b22",
+   "page": "38",
+   "section": "The Canadian Crown",
+   "block_type": "body",
+   "chapter": "Canadian Symbols",
+   "preview": "The maple leaf is Canada’s best-known symbol. Maple leaves were adopted as a symbol by French Canadians in the 1700s, have appeared on Canadian uniforms and in…",
+   "x": 4.378981113433838,
+   "y": 6.638615131378174
+  },
+  {
+   "chunk_id": "discover-canada:window:p38b24",
+   "page": "38",
+   "section": "Flags in Canada",
+   "block_type": "body",
+   "chapter": "Canadian Symbols",
+   "preview": "A new Canadian flag was raised for the first time in 1965. The red-white-red pattern comes from the flag of the Royal Military College, Kingston, founded in 18…",
+   "x": 4.185675621032715,
+   "y": 6.462716102600098
+  },
+  {
+   "chunk_id": "discover-canada:window:p38b29",
+   "page": "38",
+   "section": "The fleur-de-lys",
+   "block_type": "body",
+   "chapter": "Canadian Symbols",
+   "preview": "It is said that the lily flower (“fleur-de-lys”) was adopted by the French king in the year 496. It became the symbol of French royalty for more than 1,000 yea…",
+   "x": 4.1784892082214355,
+   "y": 6.450801849365234
+  },
+  {
+   "chunk_id": "discover-canada:window:p38b31",
+   "page": "38",
+   "section": "Coat of arms and motto",
+   "block_type": "body",
+   "chapter": "Canadian Symbols",
+   "preview": "As an expression of national pride after the First World War, Canada adopted an official coat of arms and a national motto, A mari usque ad mare, which in Lati…",
+   "x": 4.360640048980713,
+   "y": 6.729105472564697
+  },
+  {
+   "chunk_id": "discover-canada:window:p38b33",
+   "page": "38",
+   "section": "Parliament buildings",
+   "block_type": "body",
+   "chapter": "Canadian Symbols",
+   "preview": "The towers, arches, sculptures and stained glass of the Parliament Buildings embody the French, English and Aboriginal traditions and the Gothic Revival archit…",
+   "x": 4.393837928771973,
+   "y": 6.663797855377197
+  },
+  {
+   "chunk_id": "discover-canada:window:p39b17-p39b22",
+   "page": "39",
+   "section": "The maple leaf",
+   "block_type": "body",
+   "chapter": "Canadian Symbols",
+   "preview": "Victoria. The buildings were completed in the 1860s. The Centre Block was destroyed by an accidental fire in 1916 and rebuilt in 1922. The Library is the only …",
+   "x": 3.9146862030029297,
+   "y": 6.837399482727051
+  },
+  {
+   "chunk_id": "discover-canada:window:p39b18-p39b24",
+   "page": "39",
+   "section": "The beaver",
+   "block_type": "body",
+   "chapter": "Canadian Symbols",
+   "preview": "The provincial legislatures are architectural treasures. The Quebec National Assembly is built in the French Second Empire style, while the legislatures of the…",
+   "x": 4.523024559020996,
+   "y": 6.572499752044678
+  },
+  {
+   "chunk_id": "discover-canada:window:p39b20",
+   "page": "39",
+   "section": "Popular sports",
+   "block_type": "body",
+   "chapter": "Canadian Symbols",
+   "preview": "Hockey is Canada’s most popular spectator sport and is considered to be the national winter sport. Ice hockey was developed in Canada in the 1800s. The Nationa…",
+   "x": 1.134243369102478,
+   "y": 4.834113121032715
+  },
+  {
+   "chunk_id": "discover-canada:window:p39b20-p39b21",
+   "page": "39",
+   "section": "Popular sports",
+   "block_type": "body",
+   "chapter": "Canadian Symbols",
+   "preview": "Hockey is Canada’s most popular spectator sport and is considered to be the national winter sport. Ice hockey was developed in Canada in the 1800s. The Nationa…",
+   "x": 1.011419653892517,
+   "y": 4.723961353302002
+  },
+  {
+   "chunk_id": "discover-canada:window:p39b26-p39b30",
+   "page": "39",
+   "section": "Canada’s official languages",
+   "block_type": "body",
+   "chapter": "Canadian Symbols",
+   "preview": "English and French are the two official languages and are important symbols of identity. English speakers (Anglophones) and French speakers (Francophones) have…",
+   "x": 4.443894386291504,
+   "y": 3.1427643299102783
+  },
+  {
+   "chunk_id": "discover-canada:window:p40b23-p40b24",
+   "page": "40",
+   "section": "The Order of Canada and other honours",
+   "block_type": "body",
+   "chapter": "Canadian Symbols",
+   "preview": "All countries have ways to recognize outstanding citizens. Official awards are called honours, consisting of orders, decorations and medals. After using Britis…",
+   "x": 4.3050031661987305,
+   "y": 6.686275482177734
+  },
+  {
+   "chunk_id": "discover-canada:window:p41b1-p41b3",
+   "page": "41",
+   "section": "The Victoria Cross",
+   "block_type": "body",
+   "chapter": "Canadian Symbols",
+   "preview": "The Victoria Cross (V.C.) is the highest honour available to Canadians and is awarded for the most conspicuous bravery, a daring or pre-eminent act of valour o…",
+   "x": 3.028390884399414,
+   "y": 7.156643390655518
+  },
+  {
+   "chunk_id": "discover-canada:window:p41b3-p41b5",
+   "page": "41",
+   "section": "The Victoria Cross",
+   "block_type": "body",
+   "chapter": "Canadian Symbols",
+   "preview": "• Able Seaman William Hall of Horton, Nova Scotia, whose parents were American slaves, was the first black man to be awarded the V.C. for his role in the Siege…",
+   "x": 2.9634053707122803,
+   "y": 7.1731438636779785
+  },
+  {
+   "chunk_id": "discover-canada:window:p41b5-p41b7",
+   "page": "41",
+   "section": "The Victoria Cross",
+   "block_type": "body",
+   "chapter": "Canadian Symbols",
+   "preview": "• Flying ace Captain Billy Bishop, born in Owen Sound, Ontario, earned the V.C. in the Royal Flying Corps during the First World War, and was later an honorary…",
+   "x": 2.906367301940918,
+   "y": 7.206897735595703
+  },
+  {
+   "chunk_id": "discover-canada:window:p41b29-42",
+   "page": "41",
+   "section": "National Public Holidays and Other Important Dates",
+   "block_type": "body",
+   "chapter": "Canadian Symbols",
+   "preview": "New Year’s Day January 1 Sir John A. Macdonald Day January 11 Good Friday Friday immediately preceding Easter Sunday Easter Monday Monday immediately following…",
+   "x": 3.8650519847869873,
+   "y": 6.208199501037598
+  },
+  {
+   "chunk_id": "discover-canada:window:p42b1-p42b3",
+   "page": "42",
+   "section": "A trading nation",
+   "block_type": "body",
+   "chapter": "Canada’s Economy",
+   "preview": "Canada has always been a trading nation and commerce remains the engine of economic growth. As Canadians, we could not maintain our standard of living without …",
+   "x": 1.9401248693466187,
+   "y": 2.6466829776763916
+  },
+  {
+   "chunk_id": "discover-canada:window:p42b20-21-p42b19",
+   "page": "42",
+   "section": "Canada’s economy includes three main types of industries:",
+   "block_type": "body",
+   "chapter": "Canada’s Economy",
+   "preview": "• Manufacturing industries make products to sell in Canada and around the world. Manufactured products include paper, high technology equipment, aerospace tech…",
+   "x": 2.0910866260528564,
+   "y": 2.5309627056121826
+  },
+  {
+   "chunk_id": "discover-canada:window:p42b19-p42b22",
+   "page": "42",
+   "section": "Canada’s economy includes three main types of industries:",
+   "block_type": "body",
+   "chapter": "Canada’s Economy",
+   "preview": "• Service industries provide thousands of different jobs in areas like transportation, education, health care, construction, banking, communications, retail se…",
+   "x": 2.1504967212677,
+   "y": 2.548473596572876
+  },
+  {
+   "chunk_id": "discover-canada:window:p42b22-p43b19-20",
+   "page": "42-43",
+   "section": "Canada’s economy includes three main types of industries:",
+   "block_type": "body",
+   "chapter": "Canada’s Economy",
+   "preview": "• Natural resources industries include forestry, fishing, agriculture, mining and energy. These industries have played an important part in the country’s histo…",
+   "x": 2.031428575515747,
+   "y": 2.46376895904541
+  },
+  {
+   "chunk_id": "discover-canada:window:p43b19-20-p43b21",
+   "page": "43",
+   "section": "Canada’s economy includes three main types of industries:",
+   "block_type": "body",
+   "chapter": "Canada’s Economy",
+   "preview": "Canada enjoys close relations with the United States and each is the other’s largest trading partner. Over three-quarters of Canadian exports are destined for …",
+   "x": 1.942591905593872,
+   "y": 2.6126646995544434
+  },
+  {
+   "chunk_id": "discover-canada:window:p44b1",
+   "page": "44",
+   "section": "Canada’s Regions",
+   "block_type": "body",
+   "chapter": "Canada’s Regions",
+   "preview": "Canada is the second largest country on earth—10 million square kilometres. Three oceans line Canada’s frontiers: the Pacific Ocean in the west, the Atlantic O…",
+   "x": 2.3751585483551025,
+   "y": 1.9747357368469238
+  },
+  {
+   "chunk_id": "discover-canada:window:p44b21-22-p44b19",
+   "page": "44",
+   "section": "The Regions of Canada",
+   "block_type": "body",
+   "chapter": "Canada’s Regions",
+   "preview": "Ottawa, located on the Ottawa River, was chosen as the capital in 1857 by Queen Victoria, the great-great-grandmother of Queen Elizabeth II. Today it is Canada…",
+   "x": 2.5690929889678955,
+   "y": 1.3279836177825928
+  },
+  {
+   "chunk_id": "discover-canada:window:p44b24",
+   "page": "44",
+   "section": "Provinces and Territories",
+   "block_type": "body",
+   "chapter": "Canada’s Regions",
+   "preview": "Canada has ten provinces and three territories. Each province and territory has its own capital city. You should know the capital of your province or territory…",
+   "x": 2.7095987796783447,
+   "y": 1.405953288078308
+  },
+  {
+   "chunk_id": "discover-canada:window:p44b26",
+   "page": "44",
+   "section": "Population",
+   "block_type": "body",
+   "chapter": "Canada’s Regions",
+   "preview": "Canada has a population of about 34 million people. While the majority live in cities, Canadians also live in small towns, rural areas and everywhere in betwee…",
+   "x": 3.2870571613311768,
+   "y": 1.9544403553009033
+  },
+  {
+   "chunk_id": "discover-canada:window:p46b8",
+   "page": "46",
+   "section": "Newfoundland and Labrador",
+   "block_type": "body",
+   "chapter": "Canada’s Regions",
+   "preview": "Newfoundland and Labrador is the most easterly point in North America and has its own time zone. In addition to its natural beauty, the province has a unique h…",
+   "x": 2.270552158355713,
+   "y": 2.1286919116973877
+  },
+  {
+   "chunk_id": "discover-canada:window:p46b14",
+   "page": "46",
+   "section": "Prince Edward Island",
+   "block_type": "body",
+   "chapter": "Canada’s Regions",
+   "preview": "Prince Edward Island (P.E.I.) is the smallest province, known for its beaches, red soil and agriculture, especially potatoes. P.E.I. is the birthplace of Confe…",
+   "x": 2.6418471336364746,
+   "y": 2.3114075660705566
+  },
+  {
+   "chunk_id": "discover-canada:window:p46b20",
+   "page": "46",
+   "section": "Nova Scotia",
+   "block_type": "body",
+   "chapter": "Canada’s Regions",
+   "preview": "Nova Scotia is the most populous Atlantic Province, with a rich history as the gateway to Canada. Known for the world’s highest tides in the Bay of Fundy, the …",
+   "x": 2.55763578414917,
+   "y": 2.1273491382598877
+  },
+  {
+   "chunk_id": "discover-canada:window:p46b27",
+   "page": "46",
+   "section": "The Atlantic provinces",
+   "block_type": "body",
+   "chapter": "Canada’s Regions",
+   "preview": "Atlantic Canada’s coasts and natural resources, including fishing, farming, forestry and mining, have made these provinces an important part of Canada’s histor…",
+   "x": 2.4019343852996826,
+   "y": 1.9384649991989136
+  },
+  {
+   "chunk_id": "discover-canada:window:p47b0s0",
+   "page": "47",
+   "section": "Quebec",
+   "block_type": "body",
+   "chapter": "Canada’s Regions",
+   "preview": "Nearly eight million people live in Quebec, the vast majority along or near the St. Lawrence River. More than three-quarters speak French as their first langua…",
+   "x": 3.02140212059021,
+   "y": 2.3475568294525146
+  },
+  {
+   "chunk_id": "discover-canada:window:p47b0s0-p47b0s1",
+   "page": "47",
+   "section": "Quebec",
+   "block_type": "body",
+   "chapter": "Canada’s Regions",
+   "preview": "Nearly eight million people live in Quebec, the vast majority along or near the St. Lawrence River. More than three-quarters speak French as their first langua…",
+   "x": 3.074166774749756,
+   "y": 2.2811717987060547
+  },
+  {
+   "chunk_id": "discover-canada:window:p47b7",
+   "page": "47",
+   "section": "Central canada",
+   "block_type": "body",
+   "chapter": "Canada’s Regions",
+   "preview": "More than half the people in Canada live in cities and towns near the Great Lakes and the St. Lawrence River in southern Quebec and Ontario, known as Central C…",
+   "x": 2.867257833480835,
+   "y": 1.751488447189331
+  },
+  {
+   "chunk_id": "discover-canada:window:p47b8",
+   "page": "47",
+   "section": "New Brunswick",
+   "block_type": "body",
+   "chapter": "Canada’s Regions",
+   "preview": "Situated in the Appalachian Range, the province was founded by the United Empire Loyalists and has the second largest river system on North America’s Atlantic …",
+   "x": 2.9016706943511963,
+   "y": 2.3953216075897217
+  },
+  {
+   "chunk_id": "discover-canada:window:p48b8s0",
+   "page": "48",
+   "section": "Ontario",
+   "block_type": "body",
+   "chapter": "Canada’s Regions",
+   "preview": "At more than 12 million, the people of Ontario make up more than one-third of Canadians. The large and culturally diverse population, natural resources and str…",
+   "x": 2.965646266937256,
+   "y": 1.9864311218261719
+  },
+  {
+   "chunk_id": "discover-canada:window:p48b8s0-p48b8s1",
+   "page": "48",
+   "section": "Ontario",
+   "block_type": "body",
+   "chapter": "Canada’s Regions",
+   "preview": "At more than 12 million, the people of Ontario make up more than one-third of Canadians. The large and culturally diverse population, natural resources and str…",
+   "x": 2.847635507583618,
+   "y": 2.0124852657318115
+  },
+  {
+   "chunk_id": "discover-canada:window:p48b15",
+   "page": "48",
+   "section": "The Prairie Provinces",
+   "block_type": "body",
+   "chapter": "Canada’s Regions",
+   "preview": "Manitoba, Saskatchewan and Alberta are the Prairie Provinces, rich in energy resources and some of the most fertile farmland in the world. The region is mostly…",
+   "x": 2.405704975128174,
+   "y": 1.6540577411651611
+  },
+  {
+   "chunk_id": "discover-canada:window:p48b16",
+   "page": "48",
+   "section": "Manitoba",
+   "block_type": "body",
+   "chapter": "Canada’s Regions",
+   "preview": "Manitoba’s economy is based on agriculture, mining and hydro-electric power generation. The province’s most populous city is Winnipeg, whose Exchange District …",
+   "x": 2.984858751296997,
+   "y": 1.649914264678955
+  },
+  {
+   "chunk_id": "discover-canada:window:p48b22",
+   "page": "48",
+   "section": "Saskatchewan",
+   "block_type": "body",
+   "chapter": "Canada’s Regions",
+   "preview": "Saskatchewan, once known as the “breadbasket of the world” and the “wheat province,” has 40% of the arable land in Canada and is the country’s largest producer…",
+   "x": 2.596125602722168,
+   "y": 1.6674160957336426
+  },
+  {
+   "chunk_id": "discover-canada:window:p49b0",
+   "page": "49",
+   "section": "Alberta",
+   "block_type": "body",
+   "chapter": "Canada’s Regions",
+   "preview": "Alberta is the most populous Prairie province. The province, and the world-famous Lake Louise in the Rocky Mountains, were both named after Princess Louise Car…",
+   "x": 2.1429688930511475,
+   "y": 1.6654388904571533
+  },
+  {
+   "chunk_id": "discover-canada:window:p49b7",
+   "page": "49",
+   "section": "The West Coast",
+   "block_type": "body",
+   "chapter": "Canada’s Regions",
+   "preview": "British Columbia is known for its majestic mountains and as Canada’s Pacific gateway. The Port of Vancouver, Canada’s largest and busiest, handles billions of …",
+   "x": 2.4394967555999756,
+   "y": 1.9777110815048218
+  },
+  {
+   "chunk_id": "discover-canada:window:p49b8",
+   "page": "49",
+   "section": "British Columbia",
+   "block_type": "body",
+   "chapter": "Canada’s Regions",
+   "preview": "British Columbia (B.C.), on the Pacific coast, is Canada’s westernmost province, with a population of four million. The Port of Vancouver is our gateway to the…",
+   "x": 2.6648473739624023,
+   "y": 2.337052345275879
+  },
+  {
+   "chunk_id": "discover-canada:window:p50b4",
+   "page": "50",
+   "section": "Northwest Territories",
+   "block_type": "body",
+   "chapter": "Canada’s Regions",
+   "preview": "The Northwest Territories (N.W.T.) were originally made up in 1870 from Rupert’s Land and the North- Western Territory. The capital, Yellowknife (population 20…",
+   "x": 2.0265398025512695,
+   "y": 1.613576889038086
+  },
+  {
+   "chunk_id": "discover-canada:window:p50b13s0",
+   "page": "50",
+   "section": "The Northern Territories",
+   "block_type": "body",
+   "chapter": "Canada’s Regions",
+   "preview": "The Northwest Territories, Nunavut and Yukon contain one-third of Canada’s land mass but have a population of only 100,000. There are gold, lead, copper, diamo…",
+   "x": 1.8575546741485596,
+   "y": 1.761946439743042
+  },
+  {
+   "chunk_id": "discover-canada:window:p50b13s0-p50b13s1",
+   "page": "50",
+   "section": "The Northern Territories",
+   "block_type": "body",
+   "chapter": "Canada’s Regions",
+   "preview": "The Northwest Territories, Nunavut and Yukon contain one-third of Canada’s land mass but have a population of only 100,000. There are gold, lead, copper, diamo…",
+   "x": 1.8712619543075562,
+   "y": 1.7037991285324097
+  },
+  {
+   "chunk_id": "discover-canada:window:p50b14",
+   "page": "50",
+   "section": "Yukon",
+   "block_type": "body",
+   "chapter": "Canada’s Regions",
+   "preview": "Thousands of miners came to the Yukon during the Gold Rush of the 1890s, as celebrated in the poetry of Robert W. Service. Mining remains a significant part of…",
+   "x": 1.7310280799865723,
+   "y": 1.970731496810913
+  },
+  {
+   "chunk_id": "discover-canada:window:p51b0",
+   "page": "51",
+   "section": "Nunavut",
+   "block_type": "body",
+   "chapter": "Canada’s Regions",
+   "preview": "Nunavut, meaning “our land” in Inuktitut, was established in 1999 from the eastern part of the Northwest Territories, including all of the former District of K…",
+   "x": 2.5421223640441895,
+   "y": 3.531008243560791
+  },
+  {
+   "chunk_id": "discover-canada:window:p51b19",
+   "page": "51",
+   "section": "The Canadian Rangers",
+   "block_type": "body",
+   "chapter": "Canada’s Regions",
+   "preview": "Canada’s vast North brings security and sovereignty challenges. Dealing with harsh weather conditions in an isolated region, the Canadian Rangers, part of the …",
+   "x": 1.6567842960357666,
+   "y": 1.6648006439208984
+  },
+  {
+   "chunk_id": "discover-canada:window:p29-table-how-a-bill-becomes-law-the-legislative-p",
+   "page": "29",
+   "section": "How a bill becomes law — The Legislative Process",
+   "block_type": "table",
+   "chapter": "How Canadians Govern Themselves",
+   "preview": "How a bill becomes law — The Legislative Process STEP 1 First Reading – The bill is considered read for the first time and is printed. STEP 2 Second Reading – …",
+   "x": 6.433680057525635,
+   "y": 4.926883220672607
+  },
+  {
+   "chunk_id": "discover-canada:window:p29-diagram-canada-s-system-of-government",
+   "page": "29",
+   "section": "Canada's System of Government",
+   "block_type": "diagram",
+   "chapter": "How Canadians Govern Themselves",
+   "preview": "Canada's System of Government Canada has three branches of government: the Executive, Legislative, and Judicial branches. The legislative branch consists of th…",
+   "x": 6.282761573791504,
+   "y": 5.085550308227539
+  },
+  {
+   "chunk_id": "discover-canada:window:p33-table-government-elected-officials-and-some-re",
+   "page": "33",
+   "section": "Government, Elected Officials, and Some Responsibilities",
+   "block_type": "table",
+   "chapter": "Federal Elections",
+   "preview": "Federal government Elected officials: Members of Parliament (MPs). Responsibilities: National Defence; Foreign Policy; Citizenship; Policing; Criminal Justice;…",
+   "x": 6.689365863800049,
+   "y": 5.529117584228516
+  },
+  {
+   "chunk_id": "discover-canada:window:p45-table-regions-provinces-territories-and-capita",
+   "page": "45",
+   "section": "Regions, Provinces/Territories and Capital Cities",
+   "block_type": "table",
+   "chapter": "Canada’s Regions",
+   "preview": "Regions, Provinces/Territories and Capital Cities Newfoundland and Labrador is in Atlantic Provinces. Its capital city is St. John's. Prince Edward Island is i…",
+   "x": 2.5255658626556396,
+   "y": 1.4926509857177734
+  },
+  {
+   "chunk_id": "discover-canada:window:p45-body-the-capital-of-canada",
+   "page": "45",
+   "section": "The Capital of Canada",
+   "block_type": "body",
+   "chapter": "Canada’s Regions",
+   "preview": "The Capital of Canada Ottawa is the capital of Canada.",
+   "x": 2.5530707836151123,
+   "y": 1.3070586919784546
+  },
+  {
+   "chunk_id": "discover-canada:window:p8b24",
+   "page": "8",
+   "section": "Rights and Responsibilities of Citizenship",
+   "block_type": "sidenote",
+   "chapter": "Rights and Responsibilities of Citizenship",
+   "preview": "Queen Elizabeth II proclaiming the amended Constitution, Ottawa, 1982",
+   "x": 4.9708170890808105,
+   "y": 3.99821400642395
+  },
+  {
+   "chunk_id": "discover-canada:window:p13b25",
+   "page": "13",
+   "section": "Diversity in Canada",
+   "block_type": "sidenote",
+   "chapter": "Who We Are",
+   "preview": "Olympian Marjorie Turner-Bailey of Nova Scotia is a descendant of black Loyalists, escaped slaves and freed men and women of African origin who in the 1780s fl…",
+   "x": 3.1201388835906982,
+   "y": 5.131537437438965
+  },
+  {
+   "chunk_id": "discover-canada:window:p14b22",
+   "page": "14",
+   "section": "The First Europeans",
+   "block_type": "sidenote",
+   "chapter": "Canada’s History",
+   "preview": "John Cabot, an Italian immigrant to England, was the first to map Canada’s Atlantic shore, setting foot on Newfoundland or Cape Breton Island in 1497 and claim…",
+   "x": 2.3695666790008545,
+   "y": 4.1920318603515625
+  },
+  {
+   "chunk_id": "discover-canada:window:p14b23",
+   "page": "14",
+   "section": "Exploring a river, naming Canada",
+   "block_type": "sidenote",
+   "chapter": "Canada’s History",
+   "preview": "Jacques Cartier was the first European to explore the St. Lawrence River and to set eyes on present-day Québec City and Montreal",
+   "x": 2.3641812801361084,
+   "y": 4.140847682952881
+  },
+  {
+   "chunk_id": "discover-canada:window:p15b7",
+   "page": "15",
+   "section": "The province of Quebec",
+   "block_type": "sidenote",
+   "chapter": "Canada’s History",
+   "preview": "Count Frontenac refused to surrender Quebec to the English in 1690, saying: “My only reply will be from the mouths of my cannons!”",
+   "x": 2.8077175617218018,
+   "y": 4.881708145141602
+  },
+  {
+   "chunk_id": "discover-canada:window:p15b8",
+   "page": "15",
+   "section": "Royal New France",
+   "block_type": "sidenote",
+   "chapter": "Canada’s History",
+   "preview": "Pierre Le Moyne, Sieur d’Iberville, was a great hero of New France, winning many victories over the English, from James Bay in the north to Nevis in the Caribb…",
+   "x": 2.2382283210754395,
+   "y": 4.848875045776367
+  },
+  {
+   "chunk_id": "discover-canada:window:p15b9",
+   "page": "15",
+   "section": "United empire loyalists",
+   "block_type": "sidenote",
+   "chapter": "Canada’s History",
+   "preview": "Sir Guy Carleton (Lord Dorchester), as Governor of Quebec, defended the rights of the Canadiens, defeated an American military invasion of Quebec in 1775, and …",
+   "x": 2.688607931137085,
+   "y": 5.414484977722168
+  },
+  {
+   "chunk_id": "discover-canada:window:p16b9",
+   "page": "16",
+   "section": "The Beginnings of Democracy",
+   "block_type": "sidenote",
+   "chapter": "Canada’s History",
+   "preview": "The first elected Assembly of Lower Canada, in Québec City, debates whether to use both French and English, January 21, 1793",
+   "x": 4.083600997924805,
+   "y": 4.692869663238525
+  },
+  {
+   "chunk_id": "discover-canada:window:p16b11",
+   "page": "16",
+   "section": "Abolition of slavery",
+   "block_type": "sidenote",
+   "chapter": "Canada’s History",
+   "preview": "Lieutenant-Colonel John Graves Simcoe was Upper Canada’s first Lieutenant Governor and founder of the City of York (now Toronto). Simcoe also made Upper Canada…",
+   "x": 3.376084566116333,
+   "y": 4.975017547607422
+  },
+  {
+   "chunk_id": "discover-canada:window:p16b12",
+   "page": "16",
+   "section": "Abolition of slavery",
+   "block_type": "sidenote",
+   "chapter": "Canada’s History",
+   "preview": "Mary Ann Shadd Cary was an outspoken activist in the movement to abolish slavery in the U.S.A. In 1853 she became the first woman publisher in Canada, helping …",
+   "x": 3.4934496879577637,
+   "y": 4.801034450531006
+  },
+  {
+   "chunk_id": "discover-canada:window:p17b1",
+   "page": "17",
+   "section": "The War of 1812: The Fight for Canada",
+   "block_type": "sidenote",
+   "chapter": "Canada’s History",
+   "preview": "In 1813, Laura Secord, pioneer wife and mother of five children, made a dangerous 19-mile (30-km) journey on foot to warn Lieutenant James FitzGibbon of a plan…",
+   "x": 1.9524067640304565,
+   "y": 6.412356853485107
+  },
+  {
+   "chunk_id": "discover-canada:window:p17b3",
+   "page": "17",
+   "section": "The War of 1812: The Fight for Canada",
+   "block_type": "sidenote",
+   "chapter": "Canada’s History",
+   "preview": "The Duke of Wellington sent some of his best soldiers to defend Canada in 1814. He then chose Bytown (Ottawa) as the endpoint of the Rideau Canal, part of a ne…",
+   "x": 1.9279347658157349,
+   "y": 6.189653396606445
+  },
+  {
+   "chunk_id": "discover-canada:window:p17b14",
+   "page": "17",
+   "section": "The War of 1812: The Fight for Canada",
+   "block_type": "sidenote",
+   "chapter": "Canada’s History",
+   "preview": "HMS Shannon, a Royal Navy frigate, leads the captured USS Chesapeake into Halifax harbour, 1813. There were also naval battles on the Great Lakes",
+   "x": 1.904920220375061,
+   "y": 6.39326286315918
+  },
+  {
+   "chunk_id": "discover-canada:window:p17b15",
+   "page": "17",
+   "section": "The War of 1812: The Fight for Canada",
+   "block_type": "sidenote",
+   "chapter": "Canada’s History",
+   "preview": "Major-General Sir Isaac Brock and Chief Tecumseh. Together, British troops, First Nations and Canadian volunteers defeated an American invasion in 1812–14",
+   "x": 1.9377318620681763,
+   "y": 6.4439311027526855
+  },
+  {
+   "chunk_id": "discover-canada:window:p17b16",
+   "page": "17",
+   "section": "The War of 1812: The Fight for Canada",
+   "block_type": "sidenote",
+   "chapter": "Canada’s History",
+   "preview": "French-Canadian militiamen helped defend Canada in the War of 1812",
+   "x": 2.035702705383301,
+   "y": 6.326387405395508
+  },
+  {
+   "chunk_id": "discover-canada:window:p18b4",
+   "page": "18",
+   "section": "Responsible government",
+   "block_type": "sidenote",
+   "chapter": "Canada’s History",
+   "preview": "Sir Louis-Hippolyte La Fontaine, a champion of French language rights, became the first head of a responsible government (similar to a prime minister) in Canad…",
+   "x": 4.541064262390137,
+   "y": 4.725406169891357
+  },
+  {
+   "chunk_id": "discover-canada:window:p18b20",
+   "page": "18",
+   "section": "Dominion from Sea to Sea",
+   "block_type": "sidenote",
+   "chapter": "Canada’s History",
+   "preview": "Dominion of Canada $1 bill, 1923, showing King George V, who assigned Canada’s national colours (white and red) in 1921, the colours of our national flag today",
+   "x": 4.1643829345703125,
+   "y": 6.3158040046691895
+  },
+  {
+   "chunk_id": "discover-canada:window:p18b21",
+   "page": "18",
+   "section": "Confederation",
+   "block_type": "sidenote",
+   "chapter": "Canada’s History",
+   "preview": "The Fathers of Confederation established the Dominion of Canada on July 1, 1867, the birth of the country that we know today",
+   "x": 3.7037906646728516,
+   "y": 5.133421897888184
+  },
+  {
+   "chunk_id": "discover-canada:window:p19b24",
+   "page": "19",
+   "section": "Challenge in the west",
+   "block_type": "sidenote",
+   "chapter": "Canada’s History",
+   "preview": "Sir Sam Steele: A great frontier hero, Mounted Policeman and soldier of the Queen",
+   "x": 2.1863324642181396,
+   "y": 5.635950565338135
+  },
+  {
+   "chunk_id": "discover-canada:window:p19b25",
+   "page": "19",
+   "section": "Challenge in the west",
+   "block_type": "sidenote",
+   "chapter": "Canada’s History",
+   "preview": "Métis Resistance: Gabriel Dumont was the Métis’ greatest military leader",
+   "x": 2.297454833984375,
+   "y": 5.483590602874756
+  },
+  {
+   "chunk_id": "discover-canada:window:p20b10",
+   "page": "20",
+   "section": "A Railway from Sea to Sea",
+   "block_type": "sidenote",
+   "chapter": "Canada’s History",
+   "preview": "Members of the train crew pose with a westbound Pacific Express, at the first crossing of the Illecillewaet River near Glacier, B.C., 1886",
+   "x": 1.8235619068145752,
+   "y": 4.286497116088867
+  },
+  {
+   "chunk_id": "discover-canada:window:p21b10",
+   "page": "21",
+   "section": "The First World War",
+   "block_type": "sidenote",
+   "chapter": "Canada’s History",
+   "preview": "The Vimy Memorial in France honours those who served and died in the Battle of Vimy Ridge on April 9, 1917, the first British victory of the First World War",
+   "x": 2.126929759979248,
+   "y": 7.3362956047058105
+  },
+  {
+   "chunk_id": "discover-canada:window:p21b11",
+   "page": "21",
+   "section": "Women get the vote",
+   "block_type": "sidenote",
+   "chapter": "Canada’s History",
+   "preview": "Agnes Macphail, a farmer and teacher, became the first woman MP in 1921",
+   "x": 3.9951415061950684,
+   "y": 4.492264270782471
+  },
+  {
+   "chunk_id": "discover-canada:window:p21b14",
+   "page": "21",
+   "section": "The First World War",
+   "block_type": "sidenote",
+   "chapter": "Canada’s History",
+   "preview": "Sir Arthur Currie, a reserve officer, became Canada’s greatest soldier",
+   "x": 2.3841872215270996,
+   "y": 7.464176177978516
+  },
+  {
+   "chunk_id": "discover-canada:window:p21b15",
+   "page": "21",
+   "section": "The First World War",
+   "block_type": "sidenote",
+   "chapter": "Canada’s History",
+   "preview": "Maple leaf cap badge from the First World War. Canada’s soldiers began using the maple leaf in the 1850s",
+   "x": 3.769882917404175,
+   "y": 6.9651079177856445
+  },
+  {
+   "chunk_id": "discover-canada:window:p21b25",
+   "page": "21",
+   "section": "The First World War",
+   "block_type": "sidenote",
+   "chapter": "Canada’s History",
+   "preview": "More than 3,000 nurses, nicknamed “Bluebirds,” served in the Royal Canadian Army Medical Corps, 2,500 of them overseas",
+   "x": 2.2083492279052734,
+   "y": 7.536064147949219
+  },
+  {
+   "chunk_id": "discover-canada:window:p22b11",
+   "page": "22",
+   "section": "Between the wars",
+   "block_type": "sidenote",
+   "chapter": "Canada’s History",
+   "preview": "Phil Edwards was a Canadian track and field champion. Born in British Guiana, he won bronze medals for Canada in the 1928, 1932 and 1936 Olympics, then graduat…",
+   "x": 1.2238819599151611,
+   "y": 5.53369665145874
+  },
+  {
+   "chunk_id": "discover-canada:window:p23b6",
+   "page": "23",
+   "section": "The D-Day Invasion, June 6, 1944",
+   "block_type": "sidenote",
+   "chapter": "Canada’s History",
+   "preview": "In the Second World War, the Canadians captured Juno Beach as part of the Allied invasion of Normandy on D-Day, June 6, 1944",
+   "x": 2.037100076675415,
+   "y": 6.980194091796875
+  },
+  {
+   "chunk_id": "discover-canada:window:p26b6",
+   "page": "26",
+   "section": "Arts and culture in Canada",
+   "block_type": "sidenote",
+   "chapter": "Modern Canada",
+   "preview": "Canadian football is a popular game that differs in a number of ways from American football. Professional teams in the Canadian Football League (CFL) compete f…",
+   "x": 1.0118221044540405,
+   "y": 4.825698375701904
+  },
+  {
+   "chunk_id": "discover-canada:window:p26b25",
+   "page": "26",
+   "section": "Arts and culture in Canada",
+   "block_type": "sidenote",
+   "chapter": "Modern Canada",
+   "preview": "In 1972, Paul Henderson scored the winning goal for Canada in the Canada-Soviet Summit Series. This goal is often referred to as “the goal heard around the wor…",
+   "x": 0.6852819919586182,
+   "y": 4.941838264465332
+  },
+  {
+   "chunk_id": "discover-canada:window:p27b14",
+   "page": "27",
+   "section": "GREAT CANADIAN DISCOVERIES AND INVENTIONS",
+   "block_type": "sidenote",
+   "chapter": "Modern Canada",
+   "preview": "Sir Frederick Banting of Toronto and Charles Best discovered insulin, a hormone to treat diabetes that has saved 16 million lives worldwide",
+   "x": 0.7436354756355286,
+   "y": 4.06791353225708
+  },
+  {
+   "chunk_id": "discover-canada:window:p36b11",
+   "page": "36",
+   "section": "The Justice System",
+   "block_type": "sidenote",
+   "chapter": "The Justice System",
+   "preview": "Scales of Justice, Vancouver Law Courts. The blindfolded Lady Justice symbolizes the impartial manner in which our laws are administered: blind to all consider…",
+   "x": 6.401546001434326,
+   "y": 4.18321418762207
+  },
+  {
+   "chunk_id": "discover-canada:window:p37b8",
+   "page": "37",
+   "section": "Courts",
+   "block_type": "sidenote",
+   "chapter": "The Justice System",
+   "preview": "Prisons have an essential role in punishing criminals and deterring crime",
+   "x": 6.504596710205078,
+   "y": 4.029295921325684
+  },
+  {
+   "chunk_id": "discover-canada:window:p38b6",
+   "page": "38",
+   "section": "Flags in Canada",
+   "block_type": "sidenote",
+   "chapter": "Canadian Symbols",
+   "preview": "The Canadian Red Ensign served as the national flag for 100 years, and has been carried officially by veterans since 2005",
+   "x": 4.1529860496521,
+   "y": 6.506199359893799
+  },
+  {
+   "chunk_id": "discover-canada:window:p38b20",
+   "page": "38",
+   "section": "Coat of arms and motto",
+   "block_type": "sidenote",
+   "chapter": "Canadian Symbols",
+   "preview": "The Snowbirds (431 Air Demonstration Squadron) are a Canadian icon",
+   "x": 4.2538862228393555,
+   "y": 6.887770652770996
+  },
+  {
+   "chunk_id": "discover-canada:window:p41b19",
+   "page": "41",
+   "section": "The Victoria Cross",
+   "block_type": "sidenote",
+   "chapter": "Canadian Symbols",
+   "preview": "Filip Konowal, V.C., was promoted Sergeant",
+   "x": 3.372359275817871,
+   "y": 7.159302711486816
+  },
+  {
+   "chunk_id": "discover-canada:window:p44b9",
+   "page": "44",
+   "section": "The National Capital",
+   "block_type": "sidenote",
+   "chapter": "Canada’s Regions",
+   "preview": "Ottawa’s Rideau Canal, once a military waterway, is now a tourist attraction and winter skateway",
+   "x": 2.4385693073272705,
+   "y": 1.2677911520004272
+  },
+  {
+   "chunk_id": "discover-canada:window:p50b25",
+   "page": "50",
+   "section": "Yukon",
+   "block_type": "sidenote",
+   "chapter": "Canada’s Regions",
+   "preview": "Mount Logan, located in the Yukon, is the highest mountain in Canada. It is named in honour of Sir William Logan, a world-famous geologist, born in Montreal in…",
+   "x": 2.369744300842285,
+   "y": 3.921257257461548
+  },
+  {
+   "chunk_id": "discover-canada:window:p51b26",
+   "page": "51",
+   "section": "The Canadian Rangers",
+   "block_type": "sidenote",
+   "chapter": "Canada’s Regions",
+   "preview": "The caribou (reindeer) is popular game for hunters and a symbol of Canada’s North",
+   "x": 1.496130347251892,
+   "y": 1.7333893775939941
+  }
+ ]
+}

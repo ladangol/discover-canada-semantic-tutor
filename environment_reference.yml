@@ -1,0 +1,15 @@
+name: canada-rag
+channels:
+  - conda-forge
+  - nodefaults        # don't let the anaconda default channel sneak in — mixing channels causes conflicts
+dependencies:
+  - python=3.11
+  - pdfplumber        # layout-aware PDF text (tables, positions); heavier
+  - pypdf             # lightweight PDF text; fast, struggles with columns
+  - sentence-transformers   # pulls pytorch from conda-forge (arm64-native, MPS works)
+  - chromadb          # vector store with on-disk persistence
+  - openai            # OpenAI-compatible client; used with Venice base_url
+  - python-dotenv     # loads VENICE_API_KEY from .env
+  - scikit-learn      # PCA/t-SNE for Step 3 plots, cosine_similarity helper
+  - matplotlib        # plotting
+  # - gradio          # Step 7D, later
