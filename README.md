@@ -3,7 +3,7 @@
 An interactive study companion for the *Discover Canada* citizenship guide, built on a
 frozen, already-evaluated retrieval index. Four connected ideas:
 
-1. **Atlas** — every chunk plotted in 2-D (UMAP of the stored MiniLM embeddings), filterable,
+1. **Atlas** — every chunk plotted in 2-D (Plotly) or 3-D (three.js) from a UMAP of the stored MiniLM embeddings, filterable,
    with a chunk inspector and its nearest semantic neighbours.
 2. **Query view** — ask a question and see what the retriever sees: your query as a star,
    the top-5 retrieved chunks highlighted, with cosine scores.
@@ -52,5 +52,7 @@ See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) (components, modules, file tree
 - **Neighbourhoods** keep one chunk per distinct nearby section, because windows of the same
   section overlap and are near-duplicates.
 - **Session state only**: no accounts, database, or persistence. Closing the tab resets progress.
+- **3D view** needs internet (three.js is loaded from jsDelivr) and the 3-D artifacts that
+  `build_embedding_map.py` writes; without them the 2D/3D toggle is hidden.
 - File watching is disabled in `.streamlit/config.toml` (it crawls `transformers` and spams
   errors), so restart `streamlit run` after editing `src/`.

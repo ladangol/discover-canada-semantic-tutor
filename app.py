@@ -7,6 +7,7 @@ import pandas as pd
 import streamlit as st
 
 from src import tutor, visualization as viz
+from src.atlas3d import atlas_3d
 from src.config import DEFAULT_K, EMBEDDING_MODEL_NAME, generation_configured, generation_model
 from src.corpus import load_corpus
 from src.generation import GenerationNotConfigured
@@ -70,6 +71,14 @@ def show_answer(result: tutor.TutorAnswer) -> None:
                 st.caption(tutor.split_text(c.text))
 
 
+def view_toggle(key: str) -> bool:
+    """True when the 3-D (three.js) view is selected. Needs the 3-D artifacts."""
+    if viz.load_map_3d() is None:
+        return False
+    return st.radio("Map", ["2D", "3D"], horizontal=True, key=key,
+                    help="3D is a three.js view of a 3-D UMAP projection.") == "3D"
+
+
 def chunk_table(rows: list[dict]) -> None:
     st.dataframe(pd.DataFrame(rows), hide_index=True, width="stretch")
 
@@ -115,23 +124,32 @@ def atlas_tab() -> None:
 
     selected = st.session_state.selected_chunk
     neighbours = c.neighbours(selected, 5) if selected else []
-    fig = viz.atlas_figure(df, colors, visible_ids=visible_ids, selected_id=selected,
-                           neighbour_ids=[c.chunks.chunk_id.iat[j] for j, _ in neighbours])
+    neighbour_ids = [c.chunks.chunk_id.iat[j] for j, _ in neighbours]
 
     left, right = st.columns([3, 2], gap="large")
     with left:
+        three_d = view_toggle("atlas_dim")
         st.caption(f"{len(visible)} of {len(df)} chunks shown · click a point to inspect it")
-        event = st.plotly_chart(fig, key="atlas_plot", on_select="rerun",
-                                selection_mode="points", width="stretch")
-        pts = event.selection.points if event and event.selection else []
-        if pts:
-            clicked = pts[0].get("customdata")
-            clicked = clicked[0] if isinstance(clicked, list) else clicked
-            if clicked and clicked != st.session_state.last_click:
-                st.session_state.last_click = clicked
-                if clicked != selected:
-                    st.session_state.selected_chunk = clicked
-                    st.rerun()
+        if three_d:
+            clicked = atlas_3d(viz.load_map_3d(), colors, key="atlas_3d", visible_ids=visible_ids,
+                               selected_id=selected, neighbour_ids=neighbour_ids)
+            if clicked and clicked != selected:
+                st.session_state.selected_chunk = clicked
+                st.rerun()
+        else:
+            fig = viz.atlas_figure(df, colors, visible_ids=visible_ids, selected_id=selected,
+                                   neighbour_ids=neighbour_ids)
+            event = st.plotly_chart(fig, key="atlas_plot", on_select="rerun",
+                                    selection_mode="points", width="stretch")
+            pts = event.selection.points if event and event.selection else []
+            if pts:
+                clicked = pts[0].get("customdata")
+                clicked = clicked[0] if isinstance(clicked, list) else clicked
+                if clicked and clicked != st.session_state.last_click:
+                    st.session_state.last_click = clicked
+                    if clicked != selected:
+                        st.session_state.selected_chunk = clicked
+                        st.rerun()
 
     with right:
         ids = list(visible["chunk_id"]) or list(df["chunk_id"])
@@ -200,8 +218,13 @@ def ask_tab() -> None:
     mode = st.radio("Map view", ["All chunks", "Retrieved chunks emphasized"], index=1, horizontal=True)
     left, right = st.columns([3, 2], gap="large")
     with left:
-        fig = viz.query_figure(df, colors, view, emphasize=mode != "All chunks")
-        st.plotly_chart(fig, width="stretch", key="query_plot")
+        emphasize = mode != "All chunks"
+        if view_toggle("ask_dim"):
+            atlas_3d(viz.load_map_3d(), colors, key="ask_3d", emphasize=emphasize,
+                     retrieved_ids=[ch.chunk_id for ch in view.chunks], query_xyz=view.xyz)
+        else:
+            st.plotly_chart(viz.query_figure(df, colors, view, emphasize=emphasize),
+                            width="stretch", key="query_plot")
         st.caption("★ your question · numbered red dots are the retrieved top-5. 2-D distance is not "
                    "retrieval similarity — a retrieved chunk can look far from the star.")
     with right:

@@ -105,6 +105,7 @@ flowchart TD
     Fig --> Map[same atlas: query star + top-5 highlighted]
 ```
 
+- The 3-D view (three.js) uses a second reducer fitted with `n_components=3`; the same single query vector is passed through it (`project_query_3d`). It is a display alternative to the 2-D Plotly map and follows the same rule.
 - Retrieval uses the **original** embedding and cosine similarity.
 - Visualization uses UMAP **only** to project the query into the 2-D atlas.
 - UMAP coordinates are never a replacement for retrieval similarity: a retrieved chunk can appear far
@@ -126,5 +127,7 @@ sequenceDiagram
     Co-->>UI: full text + metadata + cosine neighbours (original embeddings)
     UI-->>U: inspector; neighbours ringed on the map
 ```
+
+In the 3-D view the same flow applies, except the click is captured in `atlas3d.js` (raycast on an instanced mesh) and returned to Python with `setTriggerValue('selected', chunk_id)`.
 
 No generation is involved unless the user presses **Explain this chunk**.

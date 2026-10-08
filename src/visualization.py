@@ -15,7 +15,13 @@ import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
 
-from src.config import DEFAULT_K, EMBEDDING_MAP_PATH, UMAP_REDUCER_PATH
+from src.config import (
+    DEFAULT_K,
+    EMBEDDING_MAP_3D_PATH,
+    EMBEDDING_MAP_PATH,
+    UMAP_REDUCER_3D_PATH,
+    UMAP_REDUCER_PATH,
+)
 from src.embeddings import encode_query
 from src.retrieval import RetrievedChunk, page_label, retrieve
 
@@ -39,6 +45,26 @@ def load_reducer():
     return joblib.load(UMAP_REDUCER_PATH)
 
 
+@lru_cache(maxsize=1)
+def load_map_3d() -> pd.DataFrame | None:
+    """3-D atlas points, or None if the 3-D artifacts have not been built."""
+    if not (EMBEDDING_MAP_3D_PATH.exists() and UMAP_REDUCER_3D_PATH.exists()):
+        return None
+    return pd.DataFrame(json.loads(EMBEDDING_MAP_3D_PATH.read_text())["points"])
+
+
+@lru_cache(maxsize=1)
+def _reducer_3d():
+    return joblib.load(UMAP_REDUCER_3D_PATH)
+
+
+def project_query_3d(vector: np.ndarray) -> tuple[float, float, float] | None:
+    if load_map_3d() is None:
+        return None
+    xyz = _reducer_3d().transform(vector.reshape(1, -1))[0]
+    return float(xyz[0]), float(xyz[1]), float(xyz[2])
+
+
 def project_query(vector: np.ndarray) -> tuple[float, float]:
     """Place a query embedding in the atlas via the fitted reducer's transform()."""
     xy = load_reducer().transform(vector.reshape(1, -1))[0]
@@ -55,12 +81,14 @@ class QueryView:
     question: str
     chunks: list[RetrievedChunk]
     xy: tuple[float, float]
+    xyz: tuple[float, float, float] | None = None
 
 
 def analyze_query(question: str, k: int = DEFAULT_K) -> QueryView:
     vector = encode_query(question)
     chunks = retrieve(question, k=k, query_vector=vector)
-    return QueryView(question=question, chunks=chunks, xy=project_query(vector))
+    return QueryView(question=question, chunks=chunks, xy=project_query(vector),
+                     xyz=project_query_3d(vector))
 
 
 # --- figures -------------------------------------------------------------------

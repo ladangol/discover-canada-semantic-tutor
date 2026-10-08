@@ -18,11 +18,14 @@ flowchart TD
 
     Atlas --> Corpus[corpus.py<br/>chunks + stored embeddings]
     Atlas --> Viz[visualization.py<br/>Plotly figures]
+    Atlas --> Three[atlas3d.py + atlas3d.js<br/>three.js 3-D view]
+    Ask --> Three
+    Three --> UMAPArt
     Ask --> Viz
     Ask --> Tutor[tutor.py]
     Study --> Tutor
 
-    Viz --> UMAPArt[(artifacts/<br/>embedding_map.json<br/>umap_reducer.joblib)]
+    Viz --> UMAPArt[(artifacts/<br/>embedding_map[_3d].json<br/>umap_reducer[_3d].joblib)]
     Viz --> Embed[embeddings.py<br/>MiniLM query encoder]
     Viz --> Retrieval[retrieval.py<br/>dense top-5, cosine]
 
@@ -57,6 +60,8 @@ flowchart LR
     App --> Viz[src/visualization.py<br/>atlas + query figures,<br/>analyze_query]
     App --> Tutor[src/tutor.py<br/>ask / explain / quiz /<br/>flashcards / adaptive review]
     App --> Corpus[src/corpus.py<br/>chunks, chapters,<br/>cosine neighbours]
+    App --> Atlas3D[src/atlas3d.py + atlas3d.js<br/>three.js component]
+    Atlas3D --> Artifacts
 
     Viz --> Embeddings[src/embeddings.py<br/>encode_query]
     Viz --> Retrieval[src/retrieval.py<br/>retrieve k=5]
@@ -90,7 +95,8 @@ flowchart LR
 | `src/retrieval.py` | Frozen dense retrieval; Chroma safety guards (cosine space, embedding model). |
 | `src/generation.py` | The **only** module that knows Venice. `generate(messages, model_id=None)`. |
 | `src/tutor.py` | Prompts, citations, quiz/flashcards/explain, MMR diversity, adaptive review. |
-| `src/visualization.py` | Loads the map + reducer, projects queries, builds Plotly figures. |
+| `src/visualization.py` | Loads the 2-D/3-D maps + reducers, projects queries, builds Plotly figures. |
+| `src/atlas3d.py`, `src/atlas3d.js` | Thin `st.components.v2` wrapper + three.js scene for the 3-D atlas; returns clicked chunk ids. Loads three.js (pinned 0.160.0) from jsDelivr, so it needs internet. |
 | `scripts/build_embedding_map.py` | One-off: fit UMAP on stored embeddings, write `artifacts/`. |
 
 ## 3. File tree
@@ -109,9 +115,9 @@ discover-canada-semantic-tutor/
 ├── environment_reference.yml
 ├── src/
 │   ├── config.py  corpus.py  embeddings.py  retrieval.py
-│   └── generation.py  tutor.py  visualization.py
+│   └── generation.py  tutor.py  visualization.py  atlas3d.py  atlas3d.js
 ├── scripts/build_embedding_map.py
-├── artifacts/                 # embedding_map.json, umap_reducer.joblib
+├── artifacts/                 # embedding_map[_3d].json, umap_reducer[_3d].joblib
 ├── docs/                      # ARCHITECTURE.md, FLOWS.md
 └── tests/test_smoke.py
 ```
@@ -134,10 +140,12 @@ flowchart TD
     Src --> Generation[generation.py]
     Src --> Tutor[tutor.py]
     Src --> Visualization[visualization.py]
+    Src --> Atlas3d[atlas3d.py / atlas3d.js]
 
     Scripts --> BuildMap[build_embedding_map.py]
     Artifacts --> Map[embedding_map.json]
     Artifacts --> Reducer[umap_reducer.joblib]
+    Artifacts --> Map3d[embedding_map_3d.json + umap_reducer_3d.joblib]
     Docs --> Arch[ARCHITECTURE.md]
     Docs --> Flows[FLOWS.md]
 ```

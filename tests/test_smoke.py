@@ -218,3 +218,13 @@ def test_quiz_difficulty_is_recorded_with_measured_option_similarity(corpus):
     q = tutor.generate_quiz(corpus, kind="mcq", section="Confederation", difficulty=1.0,
                             rng=random.Random(0), gen=FakeLLM())
     assert q.difficulty == 1.0 and q.option_similarity is not None
+
+
+def test_3d_atlas_artifacts_and_query_projection(corpus):
+    from src import visualization as viz
+
+    atlas3 = viz.load_map_3d()
+    assert atlas3 is not None and len(atlas3) == len(corpus)
+    assert {"x", "y", "z"} <= set(atlas3.columns)
+    xyz = viz.project_query_3d(encode_query(QUESTION))
+    assert xyz is not None and len(xyz) == 3 and np.isfinite(xyz).all()

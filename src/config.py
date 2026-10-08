@@ -23,6 +23,8 @@ DEFAULT_K = 5
 ARTIFACTS_DIR = ROOT / "artifacts"
 EMBEDDING_MAP_PATH = ARTIFACTS_DIR / "embedding_map.json"
 UMAP_REDUCER_PATH = ARTIFACTS_DIR / "umap_reducer.joblib"
+EMBEDDING_MAP_3D_PATH = ARTIFACTS_DIR / "embedding_map_3d.json"
+UMAP_REDUCER_3D_PATH = ARTIFACTS_DIR / "umap_reducer_3d.joblib"
 UMAP_PARAMS = {
     "n_components": 2,
     "metric": "cosine",
@@ -30,6 +32,8 @@ UMAP_PARAMS = {
     "min_dist": 0.1,
     "random_state": 42,
 }
+
+UMAP_PARAMS_3D = {**UMAP_PARAMS, "n_components": 3}
 
 # --- Generation (Venice, OpenAI-compatible) ---------------------------------
 DEFAULT_GENERATION_MODEL = "zai-org-glm-4.7-flash"
