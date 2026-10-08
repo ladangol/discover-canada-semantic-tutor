@@ -51,12 +51,12 @@ sequenceDiagram
     participant G as generation.py (Venice)
 
     U->>UI: New question (scope: guide / chapter / section / current query)
-    UI->>T: generate_quiz(kind="mcq", scope, exclude asked chunks)
+    UI->>T: generate_quiz(kind="mcq", scope, difficulty, exclude asked chunks)
     T->>T: pick_quiz_chunk (random usable chunk in scope)
-    T->>Co: neighbourhood(source) - nearest chunks, one per other section
-    Co-->>T: candidate distractor context (cosine, original embeddings)
-    T->>G: write question: correct answer + 3 distractors
-    G-->>T: JSON
+    T->>Co: pick_distractor_passages(source, difficulty)
+    Co-->>T: other-section passages ranked by cosine to source (original embeddings);<br/>difficulty slider picks the band: hard = nearest, easy = farthest
+    T->>G: write question + 3 wrong answers, each drawn from a different passage
+    G-->>T: JSON (question, correct answer, tagged distractors)
     T->>T: shuffle options in code
     T->>G: verify: which options does the source support?
     G-->>T: supported letters
@@ -76,6 +76,11 @@ sequenceDiagram
         UI->>T: generate_quiz(focus_chunk_id=neighbour) / explain_neighbourhood
     end
 ```
+
+The difficulty slider (0 easy – 1 hard) is *similarity*: the wrong answers come from passages whose cosine
+similarity to the source passage is high (hard) or low (easy). After answering, the UI shows each wrong
+answer's source section and cosine, plus the measured cosine between the option texts. (Euclidean distance
+on these unit vectors ranks identically to cosine.)
 
 Free response differs only in that the LLM writes a question + reference answer (no distractors or
 verification) and `grade_free` asks the LLM to judge the student's answer against the source.

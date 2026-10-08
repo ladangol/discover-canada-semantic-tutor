@@ -290,9 +290,10 @@ def record(q: tutor.QuizQuestion, correct: bool) -> None:
     st.session_state.history.append(tutor.AnswerRecord(q.chunk_id, q.source.section, q.question, correct))
 
 
-def new_question(c, sc: dict, kind: str, *, focus: str | None = None, review_of: str | None = None) -> None:
+def new_question(c, sc: dict, kind: str, *, focus: str | None = None) -> None:
     view = st.session_state.query_view
-    kwargs = dict(kind=kind, exclude_ids=st.session_state.asked_ids, rng=st.session_state.rng)
+    kwargs = dict(kind=kind, exclude_ids=st.session_state.asked_ids, rng=st.session_state.rng,
+                  difficulty=st.session_state.get("difficulty", tutor.DEFAULT_DIFFICULTY))
     if focus:
         kwargs["focus_chunk_id"] = focus
     elif sc["scope"] == "Current query" and view:
@@ -310,6 +311,13 @@ def quiz_ui(c) -> None:
     sc = scope_picker(c, "quiz")
     kind_label = st.radio("Question type", ["Multiple choice", "Free response"], horizontal=True)
     kind = "mcq" if kind_label == "Multiple choice" else "free"
+    if kind == "mcq":
+        st.session_state.difficulty = st.slider(
+            "Difficulty — how close the wrong answers are in meaning", 0.0, 1.0,
+            tutor.DEFAULT_DIFFICULTY, 0.05,
+            help="Wrong answers are drawn from passages ranked by cosine similarity to the correct "
+                 "answer's passage. Easy: far apart. Hard: nearly the same topic.")
+        st.caption("Easy ← distractors far apart · distractors very close → Hard")
 
     if st.button("New question", type="primary"):
         new_question(c, sc, kind)
@@ -341,6 +349,16 @@ def quiz_ui(c) -> None:
             if res.explanation:
                 st.write(res.explanation)
             st.caption(f"Source: {tutor.citation_label(res.source)}")
+            if q.kind == "mcq" and q.distractors:
+                with st.expander("How these options were chosen"):
+                    st.caption(f"Difficulty {q.difficulty:.2f}. Wrong answers come from these passages, "
+                               "ranked by cosine similarity to the correct answer's passage "
+                               "(original embeddings):")
+                    chunk_table([{"wrong answer": d.option, "from section": d.section,
+                                  "page": d.page, "passage cosine": round(d.similarity, 3)}
+                                 for d in q.distractors])
+                    st.caption(f"Mean cosine between the correct answer text and the wrong answers: "
+                               f"**{q.option_similarity:.2f}**")
             review_panel(c, sc, kind, q, res)
 
     score_panel(c)
@@ -360,9 +378,8 @@ def review_panel(c, sc: dict, kind: str, q: tutor.QuizQuestion, res: tutor.QuizR
     for j in near:
         st.markdown(f"- **{c.chunks.section.iat[j]}** · {page_label(c.chunks.page.iat[j])}")
     if cols[1].button("Quiz nearby", disabled=not near):
-        review_kind = kind
         cand = c.chunks.chunk_id.iat[st.session_state.rng.choice(near)]
-        new_question(c, sc, review_kind, focus=cand)
+        new_question(c, sc, kind, focus=cand)
         st.rerun()
     if st.button("Explain this neighbourhood"):
         st.session_state.review_expl = run_generation(tutor.explain_neighbourhood, c, q.chunk_id)

@@ -44,8 +44,9 @@ See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) (components, modules, file tree
 
 - **Chapter** = first breadcrumb line of a chunk (`Canada’s History`, …); chunks with a single
   heading use their own section (see `corpus.derive_chapter`). 11 chapters.
-- **MCQ quality**: the LLM writes a correct answer + 3 distractors (shown embedding-neighbour
-  context); code shuffles them; a second LLM call must find *exactly one* option supported by
+- **MCQ distractors come from embeddings**: wrong answers are drawn from passages ranked by cosine
+  similarity to the source passage. The **difficulty slider** picks the band (hard = closest passages,
+  easy = farthest). The LLM writes the question + wrong answers from those passages; code shuffles them; a second LLM call must find *exactly one* option supported by
   the source, otherwise the question is retried (max 3).
 - **Citations** are rendered by code from `[S#]` labels, as in the reference implementation.
 - **Neighbourhoods** keep one chunk per distinct nearby section, because windows of the same

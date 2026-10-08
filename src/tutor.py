@@ -16,6 +16,7 @@ import numpy as np
 
 from src.config import DEFAULT_K
 from src.corpus import Corpus, split_breadcrumb
+from src.embeddings import encode_query
 from src.generation import GenerationResult, generate
 from src.retrieval import RetrievedChunk, page_label, retrieve
 
@@ -31,7 +32,10 @@ ABSTENTION_PATTERN = re.compile(
 
 MIN_QUIZ_WORDS = 30          # skip chunks too short to carry a testable fact
 MAX_QUIZ_ATTEMPTS = 3
-N_DISTRACTOR_CONTEXT = 4
+N_DISTRACTORS = 3
+N_DISTRACTOR_RESERVE = 2     # spare candidate passages in case one has no usable answer
+MIN_DISTRACTOR_WORDS = 15
+DEFAULT_DIFFICULTY = 0.5
 
 
 class QuizGenerationError(RuntimeError):
@@ -283,6 +287,15 @@ Kind = Literal["mcq", "free"]
 
 
 @dataclass(frozen=True)
+class DistractorInfo:
+    """A wrong option and the corpus passage it was drawn from."""
+    option: str
+    section: str
+    page: str
+    similarity: float     # cosine(source chunk, passage) on the stored embeddings
+
+
+@dataclass(frozen=True)
 class QuizQuestion:
     kind: Kind
     question: str
@@ -291,7 +304,9 @@ class QuizQuestion:
     options: list[str] = field(default_factory=list)   # MCQ, shuffled
     correct_index: int | None = None                   # MCQ
     reference_answer: str = ""
-    distractor_sections: list[str] = field(default_factory=list)
+    difficulty: float = DEFAULT_DIFFICULTY
+    distractors: list["DistractorInfo"] = field(default_factory=list)
+    option_similarity: float | None = None   # mean cosine(correct answer, each distractor) of the option TEXTS
 
     @property
     def chunk_id(self) -> str:
@@ -335,26 +350,58 @@ def _source_for(corpus: Corpus, index: int) -> RetrievedChunk:
     return sources_from_corpus(corpus, [index])[0]
 
 
-def _mcq_prompt(source: RetrievedChunk, distractor_ctx: list[RetrievedChunk]) -> str:
+def pick_distractor_passages(
+    corpus: Corpus, source_chunk_id: str, difficulty: float,
+    n: int = N_DISTRACTORS, reserve: int = N_DISTRACTOR_RESERVE,
+) -> list[tuple[int, float]]:
+    """Choose passages the wrong answers will be drawn from.
+
+    `difficulty` in [0, 1] is the slider: candidates are every chunk of a
+    different section, ranked by cosine similarity to the source chunk (original
+    embeddings, one per section). 1.0 takes the closest ones (hard: wrong answers
+    that are about nearly the same thing); 0.0 takes the most distant ones (easy).
+    Returns n + reserve (index, similarity) pairs, the n nearest the target first.
+    Euclidean distance on these unit vectors ranks identically to cosine.
+    """
+    ranked = corpus.neighbours(source_chunk_id, len(corpus), exclude_same_section=True)
+    pool, seen = [], set()
+    for j, sim in ranked:
+        section = corpus.chunks.section.iat[j]
+        if section in seen or corpus.chunks.word_count.iat[j] < MIN_DISTRACTOR_WORDS:
+            continue
+        seen.add(section)
+        pool.append((j, sim))
+    want = n + reserve
+    center = round((1.0 - min(max(difficulty, 0.0), 1.0)) * (len(pool) - 1))
+    start = min(max(center - want // 2, 0), max(len(pool) - want, 0))
+    window = list(range(start, min(start + want, len(pool))))
+    window.sort(key=lambda r: abs(r - center))
+    return [pool[r] for r in window]
+
+
+def _mcq_prompt(source: RetrievedChunk, passages: list[RetrievedChunk]) -> str:
     ctx = "\n\n".join(
-        f"[D{n}] ({c.section}, {page_label(c.page)}): {' '.join(c.text.split())[:350]}"
-        for n, c in enumerate(distractor_ctx, start=1)
+        f"[D{n}] ({c.section}, {page_label(c.page)}): {' '.join(c.text.split())[:450]}"
+        for n, c in enumerate(passages, start=1)
     )
     return f"""SOURCE PASSAGE ({source.section}, {page_label(source.page)}):
 {source.text}
 
-NEARBY CONCEPTS (candidate distractors; semantically close but from other parts of the guide):
-{ctx or '(none)'}
+OTHER PASSAGES (wrong answers must be drawn from these):
+{ctx}
 
 Write ONE multiple-choice question testing a specific fact stated in the SOURCE PASSAGE.
 - The correct answer must be stated explicitly in the SOURCE PASSAGE.
-- Write exactly 3 distractors. Prefer plausible ideas drawn from the NEARBY CONCEPTS, but
-  use one only if it is clearly WRONG for this exact question. Otherwise invent a plausible
-  wrong answer. A distractor must never also be supported by the SOURCE PASSAGE.
-- Keep options short and similar in length and style.
+- Write exactly 3 wrong answers. EACH must be a short fact, name, number or phrase taken from a
+  DIFFERENT one of the OTHER PASSAGES, of the same kind and similar length as the correct answer,
+  so it is a plausible option. Tag each with the passage it came from ("D1", "D2", ...). Use
+  only passages that really contain something usable; skip the rest.
+- A wrong answer must be clearly wrong for this exact question and must not be supported by the
+  SOURCE PASSAGE.
 - Do not mention "the passage" or "the source" in the question.
 
-Return JSON: {{"question": str, "correct_answer": str, "distractors": [str, str, str],
+Return JSON: {{"question": str, "correct_answer": str,
+"distractors": [{{"from": "D2", "answer": str}}, {{"from": "D4", "answer": str}}, {{"from": "D1", "answer": str}}],
 "explanation": str (1-2 sentences, why the correct answer is right)}}"""
 
 
@@ -386,10 +433,14 @@ def generate_quiz(
     focus_chunk_id: str | None = None,
     candidate_ids: list[str] | None = None,
     exclude_ids: set[str] = frozenset(),
+    difficulty: float = DEFAULT_DIFFICULTY,
     rng: random.Random | None = None,
     gen: Generate = generate,
 ) -> QuizQuestion:
     """One question at a time.
+
+    `difficulty` (MCQ only, 0 easy .. 1 hard) sets how semantically close the
+    wrong answers' source passages are to the correct answer's passage.
 
     `focus_chunk_id` pins the source chunk (used for adaptive review);
     `candidate_ids` restricts the pool (e.g. a retrieved top-5).
@@ -402,7 +453,7 @@ def generate_quiz(
         index = pick_quiz_chunk(corpus, chapter=chapter, section=section,
                                 exclude_ids=exclude_ids, candidates=cands, rng=rng)
     source = _source_for(corpus, index)
-    return _free_question(source, gen) if kind == "free" else _mcq_question(corpus, index, source, rng, gen)
+    return _free_question(source, gen) if kind == "free" else _mcq_question(corpus, index, source, difficulty, rng, gen)
 
 
 def _free_question(source: RetrievedChunk, gen: Generate) -> QuizQuestion:
@@ -421,25 +472,30 @@ Return JSON: {{"question": str, "reference_answer": str (1-2 sentences), "explan
         raise QuizGenerationError("Model returned a malformed question.") from exc
 
 
-def _mcq_question(corpus: Corpus, index: int, source: RetrievedChunk,
+def _mcq_question(corpus: Corpus, index: int, source: RetrievedChunk, difficulty: float,
                   rng: random.Random, gen: Generate) -> QuizQuestion:
-    near = neighbourhood(corpus, source.chunk_id, N_DISTRACTOR_CONTEXT)
-    distractor_ctx = sources_from_corpus(corpus, near)
+    picks = pick_distractor_passages(corpus, source.chunk_id, difficulty)
+    passages = sources_from_corpus(corpus, [j for j, _ in picks])
+    sim_of = {f"D{n}": sim for n, (_, sim) in enumerate(picks, start=1)}
     last_problem = "unknown"
     for _ in range(MAX_QUIZ_ATTEMPTS):
         try:
             data = _ask_llm_json(
                 [{"role": "system", "content": QUIZ_SYSTEM_PROMPT},
-                 {"role": "user", "content": _mcq_prompt(source, distractor_ctx)}], gen)
+                 {"role": "user", "content": _mcq_prompt(source, passages)}], gen)
             correct = str(data["correct_answer"]).strip()
-            distractors = [str(d).strip() for d in data["distractors"]]
             question = str(data["question"]).strip()
+            raw = data["distractors"]
+            tags = [str(d["from"]).strip().upper() for d in raw]
+            wrong = [str(d["answer"]).strip() for d in raw]
         except (ValueError, KeyError, TypeError):
             last_problem = "malformed model output"
             continue
-        options = [correct] + distractors
-        if len(distractors) != 3 or len({o.lower() for o in options}) != 4 or not all(options):
-            last_problem = "options were not 4 distinct answers"
+        options = [correct] + wrong
+        if (len(wrong) != N_DISTRACTORS or len(set(tags)) != N_DISTRACTORS
+                or not set(tags) <= set(sim_of) or len({o.lower() for o in options}) != 4
+                or not all(options)):
+            last_problem = "wrong answers were not 3 distinct options from 3 different passages"
             continue
 
         order = list(range(4))
@@ -456,10 +512,16 @@ def _mcq_question(corpus: Corpus, index: int, source: RetrievedChunk,
         if supported != [correct_index]:
             last_problem = "answer was not uniquely supported by the source"
             continue
+
+        by_tag = {f"D{n}": passages[n - 1] for n in range(1, len(passages) + 1)}
+        infos = [DistractorInfo(w, by_tag[t].section, by_tag[t].page, sim_of[t])
+                 for w, t in zip(wrong, tags)]
+        vectors = [encode_query(o) for o in options]
+        option_sim = float(np.mean([vectors[0] @ v for v in vectors[1:]]))
         return QuizQuestion(
             "mcq", question, source, str(data.get("explanation", "")).strip(),
-            options=shuffled, correct_index=correct_index,
-            distractor_sections=[c.section for c in distractor_ctx],
+            options=shuffled, correct_index=correct_index, difficulty=difficulty,
+            distractors=infos, option_similarity=option_sim,
         )
     raise QuizGenerationError(f"Could not produce a verified question ({last_problem}). Try again.")
 
@@ -573,7 +635,8 @@ def review_candidates(corpus: Corpus, missed_chunk_id: str, history: list[Answer
 
 def next_review_question(
     corpus: Corpus, missed_chunk_id: str, history: list[AnswerRecord],
-    *, kind: Kind = "mcq", rng: random.Random | None = None, gen: Generate = generate,
+    *, kind: Kind = "mcq", difficulty: float = DEFAULT_DIFFICULTY,
+    rng: random.Random | None = None, gen: Generate = generate,
 ) -> QuizQuestion:
     """Quiz a semantic neighbour of the missed concept."""
     cands = review_candidates(corpus, missed_chunk_id, history)
@@ -581,7 +644,7 @@ def next_review_question(
         raise QuizGenerationError("No new nearby concepts left to review.")
     rng = rng or random.Random()
     return generate_quiz(corpus, kind=kind, focus_chunk_id=corpus.chunks.chunk_id.iat[rng.choice(cands)],
-                         rng=rng, gen=gen)
+                         difficulty=difficulty, rng=rng, gen=gen)
 
 
 def explain_neighbourhood(corpus: Corpus, missed_chunk_id: str, *, gen: Generate = generate) -> TutorAnswer:

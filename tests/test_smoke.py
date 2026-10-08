@@ -164,7 +164,8 @@ class FakeLLM:
             letters = [k for k, v in options.items() if v in self.supported_texts]
             return GenerationResult(json.dumps({"supported": letters}), "stop", 1, 1)
         reply = {"question": "Q?", "correct_answer": "RIGHT",
-                 "distractors": ["w1", "w2", "w3"], "explanation": "because"}
+                 "distractors": [{"from": "D1", "answer": "w1"}, {"from": "D2", "answer": "w2"},
+                                 {"from": "D3", "answer": "w3"}], "explanation": "because"}
         return GenerationResult(json.dumps(reply), "stop", 1, 1)
 
 
@@ -174,8 +175,9 @@ def test_mcq_has_one_verified_answer_and_semantic_distractor_context(corpus):
                             rng=random.Random(0), gen=fake)
     assert q.options[q.correct_index] == "RIGHT" and len(q.options) == 4
     assert q.source.section == "Responsible government"
-    # distractor candidates from embedding neighbours were handed to the LLM
-    assert "NEARBY CONCEPTS" in fake.prompts[0] and q.distractor_sections
+    # wrong answers are tied to embedding-neighbour passages
+    assert "OTHER PASSAGES" in fake.prompts[0]
+    assert len(q.distractors) == 3 and all(d.section != q.source.section for d in q.distractors)
     assert tutor.grade_mcq(q, q.correct_index).correct
     assert not tutor.grade_mcq(q, (q.correct_index + 1) % 4).correct
 
@@ -194,3 +196,25 @@ def test_adaptive_review_targets_neighbours_not_the_missed_chunk(corpus):
     assert tutor.weak_sections(history) == [("Responsible government", 1)]
     q = tutor.next_review_question(corpus, missed, history, rng=random.Random(0), gen=FakeLLM())
     assert corpus.index_of(q.chunk_id) in cands
+
+
+def test_difficulty_slider_controls_distractor_similarity(corpus):
+    cid = corpus.chunks[corpus.chunks.section == "Confederation"].chunk_id.iloc[0]
+
+    def mean_sim(difficulty):
+        picks = tutor.pick_distractor_passages(corpus, cid, difficulty)[:3]
+        sections = [corpus.chunks.section.iat[j] for j, _ in picks]
+        assert len(set(sections)) == 3 and corpus.chunks.section.iat[corpus.index_of(cid)] not in sections
+        return float(np.mean([s for _, s in picks]))
+
+    easy, mid, hard = mean_sim(0.0), mean_sim(0.5), mean_sim(1.0)
+    assert easy < mid < hard
+    # the hardest setting uses the true nearest other-section chunks
+    nearest = [s for _, s in corpus.neighbours(cid, 3, exclude_same_section=True)]
+    assert hard == pytest.approx(float(np.mean(nearest)), abs=0.1)
+
+
+def test_quiz_difficulty_is_recorded_with_measured_option_similarity(corpus):
+    q = tutor.generate_quiz(corpus, kind="mcq", section="Confederation", difficulty=1.0,
+                            rng=random.Random(0), gen=FakeLLM())
+    assert q.difficulty == 1.0 and q.option_similarity is not None
