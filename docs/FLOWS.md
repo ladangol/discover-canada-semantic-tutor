@@ -131,3 +131,87 @@ sequenceDiagram
 In the 3-D view the same flow applies, except the click is captured in `atlas3d.js` (raycast on an instanced mesh) and returned to Python with `setTriggerValue('selected', chunk_id)`.
 
 No generation is involved unless the user presses **Explain this chunk**.
+
+
+## E. Chapter semantic map (no LLM)
+
+```mermaid
+flowchart LR
+    Chroma[(stored embeddings via corpus.py)] --> Cent[chapter centroid = mean of its chunks' vectors]
+    Cent --> Cos[cosine between centroids]
+    Chroma --> Breadth[breadth = mean cosine distance of chunks to their centroid]
+    Cos --> Heat[heatmap]
+    Cos --> Net[network: each chapter keeps its N strongest links]
+    Breadth --> Table[breadth table]
+```
+
+Everything is computed on the original 384-d vectors (`chapter_stats.py`). Network node positions are a
+classical-MDS layout of centroid distances; they are approximate and never used for any conclusion.
+
+## F. Concept hub / person hub
+
+```mermaid
+sequenceDiagram
+    actor U as User
+    participant UI as app_analyze.py
+    participant X as learning_extractors.py
+    participant K as learning_cache.py
+    participant R as retrieval.py
+    participant G as generation.py (Venice)
+    participant V as learning_validation.py
+    participant Z as visualization.py
+
+    U->>UI: concept or person, Build concept hub
+    UI->>X: build_concept_hub(concept, kind, max_nodes)
+    X->>K: cache lookup (concept, kind, model, prompt version, k)
+    alt cache hit
+        K-->>X: stored ConceptHub
+    else miss
+        X->>R: retrieve(concept, k=HUB_CANDIDATES_K=12)
+        R-->>X: source chunks labelled S1..S12
+        X->>G: strict-JSON request (nodes cite S-labels + exact quote); one retry on bad JSON
+        G-->>X: JSON
+        X->>V: validate_hub_nodes / validate_summary
+        V-->>X: supported nodes (S-labels -> real chunk ids) + omitted reasons
+        X->>K: save
+    end
+    X-->>UI: ConceptHub
+    UI->>Z: hub_figure (radial) + optional evidence panel
+```
+
+A node survives only if its source labels were all supplied, its `evidence_quote` appears (case/punctuation
+normalised) in a cited chunk, and any year in its explanation appears in the cited text. The person hub is the
+same pipeline with a person-specific prompt (facts the guide states, no biography).
+
+## G. Timeline
+
+```mermaid
+sequenceDiagram
+    actor U as User
+    participant UI as app_analyze.py
+    participant X as learning_extractors.py
+    participant C as corpus.py / retrieval.py
+    participant G as generation.py (Venice)
+    participant V as learning_validation.py
+    participant Z as visualization.py
+
+    U->>UI: chapter / section / topic, Build timeline
+    UI->>X: build_timeline(...)
+    alt chapter or section
+        X->>C: every chunk in scope, document order, batches of TIMELINE_BATCH_CHUNKS
+    else topic
+        X->>C: retrieve(topic, k=12)
+    end
+    par each batch (parallel)
+        X->>G: strict-JSON events (date_label, years, sources, exact quote)
+        G-->>X: JSON
+        X->>V: validate_events: sources, quote, dates present in text, duplicates merged
+    end
+    X->>X: merge across batches, sort chronologically; broad periods stay undated
+    X-->>UI: TimelineData (cached)
+    UI->>Z: timeline_simple (vertical) / timeline_layered (rows = guide section headings)
+```
+
+Dates are checked against the cited text (including ranges such as 1837–38). Events with only a broad
+period ("late 1700s") are kept as such in a separate list instead of being given an invented year. Era rows in
+the layered view are the guide's own section headings, never model-invented names.

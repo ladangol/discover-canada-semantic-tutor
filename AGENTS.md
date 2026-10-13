@@ -48,6 +48,15 @@ repo, not a research repo.
   code whenever modules or call paths change. Diagrams must show only what is
   actually implemented.
 
+## Analyze tab rules (hubs, timelines, chapter map)
+
+- Pipeline is always retrieval → structured extraction (LLM, JSON only) → validation → rendering; keep the
+  stages in separate modules (`learning_extractors`, `learning_validation`, `visualization`).
+- The LLM sees only retrieved source text. Never infer facts, dates or relationships from embedding
+  proximity or from UMAP/MDS positions. Omit unsupported items rather than guessing.
+- Chapter statistics use the original embeddings (no LLM, no UMAP).
+- Hub/timeline candidate retrieval (k=12) is separate from the frozen k=5 answer retrieval; do not change either.
+
 ## Running
 
 ```bash

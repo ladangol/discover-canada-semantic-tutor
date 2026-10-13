@@ -15,6 +15,7 @@ flowchart TD
     UI --> Atlas[Atlas tab]
     UI --> Ask[Ask tab]
     UI --> Study[Study tab]
+    UI --> Analyze[Analyze tab<br/>app_analyze.py]
 
     Atlas --> Corpus[corpus.py<br/>chunks + stored embeddings]
     Atlas --> Viz[visualization.py<br/>Plotly figures]
@@ -24,6 +25,15 @@ flowchart TD
     Ask --> Viz
     Ask --> Tutor[tutor.py]
     Study --> Tutor
+    Analyze --> ChapterStats[chapter_stats.py<br/>centroids, cosine, breadth]
+    Analyze --> Extractors[learning_extractors.py<br/>retrieve - LLM JSON - validate]
+    Analyze --> Viz
+    ChapterStats --> Corpus
+    Extractors --> Retrieval
+    Extractors --> Corpus
+    Extractors --> Gen
+    Extractors --> Validate[learning_validation.py]
+    Extractors --> Cache[(artifacts/generated/<br/>cached JSON)]
 
     Viz --> UMAPArt[(artifacts/<br/>embedding_map[_3d].json<br/>umap_reducer[_3d].joblib)]
     Viz --> Embed[embeddings.py<br/>MiniLM query encoder]
@@ -42,7 +52,7 @@ flowchart TD
     classDef data fill:#e8f0fe,stroke:#4a6fa5;
     classDef model fill:#e6f4ea,stroke:#3b7d4f;
     classDef ext fill:#fde8e8,stroke:#b3261e;
-    class Chroma,UMAPArt data;
+    class Chroma,UMAPArt,Cache data;
     class Embed model;
     class Venice ext;
 ```
@@ -61,6 +71,17 @@ flowchart LR
     App --> Tutor[src/tutor.py<br/>ask / explain / quiz /<br/>flashcards / adaptive review]
     App --> Corpus[src/corpus.py<br/>chunks, chapters,<br/>cosine neighbours]
     App --> Atlas3D[src/atlas3d.py + atlas3d.js<br/>three.js component]
+    App --> AnalyzeUI[app_analyze.py<br/>Analyze tab UI]
+    AnalyzeUI --> ChapterStats[src/chapter_stats.py]
+    AnalyzeUI --> Extractors[src/learning_extractors.py]
+    AnalyzeUI --> Viz
+    Extractors --> Validation[src/learning_validation.py]
+    Extractors --> LCache[src/learning_cache.py]
+    Extractors --> Retrieval
+    Extractors --> Generation
+    Extractors --> Models[src/learning_models.py]
+    ChapterStats --> Corpus
+    LCache --> Generated[(artifacts/generated/)]
     Atlas3D --> Artifacts
 
     Viz --> Embeddings[src/embeddings.py<br/>encode_query]
@@ -96,6 +117,11 @@ flowchart LR
 | `src/generation.py` | The **only** module that knows Venice. `generate(messages, model_id=None)`. |
 | `src/tutor.py` | Prompts, citations, quiz/flashcards/explain, MMR diversity, adaptive review. |
 | `src/visualization.py` | Loads the 2-D/3-D maps + reducers, projects queries, builds Plotly figures. |
+| `app_analyze.py` | Analyze tab UI only (chapter map, concept/person hub, timeline). |
+| `src/chapter_stats.py` | Chapter centroids, centroid cosine matrix, semantic breadth, nearest-neighbour rate, network rule. Original embeddings only; no LLM, no UMAP. |
+| `src/learning_extractors.py` | Gathers evidence (retrieval or whole chapter), asks the LLM for strict JSON (one retry on bad JSON), validates, caches. |
+| `src/learning_validation.py` | Drops items without source support: unknown source labels, quotes not found in cited text, unsupported years; merges duplicates. |
+| `src/learning_models.py`, `src/learning_cache.py` | Dataclasses; `artifacts/generated/` JSON cache keyed by request + model + prompt version. |
 | `src/atlas3d.py`, `src/atlas3d.js` | Thin `st.components.v2` wrapper + three.js scene for the 3-D atlas; returns clicked chunk ids. Loads three.js (pinned 0.160.0) from jsDelivr, so it needs internet. |
 | `scripts/build_embedding_map.py` | One-off: fit UMAP on stored embeddings, write `artifacts/`. |
 
@@ -104,6 +130,7 @@ flowchart LR
 ```
 discover-canada-semantic-tutor/
 ├── app.py
+├── app_analyze.py
 ├── README.md  AGENTS.md  CLAUDE.md  requirements.txt
 ├── .env            # user-owned secrets, never read by tooling
 ├── .env.example    # placeholders only
@@ -115,9 +142,12 @@ discover-canada-semantic-tutor/
 ├── environment_reference.yml
 ├── src/
 │   ├── config.py  corpus.py  embeddings.py  retrieval.py
-│   └── generation.py  tutor.py  visualization.py  atlas3d.py  atlas3d.js
+│   ├── generation.py  tutor.py  visualization.py  atlas3d.py  atlas3d.js
+│   └── chapter_stats.py  learning_models.py  learning_extractors.py
+│       learning_validation.py  learning_cache.py
 ├── scripts/build_embedding_map.py
 ├── artifacts/                 # embedding_map[_3d].json, umap_reducer[_3d].joblib
+│   └── generated/             # cached LLM learning objects (git-ignored)
 ├── docs/                      # ARCHITECTURE.md, FLOWS.md
 └── tests/test_smoke.py
 ```
@@ -150,7 +180,33 @@ flowchart TD
     Docs --> Flows[FLOWS.md]
 ```
 
-## 4. Questions a new developer asks
+## 4. Who answers what (Analyze tab)
+
+```mermaid
+flowchart LR
+    User[User request]
+    User --> Retrieval[Embedding retrieval]
+    Retrieval --> Evidence[Source chunks]
+    Evidence --> LLM[Structured extraction<br/>strict JSON]
+    LLM --> Validate[Evidence validation]
+    Validate --> Render[Visualization]
+    Render --> User
+```
+
+| Layer | Answers |
+|---|---|
+| **Embeddings** | What content is semantically related? Which chapter is similar to which? Which chunks should we inspect? |
+| **Source text** | What happened? When? What relationship is stated? What facts belong in the material? |
+| **LLM** | How can the retrieved evidence be turned into a structured, readable learning artifact? |
+| **Validation** | Does each extracted item have verbatim, in-source support (source labels, quote, years)? If not, omit it. |
+| **Visualization** | How do we present that artifact clearly? |
+
+Rules that follow from this: relationships and dates are **never** inferred from embedding closeness or from
+UMAP/MDS positions; the LLM gets only retrieved source text; the chapter semantic map uses no LLM at all.
+Hub/timeline candidate retrieval (`HUB_CANDIDATES_K`, `TIMELINE_CANDIDATES_K` = 12) is separate from, and
+does not change, the frozen k=5 answer retrieval.
+
+## 5. Questions a new developer asks
 
 1. **What happens when a user types a query?** `app.py` → `visualization.analyze_query` encodes it once (`embeddings.encode_query`), retrieves top-5 with that vector (`retrieval.retrieve`), and projects the same vector with the saved UMAP reducer. Ask/Explain then call `tutor`. See [FLOWS.md](FLOWS.md) §A, §C.
 2. **Which module calls which?** Section 2 diagram. Direction: `app` → `tutor`/`visualization`/`corpus` → `retrieval`/`generation` → `embeddings`/`corpus`/`config`.

@@ -16,3 +16,6 @@ __pycache__/
 # local tooling
 .claude/
 .agents/
+
+# LLM-generated learning objects (cache)
+artifacts/generated/

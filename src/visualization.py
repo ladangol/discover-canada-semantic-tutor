@@ -22,7 +22,9 @@ from src.config import (
     UMAP_REDUCER_3D_PATH,
     UMAP_REDUCER_PATH,
 )
+from src.chapter_stats import mds_layout, strongest_edges
 from src.embeddings import encode_query
+from src.learning_models import ChapterAnalysis, ConceptHub, TimelineData
 from src.retrieval import RetrievedChunk, page_label, retrieve
 
 MISSING_ARTIFACT_HINT = "Run `python scripts/build_embedding_map.py` first."
@@ -106,7 +108,7 @@ def _hover(df: pd.DataFrame) -> list[str]:
     ]
 
 
-def _wrap(text: str, width: int = 60) -> str:
+def _wrap(text: str, width: int = 60, max_lines: int = 4) -> str:
     words, lines, line = text.split(), [], ""
     for w in words:
         if len(line) + len(w) + 1 > width:
@@ -115,7 +117,7 @@ def _wrap(text: str, width: int = 60) -> str:
         else:
             line = f"{line} {w}".strip()
     lines.append(line)
-    return "<br>".join(lines[:4])
+    return "<br>".join(lines[:max_lines])
 
 
 def _base_layout(fig: go.Figure, height: int) -> go.Figure:
@@ -232,3 +234,157 @@ def query_figure(
         marker=dict(size=24, symbol="star", color="#111", line=dict(width=2, color="gold")),
     ))
     return _base_layout(fig, height)
+
+
+
+# --- chapter semantic map (original-embedding statistics; not UMAP) -------------
+
+def chapter_heatmap(analysis: ChapterAnalysis, height: int = 560) -> go.Figure:
+    """Centroid cosine similarity. The diagonal (always 1) is left blank so the
+    colour range shows the differences between chapters."""
+    z = np.array(analysis.similarity)
+    np.fill_diagonal(z, np.nan)
+    fig = go.Figure(go.Heatmap(
+        z=z, x=analysis.chapters, y=analysis.chapters, colorscale="YlOrRd",
+        colorbar=dict(title="cosine"), texttemplate="%{z:.2f}", textfont=dict(size=10),
+        hovertemplate="%{y}<br>vs %{x}<br>centroid cosine %{z:.3f}<extra></extra>",
+    ))
+    fig.update_layout(template="plotly_white", height=height, margin=dict(l=0, r=0, t=10, b=0),
+                      yaxis=dict(autorange="reversed"), xaxis=dict(tickangle=-40))
+    return fig
+
+
+def chapter_network(
+    analysis: ChapterAnalysis, colors: dict[str, str], per_chapter: int = 2, height: int = 560,
+) -> go.Figure:
+    """Chapters as nodes (size = chunk count); each chapter keeps its N strongest
+    centroid-cosine links. Node positions are an MDS of centroid distances, so they
+    are approximate; the edge labels carry the actual similarity."""
+    sim = np.array(analysis.similarity)
+    pos = mds_layout(sim)
+    edges = strongest_edges(sim, per_chapter)
+    lo, hi = min(edges.values()), max(edges.values())
+    fig = go.Figure()
+    for (i, j), w in edges.items():
+        width = 1.5 + 7 * ((w - lo) / (hi - lo) if hi > lo else 0.5)
+        fig.add_trace(go.Scatter(
+            x=[pos[i, 0], pos[j, 0]], y=[pos[i, 1], pos[j, 1]], mode="lines", showlegend=False,
+            line=dict(width=width, color="rgba(120,120,120,0.55)"), hoverinfo="skip"))
+        fig.add_trace(go.Scatter(
+            x=[(pos[i, 0] + pos[j, 0]) / 2], y=[(pos[i, 1] + pos[j, 1]) / 2], mode="text",
+            text=[f"{w:.2f}"], textfont=dict(size=10, color="#555"), showlegend=False,
+            hovertext=f"{analysis.chapters[i]} ↔ {analysis.chapters[j]}<br>centroid cosine {w:.3f}",
+            hoverinfo="text"))
+    st_ = analysis.stats
+    fig.add_trace(go.Scatter(
+        x=pos[:, 0], y=pos[:, 1], mode="markers+text", showlegend=False,
+        text=[x.chapter for x in st_], textposition="top center", textfont=dict(size=11),
+        marker=dict(size=[16 + 5 * np.sqrt(x.n_chunks) for x in st_],
+                    color=[colors[x.chapter] for x in st_], line=dict(width=1.5, color="white")),
+        hovertext=[f"<b>{x.chapter}</b><br>{x.n_chunks} chunks · {x.words} words<br>breadth {x.breadth:.3f}"
+                   for x in st_], hoverinfo="text"))
+    fig.update_layout(template="plotly_white", height=height, margin=dict(l=0, r=0, t=10, b=0),
+                      xaxis=dict(visible=False), yaxis=dict(visible=False), dragmode="pan")
+    return fig
+
+
+# --- concept / person hub --------------------------------------------------------
+
+def hub_figure(hub: ConceptHub, height: int = 560) -> go.Figure:
+    """Radial hub-and-spoke. Hover a node for explanation, page and the supporting quote."""
+    palette = px.colors.qualitative.Set2
+    n = len(hub.nodes)
+    angles = [np.pi / 2 - 2 * np.pi * i / max(n, 1) for i in range(n)]
+    pts = [(np.cos(a), np.sin(a)) for a in angles]
+    fig = go.Figure()
+    for node, (x, y) in zip(hub.nodes, pts):
+        fig.add_trace(go.Scatter(x=[0, x], y=[0, y], mode="lines", showlegend=False,
+                                 line=dict(color="#bbb", width=2), hoverinfo="skip"))
+        fig.add_trace(go.Scatter(
+            x=[x * 0.66], y=[y * 0.66], mode="text", text=[node.relationship], showlegend=False,
+            textfont=dict(size=10, color="#666"), hoverinfo="skip"))
+    fig.add_trace(go.Scatter(
+        x=[p[0] for p in pts], y=[p[1] for p in pts], mode="markers+text", showlegend=False,
+        text=[nd.label for nd in hub.nodes],
+        textposition=["top center" if p[1] > 0.3 else "bottom center" if p[1] < -0.3
+                      else "middle right" if p[0] > 0 else "middle left" for p in pts],
+        textfont=dict(size=12),
+        marker=dict(size=34, color=[palette[i % len(palette)] for i in range(n)],
+                    line=dict(width=2, color="white")),
+        hovertext=[f"<b>{nd.label}</b> — {nd.relationship}<br>{_wrap(nd.explanation, 55, 5)}<br>"
+                   f"<i>p. {', '.join(nd.pages)}</i><br>“{_wrap(nd.evidence_quote, 55, 3)}”"
+                   for nd in hub.nodes], hoverinfo="text"))
+    fig.add_trace(go.Scatter(
+        x=[0], y=[0], mode="markers+text", showlegend=False, text=[f"<b>{hub.central_concept}</b>"],
+        textposition="middle center", textfont=dict(size=13),
+        marker=dict(size=92, color="#ffd54f", line=dict(width=3, color="white")),
+        hovertext=_wrap(hub.summary, 55, 6) or hub.central_concept, hoverinfo="text"))
+    fig.update_layout(template="plotly_white", height=height, margin=dict(l=0, r=0, t=10, b=0),
+                      xaxis=dict(visible=False, range=[-1.9, 1.9]),
+                      yaxis=dict(visible=False, range=[-1.5, 1.5], scaleanchor="x"),
+                      dragmode="pan")
+    return fig
+
+
+# --- timelines --------------------------------------------------------------------
+
+def _event_hover(e) -> str:
+    imp = f"<br><i>{_wrap(e.importance, 55, 2)}</i>" if e.importance else ""
+    return (f"<b>{e.date_label} — {e.title}</b><br>{_wrap(e.description, 55, 4)}{imp}"
+            f"<br>p. {', '.join(e.pages)} · {e.section}")
+
+
+def timeline_simple(data: TimelineData) -> go.Figure:
+    """Vertical study timeline in chronological order (order matters here, not year
+    gaps). Marker colour = the guide section the event comes from."""
+    ev = data.events
+    sections = list(dict.fromkeys(e.section for e in ev))
+    palette = px.colors.qualitative.Dark24
+    color = {sec: palette[i % len(palette)] for i, sec in enumerate(sections)}
+    ys = list(range(len(ev)))
+    fig = go.Figure(go.Scatter(x=[0, 0], y=[-0.6, len(ev) - 0.4], mode="lines", showlegend=False,
+                               line=dict(color="#bbb", width=3), hoverinfo="skip"))
+    fig.add_trace(go.Scatter(
+        x=[0] * len(ev), y=ys, mode="markers+text", showlegend=False,
+        text=[f"<b>{e.date_label}</b>  {e.title}" for e in ev], textposition="middle right",
+        textfont=dict(size=12),
+        marker=dict(size=13, color=[color[e.section] for e in ev], line=dict(width=2, color="white")),
+        hovertext=[_event_hover(e) for e in ev], hoverinfo="text"))
+    fig.update_layout(template="plotly_white", height=max(300, 34 * len(ev) + 40),
+                      margin=dict(l=10, r=10, t=10, b=10), xaxis=dict(visible=False, range=[-0.1, 5]),
+                      yaxis=dict(visible=False, autorange="reversed"))
+    return fig
+
+
+def timeline_layered(data: TimelineData) -> go.Figure:
+    """Rows are the guide's own section headings (earliest first); x is the real year.
+    Ranges are thick bars. Row labels give the year span and event count; details on hover."""
+    ev = data.events
+    first: dict[str, int] = {}
+    for e in ev:
+        first.setdefault(e.section, e.start_year)
+    rows = sorted(first, key=lambda sec: first[sec])
+    palette = px.colors.qualitative.Dark24
+    label_of = {}
+    fig = go.Figure()
+    for i, sec in enumerate(rows):
+        mine = [e for e in ev if e.section == sec]
+        lo = min(e.start_year for e in mine)
+        hi = max(e.end_year or e.start_year for e in mine)
+        label_of[sec] = f"{sec} · {lo}" + (f"–{hi}" if hi != lo else "") + f" · {len(mine)}"
+        color = palette[i % len(palette)]
+        for e in mine:
+            if e.end_year and e.end_year > e.start_year:
+                fig.add_trace(go.Scatter(x=[e.start_year, e.end_year], y=[label_of[sec]] * 2, mode="lines",
+                                         showlegend=False, line=dict(color=color, width=10),
+                                         hoverinfo="skip"))
+        fig.add_trace(go.Scatter(
+            x=[e.start_year for e in mine], y=[label_of[sec]] * len(mine), mode="markers", showlegend=False,
+            marker=dict(size=12, color=color, line=dict(width=1.5, color="white")),
+            hovertext=[_event_hover(e) for e in mine], hoverinfo="text"))
+    fig.update_layout(template="plotly_white", height=140 + 48 * len(rows),
+                      margin=dict(l=0, r=10, t=10, b=0), xaxis=dict(title="year", gridcolor="#eee"),
+                      yaxis=dict(autorange="reversed", categoryorder="array",
+                                 categoryarray=[label_of[r] for r in rows]),
+                      dragmode="pan")
+    return fig

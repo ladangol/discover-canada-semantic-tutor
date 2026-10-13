@@ -1,17 +1,25 @@
 """Discover Canada Atlas — thin Streamlit UI. Logic lives in src/."""
 from __future__ import annotations
 
+import logging
 import random
 
 import pandas as pd
 import streamlit as st
 
+from app_analyze import analyze_tab
 from src import tutor, visualization as viz
 from src.atlas3d import atlas_3d
 from src.config import DEFAULT_K, EMBEDDING_MODEL_NAME, generation_configured, generation_model
 from src.corpus import load_corpus
 from src.generation import GenerationNotConfigured
 from src.retrieval import page_label
+
+# Streamlit's file watcher probes every transformers submodule (some need torchvision, which
+# this app does not use) and logs a harmless warning per module. Silence only that logger so it
+# stays quiet even when the app is launched from outside the repo root (where
+# .streamlit/config.toml is not picked up).
+logging.getLogger("streamlit.watcher.local_sources_watcher").setLevel(logging.ERROR)
 
 st.set_page_config(page_title="Discover Canada Atlas", page_icon="🍁", layout="wide")
 
@@ -441,9 +449,11 @@ def main() -> None:
         st.error(str(exc))
         st.stop()
     sidebar()
-    atlas, ask, study = st.tabs(["🗺️ Atlas", "💬 Ask", "📚 Study"])
+    atlas, analyze, ask, study = st.tabs(["🗺️ Atlas", "🔬 Analyze", "💬 Ask", "📚 Study"])
     with atlas:
         atlas_tab()
+    with analyze:
+        analyze_tab()
     with ask:
         ask_tab()
     with study:

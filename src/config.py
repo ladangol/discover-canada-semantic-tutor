@@ -19,8 +19,16 @@ EMBEDDING_DIM = 384
 EXPECTED_DISTANCE_SPACE = "cosine"
 DEFAULT_K = 5
 
+# --- Learning visualizations (NOT the frozen RAG answer config) --------------
+# Candidate retrieval to gather evidence for hubs/timelines; separate from DEFAULT_K.
+HUB_CANDIDATES_K = 12
+TIMELINE_CANDIDATES_K = 12
+TIMELINE_BATCH_CHUNKS = 10      # chunks per extraction call when a whole chapter/section is used
+LEARNING_PROMPT_VERSION = "v1"  # bump to invalidate cached generated objects
+
 # --- Visualization artifacts -------------------------------------------------
 ARTIFACTS_DIR = ROOT / "artifacts"
+GENERATED_DIR = ARTIFACTS_DIR / "generated"
 EMBEDDING_MAP_PATH = ARTIFACTS_DIR / "embedding_map.json"
 UMAP_REDUCER_PATH = ARTIFACTS_DIR / "umap_reducer.joblib"
 EMBEDDING_MAP_3D_PATH = ARTIFACTS_DIR / "embedding_map_3d.json"
@@ -36,7 +44,7 @@ UMAP_PARAMS = {
 UMAP_PARAMS_3D = {**UMAP_PARAMS, "n_components": 3}
 
 # --- Generation (Venice, OpenAI-compatible) ---------------------------------
-DEFAULT_GENERATION_MODEL = "zai-org-glm-4.7-flash"
+DEFAULT_GENERATION_MODEL = "z-ai-glm-5-3-flash"
 VENICE_BASE_URL_DEFAULT = "https://api.venice.ai/api/v1"
 NOT_CONFIGURED_MESSAGE = "VENICE_API_KEY is not configured."
 
