@@ -72,10 +72,13 @@ applied and the original is saved as `/etc/caddy/Caddyfile.bak-<timestamp>`.
 Defaults: host `ladanio`, key `~/.ssh/id_ed25519`, branch `main` (override with `DEPLOY_HOST`, `DEPLOY_KEY`,
 `DEPLOY_BRANCH`).
 
-Pre-build the demo library once (a small batch of AI calls) so those pages never need the AI:
+Pre-build the demo library (concept maps + one timeline per chapter) **on your Mac, not in the container**: the
+container is memory-capped, so a second PyTorch process inside it gets killed (that's the cap protecting your site).
 ```bash
-ssh ladanio 'docker exec discover-study python scripts/prewarm_cache.py'
+VENICE_MODEL=z-ai-glm-5-3-flash python scripts/prewarm_cache.py   # same model as the server => same cache keys
+deploy/sync-library.sh                                            # copies artifacts/generated/*.json to the server
 ```
+Cached objects are served with no AI call. Re-run both whenever you change the model or the prompt version.
 
 ## 4. What visitors see when something goes wrong
 

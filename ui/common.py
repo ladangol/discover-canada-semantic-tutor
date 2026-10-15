@@ -18,7 +18,7 @@ def generate_or_explain(fn, *args, **kwargs):
         st.warning(f"{exc} The study tools need it; browsing is unaffected.")
     except GenerationUnavailable as exc:
         # budget used up / provider busy / policy: a calm, specific message, never a traceback.
-        (st.info if exc.reason == "budget" else st.warning)(str(exc), icon="🌙" if exc.reason == "budget" else None)
+        (st.info if exc.reason == "budget" else st.warning)(str(exc))
     except (tutor.QuizGenerationError, RuntimeError, ValueError) as exc:
         st.error(str(exc))
     return None

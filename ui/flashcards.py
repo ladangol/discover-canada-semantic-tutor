@@ -36,6 +36,10 @@ _CSS = """
 .btn.again { background: #F2542D; color: #fff; border-color: #F2542D; }
 .btn.go { background: linear-gradient(120deg, var(--accent), color-mix(in srgb, var(--accent) 55%, #5B6CFF)); color: #fff; border: 0; margin-top: .6rem; }
 .btn.nav { width: 3rem; padding: .7rem 0; }
+.btn .ic { vertical-align: -3px; }
+.tally .ic { vertical-align: -3px; margin-right: 2px; }
+.tally .k { color: #12A37F; } .tally .l { color: #F2542D; }
+.done .big .ic { color: var(--accent); }
 .tally { display: flex; gap: .9rem; justify-content: center; align-items: center; margin-top: .9rem; font-weight: 700; flex-wrap: wrap; }
 .tally .h { font-weight: 500; font-size: .82rem; opacity: .65; }
 .done { text-align: center; padding: 2rem 1rem; border-radius: 28px; border: 2px dashed var(--st-border-color); }

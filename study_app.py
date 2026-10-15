@@ -26,7 +26,7 @@ from ui.theme_sync import sync as sync_theme
 from ui.session_limits import LIMIT_MESSAGE, charge, clean_topic, refund
 
 logging.getLogger("streamlit.watcher.local_sources_watcher").setLevel(logging.ERROR)
-st.set_page_config(page_title="Discover Canada Study", page_icon="🍁", layout="wide",
+st.set_page_config(page_title="Discover Canada Study", page_icon="static/favicon.png", layout="wide",
                    initial_sidebar_state="collapsed")
 
 EVERYWHERE = "Anywhere in the guide"
@@ -84,7 +84,7 @@ def nav() -> None:
 
 def header(page: str, text: str) -> None:
     label, _, color = theme.PAGES[page]
-    icon = {"Learn": "📚", "Practice": "⚡", "Flashcards": "🃏", "Concept map": "🕸️", "Timeline": "🕰️"}[page]
+    icon = {"Learn": "school", "Practice": "bolt", "Flashcards": "style", "Concept map": "hub", "Timeline": "timeline"}[page]
     st.html(theme.section_header(icon, label, text, color))
 
 
@@ -128,8 +128,8 @@ def learn_page() -> None:
     with st.container(key="tiles"):
         for r in range(0, len(c.chapters), 4):
             for col, (i, ch) in zip(st.columns(4), list(enumerate(c.chapters))[r:r + 4]):
-                emoji = theme.CHAPTER_STYLE.get(ch, theme.DEFAULT_STYLE)[0]
-                if col.button(ch, icon=emoji, key=f"tile_{i}", width="stretch"):
+                icon = theme.CHAPTER_STYLE.get(ch, theme.DEFAULT_STYLE)[0]
+                if col.button(ch, icon=f":material/{icon}:", key=f"tile_{i}", width="stretch"):
                     clicked = ch
 
     topic = clean_topic(text)
@@ -178,9 +178,9 @@ def practice_page() -> None:
     right = sum(r.correct for r in h)
     st.html(theme.stats_strip(right, len(h), streak(h)))
     if len(h) < GOAL:
-        st.progress(len(h) / GOAL, text=f"Goal: {GOAL} questions · {len(h)} done")
+        st.progress(len(h) / GOAL, text=f":material/flag: Goal: {GOAL} questions · {len(h)} done")
     else:
-        st.progress(1.0, text=f"🎉 Goal reached: {len(h)} questions answered!")
+        st.progress(1.0, text=f":material/emoji_events: Goal reached: {len(h)} questions answered!")
 
     scope = st.selectbox("Topic", [EVERYWHERE] + c.chapters, key="pq_scope")
 
@@ -204,7 +204,7 @@ def practice_page() -> None:
     state = st.session_state.quiz
     if not state or not state["q"]:
         st.html(theme.empty_state(mascot(), "Ready when you are! Press the button for your first question."))
-    if st.button("✨ New question" if state else "✨ Start practising", type="primary", key="new_q"):
+    if st.button("New question" if state else "Start practising", icon=":material/auto_awesome:", type="primary", key="new_q"):
         new_question()
         st.rerun()
 
@@ -229,12 +229,14 @@ def practice_page() -> None:
 
     if res is not None:
         good = res.correct
-        st.html(f'<div class="banner {"good" if good else "bad"}">{"🎉 Correct! Nicely done." if good else "Not quite, but now you know!"}</div>')
+        kind, icon, msg = (("good", "check_circle", "Correct! Nicely done.") if good
+                           else ("bad", "lightbulb", "Not quite, but now you know!"))
+        st.html(f'<div class="banner {kind}"><span class="mi">{icon}</span> {msg}</div>')
         if res.explanation:
             st.markdown(f"**Why:** {res.explanation}")
         st.html(theme.pills([f"From the guide: {cite(res.source)}"], accent("Practice")))
         b1, b2, _ = st.columns([1, 1.4, 2])
-        if b1.button("Next question ➜", type="primary", key="next_q"):
+        if b1.button("Next question", icon=":material/arrow_forward:", type="primary", key="next_q"):
             new_question()
             st.rerun()
         if not good:
@@ -257,7 +259,7 @@ def flashcards_page() -> None:
     n = c2.number_input("Cards", 3, 8, 5, key="fc_n")
     typed = clean_topic(st.text_input("…or type your own topic", max_chars=120, key="fc_typed",
                                       placeholder="e.g. voting, the Charter, hockey"))
-    if st.button("🃏 Make my flashcards", type="primary"):
+    if st.button("Make my flashcards", icon=":material/style:", type="primary"):
         if not charge():
             st.warning(LIMIT_MESSAGE)
         else:
@@ -310,7 +312,7 @@ def timeline_page() -> None:
         topic = None
     else:
         chapter, topic = None, clean_topic(st.text_input("Topic", placeholder="e.g. voting rights", max_chars=120))
-    go = st.button("🕰️ Build timeline", type="primary")
+    go = st.button("Build timeline", icon=":material/timeline:", type="primary")
     if chip:
         chapter, topic, go = (chip, None, True) if chip in c.chapters else (None, chip, True)
     if go and (chapter or topic):
@@ -343,10 +345,10 @@ def main() -> None:
     if not generation_configured():
         st.info("The study tools are temporarily unavailable. Please try again later.")
     elif budget.status().exhausted:
-        st.info("🌙 The study helper has used up today’s AI allowance. You can still browse everything already "
+        st.info("The study helper has used up today’s AI allowance. You can still browse everything already "
                 "created, and new questions and summaries are back tomorrow.")
     PAGE_FUNCS[st.session_state.page]()
-    st.html('<div class="footer">🍁 Discover Canada · powered by AI embeddings · every answer comes from the official study guide</div>')
+    st.html('<div class="footer">Discover Canada · powered by AI embeddings · every answer comes from the official study guide</div>')
 
 
 main()

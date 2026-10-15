@@ -193,3 +193,13 @@ def test_session_budget_and_input_cleaning():
 
     at = AppTest.from_function(script).run()
     assert at.session_state["r"] == [True, False, True, False] and at.session_state["after"] is True
+
+
+def test_every_app_and_module_file_compiles():
+    """A syntax error in a page that AppTest doesn't render (e.g. the quiz banner) must still fail the suite."""
+    import py_compile
+
+    files = [*ROOT.glob("*.py"), *(ROOT / "src").glob("*.py"), *(ROOT / "ui").glob("*.py"), *(ROOT / "scripts").glob("*.py")]
+    assert len(files) > 20
+    for f in files:
+        py_compile.compile(str(f), doraise=True)
