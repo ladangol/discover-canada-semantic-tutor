@@ -1,8 +1,46 @@
+# Shared by app.py (Atlas) and study_app.py (Study). Defining both light and dark variants
+# lets users switch in the app's Settings menu (default: follow the system setting).
 [theme]
-base = "light"
-primaryColor = "#c8102e"
+font = "'Plus Jakarta Sans':https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+headingFont = "'Bricolage Grotesque':https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&display=swap"
+baseRadius = "large"
+buttonRadius = "full"
+linkUnderline = false
+showWidgetBorder = true
+headingFontWeights = [800, 700, 700, 600, 600, 600]
+
+[theme.light]
+primaryColor = "#E4002B"
+backgroundColor = "#FFF8F0"
+secondaryBackgroundColor = "#FBEFE2"
+textColor = "#1B1B3A"
+borderColor = "#EBDCCB"
+redColor = "#E4002B"
+orangeColor = "#F26B1D"
+yellowColor = "#F5A524"
+greenColor = "#12A37F"
+blueColor = "#3B6CF6"
+violetColor = "#7C4DEB"
+
+[theme.dark]
+primaryColor = "#FF4D6A"
+backgroundColor = "#0E1020"
+secondaryBackgroundColor = "#181B33"
+textColor = "#F4F4FF"
+borderColor = "#2C3057"
+redColor = "#FF4D6A"
+orangeColor = "#FF9248"
+yellowColor = "#FFC24D"
+greenColor = "#3DDBB0"
+blueColor = "#7C9BFF"
+violetColor = "#A98BFF"
+
 [browser]
 gatherUsageStats = false
+
 [server]
-# Streamlit's watcher otherwise crawls every transformers submodule and spams errors.
-fileWatcherType = "none"
+enableStaticServing = true
+# Local development: reload src/ and ui/ when files change. (The transformers/torchvision warnings the
+# watcher used to print are silenced in app.py / study_app.py.) Production turns the watcher off with
+# --server.fileWatcherType none (see deploy/discover-study.service).
+fileWatcherType = "auto"

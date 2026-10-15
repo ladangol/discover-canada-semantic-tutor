@@ -21,6 +21,9 @@ class ChapterAnalysis:
     stats: list[ChapterSemanticStats]
 
 
+CATEGORIES = ("person", "organization", "event", "place", "concept")
+
+
 @dataclass(frozen=True)
 class ConceptNode:
     id: str
@@ -30,6 +33,7 @@ class ConceptNode:
     source_chunk_ids: list[str]
     pages: list[str]
     evidence_quote: str             # verbatim (normalised) text from a cited chunk
+    category: str = ""              # presentation only: one of CATEGORIES, "" if not given
 
 
 @dataclass(frozen=True)
@@ -40,6 +44,7 @@ class ConceptHub:
     nodes: list[ConceptNode]
     summary_source_chunk_ids: list[str] = field(default_factory=list)
     omitted: list[str] = field(default_factory=list)   # why items failed validation
+    central_category: str = ""
 
     def to_dict(self) -> dict:
         return asdict(self)

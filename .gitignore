@@ -19,3 +19,7 @@ __pycache__/
 
 # LLM-generated learning objects (cache)
 artifacts/generated/
+
+# runtime data (usage ledger)
+data/
+.hf-cache/

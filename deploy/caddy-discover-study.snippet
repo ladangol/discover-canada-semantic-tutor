@@ -1,0 +1,11 @@
+    # discover-study (added by deploy/deploy.sh --init; remove the block between the markers to undo)
+    redir /discover_can_embedding_demo /discover_can_embedding_demo/
+    handle /discover_can_embedding_demo/* {
+        # `handle` (not `handle_path`) keeps the prefix: Streamlit runs with baseUrlPath=discover_can_embedding_demo.
+        reverse_proxy 127.0.0.1:8502 {
+            # SET (replace) the client address: the app uses it for per-visitor daily limits.
+            header_up X-Forwarded-For {remote_host}
+            flush_interval -1
+        }
+    }
+    # /discover-study

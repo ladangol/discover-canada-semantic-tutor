@@ -1,4 +1,4 @@
-# Discover Canada Atlas
+# Discover Canada Atlas (+ Discover Canada Study)
 
 An interactive study companion for the *Discover Canada* citizenship guide, built on a
 frozen, already-evaluated retrieval index. Four connected ideas:
@@ -17,13 +17,27 @@ frozen, already-evaluated retrieval index. Four connected ideas:
 > UMAP positions are for **visualization only**. Retrieval, neighbours and diversity use cosine
 > similarity on the original 384-d embeddings.
 
+## Two apps, one engine
+
+| Command | Experience |
+|---|---|
+| `streamlit run app.py` | **Discover Canada Atlas**: explainable RAG demo (atlas, retrieval inspection, analysis, tutor). |
+| `streamlit run study_app.py` | **Discover Canada Study**: simple citizenship-study app (Learn, Practice, Flashcards, Concept map, Timeline). |
+
+The learner app has a bold, animated, responsive design (phone, tablet, desktop) with light and dark modes; use the ⋮ menu → Settings to switch theme (default: follow your system).
+
+Concept hubs and timelines render as editorial infographics (interactive in the browser) and export as
+**SVG** or **PNG** in landscape 16:9, square or portrait, for blog posts. Facts always come from validated
+source text; the renderer only draws them.
+
 ## Run
 
 ```bash
 conda activate canada-rag               # or: pip install -r requirements.txt
 cp .env.example .env                    # then add your own VENICE_API_KEY (optional)
 python scripts/build_embedding_map.py   # one-off; writes artifacts/ (committed copy included)
-streamlit run app.py
+streamlit run app.py          # technical demo
+streamlit run study_app.py    # learner app
 pytest tests -q                         # smoke tests, no API key needed
 ```
 
@@ -67,5 +81,6 @@ See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) (components, modules, file tree
   `build_embedding_map.py` writes; without them the 2D/3D toggle is hidden.
 - Run `streamlit run app.py` from the repo root so `.streamlit/config.toml` is picked up. (`app.py` also
   silences the watcher's harmless `torchvision` warnings, which otherwise flood the log.)
-- File watching is disabled in `.streamlit/config.toml` (it crawls `transformers` and spams
-  errors), so restart `streamlit run` after editing `src/`.
+- Locally, Streamlit reloads `src/` and `ui/` when you save a file. If something odd happens right after a
+  code change (for example a `TypeError` about an unexpected argument), restart `streamlit run`: a long-running
+  server keeps old modules in memory. Production runs with the watcher off, so restart the service after updates.

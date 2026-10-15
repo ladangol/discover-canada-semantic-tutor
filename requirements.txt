@@ -10,3 +10,4 @@ joblib>=1.4
 openai>=1.50
 python-dotenv>=1.0
 pytest>=8.0
+resvg-py>=0.2   # SVG -> PNG export (self-contained, no system libraries)

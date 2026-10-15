@@ -15,10 +15,11 @@ from concurrent.futures import ThreadPoolExecutor
 
 from src import config, learning_cache
 from src.corpus import Corpus
-from src.generation import generate
+from src.generation import GenerationUnavailable, generate
 from src.learning_models import ConceptHub, TimelineData, TimelineEvent
 from src.learning_validation import (
     merge_duplicate_events,
+    normalize_category,
     validate_events,
     validate_hub_nodes,
     validate_summary,
@@ -73,8 +74,10 @@ Build a hub-and-spoke learning map. Return JSON:
 {{"central_concept": str,
   "summary": str (1-2 sentences, only what the sources say),
   "summary_sources": ["S1"],
+  "central_category": one of "person" | "organization" | "event" | "place" | "concept",
   "nodes": [{{"label": str (short noun phrase),
-             "relationship": str (<= 6 words, from the central item to this node, e.g. "leads", "created in"),
+             "category": one of "person" | "organization" | "event" | "place" | "concept",
+             "relationship": str (1-4 words; the sentence "[central item] <relationship> <node label>" must be true per the sources, e.g. for the Canadarm: "invented by", "used in"; for the Prime Minister: "appointed by", "leads"),
              "explanation": str (1-2 sentences),
              "sources": ["S2"],
              "evidence_quote": str (copied EXACTLY, 5-25 words, from one cited source, stating the relationship)}}]}}
@@ -108,7 +111,8 @@ def build_concept_hub(
 
     nodes, omitted = validate_hub_nodes(data.get("nodes"), concept, by_label, max_nodes)
     summary, summary_ids = validate_summary(data.get("summary"), data.get("summary_sources"), by_label)
-    hub = ConceptHub(concept, kind, summary, nodes, summary_ids, omitted)
+    hub = ConceptHub(concept, kind, summary, nodes, summary_ids, omitted,
+                     central_category=normalize_category(data.get("central_category")))
     learning_cache.save(path, params, hub.to_dict())
     return hub, False
 
@@ -146,7 +150,7 @@ def _batches(corpus: Corpus, indices: list[int]) -> list[list[RetrievedChunk]]:
 
 def build_timeline(
     corpus: Corpus, *, chapter: str | None = None, section: str | None = None,
-    topic: str | None = None, use_cache: bool = True, gen: Generate = generate,
+    topic: str | None = None, use_cache: bool = True, cache_only: bool = False, gen: Generate = generate,
 ) -> tuple[TimelineData, bool]:
     """Timeline for a whole chapter, a section, or a topic query.
 
@@ -166,6 +170,8 @@ def build_timeline(
     path = learning_cache.cache_path("timeline", topic or section or chapter or "", params)
     if use_cache and (cached := learning_cache.load(path)):
         return TimelineData.from_dict(cached), True
+    if cache_only:                       # "library only" deployments never pay for a new timeline
+        raise GenerationUnavailable("library")
 
     if topic:
         batches = [retrieve(topic, k=config.TIMELINE_CANDIDATES_K)]

@@ -24,7 +24,7 @@ DEFAULT_K = 5
 HUB_CANDIDATES_K = 12
 TIMELINE_CANDIDATES_K = 12
 TIMELINE_BATCH_CHUNKS = 10      # chunks per extraction call when a whole chapter/section is used
-LEARNING_PROMPT_VERSION = "v1"  # bump to invalidate cached generated objects
+LEARNING_PROMPT_VERSION = "v3"  # bump to invalidate cached generated objects
 
 # --- Visualization artifacts -------------------------------------------------
 ARTIFACTS_DIR = ROOT / "artifacts"

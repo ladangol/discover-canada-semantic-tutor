@@ -12,7 +12,7 @@ from src import chapter_stats, learning_extractors as ex, tutor, visualization a
 from src.corpus import load_corpus
 from src.generation import GenerationNotConfigured
 from src.learning_models import ConceptHub, TimelineData
-from src.retrieval import page_label
+from ui.infographic_components import render_hub_infographic, render_timeline_infographic
 
 
 @st.cache_data(show_spinner=False)
@@ -101,25 +101,8 @@ def concept_hub(corpus) -> None:
 
 
 def show_hub(hub: ConceptHub, cached: bool, corpus) -> None:
-    if not hub.nodes:
-        st.warning("The guide does not contain enough source-supported relationships for this "
-                   "request. Nothing was drawn rather than guessing.")
-    else:
-        st.plotly_chart(viz.hub_figure(hub), width="stretch", key="hub_fig")
-    if hub.summary:
-        st.markdown(f"**{hub.central_concept}** — {hub.summary}")
-    st.caption(("Loaded from cache · " if cached else "") + f"{len(hub.nodes)} source-supported nodes. "
-               "Hover a node for its explanation, page and supporting quote.")
-    if hub.nodes and st.toggle("Show evidence", key="hub_evidence"):
-        for n in hub.nodes:
-            with st.container(border=True):
-                st.markdown(f"**{n.label}** · _{n.relationship}_ · {', '.join(page_label(p) for p in n.pages)}")
-                st.write(n.explanation)
-                st.markdown(f"> {n.evidence_quote}")
-                for cid in n.source_chunk_ids:
-                    row = corpus.row(cid)
-                    with st.expander(f"Source: {page_label(row.page)} · {row.section}"):
-                        st.write(row.body)
+    render_hub_infographic(hub, corpus, key="hub")
+    st.caption(("Loaded from cache · " if cached else "") + f"{len(hub.nodes)} source-supported nodes.")
     if hub.omitted:
         with st.expander(f"{len(hub.omitted)} item(s) omitted by validation"):
             st.write("\n".join(f"- {o}" for o in hub.omitted))
@@ -158,25 +141,7 @@ def show_timeline(data: TimelineData, cached: bool, corpus) -> None:
         return
     st.caption(("Loaded from cache · " if cached else "") +
                f"{len(data.events)} dated events, {len(data.undated)} broad-period items.")
-    view = st.radio("Timeline view", ["Simple study timeline", "Layered by guide section"], horizontal=True)
-    if data.events:
-        if view.startswith("Simple"):
-            st.caption("Events in chronological order (evenly spaced); colour = guide section. Hover for details.")
-            st.plotly_chart(viz.timeline_simple(data), width="stretch", key="tl_simple")
-        else:
-            st.caption("Rows are the guide's own section headings; x is the actual year.")
-            st.plotly_chart(viz.timeline_layered(data), width="stretch", key="tl_layered")
-    if data.undated:
-        with st.expander(f"Broad periods without a precise year ({len(data.undated)})"):
-            for e in data.undated:
-                st.markdown(f"**{e.date_label}** — {e.title}. {e.description} "
-                            f"_({page_label(e.pages[0])}, {e.section})_")
-    if st.toggle("Show evidence", key="tl_evidence"):
-        for e in data.events:
-            with st.expander(f"{e.date_label} — {e.title}"):
-                st.write(e.description)
-                st.markdown(f"> {e.evidence_quote}")
-                st.caption(f"{', '.join(page_label(p) for p in e.pages)} · {e.section}")
+    render_timeline_infographic(data, corpus, key="tl")
     if data.omitted:
         with st.expander(f"{len(data.omitted)} item(s) omitted or merged by validation"):
             st.write("\n".join(f"- {o}" for o in data.omitted))

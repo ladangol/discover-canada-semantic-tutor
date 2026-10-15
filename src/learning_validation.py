@@ -15,7 +15,7 @@ from __future__ import annotations
 
 import re
 
-from src.learning_models import ConceptNode, TimelineEvent
+from src.learning_models import CATEGORIES, ConceptNode, TimelineEvent
 from src.retrieval import RetrievedChunk
 from src.corpus import split_breadcrumb
 
@@ -63,6 +63,12 @@ def _similar(a: str, b: str) -> bool:
     return bool(ta and tb) and len(ta & tb) / len(ta | tb) >= 0.7
 
 
+def normalize_category(value) -> str:
+    """Presentation hint from the LLM; anything outside the fixed set becomes ""."""
+    v = str(value or "").strip().casefold()
+    return v if v in CATEGORIES else ""
+
+
 def _pages(chunks: list[RetrievedChunk]) -> list[str]:
     return list(dict.fromkeys(c.page for c in chunks))
 
@@ -99,6 +105,7 @@ def validate_hub_nodes(
                 label=label, relationship=relationship, explanation=explanation,
                 source_chunk_ids=[c.chunk_id for c in chunks], pages=_pages(chunks),
                 evidence_quote=str(item["evidence_quote"]).strip(),
+                category=normalize_category(item.get("category")),
             ))
     if len(nodes) > max_nodes:
         omitted += [f"{n.label}: over the {max_nodes}-node limit" for n in nodes[max_nodes:]]

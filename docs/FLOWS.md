@@ -215,3 +215,55 @@ sequenceDiagram
 Dates are checked against the cited text (including ranges such as 1837–38). Events with only a broad
 period ("late 1700s") are kept as such in a separate list instead of being given an invented year. Era rows in
 the layered view are the guide's own section headings, never model-invented names.
+
+
+## H. Infographic interaction and export
+
+```mermaid
+sequenceDiagram
+    actor U as User
+    participant UI as ui/infographic_components.py
+    participant JS as infographic_viewer.js (browser)
+    participant M as infographic_models.py
+    participant L as infographic_layout.py
+    participant R as infographic_renderers.py
+
+    UI->>M: hub_spec(ConceptHub, corpus) / timeline_spec(TimelineData)
+    UI->>L: layout (landscape + portrait) with chosen theme
+    L-->>UI: Scene
+    UI->>R: scene_to_svg(interactive=True, responsive=True)
+    R-->>UI: escaped SVG text
+    UI->>JS: SVGs + per-item details (explanation, page, section)
+    JS-->>U: picks wide or narrow SVG by container width
+    U->>JS: hover item
+    JS-->>U: highlight item + connector, dim the rest, tooltip
+    U->>JS: click item
+    JS->>UI: setTriggerValue(selected id)
+    UI-->>U: evidence panel (explanation, page, section, verbatim quote)
+    U->>UI: Export for blog, choose layout and style
+    UI->>L: layout for the chosen canvas
+    UI->>R: scene_to_svg(interactive=False)
+    R-->>U: SVG file (download)
+    UI->>R: svg_to_png(svg, scale=2)
+    R-->>U: PNG file (download)
+```
+
+Nothing in this flow calls the LLM: the infographic is a pure function of the already validated JSON, so
+changing theme, layout or canvas never changes a fact. The Venice key never leaves `generation.py`; the
+component receives only SVG text and short details.
+
+## I. Learner app (study_app.py)
+
+Every action maps onto the same functions the research app uses:
+
+| Learner action | Calls |
+|---|---|
+| Learn: explain / answer | `retrieval.retrieve` (frozen k=5) -> `tutor.explain_question` / `tutor.ask` |
+| Learn: chapter | `tutor.explain_scope` |
+| Practice | `tutor.generate_quiz` (difficulty Easy/Medium/Hard = the similarity band), `grade_mcq` / `grade_free`, `review_candidates` |
+| Flashcards | `tutor.generate_flashcards` |
+| Concept map | `learning_extractors.build_concept_hub` -> `render_hub_infographic` |
+| Timeline | `learning_extractors.build_timeline` -> `render_timeline_infographic` |
+
+Before each generation `ui/session_limits.charge()` reserves budget (default 40 actions per session,
+`STUDY_MAX_ACTIONS`); cached hubs/timelines are refunded; topics are trimmed to 120 characters.

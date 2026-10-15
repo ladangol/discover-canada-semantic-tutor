@@ -57,11 +57,32 @@ repo, not a research repo.
 - Chapter statistics use the original embeddings (no LLM, no UMAP).
 - Hub/timeline candidate retrieval (k=12) is separate from the frozen k=5 answer retrieval; do not change either.
 
+## Infographic and learner-app rules
+
+- Facts, dates, relationships and citations come only from validated JSON. The LLM never emits SVG, CSS
+  or layout; all text is XML-escaped in `infographic_renderers.py`. Do not use an image model for factual graphics.
+- Keep content (`infographic_models`), design system (`infographic_themes`), geometry (`infographic_layout`)
+  and serialization (`infographic_renderers`) separate; add themes/layouts there, never per concept.
+- `app.py` (research demo) and `study_app.py` (learner app) share the same `src/` and `ui/` code; do not
+  duplicate retrieval, tutor, validation or rendering logic. The learner app must not show embeddings, UMAP,
+  cosine scores, rankings or chunk ids (the one deliberate mention is the brand line "powered by AI embeddings").
+- Learner-app “Did you know?” facts live in `src/facts.py`; each carries a verbatim quote that `tests/test_facts.py` checks
+  against the guide. Mascots and the leaf mark are static files in `static/` (served via `enableStaticServing`).
+- Exports must not contain interactive hooks, scripts, debug info or any secret. The Venice key stays server-side.
+
+## Deployment rules
+
+- Every AI call goes through `generation.generate`, which enforces the daily budget (`src/budget.py`) and maps provider
+  failures to `GenerationUnavailable` with a learner-safe message. Never surface raw provider errors or log prompts/keys.
+- Cache hits must not call `generate`. Keep `deploy/`, the `Dockerfile` and `docs/` in sync with the code (flags, env names).
+- `deploy/deploy.sh` refuses to run on a droplet with under 1.8 GB RAM; never override that for the production box.
+
 ## Running
 
 ```bash
 conda activate canada-rag      # or any env with requirements.txt installed
 python scripts/build_embedding_map.py   # once; writes artifacts/
-streamlit run app.py
+streamlit run app.py        # Discover Canada Atlas (technical demo)
+streamlit run study_app.py  # Discover Canada Study (learner app)
 pytest tests/ -q
 ```

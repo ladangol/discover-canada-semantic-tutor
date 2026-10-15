@@ -117,6 +117,16 @@ flowchart LR
 | `src/generation.py` | The **only** module that knows Venice. `generate(messages, model_id=None)`. |
 | `src/tutor.py` | Prompts, citations, quiz/flashcards/explain, MMR diversity, adaptive review. |
 | `src/visualization.py` | Loads the 2-D/3-D maps + reducers, projects queries, builds Plotly figures. |
+| `study_app.py` | **Discover Canada Study**: the simple learner app (Learn, Practice, Flashcards, Concept map, Timeline). Same engine as `app.py`; hides all technical views. |
+| `ui/infographic_components.py`, `ui/infographic_viewer.js` | Shared Streamlit UI for infographics: interactive SVG component (hover/click), evidence panel, lazy SVG/PNG downloads. Used by both apps. |
+| `ui/study_theme.py`, `ui/theme_sync.py` | Look and feel of the learner app: two palettes (light/dark) as CSS variables, animated hero, sticky colour-coded navigation, tiles, quiz and stats styling, responsive breakpoints (phone / tablet / desktop). `theme_sync` is an invisible component that sets `<html data-mode>` from the active Streamlit theme. |
+| `src/facts.py`, `static/` | Verified “Did you know?” facts (quote-checked in tests) and the learner app's mascot stickers + leaf mark (static files). |
+| `ui/flashcards.py`, `ui/flashcards.js` | Flip-card deck component (3D flip, progress, keyboard, got-it tracking); DOM built with `textContent` only. |
+| `ui/common.py`, `ui/session_limits.py` | Friendly generation errors; per-session LLM-action budget and input cleaning (public-deployment safeguards). |
+| `src/infographic_models.py` | Renderer-independent `HubSpec` / `TimelineSpec`, built from the validated learning objects (category fallback, page footer text, title tidy-up). |
+| `src/infographic_themes.py` | Design system: typography scale, semantic category colours, spacing, canvases (landscape 16:9, square, portrait), two themes. |
+| `src/infographic_layout.py` | Text measurement + collision-free layouts (hub radial / compact / portrait; timeline chronological / layered) -> a `Scene` of plain shapes. |
+| `src/infographic_renderers.py` | `Scene` -> XML-escaped SVG; SVG -> PNG with `resvg-py`. |
 | `app_analyze.py` | Analyze tab UI only (chapter map, concept/person hub, timeline). |
 | `src/chapter_stats.py` | Chapter centroids, centroid cosine matrix, semantic breadth, nearest-neighbour rate, network rule. Original embeddings only; no LLM, no UMAP. |
 | `src/learning_extractors.py` | Gathers evidence (retrieval or whole chapter), asks the LLM for strict JSON (one retry on bad JSON), validates, caches. |
@@ -131,6 +141,8 @@ flowchart LR
 discover-canada-semantic-tutor/
 ├── app.py
 ├── app_analyze.py
+├── study_app.py               # learner app (shares everything below)
+├── ui/                        # infographic_components.py + .js, common.py, session_limits.py
 ├── README.md  AGENTS.md  CLAUDE.md  requirements.txt
 ├── .env            # user-owned secrets, never read by tooling
 ├── .env.example    # placeholders only
@@ -143,8 +155,9 @@ discover-canada-semantic-tutor/
 ├── src/
 │   ├── config.py  corpus.py  embeddings.py  retrieval.py
 │   ├── generation.py  tutor.py  visualization.py  atlas3d.py  atlas3d.js
-│   └── chapter_stats.py  learning_models.py  learning_extractors.py
-│       learning_validation.py  learning_cache.py
+│   ├── chapter_stats.py  learning_models.py  learning_extractors.py
+│   │   learning_validation.py  learning_cache.py
+│   └── infographic_models.py  infographic_themes.py  infographic_layout.py  infographic_renderers.py
 ├── scripts/build_embedding_map.py
 ├── artifacts/                 # embedding_map[_3d].json, umap_reducer[_3d].joblib
 │   └── generated/             # cached LLM learning objects (git-ignored)
@@ -206,7 +219,113 @@ UMAP/MDS positions; the LLM gets only retrieved source text; the chapter semanti
 Hub/timeline candidate retrieval (`HUB_CANDIDATES_K`, `TIMELINE_CANDIDATES_K` = 12) is separate from, and
 does not change, the frozen k=5 answer retrieval.
 
-## 5. Questions a new developer asks
+## 5. Infographics and the two apps
+
+Facts come only from validated source-grounded JSON. Presentation is a separate, deterministic layer: the
+LLM never produces SVG, CSS or coordinates, and every label is XML-escaped before it reaches the SVG.
+
+**1. Request to rendered infographic**
+
+```mermaid
+flowchart LR
+    U[User selects concept / person / chapter] --> R[Frozen embedding retrieval<br/>retrieval.py, candidate k=12]
+    R --> C[Source chunks]
+    C --> L[LLM: strict JSON<br/>learning_extractors.py]
+    L --> V[Validation: sources, verbatim quote, years<br/>learning_validation.py]
+    V --> J[(Validated ConceptHub / TimelineData<br/>artifacts/generated/ cache)]
+    J --> M[infographic_models.py<br/>HubSpec / TimelineSpec]
+    M --> Y[infographic_layout.py + infographic_themes.py<br/>Scene: cards, pills, edges]
+    Y --> S[infographic_renderers.py<br/>SVG text]
+    S --> W[Interactive view<br/>ui/infographic_components.py]
+    S --> X[SVG / PNG export]
+```
+
+**2. One shared core, two experiences**
+
+```mermaid
+flowchart TD
+    subgraph Core[Shared core - src/]
+        Ret[retrieval.py - frozen k=5]
+        Tut[tutor.py - explain, quiz, flashcards, adaptive review]
+        Ext[learning_extractors.py + learning_validation.py]
+        Info[infographic_* - models, themes, layout, renderers]
+        Gen[generation.py - only module that knows Venice]
+    end
+    subgraph UIshared[ui/]
+        Comp[infographic_components.py]
+        Lim[session_limits.py + common.py]
+    end
+    App[app.py + app_analyze.py<br/>Discover Canada Atlas - explainable RAG demo<br/>embeddings, UMAP, cosine, rankings]
+    Study[study_app.py<br/>Discover Canada Study - learner app<br/>no embeddings, scores or chunk ids]
+    App --> Core
+    Study --> Core
+    App --> UIshared
+    Study --> UIshared
+    UIshared --> Info
+```
+
+**3. Export flow**
+
+```mermaid
+flowchart LR
+    Spec[HubSpec / TimelineSpec] --> Pick[Export popover: layout + style<br/>landscape 16:9, square, portrait]
+    Pick --> Lay[layout_hub / layout_timeline<br/>-> Scene]
+    Lay --> SVG[scene_to_svg interactive=False<br/>no data-ids, no scripts]
+    SVG --> D1[Download SVG]
+    SVG --> Ras[svg_to_png via resvg-py, 2x]
+    Ras --> D2[Download PNG]
+```
+
+Exports are built lazily when a download button is used (`st.download_button` with a callable), contain the
+title, labels, relationships and a "Source: Discover Canada" footer, and nothing from Streamlit or the API.
+
+**4. Rendering modules and what each owns**
+
+```mermaid
+flowchart TD
+    Models[src/infographic_models.py<br/>content only] --> Layout
+    Themes[src/infographic_themes.py<br/>typography, colours, canvases] --> Layout
+    Layout[src/infographic_layout.py<br/>measure text, place boxes, guarantee no overlaps] --> Render
+    Render[src/infographic_renderers.py<br/>Scene to SVG, SVG to PNG] --> Comp
+    Comp[ui/infographic_components.py<br/>+ infographic_viewer.js<br/>hover highlight, click evidence, downloads]
+    Comp --> A[app.py Analyze tab]
+    Comp --> B[study_app.py]
+```
+
+**Learner-app visual design.** Native theme in `.streamlit/config.toml` (bold red primary, Bricolage Grotesque headings,
+Plus Jakarta Sans body, large radii, both `[theme.light]` and `[theme.dark]` so Streamlit's settings menu offers light/dark/system).
+`study_app.py` additionally injects `ui/study_theme.py` CSS; only that app does. Page switching uses keyed buttons
+(`.st-key-nav_*`) so each page has its own accent colour; reduced-motion users get no animation.
+
+Design choices: plain generated SVG rather than Graphviz (no system binary, exact text control, same scene
+for screen and export) and no React/Vue/Cytoscape (hover/click is ~60 lines of JS in a Streamlit v2 component).
+Layouts try several card widths and keep the first configuration with no overlapping cards or relationship
+pills; if none exists the scene is flagged `overflow` and the UI points to the portrait layout.
+PNG text uses the machine's installed fonts (stack: Inter, Helvetica Neue, Arial); bundle a font file if you
+need byte-identical typography across machines.
+
+## 6. Deployment, spending cap and error handling
+
+```mermaid
+flowchart TD
+    UI[study_app.py action] --> Cache{cached map / timeline / facts?}
+    Cache -- yes --> Show[served with no AI call]
+    Cache -- no --> Lim[ui/session_limits.py<br/>per session + per visitor/day]
+    Lim -- over --> Msg1[friendly limit message]
+    Lim -- ok --> Gen[generation.generate]
+    Gen --> B{src/budget.py<br/>today's allowance left?}
+    B -- no --> Msg2[GenerationUnavailable budget]
+    B -- yes --> V[Venice API]
+    V -- 402 key limit / no balance --> Trip[budget.trip: stop for today] --> Msg2
+    V -- 429 / 5xx / timeout --> Retry[retry 2s, 5s, 10s] --> Msg3[GenerationUnavailable busy]
+    V -- success --> Rec[budget.record tokens + $] --> Out[answer]
+    Msg1 & Msg2 & Msg3 --> Friendly[ui/common.generate_or_explain<br/>calm message, never a traceback]
+```
+
+`deploy/` and the `Dockerfile` hold the container build, the Caddy path block, the git-based `deploy.sh` and the guide for
+serving the learner app at a sub-path (`--server.baseUrlPath`) on the droplet. The usage ledger is one SQLite file shared by all sessions.
+
+## 7. Questions a new developer asks
 
 1. **What happens when a user types a query?** `app.py` → `visualization.analyze_query` encodes it once (`embeddings.encode_query`), retrieves top-5 with that vector (`retrieval.retrieve`), and projects the same vector with the saved UMAP reducer. Ask/Explain then call `tutor`. See [FLOWS.md](FLOWS.md) §A, §C.
 2. **Which module calls which?** Section 2 diagram. Direction: `app` → `tutor`/`visualization`/`corpus` → `retrieval`/`generation` → `embeddings`/`corpus`/`config`.
