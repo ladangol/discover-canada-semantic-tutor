@@ -1,0 +1,47 @@
+name: test-and-deploy
+
+# Every push / PR runs the tests. A push to main that passes them then deploys to the droplet by running
+# deploy/deploy.sh (git pull on the server, rebuild, health check, automatic rollback). See deploy/README.md.
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+concurrency:
+  group: deploy
+  cancel-in-progress: false      # never cut a deploy off half-way; queue the next one
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - name: Install CPU-only torch + requirements
+        run: |
+          pip install torch --index-url https://download.pytorch.org/whl/cpu
+          pip install -r requirements.txt pytest
+      - name: Tests (no API key needed)
+        run: pytest tests -q
+
+  deploy:
+    needs: test
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up SSH
+        env:
+          DEPLOY_SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+          DEPLOY_KNOWN_HOSTS: ${{ secrets.DEPLOY_KNOWN_HOSTS }}
+        run: |
+          install -m 700 -d ~/.ssh
+          printf '%s\n' "$DEPLOY_SSH_KEY" > ~/.ssh/deploy_key && chmod 600 ~/.ssh/deploy_key
+          printf '%s\n' "$DEPLOY_KNOWN_HOSTS" > ~/.ssh/known_hosts
+      - name: Deploy
+        env:
+          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}      # e.g. root@147.182.157.111
+        run: DEPLOY_KEY="$HOME/.ssh/deploy_key" bash deploy/deploy.sh

@@ -139,3 +139,16 @@ aren't passing through Caddy (it handles them automatically, so look for another
 | Mascots missing | the Caddy block uses `handle_path` (strips the prefix); it must be `handle` |
 | Build fails on `pip install` | out of disk (`df -h`); `docker system prune -f` |
 | Everything says “allowance used up” early | prices unset so the token cap hit first; check the ledger, raise the cap or set prices |
+
+
+## Automatic deploys (GitHub Actions)
+
+`.github/workflows/deploy.yml` runs the tests on every push/PR and, on a green push to `main`, runs `deploy/deploy.sh`
+(same memory guard, health check and rollback as a manual deploy). One-time setup:
+
+1. Make a key used only for deploys: `ssh-keygen -t ed25519 -N "" -C github-deploy -f deploy_key`, then append `deploy_key.pub`
+   to `/root/.ssh/authorized_keys` on the droplet. Delete the local `deploy_key*` files after step 2.
+2. In the repo: Settings → Secrets and variables → Actions → add
+   `DEPLOY_SSH_KEY` (the private key), `DEPLOY_HOST` (`root@<droplet ip>`) and
+   `DEPLOY_KNOWN_HOSTS` (output of `ssh-keyscan -t ed25519 <droplet ip>`, checked against the server's real fingerprint).
+3. The Venice key is never in GitHub; it stays in `/etc/discover-study.env` on the server.
