@@ -18,7 +18,7 @@ PAGES = {
     "Timeline": ("Timeline", ":material/timeline:", "#E89A0C"),
 }
 
-# chapter -> (emoji, gradient start, gradient end)
+# chapter -> (Material icon name, gradient start, gradient end) — used by the chapter carousel
 CHAPTER_STYLE = {
     "Understanding the Oath": ("handshake", "#5B4BE6", "#9B87F5"),
     "Rights and Responsibilities of Citizenship": ("verified_user", "#1D4ED8", "#38BDF8"),
@@ -54,16 +54,6 @@ def _nav_css() -> str:
     for name, (_, _, accent) in PAGES.items():
         k = name.lower().replace(" ", "_")
         rules.append(f".st-key-nav_{k} button, .st-key-nav_{k}_on button {{ --accent: {accent}; }}")
-    return "\n".join(rules)
-
-
-def _chapter_css() -> str:
-    rules = []
-    for i, (_, (_, a, b)) in enumerate(CHAPTER_STYLE.items()):
-        rules.append(
-            f'.st-key-tile_{i} button {{ background: radial-gradient(120% 90% at 100% 0%, rgba(255,255,255,.28), transparent 55%), '
-            f'linear-gradient(140deg, {a}, {b}) !important; }}\n'
-            f'.st-key-tile_{i} button::after {{ content: "{i + 1:02d}"; }}')
     return "\n".join(rules)
 
 
@@ -148,7 +138,6 @@ h1, h2, h3, h4 {{ font-family: var(--display) !important; letter-spacing: -.01em
 @media (min-width: 641px) and (max-width: 900px) {{
   [class*="st-key-nav_"] button {{ font-size: .82rem; padding: .65rem .3rem; gap: .25rem; }}
   .st-key-nav [data-testid="stColumn"] {{ min-width: 0 !important; }}
-  .st-key-tiles [data-testid="stColumn"] {{ min-width: calc(33.33% - .75rem); }}
 }}
 @media (max-width: 640px) {{
   .st-key-nav {{ padding: .4rem; border-radius: 22px; }}
@@ -158,11 +147,7 @@ h1, h2, h3, h4 {{ font-family: var(--display) !important; letter-spacing: -.01em
   [class*="st-key-nav_"] button {{ padding: .6rem .25rem; gap: .3rem; }}
   [class*="st-key-nav_"] button p {{ display: none; }}
   [class*="st-key-nav_"][class*="_on"] button p {{ display: block; font-size: .85rem; }}
-  [class*="st-key-tile_"] button {{ min-height: 128px; padding: .75rem .7rem; border-radius: 22px !important; }}
-  [class*="st-key-tile_"] button span[data-has-shortcut] {{ min-height: 100px; gap: 1rem; }}
-  [class*="st-key-tile_"] button p {{ font-size: .8rem; max-width: 100%; hyphens: none; overflow-wrap: normal; letter-spacing: -.015em; }}
-  [class*="st-key-tile_"] button::after {{ font-size: 2.6rem; }}
-}}
+  }}
 
 /* ---------- section headers & cards ---------- */
 .sec {{ display: flex; align-items: center; gap: .9rem; margin: .4rem 0 1rem; animation: rise .5s var(--ease) both; }}
@@ -199,41 +184,16 @@ button[kind="primary"], [data-testid="stBaseButton-primary"], [data-testid="stBa
 .stTextInput input, .stTextArea textarea {{ border-radius: 16px !important; }}
 .stTextInput input:focus, .stTextArea textarea:focus {{ box-shadow: 0 0 0 3px color-mix(in srgb, var(--g2) 35%, transparent) !important; }}
 
-/* ---------- chapter tiles ---------- */
-[class*="st-key-tile_"] button {{ width: 100%; height: auto; min-height: 150px; border: 0 !important; border-radius: 26px !important; color: #fff !important;
-  padding: 1.05rem 1.15rem; white-space: normal; position: relative; overflow: hidden; text-align: left;
-  box-shadow: 0 18px 30px -18px var(--shadow), inset 0 1px 0 rgba(255,255,255,.25);
-  transition: transform .3s var(--ease), box-shadow .3s, filter .3s; }}
-/* big numeral watermark, top-right */
-[class*="st-key-tile_"] button::after {{ position: absolute; right: 1rem; top: .35rem; font-family: var(--display); font-weight: 800;
-  font-size: 3.4rem; line-height: 1; letter-spacing: -.05em; color: rgba(255,255,255,.26); transition: transform .35s var(--ease), color .3s; }}
-/* arrow that slides in on hover, bottom-right */
-[class*="st-key-tile_"] button::before {{ content: "\\2192"; position: absolute; right: 1.05rem; bottom: .85rem; font-size: 1.5rem; font-weight: 700;
-  opacity: 0; transform: translateX(-10px); transition: opacity .25s, transform .3s var(--ease); }}
-[class*="st-key-tile_"] button > div {{ width: 100%; height: 100%; }}
-[class*="st-key-tile_"] button span[data-has-shortcut] {{ display: flex; flex-direction: column; justify-content: space-between;
-  align-items: flex-start; gap: 1.4rem; width: 100%; min-height: 118px; }}
-/* glass icon chip (its parent wrapper is 16px wide by default, so release it) */
-[class*="st-key-tile_"] button span[data-has-shortcut] > span:first-child {{ width: auto !important; height: auto !important; flex: none !important; }}
-[class*="st-key-tile_"] button [data-testid="stIconMaterial"] {{ flex: none !important; min-width: 2.75rem; min-height: 2.75rem; }}
-/* glass icon chip */
-[class*="st-key-tile_"] button [data-testid="stIconMaterial"] {{ font-size: 1.55rem !important; width: 2.75rem; height: 2.75rem; display: grid; place-items: center;
-  border-radius: 15px; background: rgba(255,255,255,.2); border: 1px solid rgba(255,255,255,.32); backdrop-filter: blur(6px); color: #fff; }}
-[class*="st-key-tile_"] button p {{ font-family: var(--display); font-weight: 800; font-size: 1.12rem; line-height: 1.12; letter-spacing: -.01em; text-align: left;
-  margin: 0; white-space: normal !important; overflow: visible !important; text-overflow: clip !important; overflow-wrap: break-word; hyphens: auto; max-width: 88%; }}
-[class*="st-key-tile_"] button:hover {{ transform: translateY(-7px); filter: saturate(1.12) brightness(1.04);
-  box-shadow: 0 28px 40px -18px var(--shadow), inset 0 1px 0 rgba(255,255,255,.3); }}
-[class*="st-key-tile_"] button:hover::before {{ opacity: 1; transform: translateX(0); }}
-[class*="st-key-tile_"] button:hover::after {{ color: rgba(255,255,255,.42); transform: translateY(2px) scale(1.06); }}
-[data-testid="stAppDeployButton"], .stAppDeployButton {{ display: none; }}
-.st-key-tiles [data-testid="stColumn"] {{ min-width: calc(50% - .75rem); }}
-@media (min-width: 900px) {{ .st-key-tiles [data-testid="stColumn"] {{ min-width: calc(25% - .75rem); }} }}
-@media (max-width: 640px) {{   /* must come AFTER the base tile rules above to win */
-  [class*="st-key-tile_"] button {{ min-height: 128px; padding: .75rem .7rem; border-radius: 22px !important; }}
-  [class*="st-key-tile_"] button span[data-has-shortcut] {{ min-height: 100px; gap: 1rem; }}
-  [class*="st-key-tile_"] button p {{ font-size: .8rem; max-width: 100%; hyphens: none; overflow-wrap: normal; letter-spacing: -.015em; }}
-  [class*="st-key-tile_"] button::after {{ font-size: 2.6rem; right: .7rem; }}
-}}
+/* ---------- ask box: a raised card with a gradient edge, big input, glowing on focus ---------- */
+[data-testid="stForm"]:has(.ask-title) {{ position: relative; border-radius: 28px; padding: clamp(1rem, 2.6vw, 1.6rem); margin: .4rem 0 1rem;
+  background: linear-gradient(var(--surface), var(--surface)) padding-box, linear-gradient(120deg, var(--g1), var(--g2) 55%, var(--g3)) border-box;
+  border: 3px solid transparent; box-shadow: 0 26px 48px -26px var(--shadow), 0 0 0 0 transparent; transition: box-shadow .3s var(--ease), transform .3s var(--ease); }}
+[data-testid="stForm"]:has(.ask-title):focus-within {{ transform: translateY(-2px); box-shadow: 0 30px 56px -24px var(--shadow), 0 0 0 6px color-mix(in srgb, var(--g2) 22%, transparent); }}
+.ask-title {{ font-family: var(--display); font-weight: 800; font-size: clamp(1.15rem, 3vw, 1.5rem); letter-spacing: -.01em; margin-bottom: .55rem; color: var(--ink); }}
+.ask-title .mi {{ color: var(--g1); margin-right: .2rem; font-size: 1.3em; vertical-align: -.25em; }}
+[data-testid="stForm"]:has(.ask-title) .stTextInput input {{ font-size: 1.12rem !important; min-height: 3.4rem; border-radius: 18px !important; padding-left: .4rem; }}
+[data-testid="stForm"]:has(.ask-title) [data-testid="stFormSubmitButton"] button {{ min-height: 3.4rem; border-radius: 18px !important; font-size: 1.08rem; font-weight: 800; }}
+@media (max-width: 640px) {{ [data-testid="stForm"]:has(.ask-title) [data-testid="stHorizontalBlock"] {{ flex-wrap: wrap; }} [data-testid="stForm"]:has(.ask-title) [data-testid="stColumn"] {{ min-width: 100% !important; }} }}
 
 /* ---------- quiz ---------- */
 [class*="st-key-opt_"] button {{ width: 100%; justify-content: flex-start; text-align: left; min-height: 64px; padding: .8rem 1.1rem;
@@ -283,7 +243,6 @@ button[kind="primary"], [data-testid="stBaseButton-primary"], [data-testid="stBa
 @keyframes shake {{ 0%,100% {{ transform: translateX(0); }} 25% {{ transform: translateX(-6px); }} 75% {{ transform: translateX(6px); }} }}
 
 {_nav_css()}
-{_chapter_css()}
 </style>
 """
 

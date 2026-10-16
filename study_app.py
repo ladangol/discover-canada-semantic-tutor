@@ -20,6 +20,7 @@ from src.embeddings import encode_query
 from src.retrieval import page_label, retrieve
 from ui import study_theme as theme
 from ui.common import generate_or_explain
+from ui.chapter_carousel import chapter_carousel
 from ui.flashcards import flashcard_deck
 from ui.infographic_components import render_hub_infographic, render_timeline_infographic
 from ui.theme_sync import sync as sync_theme
@@ -115,22 +116,20 @@ def learn_page() -> None:
     with st.container(key="chips_fact", horizontal=True):
         st.button("Another fact", icon=":material/casino:", on_click=another_fact, key="fact_btn")
 
-    header("Learn", "Ask anything about Canada, or tap a chapter for a quick summary.")
+    header("Learn", "Ask anything about Canada, or open a chapter for a quick summary.")
     with st.form("learn_form", border=False):
-        c1, c2 = st.columns([5, 1], vertical_alignment="bottom")
+        st.html('<div class="ask-title"><span class="mi">forum</span> What do you want to know?</div>')
+        c1, c2 = st.columns([5, 1.2], vertical_alignment="bottom")
         text = c1.text_input("Your question", placeholder="e.g. Who can vote? · What is responsible government?",
-                             max_chars=120, icon=":material/search:")
-        go = c2.form_submit_button("Ask", type="primary", width="stretch")
+                             max_chars=120, icon=":material/search:", label_visibility="collapsed")
+        go = c2.form_submit_button("Ask", type="primary", icon=":material/arrow_forward:", width="stretch")
     answer_slot = st.container()            # the answer lands here, right under the question box
 
     st.markdown("##### Or explore a chapter")
-    clicked = None
-    with st.container(key="tiles"):
-        for r in range(0, len(c.chapters), 4):
-            for col, (i, ch) in zip(st.columns(4), list(enumerate(c.chapters))[r:r + 4]):
-                icon = theme.CHAPTER_STYLE.get(ch, theme.DEFAULT_STYLE)[0]
-                if col.button(ch, icon=f":material/{icon}:", key=f"tile_{i}", width="stretch"):
-                    clicked = ch
+    items = [{"title": ch, "icon": theme.CHAPTER_STYLE.get(ch, theme.DEFAULT_STYLE)[0],
+              "a": theme.CHAPTER_STYLE.get(ch, theme.DEFAULT_STYLE)[1], "b": theme.CHAPTER_STYLE.get(ch, theme.DEFAULT_STYLE)[2]}
+             for ch in c.chapters]
+    clicked = chapter_carousel(items, key="chapter_carousel")
 
     topic = clean_topic(text)
     if (go and topic) or clicked:
