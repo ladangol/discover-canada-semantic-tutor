@@ -1,0 +1,8 @@
+# Optional extras for the voice tutor (Milestone 1). Not installed in the production image.
+# Verified with Python 3.11 (conda env "canada-rag"): faster-whisper 1.2.1, kokoro 0.9.4, piper-tts 1.8.0.
+# Note: kokoro installs the small spaCy model en_core_web_sm itself the first time it loads.
+faster-whisper>=1.1      # local speech-to-text (CTranslate2); Whisper weights download on first use
+kokoro>=0.9.4            # default local text-to-speech (Kokoro-82M, Apache-2.0); weights download on first use
+soundfile>=0.12
+piper-tts>=1.3           # optional alternative engine (TTS_ENGINE=piper); its voice .onnx file is downloaded separately
+jiwer>=3.0               # development only: WER/CER for scripts/voice_proper_nouns.py

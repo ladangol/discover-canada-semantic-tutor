@@ -14,7 +14,7 @@ import random
 import streamlit as st
 
 from src import budget, facts, learning_extractors as ex, tutor
-from src.config import generation_configured
+from src.config import generation_configured, voice_enabled
 from src.corpus import load_corpus
 from src.embeddings import encode_query
 from src.retrieval import page_label, retrieve
@@ -23,6 +23,7 @@ from ui.common import generate_or_explain
 from ui.chapter_carousel import chapter_carousel
 from ui.flashcards import flashcard_deck
 from ui.infographic_components import render_hub_infographic, render_timeline_infographic
+from ui import voice_tutor
 from ui.theme_sync import sync as sync_theme
 from ui.session_limits import LIMIT_MESSAGE, charge, clean_topic, refund
 
@@ -43,7 +44,7 @@ def corpus():
 
 def init_state() -> None:
     for k, v in {"page": "Learn", "history": [], "asked": set(), "quiz": None, "cards": None, "learn": None,
-                 "rng": random.Random(), "study_hub": None, "study_tl": None}.items():
+                 "rng": random.Random(), "study_hub": None, "study_tl": None, "voice_quiz": None}.items():
         st.session_state.setdefault(k, v)
     if "fact" not in st.session_state:
         st.session_state.fact = facts.pick(st.session_state.rng)
@@ -75,8 +76,9 @@ def go_to(page: str) -> None:
 
 def nav() -> None:
     with st.container(key="nav"):
-        cols = st.columns(len(theme.PAGES))
-        for col, (name, (label, icon, _)) in zip(cols, theme.PAGES.items()):
+        pages = {k: v for k, v in theme.PAGES.items() if k != "Talk" or voice_enabled()}   # Talk is opt-in (STUDY_VOICE=1)
+        cols = st.columns(len(pages))
+        for col, (name, (label, icon, _)) in zip(cols, pages.items()):
             k = name.lower().replace(" ", "_")
             on = st.session_state.page == name
             col.button(label, icon=icon, key=f"nav_{k}{'_on' if on else ''}", width="stretch",
@@ -85,7 +87,8 @@ def nav() -> None:
 
 def header(page: str, text: str) -> None:
     label, _, color = theme.PAGES[page]
-    icon = {"Learn": "school", "Practice": "bolt", "Flashcards": "style", "Concept map": "hub", "Timeline": "timeline"}[page]
+    icon = {"Learn": "school", "Practice": "bolt", "Flashcards": "style", "Concept map": "hub", "Timeline": "timeline",
+            "Talk": "record_voice_over"}[page]
     st.html(theme.section_header(icon, label, text, color))
 
 
@@ -139,7 +142,7 @@ def learn_page() -> None:
             elif clicked:
                 st.session_state.learn = generate_or_explain(tutor.explain_scope, c, clicked, None)
             else:
-                chunks = retrieve(topic)              # same frozen retrieval as the research app
+                chunks = retrieve(tutor.search_text(topic))   # same frozen retrieval; boilerplate like "in Discover Canada" removed from the search string only
                 st.session_state.learn = generate_or_explain(tutor.ask, topic, chunks)
     if st.session_state.learn:
         with answer_slot:
@@ -170,6 +173,27 @@ def streak(history: list) -> int:
     return n
 
 
+def new_quiz_question(c, scope: str, *, kind: str = "mcq", focus: str | None = None, state_key: str = "quiz") -> bool:
+    """Generate the next quiz question into session state `state_key` (Practice: "quiz"; Talk: "voice_quiz").
+    Answer history and the asked-set are shared, so both pages count toward the same goal."""
+    if not charge(2):
+        st.warning(LIMIT_MESSAGE)
+        return False
+    kwargs = dict(kind=kind, difficulty=tutor.DEFAULT_DIFFICULTY, exclude_ids=st.session_state.asked,
+                  rng=st.session_state.rng)
+    if focus:
+        kwargs["focus_chunk_id"] = focus
+    else:
+        kwargs["chapter"] = None if scope == EVERYWHERE else scope
+    q = generate_or_explain(tutor.generate_quiz, c, **kwargs)
+    if not q:
+        refund(2)
+    st.session_state[state_key] = {"q": q, "res": None, "pick": None, "id": random.random()} if q else None
+    if q:
+        st.session_state.asked.add(q.chunk_id)
+    return bool(q)
+
+
 def practice_page() -> None:
     c = corpus()
     header("Practice", "Tap an answer. You'll see right away how you did, and why.")
@@ -184,21 +208,7 @@ def practice_page() -> None:
     scope = st.selectbox("Topic", [EVERYWHERE] + c.chapters, key="pq_scope")
 
     def new_question(focus: str | None = None) -> None:
-        if not charge(2):
-            st.warning(LIMIT_MESSAGE)
-            return
-        kwargs = dict(kind="mcq", difficulty=tutor.DEFAULT_DIFFICULTY, exclude_ids=st.session_state.asked,
-                      rng=st.session_state.rng)
-        if focus:
-            kwargs["focus_chunk_id"] = focus
-        else:
-            kwargs["chapter"] = None if scope == EVERYWHERE else scope
-        q = generate_or_explain(tutor.generate_quiz, c, **kwargs)
-        if not q:
-            refund(2)
-        st.session_state.quiz = {"q": q, "res": None, "pick": None, "id": random.random()} if q else None
-        if q:
-            st.session_state.asked.add(q.chunk_id)
+        new_quiz_question(c, scope, focus=focus)
 
     state = st.session_state.quiz
     if not state or not state["q"]:
@@ -329,14 +339,25 @@ def timeline_page() -> None:
         st.html(theme.empty_state(mascot(), "Choose a chapter or topic to see its story in order."))
 
 
+# --- Talk (voice tutor; Milestone 1) -------------------------------------------------------------------
+
+def talk_page() -> None:
+    c = corpus()
+    header("Talk", "Record your voice, check what I heard, then I'll answer, grade, and read it back to you.")
+    voice_tutor.render(c, new_question=lambda kind: new_quiz_question(c, EVERYWHERE, kind=kind, state_key="voice_quiz"), record=record,
+                       cite=cite, accent=accent("Talk"))
+
+
 # --- main -------------------------------------------------------------------------------------------------
 
 PAGE_FUNCS = {"Learn": learn_page, "Practice": practice_page, "Flashcards": flashcards_page,
-              "Concept map": concept_page, "Timeline": timeline_page}
+              "Concept map": concept_page, "Timeline": timeline_page, "Talk": talk_page}
 
 
 def main() -> None:
     init_state()
+    if st.session_state.page == "Talk" and not voice_enabled():
+        st.session_state.page = "Learn"                        # the voice page is opt-in (STUDY_VOICE=1)
     theme.inject()
     sync_theme()
     corpus()

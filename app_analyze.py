@@ -104,7 +104,7 @@ def show_hub(hub: ConceptHub, cached: bool, corpus) -> None:
     render_hub_infographic(hub, corpus, key="hub")
     st.caption(("Loaded from cache · " if cached else "") + f"{len(hub.nodes)} source-supported nodes.")
     if hub.omitted:
-        with st.expander(f"{len(hub.omitted)} item(s) omitted by validation"):
+        with st.expander(f"{len(hub.omitted)} item(s) omitted or revised by validation"):
             st.write("\n".join(f"- {o}" for o in hub.omitted))
 
 

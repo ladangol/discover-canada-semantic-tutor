@@ -15,6 +15,7 @@ from __future__ import annotations
 
 import re
 
+from src import concept_semantics as semantics
 from src.learning_models import CATEGORIES, ConceptNode, TimelineEvent
 from src.retrieval import RetrievedChunk
 from src.corpus import split_breadcrumb
@@ -76,8 +77,11 @@ def _pages(chunks: list[RetrievedChunk]) -> list[str]:
 # --- concept hub --------------------------------------------------------------
 
 def validate_hub_nodes(
-    raw_nodes, central: str, by_label: dict[str, RetrievedChunk], max_nodes: int,
+    raw_nodes, central: str, by_label: dict[str, RetrievedChunk], max_nodes: int, center_type: str = "",
 ) -> tuple[list[ConceptNode], list[str]]:
+    """Mechanical checks (sources, verbatim quote, years, duplicates) then semantic checks (concept_semantics: entity types, direction,
+    what the quote states, First Nations / Métis / Inuit kept apart). Rejected items are listed in `omitted`; items whose relationship
+    was weakened to "is mentioned with" are kept and listed there as "revised"."""
     nodes: list[ConceptNode] = []
     omitted: list[str] = []
     for item in raw_nodes if isinstance(raw_nodes, list) else []:
@@ -89,8 +93,8 @@ def validate_hub_nodes(
         text = " ".join(c.text for c in chunks) if chunks else ""
         explanation = str(item.get("explanation", "")).strip()
         relationship = str(item.get("relationship", "")).strip()
-        if not label or not relationship:
-            omitted.append(f"{name}: missing label or relationship")
+        if not label:
+            omitted.append(f"{name}: missing label")
         elif chunks is None:
             omitted.append(f"{name}: cites a source that was not provided")
         elif not _quote_ok(item.get("evidence_quote"), chunks):
@@ -100,23 +104,37 @@ def validate_hub_nodes(
         elif _similar(label, central) or any(_similar(label, n.label) for n in nodes):
             omitted.append(f"{name}: duplicate")
         else:
+            node_type = str(item.get("entity_type", "")).strip().casefold()
+            node_type = node_type if node_type in semantics.ENTITY_TYPES else ""
+            verdict = semantics.check_relationship(
+                center=central, center_type=center_type, label=label, node_type=node_type,
+                predicate=str(item.get("predicate", "")), subject_is_center=item.get("subject_is_center", True) is not False,
+                relationship_text=relationship, quote=str(item.get("evidence_quote", "")), chunk_text=text)
+            if verdict.status == "rejected":
+                omitted.append(f"{name}: {verdict.reason}")
+                continue
+            if verdict.status == "revised":
+                omitted.append(f"{name}: revised ({verdict.reason})")
             nodes.append(ConceptNode(
                 id=re.sub(r"[^a-z0-9]+", "_", norm(label)) or f"n{len(nodes)}",
-                label=label, relationship=relationship, explanation=explanation,
+                label=label, relationship=verdict.display, explanation=explanation,
                 source_chunk_ids=[c.chunk_id for c in chunks], pages=_pages(chunks),
                 evidence_quote=str(item["evidence_quote"]).strip(),
-                category=normalize_category(item.get("category")),
+                category=semantics.CATEGORY_FOR_TYPE.get(node_type) or normalize_category(item.get("category")),
+                entity_type=node_type, predicate=verdict.predicate, subject_is_center=verdict.subject_is_center, support=verdict.support,
             ))
+    nodes.sort(key=lambda n: n.support != "stated")        # relationships the quote STATES come before mere co-mentions (stable)
     if len(nodes) > max_nodes:
         omitted += [f"{n.label}: over the {max_nodes}-node limit" for n in nodes[max_nodes:]]
         nodes = nodes[:max_nodes]
     return nodes, omitted
 
 
-def validate_summary(summary, labels, by_label: dict[str, RetrievedChunk]) -> tuple[str, list[str]]:
-    """Keep the one-line definition only if its cited sources are real and any years match."""
+def validate_summary(summary, labels, by_label: dict[str, RetrievedChunk], central: str = "") -> tuple[str, list[str]]:
+    """Keep the one-line definition only if its cited sources are real, any years match, and (for a centre about one people) it does
+    not bring in another people."""
     text, chunks = str(summary or "").strip(), _resolve(labels, by_label)
-    if not text or chunks is None:
+    if not text or chunks is None or semantics.summary_scope_conflict(central, text):
         return "", []
     if not years_in(text) <= years_in(" ".join(c.text for c in chunks)):
         return "", []

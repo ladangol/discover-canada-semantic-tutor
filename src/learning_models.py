@@ -34,6 +34,10 @@ class ConceptNode:
     pages: list[str]
     evidence_quote: str             # verbatim (normalised) text from a cited chunk
     category: str = ""              # presentation only: one of CATEGORIES, "" if not given
+    entity_type: str = ""           # semantic type (concept_semantics.ENTITY_TYPES); "" for hubs made before validation v4
+    predicate: str = ""             # typed relationship ("speaks", "word_in", ...), "mentioned_with", "other" or ""
+    subject_is_center: bool = True  # direction: relationship reads "<centre> <relationship> <node>" either way
+    support: str = ""               # "stated" (the quote states the relationship) | "co-mentioned" (same passage only) | ""
 
 
 @dataclass(frozen=True)
@@ -45,6 +49,7 @@ class ConceptHub:
     summary_source_chunk_ids: list[str] = field(default_factory=list)
     omitted: list[str] = field(default_factory=list)   # why items failed validation
     central_category: str = ""
+    central_entity_type: str = ""
 
     def to_dict(self) -> dict:
         return asdict(self)

@@ -6,19 +6,23 @@ stored embeddings from `corpus.py`. Nothing here imports Streamlit.
 """
 from __future__ import annotations
 
+import difflib
 import json
 import random
 import re
-from dataclasses import dataclass, field
+import time
+from dataclasses import dataclass, field, replace
 from typing import Callable, Literal
 
 import numpy as np
 
-from src.config import DEFAULT_K
+from src.config import DEFAULT_K, query_cleanup_enabled
 from src.corpus import Corpus, split_breadcrumb
 from src.embeddings import encode_query
 from src.generation import GenerationResult, generate
+from src.query_understanding import retrieval_query
 from src.retrieval import RetrievedChunk, page_label, retrieve
+from src.suggestions import snap as snap_to_bank
 
 Generate = Callable[..., GenerationResult]
 
@@ -195,6 +199,12 @@ Rules:
    into page citations after generation.
 7. A retrieved source being semantically similar to the question does not mean
    that it contains the answer. Check the actual text before answering.
+8. Talk to the learner as a friendly tutor. Say "the guide"; never say "the
+   retrieved sources", "the excerpts" or "the supplied text".
+9. You only see some parts of the guide. If the question asks which or what
+   things the guide mentions (a list), give what you found, then say there may
+   be more in other parts of the guide. Never claim that the guide mentions no
+   others.
 """
 
 EXPLAIN_SYSTEM_PROMPT = f"""You are a friendly study tutor for the Canadian citizenship
@@ -652,3 +662,158 @@ def explain_neighbourhood(corpus: Corpus, missed_chunk_id: str, *, gen: Generate
     row = corpus.row(missed_chunk_id)
     return explain_sources(f"“{row.section}” and closely related ideas",
                            sources_from_corpus(corpus, idx), gen=gen)
+
+
+# =============================================================================
+# One conversational turn (shared by every interface; voice is only an input/output adapter)
+# =============================================================================
+
+TurnKind = Literal["answer", "quiz_feedback", "clarify"]
+
+_FILLER = {"the", "an", "option", "answer", "choice", "letter", "number", "is", "its", "it", "s", "i", "think", "pick",
+           "choose", "going", "with", "go", "my", "would", "say", "please", "one", "that", "ill", "want", "take"}
+_ORDINALS = {"first": 0, "1st": 0, "1": 0, "second": 1, "2nd": 1, "2": 1, "two": 1, "third": 2, "3rd": 2, "3": 2, "three": 2,
+             "fourth": 3, "4th": 3, "4": 3, "four": 3, "last": -1}
+
+
+def _norm(text: str) -> str:
+    return re.sub(r"\s+", " ", re.sub(r"[^a-z0-9 ]", " ", text.lower().replace("’", "'").replace("'", ""))).strip()
+
+
+def match_option(options: list[str], spoken: str) -> int | None:
+    """Which option did the learner mean? Handles 'B', 'option B', 'the second one', or the answer text itself.
+
+    Returns None when it is unclear or ambiguous so the tutor can ask again instead of guessing a grade."""
+    if not options:
+        return None
+    t = _norm(spoken)
+    if not t:
+        return None
+    letters = "abcd"[: len(options)]
+    rest = [w for w in t.split() if w not in _FILLER or w in _ORDINALS]
+    if len(rest) == 1:
+        w = rest[0]
+        if len(w) == 1 and w in letters:
+            return letters.index(w)
+        if w in _ORDINALS:
+            i = _ORDINALS[w]
+            i = len(options) - 1 if i == -1 else i
+            if 0 <= i < len(options):
+                return i
+    hits = [i for i, o in enumerate(options) if _norm(o) and (_norm(o) == t or _norm(o) in t or (len(t) >= 3 and t in _norm(o)))]
+    if len(hits) == 1:
+        return hits[0]
+    if not hits:
+        scored = sorted(((difflib.SequenceMatcher(None, t, _norm(o)).ratio(), i) for i, o in enumerate(options)), reverse=True)
+        if scored and scored[0][0] >= 0.85 and (len(scored) == 1 or scored[1][0] < scored[0][0] - 0.1):
+            return scored[0][1]
+    return None
+
+
+@dataclass(frozen=True)
+class TurnResult:
+    kind: TurnKind
+    text: str                                   # what the learner reads (markdown)
+    speech_text: str                            # what is read aloud (before citation/markup stripping)
+    cited: list[RetrievedChunk] = field(default_factory=list)
+    abstained: bool = False
+    quiz_result: QuizResult | None = None
+    chosen_index: int | None = None
+    timings: dict[str, float] = field(default_factory=dict)   # measured seconds: retrieval, generation, total
+    suggestions: list[str] = field(default_factory=list)      # "did you mean…" questions, only when the guide had no match
+    retrieval_query: str = ""                                 # the string that was embedded for search (differs from the question only if cleaned)
+
+
+SUGGEST_SYSTEM_PROMPT = """You help a learner preparing for the Canadian citizenship test. Their question could not be matched
+to the guide's text, perhaps because it was worded differently or the guide uses other terms. Think about what they most
+probably meant, using your general knowledge of Canada and the guide's table of contents (chapter and section titles only).
+Propose up to 4 short, specific questions, closest to their intent first, that the guide may well answer. Write plain questions
+only, not facts or answers; each is matched to the guide's own questions before the learner sees anything. Each question must be
+under 100 characters and end with "?". Output JSON only: {"suggestions": ["...?", "...?"]}"""
+
+
+def guide_outline(corpus: Corpus) -> str:
+    return "\n".join(f"- {ch}: " + "; ".join(corpus.sections(ch)[:12]) for ch in corpus.chapters)
+
+
+def suggest_questions(question: str, corpus: Corpus, *, gen: Generate = generate) -> list[str]:
+    """Guesses at what the learner meant, for a question the grounded answer could not match (ONE LLM call). The model sees only the
+    guide's section titles and may use general knowledge, so these are never shown as they are: `suggestions.snap` first replaces
+    each with the nearest question from the pre-built bank of questions the guide is known to answer."""
+    data = _ask_llm_json([{"role": "system", "content": SUGGEST_SYSTEM_PROMPT},
+                          {"role": "user", "content": f"LEARNER'S QUESTION: {question}\n\nGUIDE OUTLINE:\n{guide_outline(corpus)}"}],
+                         gen, max_tokens=400)
+    items = data.get("suggestions", []) if isinstance(data, dict) else []
+    out: list[str] = []
+    for it in items:
+        t = re.sub(r"\s+", " ", str(it)).strip()
+        if t.endswith("?") and 8 <= len(t) <= 120 and _norm(t) != _norm(question) and t not in out:
+            out.append(t)
+    return out[:4]
+
+
+
+def search_text(question: str) -> str:
+    """The string to embed for search in the learner/voice flows: the question without document-reference boilerplate (application layer,
+    see query_understanding.py), or the question itself when QUERY_CLEANUP=0. Generation always gets the exact original question."""
+    return retrieval_query(question).text if query_cleanup_enabled() else question
+
+
+NO_MATCH = "I couldn't find that in the guide, so I won't guess. It may be worded differently there."
+
+
+def answer_turn(ans: TutorAnswer, timings: dict[str, float] | None = None) -> TurnResult:
+    """The learner-facing turn for a grounded answer."""
+    return TurnResult("answer", ans.answer, ans.answer, ans.cited, abstained=ans.abstained, timings=timings or {})
+
+
+def handle_turn(message: str, *, quiz: QuizQuestion | None = None, corpus: Corpus | None = None,
+                retrieve_fn=retrieve, gen: Generate = generate, snap_fn=snap_to_bank) -> TurnResult:
+    """Handle one confirmed learner message. With an open `quiz` question the message is an ANSWER to it (graded by the
+    existing graders); otherwise it is a question answered from the guide. Blank text never reaches retrieval or the LLM.
+    If the guide has no match and `corpus` is given, the reply offers up to 3 "did you mean…" questions from the guide's own question
+    bank (one LLM call to guess the intent, then an embedding lookup; best effort)."""
+    t0 = time.perf_counter()
+    message = (message or "").strip()
+    if not message:
+        return TurnResult("clarify", "I didn't catch anything. Please say or type your question.",
+                          "I didn't catch anything. Please say or type your question.")
+    if quiz is not None:
+        if quiz.kind == "mcq":
+            idx = match_option(quiz.options, message)
+            if idx is None:
+                msg = "I wasn't sure which answer you meant. Say A, B, C or D, or say the answer itself."
+                return TurnResult("clarify", msg, msg, timings={"total": time.perf_counter() - t0})
+            res = grade_mcq(quiz, idx)
+            gen_s = 0.0
+        else:
+            g0 = time.perf_counter()
+            res, idx = grade_free(quiz, message, gen=gen), None
+            gen_s = time.perf_counter() - g0
+        head = "Correct!" if res.correct else (res.feedback or "Not quite.")
+        body = f"{head}\n\n{res.explanation}".strip() if res.explanation else head
+        spoken = f"{'Correct.' if res.correct else head} {res.explanation or ''}".strip()
+        return TurnResult("quiz_feedback", body, spoken, [res.source], quiz_result=res, chosen_index=idx,
+                          timings={"generation": gen_s, "total": time.perf_counter() - t0})
+    r0 = time.perf_counter()
+    query = search_text(message)
+    chunks = retrieve_fn(query, k=DEFAULT_K)
+    retrieval_s = time.perf_counter() - r0
+    g0 = time.perf_counter()
+    ans = ask(message, chunks, gen=gen)
+    gen_s = time.perf_counter() - g0
+    if not ans.abstained:
+        return replace(answer_turn(ans, {"retrieval": retrieval_s, "generation": gen_s, "total": time.perf_counter() - t0}), retrieval_query=query)
+    suggestions: list[str] = []
+    if corpus is not None:
+        try:
+            suggestions = snap_fn(suggest_questions(message, corpus, gen=gen), asked=message)
+        except Exception:                       # suggestions are a courtesy: never break the turn (budget, provider, parsing)
+            suggestions = []
+    text = NO_MATCH + ("\n\nDid you mean one of these? The guide answers them." if suggestions
+                       else " Try a specific topic, such as a person, a place or an event.")
+    spoken = NO_MATCH + (" Did you mean: " + " Or: ".join(suggestions) if suggestions
+                         else " Try a specific topic, such as a person, a place or an event.")
+    # cited=[]: nothing in the guide supports an answer here, so no source is shown as if it did
+    return TurnResult("answer", text, spoken, [], abstained=True, suggestions=suggestions, retrieval_query=query,
+                      timings={"retrieval": retrieval_s, "generation": gen_s, "total": time.perf_counter() - t0})

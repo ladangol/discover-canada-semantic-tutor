@@ -77,6 +77,17 @@ repo, not a research repo.
 - Cache hits must not call `generate`. Keep `deploy/`, the `Dockerfile` and `docs/` in sync with the code (flags, env names).
 - `deploy/deploy.sh` refuses to run on a droplet with under 1.8 GB RAM; never override that for the production box.
 
+## Voice tutor rules
+
+- Voice is only an input/output adapter (`src/voice/*`, `ui/voice_tutor.py`). Questions and quiz answers go through the same
+  `tutor.handle_turn` / `ask` / `grade_mcq` / `grade_free` as typed ones; never add a second retrieval, grading or citation path.
+- `src/voice/*` imports no Streamlit and nothing from `tutor`/`retrieval`. Models load once per process, lazily; failures become
+  `VoiceError` messages that are safe to show, never tracebacks.
+- Nothing reaches the tutor until the learner confirms the (editable) transcript. Raw audio and transcripts are never written to
+  disk, logged, or sent to Venice (only the confirmed text is). Keep the original ASR text separate from the learner's correction.
+- Do not add wake word, streaming/VAD or barge-in until Milestone 2/3. Tests use mocks only (no models, audio hardware or API key).
+- The Talk page stays opt-in (`STUDY_VOICE=1`) and voice packages stay out of `requirements.txt`/the production image.
+
 ## Running
 
 ```bash

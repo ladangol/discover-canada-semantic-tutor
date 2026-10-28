@@ -133,9 +133,15 @@ class FakeHubLLM:
     def __call__(self, messages, **_):
         self.calls += 1
         prompt = messages[-1]["content"]
+        body = re.search(r"SOURCE S1\n.*?text:\n(.*?)(?:\n\n---|\Z)", prompt, flags=re.S).group(1).split("\n\n", 1)[-1]
+        words = body.split()
+        start = next((i for i, w in enumerate(words) if w.startswith("Prime")), 0)      # a sentence that names the centre
+        q = " ".join(words[start:start + 10])
+        word = next(w for w in q.split()[2:] if len(w) >= 5 and w.isalpha())            # a real content word from that quote
         reply = {"central_concept": "Prime Minister", "summary": "A head of government.", "summary_sources": ["S1"],
-                 "nodes": [{"label": "Cabinet", "relationship": "leads", "explanation": "Leads it.",
-                            "sources": ["S1"], "evidence_quote": quote(prompt, "S1")},
+                 "central_entity_type": "person",
+                 "nodes": [{"label": word, "entity_type": "concept", "predicate": "mentioned_with", "explanation": "Same passage.",
+                            "sources": ["S1"], "evidence_quote": q},
                            {"label": "Invented", "relationship": "r", "explanation": "x",
                             "sources": ["S99"], "evidence_quote": "not there at all"}]}
         return GenerationResult(json.dumps(reply), "stop", 1, 1)
@@ -144,7 +150,8 @@ class FakeHubLLM:
 def test_hub_pipeline_retrieves_validates_and_caches(corpus):
     fake = FakeHubLLM()
     hub, cached = ex.build_concept_hub("Prime Minister", corpus, gen=fake)
-    assert not cached and [n.label for n in hub.nodes] == ["Cabinet"] and len(hub.omitted) == 1
+    assert not cached and len(hub.nodes) == 1 and len(hub.omitted) == 1
+    assert hub.nodes[0].relationship == "is mentioned with" and hub.nodes[0].support == "co-mentioned"
     assert hub.nodes[0].source_chunk_ids[0] in set(corpus.chunks.chunk_id)   # real chunk id, not "S1"
     again, cached2 = ex.build_concept_hub("Prime Minister", corpus, gen=fake)
     assert cached2 and fake.calls == 1 and again.nodes == hub.nodes

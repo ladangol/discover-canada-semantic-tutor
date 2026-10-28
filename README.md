@@ -45,6 +45,33 @@ pytest tests -q                         # smoke tests, no API key needed
 `python-dotenv`. Without `VENICE_API_KEY`, the atlas, query view, retrieval and neighbour
 inspection all work; only generated answers, quizzes, flashcards and explanations are off.
 
+## Voice tutor (optional, Milestone 1)
+
+The learner app has a **Talk** page: press the microphone, speak a question or a quiz answer, check and correct the transcript,
+and the same tutor code as the text UI answers (with citations) and reads the reply aloud. Speech recognition (faster-whisper) and
+speech output (Piper) run **locally on the machine that runs Streamlit**. Only the text you confirm goes to Venice; audio never does
+and is never saved. Off by default: set `STUDY_VOICE=1` to show it, in the learner app (**Talk** tab) and in the technical Atlas (**Voice** tab, plain widgets, timings always shown). Design and diagrams: [docs/VOICE_ARCHITECTURE.md](docs/VOICE_ARCHITECTURE.md).
+
+```bash
+pip install -r requirements-voice.txt                       # faster-whisper, kokoro, soundfile, piper-tts (+ jiwer for the dev tool)
+# Speech recognition: the Whisper model downloads itself on first use (ASR_MODEL=small ≈ 470 MB; "base" ≈ 140 MB is lighter).
+# Speech output (default): Kokoro-82M downloads itself on first use (~330 MB model + ~0.5 MB per voice; needs network once).
+#   KOKORO_VOICE=af_heart (default) — af_*/am_* American, bf_*/bm_* British.
+# Alternative engine: TTS_ENGINE=piper with a Piper voice (.onnx + .onnx.json) from https://huggingface.co/rhasspy/piper-voices
+#   e.g. en/en_US/lessac/medium/ (~60 MB) and TTS_VOICE_PATH=/absolute/path/to/en_US-lessac-medium.onnx
+export STUDY_VOICE=1
+streamlit run study_app.py                                  # learner app: the Talk tab
+streamlit run app.py                                        # technical Atlas: the Voice tab
+```
+
+Optional environment (see `.env.example`): `ASR_MODEL`, `ASR_DEVICE`, `ASR_COMPUTE_TYPE`, `ASR_LANGUAGE`, `ASR_INITIAL_PROMPT`,
+`TTS_ENGINE`, `KOKORO_VOICE`, `KOKORO_SPEED`, Piper-only `TTS_LENGTH_SCALE` / `TTS_NOISE_SCALE` / `TTS_NOISE_W`, `TTS_SENTENCE_PAUSE_MS`, `VOICE_MAX_SECONDS` (30), `VOICE_MAX_BYTES`, `VOICE_MAX_CONCURRENCY` (1), `STUDY_VOICE_DIAGNOSTICS=1` (per-stage timings).
+**Licences:** Kokoro-82M is Apache-2.0. `piper-tts` is GPL-3.0 and every Piper voice has its own licence: read the voice's model card before
+publishing a deployment. Models are downloaded, never part of this repository. If a model is missing the page says so and you can still type; nothing crashes.
+
+The production droplet (2 GB) does not run voice; it needs roughly ≥ 4 GB RAM / 2 vCPU. Measure with `scripts/voice_proper_nouns.py`
+(see [docs/VOICE_EVALUATION.md](docs/VOICE_EVALUATION.md)); no WER figures are claimed until real recordings are collected.
+
 ## Frozen retrieval configuration
 
 `sentence-transformers/all-MiniLM-L6-v2` · normalized embeddings · cosine · plain dense

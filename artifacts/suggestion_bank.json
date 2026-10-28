@@ -1,0 +1,2214 @@
+{
+ "version": 1,
+ "model": "z-ai-glm-5-3-flash",
+ "stats": {
+  "passages": 201,
+  "kept": 367,
+  "dropped_roundtrip": 11,
+  "failed_calls": 1
+ },
+ "questions": [
+  {
+   "q": "Why do Canadians profess loyalty to the Sovereign rather than to a flag or constitution?",
+   "chunk_id": "discover-canada:window:p2-body-i0",
+   "section": "Understanding the Oath",
+   "page": "2"
+  },
+  {
+   "q": "In Canada's constitutional monarchy, what is personified by the Sovereign?",
+   "chunk_id": "discover-canada:window:p2-body-i0",
+   "section": "Understanding the Oath",
+   "page": "2"
+  },
+  {
+   "q": "What rights and responsibilities do Canadian citizens have?",
+   "chunk_id": "discover-canada:window:p8b7-p8b8",
+   "section": "Rights and Responsibilities of Citizenship",
+   "page": "8"
+  },
+  {
+   "q": "What are the sources of Canadian law?",
+   "chunk_id": "discover-canada:window:p8b7-p8b8",
+   "section": "Rights and Responsibilities of Citizenship",
+   "page": "8"
+  },
+  {
+   "q": "When was the Canadian Charter of Rights and Freedoms entrenched in the Constitution?",
+   "chunk_id": "discover-canada:window:p8b8-p8b17-18",
+   "section": "Rights and Responsibilities of Citizenship",
+   "page": "8"
+  },
+  {
+   "q": "What words does the Canadian Charter of Rights and Freedoms begin with?",
+   "chunk_id": "discover-canada:window:p8b8-p8b17-18",
+   "section": "Rights and Responsibilities of Citizenship",
+   "page": "8"
+  },
+  {
+   "q": "What document signed in 1215 in England is also known as the Great Charter of Freedoms?",
+   "chunk_id": "discover-canada:window:p8b17-18-p8b14",
+   "section": "Rights and Responsibilities of Citizenship",
+   "page": "8"
+  },
+  {
+   "q": "What is habeas corpus and where does it come from?",
+   "chunk_id": "discover-canada:window:p8b14-p8b22",
+   "section": "Rights and Responsibilities of Citizenship",
+   "page": "8"
+  },
+  {
+   "q": "What are mobility rights under the Charter?",
+   "chunk_id": "discover-canada:window:p8b14-p8b22",
+   "section": "Rights and Responsibilities of Citizenship",
+   "page": "8"
+  },
+  {
+   "q": "What are the rights and responsibilities of Canadian citizenship?",
+   "chunk_id": "discover-canada:window:p8b22-p8b23",
+   "section": "Rights and Responsibilities of Citizenship",
+   "page": "8"
+  },
+  {
+   "q": "What is a fundamental characteristic of the Canadian heritage and identity?",
+   "chunk_id": "discover-canada:window:p8b22-p8b23",
+   "section": "Rights and Responsibilities of Citizenship",
+   "page": "8"
+  },
+  {
+   "q": "Why is there no compulsory military service in Canada?",
+   "chunk_id": "discover-canada:window:p9b1-p9b2",
+   "section": "Defending Canada",
+   "page": "9"
+  },
+  {
+   "q": "What can young people learn by joining the cadets?",
+   "chunk_id": "discover-canada:window:p9b1-p9b2",
+   "section": "Defending Canada",
+   "page": "9"
+  },
+  {
+   "q": "Are men and women equal under the law in Canada?",
+   "chunk_id": "discover-canada:window:p9b10",
+   "section": "The Equality of Women and Men",
+   "page": "9"
+  },
+  {
+   "q": "How does Canada treat barbaric cultural practices like honour killings or forced marriage?",
+   "chunk_id": "discover-canada:window:p9b10",
+   "section": "The Equality of Women and Men",
+   "page": "9"
+  },
+  {
+   "q": "What are the responsibilities of Canadian citizenship?",
+   "chunk_id": "discover-canada:window:p9b13-p9b16",
+   "section": "Citizenship Responsibilities",
+   "page": "9"
+  },
+  {
+   "q": "Why is serving on a jury important to Canada's justice system?",
+   "chunk_id": "discover-canada:window:p9b13-p9b16",
+   "section": "Citizenship Responsibilities",
+   "page": "9"
+  },
+  {
+   "q": "What are three responsibilities of Canadian citizenship?",
+   "chunk_id": "discover-canada:window:p9b16-p9b18",
+   "section": "Citizenship Responsibilities",
+   "page": "9"
+  },
+  {
+   "q": "Why is serving on a jury important to the justice system?",
+   "chunk_id": "discover-canada:window:p9b16-p9b18",
+   "section": "Citizenship Responsibilities",
+   "page": "9"
+  },
+  {
+   "q": "What are some examples of volunteering as a citizenship responsibility in Canada?",
+   "chunk_id": "discover-canada:window:p9b18-p9b19",
+   "section": "Citizenship Responsibilities",
+   "page": "9"
+  },
+  {
+   "q": "Why should citizens protect Canada's natural, cultural and architectural heritage?",
+   "chunk_id": "discover-canada:window:p9b18-p9b19",
+   "section": "Citizenship Responsibilities",
+   "page": "9"
+  },
+  {
+   "q": "Why is Canada called the \"Great Dominion\"?",
+   "chunk_id": "discover-canada:window:p10b9",
+   "section": "Who We Are",
+   "page": "10"
+  },
+  {
+   "q": "What key phrase appears in the British North America Act of 1867?",
+   "chunk_id": "discover-canada:window:p10b9",
+   "section": "Who We Are",
+   "page": "10"
+  },
+  {
+   "q": "Why is Canada called the 'Great Dominion'?",
+   "chunk_id": "discover-canada:window:p10b9-p10b10",
+   "section": "Who We Are",
+   "page": "10"
+  },
+  {
+   "q": "What are Canada's three founding peoples?",
+   "chunk_id": "discover-canada:window:p10b9-p10b10",
+   "section": "Who We Are",
+   "page": "10"
+  },
+  {
+   "q": "Why did the federal government place Aboriginal children in residential schools?",
+   "chunk_id": "discover-canada:window:p10b24-25-p10b22",
+   "section": "Aboriginal peoples",
+   "page": "10"
+  },
+  {
+   "q": "When did Ottawa formally apologize to former residential school students?",
+   "chunk_id": "discover-canada:window:p10b24-25-p10b22",
+   "section": "Aboriginal peoples",
+   "page": "10"
+  },
+  {
+   "q": "Who guaranteed territorial rights through the Royal Proclamation of 1763?",
+   "chunk_id": "discover-canada:window:p10b22-p10b23",
+   "section": "Aboriginal peoples",
+   "page": "10"
+  },
+  {
+   "q": "Where are Aboriginal and treaty rights protected in Canada?",
+   "chunk_id": "discover-canada:window:p10b22-p10b23",
+   "section": "Aboriginal peoples",
+   "page": "10"
+  },
+  {
+   "q": "In which fields have Aboriginal peoples made significant achievements in today's Canada?",
+   "chunk_id": "discover-canada:window:p10b23-p10b26",
+   "section": "Aboriginal peoples",
+   "page": "10"
+  },
+  {
+   "q": "What are the three distinct groups that the term Aboriginal peoples refers to?",
+   "chunk_id": "discover-canada:window:p10b26-p10b27-28",
+   "section": "Aboriginal peoples",
+   "page": "10"
+  },
+  {
+   "q": "When did the term First Nations begin to be used?",
+   "chunk_id": "discover-canada:window:p10b26-p10b27-28",
+   "section": "Aboriginal peoples",
+   "page": "10"
+  },
+  {
+   "q": "Who was John Buchan, the 1st Baron Tweedsmuir?",
+   "chunk_id": "discover-canada:window:p11b12-p11b19",
+   "section": "Unity in Diversity",
+   "page": "11"
+  },
+  {
+   "q": "What does 'Inuit' mean in the Inuktitut language?",
+   "chunk_id": "discover-canada:window:p11b12-p11b19",
+   "section": "Unity in Diversity",
+   "page": "11"
+  },
+  {
+   "q": "Who are the Inuit and where do they live?",
+   "chunk_id": "discover-canada:window:p11b19-p11b21",
+   "section": "Unity in Diversity",
+   "page": "11"
+  },
+  {
+   "q": "What dialect do the Métis speak?",
+   "chunk_id": "discover-canada:window:p11b19-p11b21",
+   "section": "Unity in Diversity",
+   "page": "11"
+  },
+  {
+   "q": "Why are English and French Canada's official languages?",
+   "chunk_id": "discover-canada:window:p11b23",
+   "section": "English and French",
+   "page": "11"
+  },
+  {
+   "q": "What must the federal government provide in English and French by law?",
+   "chunk_id": "discover-canada:window:p11b23",
+   "section": "English and French",
+   "page": "11"
+  },
+  {
+   "q": "Why must the federal government provide services in English and French throughout Canada?",
+   "chunk_id": "discover-canada:window:p11b23-p11b24",
+   "section": "English and French",
+   "page": "11"
+  },
+  {
+   "q": "Which province is the only officially bilingual province in Canada?",
+   "chunk_id": "discover-canada:window:p11b23-p11b24",
+   "section": "English and French",
+   "page": "11"
+  },
+  {
+   "q": "How many Anglophones and Francophones are there in Canada today?",
+   "chunk_id": "discover-canada:window:p11b24-p11b25",
+   "section": "English and French",
+   "page": "11"
+  },
+  {
+   "q": "What was the deportation of the Acadians between 1755 and 1763 known as?",
+   "chunk_id": "discover-canada:window:p11b24-p11b25",
+   "section": "English and French",
+   "page": "11"
+  },
+  {
+   "q": "Who are the Acadians and what happened to them between 1755 and 1763?",
+   "chunk_id": "discover-canada:window:p11b25-p11b26",
+   "section": "English and French",
+   "page": "11"
+  },
+  {
+   "q": "What did the House of Commons recognize about the Quebecois in 2006?",
+   "chunk_id": "discover-canada:window:p11b25-p11b26",
+   "section": "English and French",
+   "page": "11"
+  },
+  {
+   "q": "Why are English speakers in Canada generally referred to as English Canadians?",
+   "chunk_id": "discover-canada:window:p12b7-p12b16-17",
+   "section": "Becoming Canadian",
+   "page": "12"
+  },
+  {
+   "q": "What democratic principle are newcomers expected to embrace when becoming Canadian?",
+   "chunk_id": "discover-canada:window:p12b7-p12b16-17",
+   "section": "Becoming Canadian",
+   "page": "12"
+  },
+  {
+   "q": "Why is Canada often referred to as a land of immigrants?",
+   "chunk_id": "discover-canada:window:p12b27-p12b28",
+   "section": "Diversity in Canada",
+   "page": "12"
+  },
+  {
+   "q": "Since the 1970s, most immigrants to Canada have come from which countries?",
+   "chunk_id": "discover-canada:window:p12b27-p12b28",
+   "section": "Diversity in Canada",
+   "page": "12"
+  },
+  {
+   "q": "Why do many ethnic and religious groups in Canada live together in peace?",
+   "chunk_id": "discover-canada:window:p12b28-p13b14",
+   "section": "Diversity in Canada",
+   "page": "12-13"
+  },
+  {
+   "q": "In which two big Canadian cities are Chinese languages the second most-spoken at home after English?",
+   "chunk_id": "discover-canada:window:p12b28-p13b14",
+   "section": "Diversity in Canada",
+   "page": "12-13"
+  },
+  {
+   "q": "What are the most widely spoken non-official languages in Canadian homes?",
+   "chunk_id": "discover-canada:window:p13b14-p13b15",
+   "section": "Diversity in Canada",
+   "page": "13"
+  },
+  {
+   "q": "What percentage of Vancouver's population speaks Chinese languages at home?",
+   "chunk_id": "discover-canada:window:p13b14-p13b15",
+   "section": "Diversity in Canada",
+   "page": "13"
+  },
+  {
+   "q": "What is the largest religious affiliation in Canada?",
+   "chunk_id": "discover-canada:window:p13b15-p13b17",
+   "section": "Diversity in Canada",
+   "page": "13"
+  },
+  {
+   "q": "How has the state traditionally partnered with faith communities in Canada?",
+   "chunk_id": "discover-canada:window:p13b15-p13b17",
+   "section": "Diversity in Canada",
+   "page": "13"
+  },
+  {
+   "q": "What legal protections do gay and lesbian Canadians enjoy in Canada?",
+   "chunk_id": "discover-canada:window:p13b17-p13b18",
+   "section": "Diversity in Canada",
+   "page": "13"
+  },
+  {
+   "q": "What do diverse groups share that makes up Canada's multicultural society?",
+   "chunk_id": "discover-canada:window:p13b17-p13b18",
+   "section": "Diversity in Canada",
+   "page": "13"
+  },
+  {
+   "q": "Why did the first European explorers call Canada's native peoples 'Indians'?",
+   "chunk_id": "discover-canada:window:p14b9-10",
+   "section": "Aboriginal peoples",
+   "page": "14"
+  },
+  {
+   "q": "How did West Coast natives preserve fish?",
+   "chunk_id": "discover-canada:window:p14b9-10",
+   "section": "Aboriginal peoples",
+   "page": "14"
+  },
+  {
+   "q": "Why did European explorers call Canada's native peoples Indians?",
+   "chunk_id": "discover-canada:window:p14b9-10-p14b11",
+   "section": "Aboriginal peoples",
+   "page": "14"
+  },
+  {
+   "q": "Who was the first European to draw a map of Canada's East Coast?",
+   "chunk_id": "discover-canada:window:p14b15-p14b16",
+   "section": "The First Europeans",
+   "page": "14"
+  },
+  {
+   "q": "Who claimed land in Canada for King Francis I of France between 1534 and 1542?",
+   "chunk_id": "discover-canada:window:p14b18",
+   "section": "Exploring a river, naming Canada",
+   "page": "14"
+  },
+  {
+   "q": "What Iroquoian word did Cartier's captured guides speak, meaning 'village'?",
+   "chunk_id": "discover-canada:window:p14b18",
+   "section": "Exploring a river, naming Canada",
+   "page": "14"
+  },
+  {
+   "q": "Who established the first European settlement north of Florida in 1604?",
+   "chunk_id": "discover-canada:window:p15b14",
+   "section": "Royal New France",
+   "page": "15"
+  },
+  {
+   "q": "When did the French and the Iroquois make peace?",
+   "chunk_id": "discover-canada:window:p15b14",
+   "section": "Royal New France",
+   "page": "15"
+  },
+  {
+   "q": "Who granted the Hudson's Bay Company exclusive trading rights in 1670?",
+   "chunk_id": "discover-canada:window:p15b17",
+   "section": "Struggle for a continent",
+   "page": "15"
+  },
+  {
+   "q": "What were the canoe-travelling traders who allied with First Nations called?",
+   "chunk_id": "discover-canada:window:p15b17",
+   "section": "Struggle for a continent",
+   "page": "15"
+  },
+  {
+   "q": "Who were the two commanders killed at the Battle of the Plains of Abraham?",
+   "chunk_id": "discover-canada:window:p15b17-p15b18",
+   "section": "Struggle for a continent",
+   "page": "15"
+  },
+  {
+   "q": "What did Great Britain rename the colony after the war?",
+   "chunk_id": "discover-canada:window:p15b20",
+   "section": "The province of Quebec",
+   "page": "15"
+  },
+  {
+   "q": "Who were the French-speaking Catholic people known as habitants or Canadiens?",
+   "chunk_id": "discover-canada:window:p15b20",
+   "section": "The province of Quebec",
+   "page": "15"
+  },
+  {
+   "q": "Why did the British Parliament pass the Quebec Act of 1774?",
+   "chunk_id": "discover-canada:window:p15b22",
+   "section": "A tradition of accommodation",
+   "page": "15"
+  },
+  {
+   "q": "What law did the Quebec Act restore while keeping British criminal law?",
+   "chunk_id": "discover-canada:window:p15b22",
+   "section": "A tradition of accommodation",
+   "page": "15"
+  },
+  {
+   "q": "Who were the Loyalists who fled to Nova Scotia and Quebec after the American Revolution?",
+   "chunk_id": "discover-canada:window:p15b24s0",
+   "section": "United empire loyalists",
+   "page": "15"
+  },
+  {
+   "q": "Who led thousands of Loyalist Mohawk Indians into Canada?",
+   "chunk_id": "discover-canada:window:p15b24s0",
+   "section": "United empire loyalists",
+   "page": "15"
+  },
+  {
+   "q": "Who were the United Empire Loyalists and why did they come to Canada?",
+   "chunk_id": "discover-canada:window:p15b24s0-p15b24s1",
+   "section": "United empire loyalists",
+   "page": "15"
+  },
+  {
+   "q": "What city did black Nova Scotians help establish in Sierra Leone in 1792?",
+   "chunk_id": "discover-canada:window:p15b24s0-p15b24s1",
+   "section": "United empire loyalists",
+   "page": "15"
+  },
+  {
+   "q": "When was the first representative assembly elected in Halifax, Nova Scotia?",
+   "chunk_id": "discover-canada:window:p16b6-p16b7",
+   "section": "The Beginnings of Democracy",
+   "page": "16"
+  },
+  {
+   "q": "What did the Constitutional Act of 1791 grant to the Canadas for the first time?",
+   "chunk_id": "discover-canada:window:p16b6-p16b7",
+   "section": "The Beginnings of Democracy",
+   "page": "16"
+  },
+  {
+   "q": "Who led Upper Canada to become the first province in the Empire to move toward abolition of slavery?",
+   "chunk_id": "discover-canada:window:p16b14",
+   "section": "Abolition of slavery",
+   "page": "16"
+  },
+  {
+   "q": "What network did escaped slaves follow via 'the North Star' to settle in Canada?",
+   "chunk_id": "discover-canada:window:p16b14",
+   "section": "Abolition of slavery",
+   "page": "16"
+  },
+  {
+   "q": "Which company dominated the fur trade in Canada's northwest?",
+   "chunk_id": "discover-canada:window:p16b16-p16b17",
+   "section": "A growing economy",
+   "page": "16"
+  },
+  {
+   "q": "When did the Montreal Stock Exchange open?",
+   "chunk_id": "discover-canada:window:p16b16-p16b17",
+   "section": "A growing economy",
+   "page": "16"
+  },
+  {
+   "q": "Why did the United States invade Canada in June 1812?",
+   "chunk_id": "discover-canada:window:p17b6s0",
+   "section": "The War of 1812: The Fight for Canada",
+   "page": "17"
+  },
+  {
+   "q": "Who led the Shawnee in supporting Canada's defence during the War of 1812?",
+   "chunk_id": "discover-canada:window:p17b6s0",
+   "section": "The War of 1812: The Fight for Canada",
+   "page": "17"
+  },
+  {
+   "q": "Who led the 1814 expedition that burned the White House in Washington, D.C.?",
+   "chunk_id": "discover-canada:window:p17b6s1",
+   "section": "The War of 1812: The Fight for Canada",
+   "page": "17"
+  },
+  {
+   "q": "What did the Americans burn in York (now Toronto) in 1813?",
+   "chunk_id": "discover-canada:window:p17b6s1",
+   "section": "The War of 1812: The Fight for Canada",
+   "page": "17"
+  },
+  {
+   "q": "Who turned back 4,000 American invaders at Châteauguay in 1813?",
+   "chunk_id": "discover-canada:window:p17b6s1-p17b4",
+   "section": "The War of 1812: The Fight for Canada",
+   "page": "17"
+  },
+  {
+   "q": "Why is the present-day Canada-U.S.A. border partly an outcome of the War of 1812?",
+   "chunk_id": "discover-canada:window:p17b6s1-p17b4",
+   "section": "The War of 1812: The Fight for Canada",
+   "page": "17"
+  },
+  {
+   "q": "Why did reformers in Upper and Lower Canada rebel in 1837–38?",
+   "chunk_id": "discover-canada:window:p17b19-20-p17b21",
+   "section": "Rebellions of 1837–38",
+   "page": "17"
+  },
+  {
+   "q": "Who was sent to report on the rebellions and recommended merging the Canadas?",
+   "chunk_id": "discover-canada:window:p17b19-20-p17b21",
+   "section": "Rebellions of 1837–38",
+   "page": "17"
+  },
+  {
+   "q": "What did Lord Durham recommend after the Rebellions of 1837–38?",
+   "chunk_id": "discover-canada:window:p17b21-p18b10",
+   "section": "Rebellions of 1837–38",
+   "page": "17-18"
+  },
+  {
+   "q": "Why did Lord Durham's assimilation recommendation upset French Canadians?",
+   "chunk_id": "discover-canada:window:p17b21-p18b10",
+   "section": "Rebellions of 1837–38",
+   "page": "17-18"
+  },
+  {
+   "q": "Why did Lord Durham recommend the Canadiens assimilate into English-speaking Protestant culture?",
+   "chunk_id": "discover-canada:window:p18b10-p18b11",
+   "section": "Rebellions of 1837–38",
+   "page": "18"
+  },
+  {
+   "q": "Which former militia member in Upper Canada became a Father of Confederation?",
+   "chunk_id": "discover-canada:window:p18b10-p18b11",
+   "section": "Rebellions of 1837–38",
+   "page": "18"
+  },
+  {
+   "q": "Who suggested the term Dominion of Canada in 1864?",
+   "chunk_id": "discover-canada:window:p18b6",
+   "section": "Dominion from Sea to Sea",
+   "page": "18"
+  },
+  {
+   "q": "What inspired Sir Leonard Tilley's phrase 'dominion from sea to sea'?",
+   "chunk_id": "discover-canada:window:p18b6",
+   "section": "Dominion from Sea to Sea",
+   "page": "18"
+  },
+  {
+   "q": "Who was the first leader of a responsible government in the Canadas?",
+   "chunk_id": "discover-canada:window:p18b13-p18b15",
+   "section": "Responsible government",
+   "page": "18"
+  },
+  {
+   "q": "When did Nova Scotia become the first British North American colony with full responsible government?",
+   "chunk_id": "discover-canada:window:p18b13-p18b15",
+   "section": "Responsible government",
+   "page": "18"
+  },
+  {
+   "q": "Who are the Fathers of Confederation?",
+   "chunk_id": "discover-canada:window:p18b17",
+   "section": "Confederation",
+   "page": "18"
+  },
+  {
+   "q": "What two new provinces was the old Province of Canada split into?",
+   "chunk_id": "discover-canada:window:p18b17",
+   "section": "Confederation",
+   "page": "18"
+  },
+  {
+   "q": "When was the Dominion of Canada officially born?",
+   "chunk_id": "discover-canada:window:p18b17-p18b18",
+   "section": "Confederation",
+   "page": "18"
+  },
+  {
+   "q": "When did British Columbia join the Dominion of Canada?",
+   "chunk_id": "discover-canada:window:p19b3-4",
+   "section": "Expansion of the Dominion",
+   "page": "19"
+  },
+  {
+   "q": "What did some people in the 1920s believe should become part of Canada?",
+   "chunk_id": "discover-canada:window:p19b3-4",
+   "section": "Expansion of the Dominion",
+   "page": "19"
+  },
+  {
+   "q": "Who became Canada's first Prime Minister in 1867?",
+   "chunk_id": "discover-canada:window:p19b6-p19b7",
+   "section": "Canada’s First Prime Minister",
+   "page": "19"
+  },
+  {
+   "q": "What is Sir John A. Macdonald's portrait on?",
+   "chunk_id": "discover-canada:window:p19b6-p19b7",
+   "section": "Canada’s First Prime Minister",
+   "page": "19"
+  },
+  {
+   "q": "Who is seen as a hero and the father of Manitoba?",
+   "chunk_id": "discover-canada:window:p19b19-20",
+   "section": "Challenge in the west",
+   "page": "19"
+  },
+  {
+   "q": "What province did Canada establish in 1870 after retaking Fort Garry?",
+   "chunk_id": "discover-canada:window:p19b19-20",
+   "section": "Challenge in the west",
+   "page": "19"
+  },
+  {
+   "q": "Who led the armed uprising and seized Fort Garry in 1869?",
+   "chunk_id": "discover-canada:window:p19b19-20-p19b18",
+   "section": "Challenge in the west",
+   "page": "19"
+  },
+  {
+   "q": "What new province did Canada establish in 1870 after retaking Fort Garry?",
+   "chunk_id": "discover-canada:window:p19b19-20-p19b18",
+   "section": "Challenge in the west",
+   "page": "19"
+  },
+  {
+   "q": "Why did Louis Riel lead an armed uprising and seize Fort Garry in 1869?",
+   "chunk_id": "discover-canada:window:p19b18-p19b21",
+   "section": "Challenge in the west",
+   "page": "19"
+  },
+  {
+   "q": "When did Prime Minister Macdonald establish the North West Mounted Police?",
+   "chunk_id": "discover-canada:window:p19b18-p19b21",
+   "section": "Challenge in the west",
+   "page": "19"
+  },
+  {
+   "q": "Why did British Columbia join Canada in 1871?",
+   "chunk_id": "discover-canada:window:p20b7",
+   "section": "A Railway from Sea to Sea",
+   "page": "20"
+  },
+  {
+   "q": "When did the Government of Canada apologize for the Head Tax?",
+   "chunk_id": "discover-canada:window:p20b7",
+   "section": "A Railway from Sea to Sea",
+   "page": "20"
+  },
+  {
+   "q": "Who drove the last spike of the Canadian Pacific Railway on November 7, 1885?",
+   "chunk_id": "discover-canada:window:p20b7-p20b12",
+   "section": "A Railway from Sea to Sea",
+   "page": "20"
+  },
+  {
+   "q": "Who was the first French-Canadian prime minister since Confederation?",
+   "chunk_id": "discover-canada:window:p20b12-p20b13",
+   "section": "A Railway from Sea to Sea",
+   "page": "20"
+  },
+  {
+   "q": "How many Ukrainians settled in the West before 1914?",
+   "chunk_id": "discover-canada:window:p20b12-p20b13",
+   "section": "A Railway from Sea to Sea",
+   "page": "20"
+  },
+  {
+   "q": "When did the Canadian Corps capture Vimy Ridge?",
+   "chunk_id": "discover-canada:window:p21b5-6",
+   "section": "The First World War",
+   "page": "21"
+  },
+  {
+   "q": "Why is April 9 celebrated as Vimy Day in Canada?",
+   "chunk_id": "discover-canada:window:p21b5-6",
+   "section": "The First World War",
+   "page": "21"
+  },
+  {
+   "q": "What war is popularly known as the Boer War?",
+   "chunk_id": "discover-canada:window:p21b5-6-p21b3",
+   "section": "The First World War",
+   "page": "21"
+  },
+  {
+   "q": "What did Ottawa form when Britain declared war on Germany in 1914?",
+   "chunk_id": "discover-canada:window:p21b3-p21b4",
+   "section": "The First World War",
+   "page": "21"
+  },
+  {
+   "q": "How many Canadians volunteered to fight in the Boer War (1899–1902)?",
+   "chunk_id": "discover-canada:window:p21b3-p21b4",
+   "section": "The First World War",
+   "page": "21"
+  },
+  {
+   "q": "Why did Ottawa intern over 8,000 former Austro-Hungarian subjects from 1914 to 1920?",
+   "chunk_id": "discover-canada:window:p21b4-p21b7",
+   "section": "The First World War",
+   "page": "21"
+  },
+  {
+   "q": "How many Canadians served in the First World War out of a population of eight million?",
+   "chunk_id": "discover-canada:window:p21b4-p21b7",
+   "section": "The First World War",
+   "page": "21"
+  },
+  {
+   "q": "Who commanded the Canadian Corps during the last hundred days of the First World War?",
+   "chunk_id": "discover-canada:window:p21b7-p21b8",
+   "section": "The First World War",
+   "page": "21"
+  },
+  {
+   "q": "When did the First World War end with the Armistice?",
+   "chunk_id": "discover-canada:window:p21b7-p21b8",
+   "section": "The First World War",
+   "page": "21"
+  },
+  {
+   "q": "When did most Canadian women aged 21 and over get the right to vote in federal elections?",
+   "chunk_id": "discover-canada:window:p21b23-24",
+   "section": "Women get the vote",
+   "page": "21"
+  },
+  {
+   "q": "Who became the first woman MP in Canada in 1921?",
+   "chunk_id": "discover-canada:window:p21b23-24",
+   "section": "Women get the vote",
+   "page": "21"
+  },
+  {
+   "q": "Who founded the women's suffrage movement in Canada?",
+   "chunk_id": "discover-canada:window:p21b23-24-p21b22",
+   "section": "Women get the vote",
+   "page": "21"
+  },
+  {
+   "q": "What is Remembrance Day and how do Canadians observe it each year?",
+   "chunk_id": "discover-canada:window:p22b12-p22b13",
+   "section": "Between the wars",
+   "page": "22"
+  },
+  {
+   "q": "Who wrote the poem \"In Flanders Fields\" and in what year?",
+   "chunk_id": "discover-canada:window:p22b12-p22b13",
+   "section": "Between the wars",
+   "page": "22"
+  },
+  {
+   "q": "Who wrote the poem 'In Flanders Fields'?",
+   "chunk_id": "discover-canada:window:p22b13-p22b15",
+   "section": "Between the wars",
+   "page": "22"
+  },
+  {
+   "q": "What flower is mentioned in 'In Flanders Fields'?",
+   "chunk_id": "discover-canada:window:p22b13-p22b15",
+   "section": "Between the wars",
+   "page": "22"
+  },
+  {
+   "q": "What did the British Empire evolve into after the First World War?",
+   "chunk_id": "discover-canada:window:p22b15-p22b17",
+   "section": "Between the wars",
+   "page": "22"
+  },
+  {
+   "q": "Which successor states of the Empire are leading Commonwealth members alongside Canada?",
+   "chunk_id": "discover-canada:window:p22b15-p22b17",
+   "section": "Between the wars",
+   "page": "22"
+  },
+  {
+   "q": "What event led to the Great Depression in Canada?",
+   "chunk_id": "discover-canada:window:p22b17-p22b18",
+   "section": "Between the wars",
+   "page": "22"
+  },
+  {
+   "q": "What year did unemployment reach 27% in Canada?",
+   "chunk_id": "discover-canada:window:p22b17-p22b18",
+   "section": "Between the wars",
+   "page": "22"
+  },
+  {
+   "q": "What caused the Great Depression in Canada?",
+   "chunk_id": "discover-canada:window:p22b18-p22b19",
+   "section": "Between the wars",
+   "page": "22"
+  },
+  {
+   "q": "When was the Bank of Canada created?",
+   "chunk_id": "discover-canada:window:p22b18-p22b19",
+   "section": "Between the wars",
+   "page": "22"
+  },
+  {
+   "q": "What happened on D-Day, June 6, 1944, during the invasion of Normandy?",
+   "chunk_id": "discover-canada:window:p23b1",
+   "section": "The D-Day Invasion, June 6, 1944",
+   "page": "23"
+  },
+  {
+   "q": "Which beach did 15,000 Canadian troops capture from the German Army on D-Day?",
+   "chunk_id": "discover-canada:window:p23b1",
+   "section": "The D-Day Invasion, June 6, 1944",
+   "page": "23"
+  },
+  {
+   "q": "When did the Second World War begin?",
+   "chunk_id": "discover-canada:window:p23b11-p23b13",
+   "section": "The Second World War",
+   "page": "23"
+  },
+  {
+   "q": "How many Canadians and Newfoundlanders were killed in the Second World War?",
+   "chunk_id": "discover-canada:window:p23b11-p23b13",
+   "section": "The Second World War",
+   "page": "23"
+  },
+  {
+   "q": "Who defended Hong Kong against Imperial Japan in 1941?",
+   "chunk_id": "discover-canada:window:p23b13-p23b14",
+   "section": "The Second World War",
+   "page": "23"
+  },
+  {
+   "q": "How many Allied air crew were trained in Canada under the British Commonwealth Air Training Plan?",
+   "chunk_id": "discover-canada:window:p23b13-p23b14",
+   "section": "The Second World War",
+   "page": "23"
+  },
+  {
+   "q": "What role did the Royal Canadian Air Force play in the Battle of Britain?",
+   "chunk_id": "discover-canada:window:p23b14-p23b15",
+   "section": "The Second World War",
+   "page": "23"
+  },
+  {
+   "q": "How large was Canada's navy at the end of the Second World War?",
+   "chunk_id": "discover-canada:window:p23b14-p23b15",
+   "section": "The Second World War",
+   "page": "23"
+  },
+  {
+   "q": "What role did the Royal Canadian Navy play in the Battle of the Atlantic?",
+   "chunk_id": "discover-canada:window:p23b15-p23b16",
+   "section": "The Second World War",
+   "page": "23"
+  },
+  {
+   "q": "When did Japan surrender, ending the war in the Pacific?",
+   "chunk_id": "discover-canada:window:p23b15-p23b16",
+   "section": "The Second World War",
+   "page": "23"
+  },
+  {
+   "q": "Why were Canadians of Japanese origin forcibly relocated in B.C. during the war?",
+   "chunk_id": "discover-canada:window:p23b16-p23b17",
+   "section": "The Second World War",
+   "page": "23"
+  },
+  {
+   "q": "How did postwar Canada achieve record prosperity and economic growth?",
+   "chunk_id": "discover-canada:window:p24b12s0",
+   "section": "Trade and economic growth",
+   "page": "24"
+  },
+  {
+   "q": "What did the discovery of oil in Alberta in 1947 begin?",
+   "chunk_id": "discover-canada:window:p24b12s0",
+   "section": "Trade and economic growth",
+   "page": "24"
+  },
+  {
+   "q": "How did postwar Canada become one of the strongest economies among industrialized nations?",
+   "chunk_id": "discover-canada:window:p24b12s0-p24b12s1",
+   "section": "Trade and economic growth",
+   "page": "24"
+  },
+  {
+   "q": "What began Canada's modern energy industry in 1947?",
+   "chunk_id": "discover-canada:window:p24b12s0-p24b12s1",
+   "section": "Trade and economic growth",
+   "page": "24"
+  },
+  {
+   "q": "When was unemployment insurance introduced by the federal government?",
+   "chunk_id": "discover-canada:window:p24b12s1-p24b13",
+   "section": "Trade and economic growth",
+   "page": "24"
+  },
+  {
+   "q": "When did the federal government introduce unemployment insurance in Canada?",
+   "chunk_id": "discover-canada:window:p24b13-p24b17",
+   "section": "Trade and economic growth",
+   "page": "24"
+  },
+  {
+   "q": "How many Canadian soldiers died in the UN operation defending South Korea in the Korean War?",
+   "chunk_id": "discover-canada:window:p24b13-p24b17",
+   "section": "Trade and economic growth",
+   "page": "24"
+  },
+  {
+   "q": "Why did Canada join NATO during the Cold War?",
+   "chunk_id": "discover-canada:window:p24b15-p24b16",
+   "section": "International engagement",
+   "page": "24"
+  },
+  {
+   "q": "What alliance did Canada form with the United States for aerospace defence?",
+   "chunk_id": "discover-canada:window:p24b15-p24b16",
+   "section": "International engagement",
+   "page": "24"
+  },
+  {
+   "q": "What was the era of rapid change in Quebec during the 1960s known as?",
+   "chunk_id": "discover-canada:window:p24b19",
+   "section": "Canada and Quebec",
+   "page": "24"
+  },
+  {
+   "q": "What does the Official Languages Act of 1969 guarantee across Canada?",
+   "chunk_id": "discover-canada:window:p24b19",
+   "section": "Canada and Quebec",
+   "page": "24"
+  },
+  {
+   "q": "What was the era of rapid change in Quebec in the 1960s known as?",
+   "chunk_id": "discover-canada:window:p24b19-p24b20",
+   "section": "Canada and Quebec",
+   "page": "24"
+  },
+  {
+   "q": "When was the Official Languages Act passed, guaranteeing French and English federal services?",
+   "chunk_id": "discover-canada:window:p24b19-p24b20",
+   "section": "Canada and Quebec",
+   "page": "24"
+  },
+  {
+   "q": "How did Canada become a more flexible and open society over 50 years?",
+   "chunk_id": "discover-canada:window:p25b13-p25b14",
+   "section": "A Changing Society",
+   "page": "25"
+  },
+  {
+   "q": "When were Aboriginal people granted the right to vote in Canada?",
+   "chunk_id": "discover-canada:window:p25b13-p25b14",
+   "section": "A Changing Society",
+   "page": "25"
+  },
+  {
+   "q": "When did Japanese-Canadians gain the right to vote in Canada?",
+   "chunk_id": "discover-canada:window:p25b14-p25b15",
+   "section": "A Changing Society",
+   "page": "25"
+  },
+  {
+   "q": "How many Hungarian refugees escaped Soviet tyranny to Canada in 1956?",
+   "chunk_id": "discover-canada:window:p25b14-p25b15",
+   "section": "A Changing Society",
+   "page": "25"
+  },
+  {
+   "q": "Why do Canadians take pride in their artists?",
+   "chunk_id": "discover-canada:window:p25b18",
+   "section": "Arts and culture in Canada",
+   "page": "25"
+  },
+  {
+   "q": "What do artists from all regions of Canada reflect and define?",
+   "chunk_id": "discover-canada:window:p25b18",
+   "section": "Arts and culture in Canada",
+   "page": "25"
+  },
+  {
+   "q": "What contributions have Canadians made to arts and culture in Canada?",
+   "chunk_id": "discover-canada:window:p25b18-p25b19",
+   "section": "Arts and culture in Canada",
+   "page": "25"
+  },
+  {
+   "q": "Who were some men and women of letters in Canadian literature?",
+   "chunk_id": "discover-canada:window:p25b18-p25b19",
+   "section": "Arts and culture in Canada",
+   "page": "25"
+  },
+  {
+   "q": "Who were some Canadian men and women of letters who made significant cultural contributions?",
+   "chunk_id": "discover-canada:window:p25b19-p25b20",
+   "section": "Arts and culture in Canada",
+   "page": "25"
+  },
+  {
+   "q": "What style of painting did the Group of Seven develop after being founded in 1920?",
+   "chunk_id": "discover-canada:window:p25b19-p25b20",
+   "section": "Arts and culture in Canada",
+   "page": "25"
+  },
+  {
+   "q": "Who was the Group of Seven and what style of painting did they develop?",
+   "chunk_id": "discover-canada:window:p25b20-p25b21",
+   "section": "Arts and culture in Canada",
+   "page": "25"
+  },
+  {
+   "q": "Who pioneered modern Inuit art with etchings, prints and soapstone sculptures?",
+   "chunk_id": "discover-canada:window:p25b20-p25b21",
+   "section": "Arts and culture in Canada",
+   "page": "25"
+  },
+  {
+   "q": "Who are some noteworthy Canadian filmmakers mentioned alongside Denys Arcand?",
+   "chunk_id": "discover-canada:window:p25b21-p25b22",
+   "section": "Arts and culture in Canada",
+   "page": "25"
+  },
+  {
+   "q": "Why is Canada's performing arts history considered respected?",
+   "chunk_id": "discover-canada:window:p25b21-p25b22",
+   "section": "Arts and culture in Canada",
+   "page": "25"
+  },
+  {
+   "q": "Who began the Marathon of Hope in 1980 to raise money for cancer research?",
+   "chunk_id": "discover-canada:window:p25b22-p26b21-22",
+   "section": "Arts and culture in Canada",
+   "page": "25-26"
+  },
+  {
+   "q": "What did Rick Hansen do in 1985 to raise funds for spinal cord research?",
+   "chunk_id": "discover-canada:window:p25b22-p26b21-22",
+   "section": "Arts and culture in Canada",
+   "page": "25-26"
+  },
+  {
+   "q": "Who was Terry Fox and what was the Marathon of Hope?",
+   "chunk_id": "discover-canada:window:p26b21-22-p26b20",
+   "section": "Arts and culture in Canada",
+   "page": "26"
+  },
+  {
+   "q": "Who invented basketball and when?",
+   "chunk_id": "discover-canada:window:p26b21-22-p26b20",
+   "section": "Arts and culture in Canada",
+   "page": "26"
+  },
+  {
+   "q": "Who invented basketball in 1891?",
+   "chunk_id": "discover-canada:window:p26b20-p26b23",
+   "section": "Arts and culture in Canada",
+   "page": "26"
+  },
+  {
+   "q": "What is the national sport of Canada in which Canadian teams have dominated the world?",
+   "chunk_id": "discover-canada:window:p26b20-p26b23",
+   "section": "Arts and culture in Canada",
+   "page": "26"
+  },
+  {
+   "q": "Who invented the snowmobile, a light-weight winter vehicle?",
+   "chunk_id": "discover-canada:window:p27b2-p27b6",
+   "section": "GREAT CANADIAN DISCOVERIES AND INVENTIONS",
+   "page": "27"
+  },
+  {
+   "q": "Who invented the first electric light bulb and sold the patent to Thomas Edison?",
+   "chunk_id": "discover-canada:window:p27b2-p27b6",
+   "section": "GREAT CANADIAN DISCOVERIES AND INVENTIONS",
+   "page": "27"
+  },
+  {
+   "q": "Where can you find national historic sites across Canada?",
+   "chunk_id": "discover-canada:window:p27b6-p27b0",
+   "section": "GREAT CANADIAN DISCOVERIES AND INVENTIONS",
+   "page": "27"
+  },
+  {
+   "q": "Why should you visit a museum or national historic site in Canada?",
+   "chunk_id": "discover-canada:window:p27b0-p27b18-19",
+   "section": "GREAT CANADIAN DISCOVERIES AND INVENTIONS",
+   "page": "27"
+  },
+  {
+   "q": "Where can you look to find a museum or national historic site in your region?",
+   "chunk_id": "discover-canada:window:p27b0-p27b18-19",
+   "section": "GREAT CANADIAN DISCOVERIES AND INVENTIONS",
+   "page": "27"
+  },
+  {
+   "q": "Who sent the first wireless voice message in the world?",
+   "chunk_id": "discover-canada:window:p27b18-19-p27b10",
+   "section": "GREAT CANADIAN DISCOVERIES AND INVENTIONS",
+   "page": "27"
+  },
+  {
+   "q": "What did Dr. John A. Hopps invent?",
+   "chunk_id": "discover-canada:window:p27b18-19-p27b10",
+   "section": "GREAT CANADIAN DISCOVERIES AND INVENTIONS",
+   "page": "27"
+  },
+  {
+   "q": "Who invented the Canadarm, a robotic arm used in outer space?",
+   "chunk_id": "discover-canada:window:p27b10-p27b20",
+   "section": "GREAT CANADIAN DISCOVERIES AND INVENTIONS",
+   "page": "27"
+  },
+  {
+   "q": "What famous invention is Research in Motion (RIM) known for?",
+   "chunk_id": "discover-canada:window:p27b10-p27b20",
+   "section": "GREAT CANADIAN DISCOVERIES AND INVENTIONS",
+   "page": "27"
+  },
+  {
+   "q": "What levels of government exist in Canada?",
+   "chunk_id": "discover-canada:window:p28b11",
+   "section": "Federal state",
+   "page": "28"
+  },
+  {
+   "q": "When were federal and provincial responsibilities defined in the Constitution Act, 1867?",
+   "chunk_id": "discover-canada:window:p28b11",
+   "section": "Federal state",
+   "page": "28"
+  },
+  {
+   "q": "What responsibilities do the provinces have in Canada's federal state?",
+   "chunk_id": "discover-canada:window:p28b11-p28b12",
+   "section": "Federal state",
+   "page": "28"
+  },
+  {
+   "q": "When were federal and provincial responsibilities defined in the British North America Act?",
+   "chunk_id": "discover-canada:window:p28b11-p28b12",
+   "section": "Federal state",
+   "page": "28"
+  },
+  {
+   "q": "What responsibilities does the federal government have in Canada's federal state?",
+   "chunk_id": "discover-canada:window:p28b12-p28b13",
+   "section": "Federal state",
+   "page": "28"
+  },
+  {
+   "q": "Which assembly does every province have, like the House of Commons in Ottawa?",
+   "chunk_id": "discover-canada:window:p28b12-p28b13",
+   "section": "Federal state",
+   "page": "28"
+  },
+  {
+   "q": "How does Canada's parliamentary democracy keep the government accountable to the people?",
+   "chunk_id": "discover-canada:window:p28b15-p28b16",
+   "section": "Parliamentary democracy",
+   "page": "28"
+  },
+  {
+   "q": "What are the three parts of Canada's Parliament?",
+   "chunk_id": "discover-canada:window:p28b15-p28b16",
+   "section": "Parliamentary democracy",
+   "page": "28"
+  },
+  {
+   "q": "What are the three parts of Parliament in Canada?",
+   "chunk_id": "discover-canada:window:p28b16-p28b17",
+   "section": "Parliamentary democracy",
+   "page": "28"
+  },
+  {
+   "q": "How long do Senators serve in Canada?",
+   "chunk_id": "discover-canada:window:p28b16-p28b17",
+   "section": "Parliamentary democracy",
+   "page": "28"
+  },
+  {
+   "q": "How does a bill become law in Canada?",
+   "chunk_id": "discover-canada:window:p28b17-p29b15",
+   "section": "Parliamentary democracy",
+   "page": "28-29"
+  },
+  {
+   "q": "At what age do senators retire?",
+   "chunk_id": "discover-canada:window:p28b17-p29b15",
+   "section": "Parliamentary democracy",
+   "page": "28-29"
+  },
+  {
+   "q": "Why is it important for Canadians aged 18 or more to vote in elections?",
+   "chunk_id": "discover-canada:window:p29b15-p29b20",
+   "section": "Parliamentary democracy",
+   "page": "29"
+  },
+  {
+   "q": "What are the three branches of government in Canada's parliamentary democracy?",
+   "chunk_id": "discover-canada:window:p29b15-p29b20",
+   "section": "Parliamentary democracy",
+   "page": "29"
+  },
+  {
+   "q": "How do the three branches of government help secure Canadians' rights and freedoms?",
+   "chunk_id": "discover-canada:window:p29b20-p29b21",
+   "section": "Parliamentary democracy",
+   "page": "29"
+  },
+  {
+   "q": "What are members of a provincial or territorial legislature called in Ontario?",
+   "chunk_id": "discover-canada:window:p29b20-p29b21",
+   "section": "Parliamentary democracy",
+   "page": "29"
+  },
+  {
+   "q": "Who is Canada's Head of State under its constitutional monarchy?",
+   "chunk_id": "discover-canada:window:p29b17s0",
+   "section": "Constitutional monarchy",
+   "page": "29"
+  },
+  {
+   "q": "How many other nations does the Sovereign link Canada to as Head of the Commonwealth?",
+   "chunk_id": "discover-canada:window:p29b17s0",
+   "section": "Constitutional monarchy",
+   "page": "29"
+  },
+  {
+   "q": "What role does the Sovereign play as Head of the Commonwealth?",
+   "chunk_id": "discover-canada:window:p29b17s0-p29b17s1",
+   "section": "Constitutional monarchy",
+   "page": "29"
+  },
+  {
+   "q": "Who represents the Sovereign in Canada?",
+   "chunk_id": "discover-canada:window:p29b19-p29b22",
+   "section": "Constitutional monarchy",
+   "page": "29"
+  },
+  {
+   "q": "How often must federal elections be held in Canada?",
+   "chunk_id": "discover-canada:window:p30b2-p30b7",
+   "section": "Federal Elections",
+   "page": "30"
+  },
+  {
+   "q": "Who can the Prime Minister ask to call an earlier federal election?",
+   "chunk_id": "discover-canada:window:p30b2-p30b7",
+   "section": "Federal Elections",
+   "page": "30"
+  },
+  {
+   "q": "When must federal elections be held in Canada?",
+   "chunk_id": "discover-canada:window:p30b7-p30b9",
+   "section": "Federal Elections",
+   "page": "30"
+  },
+  {
+   "q": "What are people who run in a federal election called?",
+   "chunk_id": "discover-canada:window:p30b7-p30b9",
+   "section": "Federal Elections",
+   "page": "30"
+  },
+  {
+   "q": "Who can run in a federal election in Canada?",
+   "chunk_id": "discover-canada:window:p30b9-p30b10",
+   "section": "Federal Elections",
+   "page": "30"
+  },
+  {
+   "q": "What do you call the people who run for office in a federal election?",
+   "chunk_id": "discover-canada:window:p30b9-p30b10",
+   "section": "Federal Elections",
+   "page": "30"
+  },
+  {
+   "q": "Who is eligible to vote in a Canadian federal election?",
+   "chunk_id": "discover-canada:window:p30b12-p30b16",
+   "section": "Voting",
+   "page": "30"
+  },
+  {
+   "q": "Who produces the voters' lists used in Canadian federal elections and referendums?",
+   "chunk_id": "discover-canada:window:p30b16-p30b17",
+   "section": "Voting",
+   "page": "30"
+  },
+  {
+   "q": "What information does the voter information card mailed by Elections Canada list?",
+   "chunk_id": "discover-canada:window:p30b16-p30b17",
+   "section": "Voting",
+   "page": "30"
+  },
+  {
+   "q": "What does Elections Canada mail to each elector once an election has been called?",
+   "chunk_id": "discover-canada:window:p30b17-p30b19",
+   "section": "Voting",
+   "page": "30"
+  },
+  {
+   "q": "Where do you go to vote on election day or at advance polls?",
+   "chunk_id": "discover-canada:window:p30b17-p30b19",
+   "section": "Voting",
+   "page": "30"
+  },
+  {
+   "q": "What happens if a majority of MPs vote against a major government decision?",
+   "chunk_id": "discover-canada:window:p31b6-7",
+   "section": "Secret ballot",
+   "page": "31"
+  },
+  {
+   "q": "Who does the Prime Minister ask to call an election after a government defeat?",
+   "chunk_id": "discover-canada:window:p31b6-7",
+   "section": "Secret ballot",
+   "page": "31"
+  },
+  {
+   "q": "Who has the right to insist that you tell them how you voted in a federal election?",
+   "chunk_id": "discover-canada:window:p31b6-7-p31b3",
+   "section": "Secret ballot",
+   "page": "31"
+  },
+  {
+   "q": "What does the right to a secret ballot mean in Canadian federal elections?",
+   "chunk_id": "discover-canada:window:p31b3-p31b8",
+   "section": "Secret ballot",
+   "page": "31"
+  },
+  {
+   "q": "Who invites the leader of the party with the most seats to form the government after an election?",
+   "chunk_id": "discover-canada:window:p31b5",
+   "section": "After an election",
+   "page": "31"
+  },
+  {
+   "q": "What is it called when the party in power holds at least half the seats in the House of Commons?",
+   "chunk_id": "discover-canada:window:p31b5",
+   "section": "After an election",
+   "page": "31"
+  },
+  {
+   "q": "Who invites the leader of the party with the most seats to form the government?",
+   "chunk_id": "discover-canada:window:p31b5-p31b9",
+   "section": "After an election",
+   "page": "31"
+  },
+  {
+   "q": "What is the opposition party with the most members in the House of Commons called?",
+   "chunk_id": "discover-canada:window:p31b5-p31b9",
+   "section": "After an election",
+   "page": "31"
+  },
+  {
+   "q": "What is a voter information card and what does it confirm?",
+   "chunk_id": "discover-canada:window:p32b3",
+   "section": "1. Voter information card",
+   "page": "32"
+  },
+  {
+   "q": "Who receives a voter information card during federal elections?",
+   "chunk_id": "discover-canada:window:p32b3",
+   "section": "1. Voter information card",
+   "page": "32"
+  },
+  {
+   "q": "What should you do if you do not receive a voter information card?",
+   "chunk_id": "discover-canada:window:p32b8",
+   "section": "2. I did not get a card",
+   "page": "32"
+  },
+  {
+   "q": "What is the phone number for Elections Canada in Ottawa?",
+   "chunk_id": "discover-canada:window:p32b8",
+   "section": "2. I did not get a card",
+   "page": "32"
+  },
+  {
+   "q": "How can you vote if you cannot vote on election day in a federal election?",
+   "chunk_id": "discover-canada:window:p32b14",
+   "section": "3. Advance poll and special ballot",
+   "page": "32"
+  },
+  {
+   "q": "Where can you find the dates and location of advance polls and special ballot voting?",
+   "chunk_id": "discover-canada:window:p32b14",
+   "section": "3. Advance poll and special ballot",
+   "page": "32"
+  },
+  {
+   "q": "What role does local or municipal government play in the lives of Canadian citizens?",
+   "chunk_id": "discover-canada:window:p33b7-8",
+   "section": "Other levels of government in Canada",
+   "page": "33"
+  },
+  {
+   "q": "What are the laws passed by a municipal council that affect only the local community called?",
+   "chunk_id": "discover-canada:window:p33b7-8",
+   "section": "Other levels of government in Canada",
+   "page": "33"
+  },
+  {
+   "q": "What laws do municipal councils pass that affect only the local community?",
+   "chunk_id": "discover-canada:window:p33b7-8-p33b10-11",
+   "section": "Other levels of government in Canada",
+   "page": "33"
+  },
+  {
+   "q": "Who has major responsibilities on First Nations reserves, including housing and schools?",
+   "chunk_id": "discover-canada:window:p33b7-8-p33b10-11",
+   "section": "Other levels of government in Canada",
+   "page": "33"
+  },
+  {
+   "q": "Who has major responsibilities on First Nations reserves, such as housing and schools?",
+   "chunk_id": "discover-canada:window:p33b10-11-p33b9",
+   "section": "Other levels of government in Canada",
+   "page": "33"
+  },
+  {
+   "q": "How are provincial, territorial and municipal elections conducted?",
+   "chunk_id": "discover-canada:window:p33b10-11-p33b9",
+   "section": "Other levels of government in Canada",
+   "page": "33"
+  },
+  {
+   "q": "What does due process mean in Canada's justice system?",
+   "chunk_id": "discover-canada:window:p36b5-p36b6",
+   "section": "The Justice System",
+   "page": "36"
+  },
+  {
+   "q": "What is the presumption of innocence in Canadian criminal matters?",
+   "chunk_id": "discover-canada:window:p36b5-p36b6",
+   "section": "The Justice System",
+   "page": "36"
+  },
+  {
+   "q": "What is Canada's legal system based on?",
+   "chunk_id": "discover-canada:window:p36b6-p36b13-14",
+   "section": "The Justice System",
+   "page": "36"
+  },
+  {
+   "q": "What is due process?",
+   "chunk_id": "discover-canada:window:p36b6-p36b13-14",
+   "section": "The Justice System",
+   "page": "36"
+  },
+  {
+   "q": "Who makes Canada's laws?",
+   "chunk_id": "discover-canada:window:p36b6-p36b13-14",
+   "section": "The Justice System",
+   "page": "36"
+  },
+  {
+   "q": "Who enforces the laws in Canada?",
+   "chunk_id": "discover-canada:window:p36b6-p36b13-14",
+   "section": "The Justice System",
+   "page": "36"
+  },
+  {
+   "q": "What is Canada's highest court?",
+   "chunk_id": "discover-canada:window:p37b13",
+   "section": "Courts",
+   "page": "37"
+  },
+  {
+   "q": "Which court deals with matters concerning the federal government of Canada?",
+   "chunk_id": "discover-canada:window:p37b13",
+   "section": "Courts",
+   "page": "37"
+  },
+  {
+   "q": "Who enforces federal laws throughout Canada and serves as provincial police in most provinces?",
+   "chunk_id": "discover-canada:window:p37b16-p37b17",
+   "section": "Courts",
+   "page": "37"
+  },
+  {
+   "q": "In which two provinces do provincial police forces operate instead of the RCMP?",
+   "chunk_id": "discover-canada:window:p37b16-p37b17",
+   "section": "Courts",
+   "page": "37"
+  },
+  {
+   "q": "When can you ask the police for help?",
+   "chunk_id": "discover-canada:window:p37b15",
+   "section": "Police",
+   "page": "37"
+  },
+  {
+   "q": "How can lawyers help you with legal problems in Canada?",
+   "chunk_id": "discover-canada:window:p37b19",
+   "section": "Getting legal help",
+   "page": "37"
+  },
+  {
+   "q": "What can you do if you cannot pay for a lawyer?",
+   "chunk_id": "discover-canada:window:p37b19",
+   "section": "Getting legal help",
+   "page": "37"
+  },
+  {
+   "q": "What do Canadian symbols help explain about being Canadian?",
+   "chunk_id": "discover-canada:window:p38b5",
+   "section": "Canadian Symbols",
+   "page": "38"
+  },
+  {
+   "q": "What kinds of things can be important Canadian symbols?",
+   "chunk_id": "discover-canada:window:p38b5",
+   "section": "Canadian Symbols",
+   "page": "38"
+  },
+  {
+   "q": "What does the Crown symbolize in Canada's government?",
+   "chunk_id": "discover-canada:window:p38b26-27-p38b22",
+   "section": "The Canadian Crown",
+   "page": "38"
+  },
+  {
+   "q": "When was the new Canadian flag first raised?",
+   "chunk_id": "discover-canada:window:p38b24",
+   "section": "Flags in Canada",
+   "page": "38"
+  },
+  {
+   "q": "What flag served as the Canadian flag for about 100 years?",
+   "chunk_id": "discover-canada:window:p38b24",
+   "section": "Flags in Canada",
+   "page": "38"
+  },
+  {
+   "q": "When was the fleur-de-lys adopted by the French king?",
+   "chunk_id": "discover-canada:window:p38b29",
+   "section": "The fleur-de-lys",
+   "page": "38"
+  },
+  {
+   "q": "What flag did Quebec adopt in 1948 based on the Cross and the fleur-de-lys?",
+   "chunk_id": "discover-canada:window:p38b29",
+   "section": "The fleur-de-lys",
+   "page": "38"
+  },
+  {
+   "q": "Why did Canada adopt an official coat of arms and a national motto?",
+   "chunk_id": "discover-canada:window:p38b31",
+   "section": "Coat of arms and motto",
+   "page": "38"
+  },
+  {
+   "q": "What does Canada's national motto 'A mari usque ad mare' mean in Latin?",
+   "chunk_id": "discover-canada:window:p38b31",
+   "section": "Coat of arms and motto",
+   "page": "38"
+  },
+  {
+   "q": "What is the official summer sport of Canada?",
+   "chunk_id": "discover-canada:window:p39b17-p39b22",
+   "section": "The maple leaf",
+   "page": "39"
+  },
+  {
+   "q": "What is kept in the Memorial Chamber of the Peace Tower?",
+   "chunk_id": "discover-canada:window:p39b17-p39b22",
+   "section": "The maple leaf",
+   "page": "39"
+  },
+  {
+   "q": "Why did the beaver become a symbol of the St. Jean Baptiste Society in 1834?",
+   "chunk_id": "discover-canada:window:p39b18-p39b24",
+   "section": "The beaver",
+   "page": "39"
+  },
+  {
+   "q": "Where can the beaver be seen as a Canadian symbol today?",
+   "chunk_id": "discover-canada:window:p39b18-p39b24",
+   "section": "The beaver",
+   "page": "39"
+  },
+  {
+   "q": "What is Canada's national winter sport?",
+   "chunk_id": "discover-canada:window:p39b20",
+   "section": "Popular sports",
+   "page": "39"
+  },
+  {
+   "q": "Who donated the Stanley Cup in 1892?",
+   "chunk_id": "discover-canada:window:p39b20",
+   "section": "Popular sports",
+   "page": "39"
+  },
+  {
+   "q": "What is Canada's most popular spectator sport and national winter sport?",
+   "chunk_id": "discover-canada:window:p39b20-p39b21",
+   "section": "Popular sports",
+   "page": "39"
+  },
+  {
+   "q": "What are Canada's two official languages?",
+   "chunk_id": "discover-canada:window:p39b26-p39b30",
+   "section": "Canada’s official languages",
+   "page": "39"
+  },
+  {
+   "q": "When did Parliament pass the Official Languages Act?",
+   "chunk_id": "discover-canada:window:p39b26-p39b30",
+   "section": "Canada’s official languages",
+   "page": "39"
+  },
+  {
+   "q": "When did Canada start its own honours system with the Order of Canada?",
+   "chunk_id": "discover-canada:window:p40b23-p40b24",
+   "section": "The Order of Canada and other honours",
+   "page": "40"
+  },
+  {
+   "q": "What website has information on nominations for Canadian honours like the Order of Canada?",
+   "chunk_id": "discover-canada:window:p40b23-p40b24",
+   "section": "The Order of Canada and other honours",
+   "page": "40"
+  },
+  {
+   "q": "What is the Victoria Cross and why is it awarded to Canadians?",
+   "chunk_id": "discover-canada:window:p41b1-p41b3",
+   "section": "The Victoria Cross",
+   "page": "41"
+  },
+  {
+   "q": "Who was the first Canadian to receive the Victoria Cross?",
+   "chunk_id": "discover-canada:window:p41b1-p41b3",
+   "section": "The Victoria Cross",
+   "page": "41"
+  },
+  {
+   "q": "Who was the first black man awarded the Victoria Cross?",
+   "chunk_id": "discover-canada:window:p41b3-p41b5",
+   "section": "The Victoria Cross",
+   "page": "41"
+  },
+  {
+   "q": "What battle did Corporal Filip Konowal show courage in to earn the V.C.?",
+   "chunk_id": "discover-canada:window:p41b3-p41b5",
+   "section": "The Victoria Cross",
+   "page": "41"
+  },
+  {
+   "q": "Who was the last Canadian to receive the Victoria Cross?",
+   "chunk_id": "discover-canada:window:p41b5-p41b7",
+   "section": "The Victoria Cross",
+   "page": "41"
+  },
+  {
+   "q": "Where was flying ace Captain Billy Bishop born?",
+   "chunk_id": "discover-canada:window:p41b5-p41b7",
+   "section": "The Victoria Cross",
+   "page": "41"
+  },
+  {
+   "q": "When is Sir John A. Macdonald Day in Canada?",
+   "chunk_id": "discover-canada:window:p41b29-42",
+   "section": "National Public Holidays and Other Important Dates",
+   "page": "41"
+  },
+  {
+   "q": "What holiday is celebrated on the Monday preceding May 25 in Canada?",
+   "chunk_id": "discover-canada:window:p41b29-42",
+   "section": "National Public Holidays and Other Important Dates",
+   "page": "41"
+  },
+  {
+   "q": "When did Mexico join Canada and the United States in NAFTA?",
+   "chunk_id": "discover-canada:window:p42b1-p42b3",
+   "section": "A trading nation",
+   "page": "42"
+  },
+  {
+   "q": "What are the three main types of industries in Canada's economy?",
+   "chunk_id": "discover-canada:window:p42b20-21-p42b19",
+   "section": "Canada’s economy includes three main types of industries:",
+   "page": "42"
+  },
+  {
+   "q": "What percentage of working Canadians have jobs in service industries?",
+   "chunk_id": "discover-canada:window:p42b20-21-p42b19",
+   "section": "Canada’s economy includes three main types of industries:",
+   "page": "42"
+  },
+  {
+   "q": "Why is the United States Canada's largest trading partner for exports?",
+   "chunk_id": "discover-canada:window:p43b19-20-p43b21",
+   "section": "Canada’s economy includes three main types of industries:",
+   "page": "43"
+  },
+  {
+   "q": "What words are inscribed on the Peace Arch at Blaine, Washington?",
+   "chunk_id": "discover-canada:window:p43b19-20-p43b21",
+   "section": "Canada’s economy includes three main types of industries:",
+   "page": "43"
+  },
+  {
+   "q": "What three oceans line Canada's frontiers?",
+   "chunk_id": "discover-canada:window:p44b1",
+   "section": "Canada’s Regions",
+   "page": "44"
+  },
+  {
+   "q": "What lies along the southern edge of Canada?",
+   "chunk_id": "discover-canada:window:p44b1",
+   "section": "Canada’s Regions",
+   "page": "44"
+  },
+  {
+   "q": "Who chose Ottawa as Canada's capital in 1857?",
+   "chunk_id": "discover-canada:window:p44b21-22-p44b19",
+   "section": "The Regions of Canada",
+   "page": "44"
+  },
+  {
+   "q": "How many provinces and territories does Canada have?",
+   "chunk_id": "discover-canada:window:p44b24",
+   "section": "Provinces and Territories",
+   "page": "44"
+  },
+  {
+   "q": "What should you know about each province and territory's capital city?",
+   "chunk_id": "discover-canada:window:p44b24",
+   "section": "Provinces and Territories",
+   "page": "44"
+  },
+  {
+   "q": "Why is Newfoundland and Labrador known for its fisheries and coastal villages?",
+   "chunk_id": "discover-canada:window:p46b8",
+   "section": "Newfoundland and Labrador",
+   "page": "46"
+  },
+  {
+   "q": "What contributes a substantial part of Newfoundland and Labrador's economy today?",
+   "chunk_id": "discover-canada:window:p46b8",
+   "section": "Newfoundland and Labrador",
+   "page": "46"
+  },
+  {
+   "q": "Why is Prince Edward Island known as the birthplace of Confederation?",
+   "chunk_id": "discover-canada:window:p46b14",
+   "section": "Prince Edward Island",
+   "page": "46"
+  },
+  {
+   "q": "What is the name of the bridge connecting P.E.I. to mainland Canada?",
+   "chunk_id": "discover-canada:window:p46b14",
+   "section": "Prince Edward Island",
+   "page": "46"
+  },
+  {
+   "q": "Why is Nova Scotia known as the gateway to Canada?",
+   "chunk_id": "discover-canada:window:p46b20",
+   "section": "Nova Scotia",
+   "page": "46"
+  },
+  {
+   "q": "Where are the world's highest tides found in Nova Scotia?",
+   "chunk_id": "discover-canada:window:p46b20",
+   "section": "Nova Scotia",
+   "page": "46"
+  },
+  {
+   "q": "Why are the Atlantic provinces important to Canada's history and development?",
+   "chunk_id": "discover-canada:window:p46b27",
+   "section": "The Atlantic provinces",
+   "page": "46"
+  },
+  {
+   "q": "What kind of summers does the Atlantic Ocean bring to Atlantic Canada?",
+   "chunk_id": "discover-canada:window:p46b27",
+   "section": "The Atlantic provinces",
+   "page": "46"
+  },
+  {
+   "q": "Why is Quebec Canada's largest producer of hydro-electricity?",
+   "chunk_id": "discover-canada:window:p47b0s0",
+   "section": "Quebec",
+   "page": "47"
+  },
+  {
+   "q": "What is La Francophonie, where Quebec culture has international stature?",
+   "chunk_id": "discover-canada:window:p47b0s0",
+   "section": "Quebec",
+   "page": "47"
+  },
+  {
+   "q": "What is the second largest mainly French-speaking city in the world after Paris?",
+   "chunk_id": "discover-canada:window:p47b0s0-p47b0s1",
+   "section": "Quebec",
+   "page": "47"
+  },
+  {
+   "q": "Where do more than half of Canada's people live?",
+   "chunk_id": "discover-canada:window:p47b7",
+   "section": "Central canada",
+   "page": "47"
+  },
+  {
+   "q": "What proportion of Canadian manufactured goods do Ontario and Quebec produce together?",
+   "chunk_id": "discover-canada:window:p47b7",
+   "section": "Central canada",
+   "page": "47"
+  },
+  {
+   "q": "Who founded New Brunswick?",
+   "chunk_id": "discover-canada:window:p47b8",
+   "section": "New Brunswick",
+   "page": "47"
+  },
+  {
+   "q": "What is the only officially bilingual province in Canada?",
+   "chunk_id": "discover-canada:window:p47b8",
+   "section": "New Brunswick",
+   "page": "47"
+  },
+  {
+   "q": "Why does Ontario have such a vital economy?",
+   "chunk_id": "discover-canada:window:p48b8s0",
+   "section": "Ontario",
+   "page": "48"
+  },
+  {
+   "q": "What is the Niagara region known for?",
+   "chunk_id": "discover-canada:window:p48b8s0",
+   "section": "Ontario",
+   "page": "48"
+  },
+  {
+   "q": "Why does Ontario have a vital economy?",
+   "chunk_id": "discover-canada:window:p48b8s0-p48b8s1",
+   "section": "Ontario",
+   "page": "48"
+  },
+  {
+   "q": "Which Great Lake is located in the U.S.A. and not in Canada?",
+   "chunk_id": "discover-canada:window:p48b8s0-p48b8s1",
+   "section": "Ontario",
+   "page": "48"
+  },
+  {
+   "q": "What are the Prairie Provinces of Canada?",
+   "chunk_id": "discover-canada:window:p48b15",
+   "section": "The Prairie Provinces",
+   "page": "48"
+  },
+  {
+   "q": "Why are Manitoba, Saskatchewan and Alberta known for fertile farmland?",
+   "chunk_id": "discover-canada:window:p48b15",
+   "section": "The Prairie Provinces",
+   "page": "48"
+  },
+  {
+   "q": "What is Manitoba's economy based on?",
+   "chunk_id": "discover-canada:window:p48b16",
+   "section": "Manitoba",
+   "page": "48"
+  },
+  {
+   "q": "Which Winnipeg neighbourhood has Western Canada's largest Francophone community?",
+   "chunk_id": "discover-canada:window:p48b16",
+   "section": "Manitoba",
+   "page": "48"
+  },
+  {
+   "q": "Why was Saskatchewan once known as the 'breadbasket of the world' and the 'wheat province'?",
+   "chunk_id": "discover-canada:window:p48b22",
+   "section": "Saskatchewan",
+   "page": "48"
+  },
+  {
+   "q": "Which Saskatchewan city is home to the training academy of the Royal Canadian Mounted Police?",
+   "chunk_id": "discover-canada:window:p48b22",
+   "section": "Saskatchewan",
+   "page": "48"
+  },
+  {
+   "q": "What is Alberta the largest producer of?",
+   "chunk_id": "discover-canada:window:p49b0",
+   "section": "Alberta",
+   "page": "49"
+  },
+  {
+   "q": "Who was Lake Louise named after?",
+   "chunk_id": "discover-canada:window:p49b0",
+   "section": "Alberta",
+   "page": "49"
+  },
+  {
+   "q": "Why does the B.C. coast have a temperate climate?",
+   "chunk_id": "discover-canada:window:p49b7",
+   "section": "The West Coast",
+   "page": "49"
+  },
+  {
+   "q": "What is Canada's largest and busiest port?",
+   "chunk_id": "discover-canada:window:p49b7",
+   "section": "The West Coast",
+   "page": "49"
+  },
+  {
+   "q": "What is Canada's westernmost province on the Pacific coast?",
+   "chunk_id": "discover-canada:window:p49b8",
+   "section": "British Columbia",
+   "page": "49"
+  },
+  {
+   "q": "Which valley in British Columbia is known for fruit orchards and wine?",
+   "chunk_id": "discover-canada:window:p49b8",
+   "section": "British Columbia",
+   "page": "49"
+  },
+  {
+   "q": "What is the capital of the Northwest Territories and why is it called the diamond capital of North America?",
+   "chunk_id": "discover-canada:window:p50b4",
+   "section": "Northwest Territories",
+   "page": "50"
+  },
+  {
+   "q": "Why is Canada's North called the \"Land of the Midnight Sun\"?",
+   "chunk_id": "discover-canada:window:p50b13s0",
+   "section": "The Northern Territories",
+   "page": "50"
+  },
+  {
+   "q": "What is the vast rocky Arctic plain with no trees and permanently frozen soil called?",
+   "chunk_id": "discover-canada:window:p50b13s0",
+   "section": "The Northern Territories",
+   "page": "50"
+  },
+  {
+   "q": "What is tundra, and why are there no trees on it?",
+   "chunk_id": "discover-canada:window:p50b13s0-p50b13s1",
+   "section": "The Northern Territories",
+   "page": "50"
+  },
+  {
+   "q": "Why did thousands of miners come to the Yukon in the 1890s?",
+   "chunk_id": "discover-canada:window:p50b14",
+   "section": "Yukon",
+   "page": "50"
+  },
+  {
+   "q": "What is the coldest temperature ever recorded in Canada?",
+   "chunk_id": "discover-canada:window:p50b14",
+   "section": "Yukon",
+   "page": "50"
+  },
+  {
+   "q": "When was Nunavut established and from what territory was it formed?",
+   "chunk_id": "discover-canada:window:p51b0",
+   "section": "Nunavut",
+   "page": "51"
+  },
+  {
+   "q": "What is the capital of Nunavut and which English explorer is Frobisher Bay named after?",
+   "chunk_id": "discover-canada:window:p51b0",
+   "section": "Nunavut",
+   "page": "51"
+  },
+  {
+   "q": "Who plays a key role in meeting security and sovereignty challenges in Canada's North?",
+   "chunk_id": "discover-canada:window:p51b19",
+   "section": "The Canadian Rangers",
+   "page": "51"
+  },
+  {
+   "q": "How do the Canadian Rangers travel from Resolute to the Magnetic North Pole in winter and summer?",
+   "chunk_id": "discover-canada:window:p51b19",
+   "section": "The Canadian Rangers",
+   "page": "51"
+  },
+  {
+   "q": "What are the steps in the legislative process for how a bill becomes law in Canada?",
+   "chunk_id": "discover-canada:window:p29-table-how-a-bill-becomes-law-the-legislative-p",
+   "section": "How a bill becomes law — The Legislative Process",
+   "page": "29"
+  },
+  {
+   "q": "What happens at the Committee Stage of a bill in Canada's legislative process?",
+   "chunk_id": "discover-canada:window:p29-table-how-a-bill-becomes-law-the-legislative-p",
+   "section": "How a bill becomes law — The Legislative Process",
+   "page": "29"
+  },
+  {
+   "q": "What are the three branches of Canada's government?",
+   "chunk_id": "discover-canada:window:p29-diagram-canada-s-system-of-government",
+   "section": "Canada's System of Government",
+   "page": "29"
+  },
+  {
+   "q": "How many judges sit on the Supreme Court of Canada and who appoints them?",
+   "chunk_id": "discover-canada:window:p29-diagram-canada-s-system-of-government",
+   "section": "Canada's System of Government",
+   "page": "29"
+  },
+  {
+   "q": "Who are the elected officials of the federal government in Canada?",
+   "chunk_id": "discover-canada:window:p33-table-government-elected-officials-and-some-re",
+   "section": "Government, Elected Officials, and Some Responsibilities",
+   "page": "33"
+  },
+  {
+   "q": "Which level of government is responsible for education and health care in Canada?",
+   "chunk_id": "discover-canada:window:p33-table-government-elected-officials-and-some-re",
+   "section": "Government, Elected Officials, and Some Responsibilities",
+   "page": "33"
+  },
+  {
+   "q": "Which provinces are in the Atlantic Provinces region of Canada?",
+   "chunk_id": "discover-canada:window:p45-table-regions-provinces-territories-and-capita",
+   "section": "Regions, Provinces/Territories and Capital Cities",
+   "page": "45"
+  },
+  {
+   "q": "What is the capital city of Nunavut?",
+   "chunk_id": "discover-canada:window:p45-table-regions-provinces-territories-and-capita",
+   "section": "Regions, Provinces/Territories and Capital Cities",
+   "page": "45"
+  },
+  {
+   "q": "Who are black Loyalists in Canada descended from?",
+   "chunk_id": "discover-canada:window:p13b25",
+   "section": "Diversity in Canada",
+   "page": "13"
+  },
+  {
+   "q": "When did black Loyalists flee to Canada from America?",
+   "chunk_id": "discover-canada:window:p13b25",
+   "section": "Diversity in Canada",
+   "page": "13"
+  },
+  {
+   "q": "Who was the first to map Canada's Atlantic shore and claim the New Founde Land for England?",
+   "chunk_id": "discover-canada:window:p14b22",
+   "section": "The First Europeans",
+   "page": "14"
+  },
+  {
+   "q": "When did English settlement in Canada begin after John Cabot's 1497 voyage?",
+   "chunk_id": "discover-canada:window:p14b22",
+   "section": "The First Europeans",
+   "page": "14"
+  },
+  {
+   "q": "Who was Pierre Le Moyne, Sieur d'Iberville?",
+   "chunk_id": "discover-canada:window:p15b8",
+   "section": "Royal New France",
+   "page": "15"
+  },
+  {
+   "q": "How far did d'Iberville's victories over the English extend, from James Bay to where?",
+   "chunk_id": "discover-canada:window:p15b8",
+   "section": "Royal New France",
+   "page": "15"
+  },
+  {
+   "q": "Who defended the rights of the Canadiens as Governor of Quebec?",
+   "chunk_id": "discover-canada:window:p15b9",
+   "section": "United empire loyalists",
+   "page": "15"
+  },
+  {
+   "q": "When did Sir Guy Carleton supervise the Loyalist migration to Nova Scotia and Quebec?",
+   "chunk_id": "discover-canada:window:p15b9",
+   "section": "United empire loyalists",
+   "page": "15"
+  },
+  {
+   "q": "Who was Upper Canada's first Lieutenant Governor and founder of the City of York (now Toronto)?",
+   "chunk_id": "discover-canada:window:p16b11",
+   "section": "Abolition of slavery",
+   "page": "16"
+  },
+  {
+   "q": "Which province was the first in the British Empire to abolish slavery?",
+   "chunk_id": "discover-canada:window:p16b11",
+   "section": "Abolition of slavery",
+   "page": "16"
+  },
+  {
+   "q": "Who was Mary Ann Shadd Cary?",
+   "chunk_id": "discover-canada:window:p16b12",
+   "section": "Abolition of slavery",
+   "page": "16"
+  },
+  {
+   "q": "What newspaper did Mary Ann Shadd Cary help found and edit in 1853?",
+   "chunk_id": "discover-canada:window:p16b12",
+   "section": "Abolition of slavery",
+   "page": "16"
+  },
+  {
+   "q": "Who warned Lieutenant James FitzGibbon of a planned American attack in 1813?",
+   "chunk_id": "discover-canada:window:p17b1",
+   "section": "The War of 1812: The Fight for Canada",
+   "page": "17"
+  },
+  {
+   "q": "What battle did Laura Secord's bravery help win?",
+   "chunk_id": "discover-canada:window:p17b1",
+   "section": "The War of 1812: The Fight for Canada",
+   "page": "17"
+  },
+  {
+   "q": "Why did the Duke of Wellington choose Bytown as the endpoint of the Rideau Canal?",
+   "chunk_id": "discover-canada:window:p17b3",
+   "section": "The War of 1812: The Fight for Canada",
+   "page": "17"
+  },
+  {
+   "q": "Who defeated Napoleon in 1815?",
+   "chunk_id": "discover-canada:window:p17b3",
+   "section": "The War of 1812: The Fight for Canada",
+   "page": "17"
+  },
+  {
+   "q": "What does the Vimy Memorial in France honour?",
+   "chunk_id": "discover-canada:window:p21b10",
+   "section": "The First World War",
+   "page": "21"
+  },
+  {
+   "q": "When was the Battle of Vimy Ridge fought?",
+   "chunk_id": "discover-canada:window:p21b10",
+   "section": "The First World War",
+   "page": "21"
+  },
+  {
+   "q": "Who was Phil Edwards and what did he achieve for Canada in the Olympics?",
+   "chunk_id": "discover-canada:window:p22b11",
+   "section": "Between the wars",
+   "page": "22"
+  },
+  {
+   "q": "What did Phil Edwards become an expert in as a Montreal doctor?",
+   "chunk_id": "discover-canada:window:p22b11",
+   "section": "Between the wars",
+   "page": "22"
+  },
+  {
+   "q": "How does Canadian football differ from American football?",
+   "chunk_id": "discover-canada:window:p26b6",
+   "section": "Arts and culture in Canada",
+   "page": "26"
+  },
+  {
+   "q": "Who donated the Grey Cup championship trophy in 1909?",
+   "chunk_id": "discover-canada:window:p26b6",
+   "section": "Arts and culture in Canada",
+   "page": "26"
+  },
+  {
+   "q": "Who scored the winning goal for Canada in the 1972 Canada-Soviet Summit Series?",
+   "chunk_id": "discover-canada:window:p26b25",
+   "section": "Arts and culture in Canada",
+   "page": "26"
+  },
+  {
+   "q": "What is Paul Henderson's 1972 winning goal often referred to as?",
+   "chunk_id": "discover-canada:window:p26b25",
+   "section": "Arts and culture in Canada",
+   "page": "26"
+  },
+  {
+   "q": "What is the highest mountain in Canada and where is it located?",
+   "chunk_id": "discover-canada:window:p50b25",
+   "section": "Yukon",
+   "page": "50"
+  },
+  {
+   "q": "Who was Sir William Logan and what did he found in 1842?",
+   "chunk_id": "discover-canada:window:p50b25",
+   "section": "Yukon",
+   "page": "50"
+  }
+ ]
+}

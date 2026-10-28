@@ -13,7 +13,7 @@ from __future__ import annotations
 
 from concurrent.futures import ThreadPoolExecutor
 
-from src import config, learning_cache
+from src import concept_semantics as semantics, config, learning_cache
 from src.corpus import Corpus
 from src.generation import GenerationUnavailable, generate
 from src.learning_models import ConceptHub, TimelineData, TimelineEvent
@@ -64,6 +64,7 @@ def _hub_prompt(concept: str, kind: str, sources: list[RetrievedChunk], max_node
             "relationships). Do not write a biography." if kind == "person"
             else "a CONCEPT: include related people, institutions, events and ideas that the sources "
                  "connect to it.")
+    types, predicates = semantics.prompt_vocabulary()
     return f"""CENTRAL {kind.upper()}: {concept}
 This is {what}
 
@@ -74,18 +75,25 @@ Build a hub-and-spoke learning map. Return JSON:
 {{"central_concept": str,
   "summary": str (1-2 sentences, only what the sources say),
   "summary_sources": ["S1"],
-  "central_category": one of "person" | "organization" | "event" | "place" | "concept",
+  "central_entity_type": one of: {types},
   "nodes": [{{"label": str (short noun phrase),
-             "category": one of "person" | "organization" | "event" | "place" | "concept",
-             "relationship": str (1-4 words; the sentence "[central item] <relationship> <node label>" must be true per the sources, e.g. for the Canadarm: "invented by", "used in"; for the Prime Minister: "appointed by", "leads"),
-             "explanation": str (1-2 sentences),
+             "entity_type": one of the same list (a people is not a language; a word is not a language family; an institution is not an event),
+             "predicate": one of the names below, or "mentioned_with" (the sources only mention both together) or "other",
+             "subject_is_center": true if the CENTRAL item is the SUBJECT of the predicate (centre -> node), false if the NODE is the subject (node -> centre),
+             "relationship": str (1-4 words, ONLY when predicate is "other"; "[central item] <relationship> <node label>" must be true per the sources),
+             "explanation": str (1-2 sentences, nothing the quote does not support),
              "sources": ["S2"],
-             "evidence_quote": str (copied EXACTLY, 5-25 words, from one cited source, stating the relationship)}}]}}
+             "evidence_quote": str (copied EXACTLY, 5-25 words, from one cited source, STATING the relationship)}}]}}
 
-Rules: at most {max_nodes} nodes (fewer if the sources support fewer; an empty list is fine); every
-node needs sources and an exact evidence_quote; no duplicate or near-duplicate nodes; prefer important
-concepts over incidental vocabulary; never infer a relationship that the text does not state; do not
-mention any year that is not in the cited source."""
+Predicates, each written subject -> object:
+{predicates}
+
+Rules: at most {max_nodes} nodes (fewer if the sources support fewer; an empty list is the right answer when nothing is supported); every
+node needs sources and an exact evidence_quote that states the relationship; no duplicate nodes; never infer a relationship the text
+does not state (living near, being mentioned together, or sharing a heading is NOT a relationship: use "mentioned_with"). First Nations, Métis
+and Inuit are three distinct peoples: never attach a Métis or Inuit item to a First Nations centre, or the reverse, and never treat
+"Aboriginal" or "Indigenous" as the same as any of them. A language belongs to a people only if the text says that people speak it.
+Do not mention any year that is not in the cited source."""
 
 
 def build_concept_hub(
@@ -96,7 +104,7 @@ def build_concept_hub(
     concept = concept.strip()
     request = {"concept": concept.casefold(), "hub_kind": kind, "max_nodes": max_nodes,
                "k": config.HUB_CANDIDATES_K}
-    params = _params("concept_hub", request) | {"corpus_chunks": len(corpus)}
+    params = _params("concept_hub", request) | {"corpus_chunks": len(corpus), "prompt_version": config.HUB_PROMPT_VERSION}
     path = learning_cache.cache_path("person_hub" if kind == "person" else "concept_hub", concept, params)
     if use_cache and (cached := learning_cache.load(path)):
         return ConceptHub.from_dict(cached), True
@@ -109,10 +117,13 @@ def build_concept_hub(
     if not isinstance(data, dict):
         raise QuizGenerationError("The model returned an unexpected structure. Try again.")
 
-    nodes, omitted = validate_hub_nodes(data.get("nodes"), concept, by_label, max_nodes)
-    summary, summary_ids = validate_summary(data.get("summary"), data.get("summary_sources"), by_label)
+    center_type = str(data.get("central_entity_type", "")).strip().casefold()
+    center_type = center_type if center_type in semantics.ENTITY_TYPES else ("person" if kind == "person" else "")
+    nodes, omitted = validate_hub_nodes(data.get("nodes"), concept, by_label, max_nodes, center_type)
+    summary, summary_ids = validate_summary(data.get("summary"), data.get("summary_sources"), by_label, concept)
     hub = ConceptHub(concept, kind, summary, nodes, summary_ids, omitted,
-                     central_category=normalize_category(data.get("central_category")))
+                     central_category=semantics.CATEGORY_FOR_TYPE.get(center_type) or normalize_category(data.get("central_category")),
+                     central_entity_type=center_type)
     learning_cache.save(path, params, hub.to_dict())
     return hub, False
 

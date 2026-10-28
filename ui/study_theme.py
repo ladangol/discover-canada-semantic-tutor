@@ -16,6 +16,7 @@ PAGES = {
     "Flashcards": ("Flashcards", ":material/style:", "#10A89A"),
     "Concept map": ("Concept map", ":material/hub:", "#8B5CF6"),
     "Timeline": ("Timeline", ":material/timeline:", "#E89A0C"),
+    "Talk": ("Talk", ":material/mic:", "#E11D74"),      # voice tutor; only shown when STUDY_VOICE=1
 }
 
 # chapter -> (Material icon name, gradient start, gradient end) — used by the chapter carousel
@@ -297,6 +298,7 @@ def empty_state(mascot: str, text: str) -> str:
 
 
 def pills(items: list[str], accent: str) -> str:
+    items = list(dict.fromkeys(items))                    # several passages can share one page + section: show each source once
     return f'<div class="pills" style="--accent:{accent}">' + "".join(f"<span>{html.escape(i)}</span>" for i in items) + "</div>"
 
 

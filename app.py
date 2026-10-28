@@ -10,10 +10,11 @@ import streamlit as st
 from app_analyze import analyze_tab
 from src import tutor, visualization as viz
 from src.atlas3d import atlas_3d
-from src.config import DEFAULT_K, EMBEDDING_MODEL_NAME, generation_configured, generation_model
+from src.config import DEFAULT_K, EMBEDDING_MODEL_NAME, generation_configured, generation_model, voice_enabled
 from src.corpus import load_corpus
 from src.generation import GenerationNotConfigured
 from src.retrieval import page_label
+from ui import voice_tutor
 
 # Streamlit's file watcher probes every transformers submodule (some need torchvision, which
 # this app does not use) and logs a harmless warning per module. Silence only that logger so it
@@ -338,6 +339,23 @@ def new_question(c, sc: dict, kind: str, *, focus: str | None = None) -> None:
         st.session_state.asked_ids.add(q.chunk_id)
 
 
+def voice_tab() -> None:
+    """Voice tutor (opt-in with STUDY_VOICE=1): the same Talk page as the learner app, with plain widgets and timings."""
+    c = corpus()
+    st.caption("Speak a question or a quiz answer. Whisper (local) transcribes, you confirm the text, the same tutor answers or grades "
+               "it, and Kokoro (local) reads the reply. Audio never leaves this machine; only the confirmed text goes to the LLM.")
+
+    def new_voice_question(kind: str) -> None:
+        q = run_generation(tutor.generate_quiz, c, kind=kind, exclude_ids=st.session_state.asked_ids, rng=st.session_state.rng,
+                           difficulty=st.session_state.get("difficulty", tutor.DEFAULT_DIFFICULTY))
+        st.session_state["voice_quiz"] = {"q": q, "res": None, "pick": None, "id": random.random()} if q else None
+        if q:
+            st.session_state.asked_ids.add(q.chunk_id)
+
+    voice_tutor.render(c, new_question=new_voice_question, record=lambda q, res: record(q, res.correct),
+                       cite=lambda ch: f"{page_label(ch.page)} · {ch.section}", styled=False, diagnostics=True)
+
+
 def quiz_ui(c) -> None:
     sc = scope_picker(c, "quiz")
     kind_label = st.radio("Question type", ["Multiple choice", "Free response"], horizontal=True)
@@ -449,7 +467,8 @@ def main() -> None:
         st.error(str(exc))
         st.stop()
     sidebar()
-    atlas, analyze, ask, study = st.tabs(["🗺️ Atlas", "🔬 Analyze", "💬 Ask", "📚 Study"])
+    names = ["🗺️ Atlas", "🔬 Analyze", "💬 Ask", "📚 Study"] + (["🎙️ Voice"] if voice_enabled() else [])
+    atlas, analyze, ask, study, *voice = st.tabs(names)
     with atlas:
         atlas_tab()
     with analyze:
@@ -458,6 +477,9 @@ def main() -> None:
         ask_tab()
     with study:
         study_tab()
+    if voice:
+        with voice[0]:
+            voice_tab()
 
 
 main()
