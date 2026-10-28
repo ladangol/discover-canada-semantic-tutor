@@ -146,3 +146,8 @@ def kokoro_settings() -> dict:
 def query_cleanup_enabled() -> bool:
     """Application-layer retrieval-query cleanup (src/query_understanding.py) for the learner/voice flows. QUERY_CLEANUP=0 turns it off."""
     return os.environ.get("QUERY_CLEANUP", "1") != "0"
+
+
+def enumeration_enabled() -> bool:
+    """The 'scan the whole guide' panel (several AI calls per use) is opt-in: STUDY_ENUMERATION=1."""
+    return os.environ.get("STUDY_ENUMERATION", "0") == "1"

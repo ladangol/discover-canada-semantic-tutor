@@ -4,6 +4,10 @@ Discover Canada Atlas is a single-process **Streamlit** app over a **frozen** re
 There is no web server besides Streamlit, no database server, and no frontend build.
 Diagrams below describe what is actually in the code.
 
+> **Layers.** The benchmarked retrieval core (ChromaDB, chunk corpus, MiniLM, Variant A plain dense k = 5) is frozen and untouched. Around it sit three
+> application layers that can be switched off without changing any retrieval result: **query understanding** (`src/query_understanding.py`), **evidence collection**
+> (`src/enumeration.py`, hub/timeline candidates) and **concept validation** (`src/concept_semantics.py`). See [APPLICATION_LAYERS.md](APPLICATION_LAYERS.md).
+
 ## 1. Runtime components
 
 Legend: 🟦 local static data · 🟩 local model computation · 🟥 external API call.
@@ -120,6 +124,9 @@ flowchart LR
 | `study_app.py` | **Discover Canada Study**: the simple learner app (Learn, Practice, Flashcards, Concept map, Timeline). Same engine as `app.py`; hides all technical views. |
 | `ui/infographic_components.py`, `ui/infographic_viewer.js` | Shared Streamlit UI for infographics: interactive SVG component (hover/click), evidence panel, lazy SVG/PNG downloads. Used by both apps. |
 | `src/voice/` (`models`, `audio`, `asr`, `tts`, `session`) | Voice adapters, no Streamlit imports. `audio` validates/resamples a browser WAV; `asr` = faster-whisper (loaded once, one inference at a time); `tts` = Piper + a deterministic `prepare_speech_text` (strips citations/markup); `session` holds the per-session draft/turn state and the "transcribe once, send once, speak once" rules. See [VOICE_ARCHITECTURE.md](VOICE_ARCHITECTURE.md). |
+| `src/query_understanding.py` | Application layer, **not** the benchmarked core: builds a separate retrieval-query string by deleting document-reference boilerplate ("in Discover Canada", "according to the guide"). Never adds or substitutes words; the exact original question still goes to the model. Used by `tutor.search_text` (learner + voice), not by the Atlas. `QUERY_CLEANUP=0` disables it. |
+| `src/concept_semantics.py` | Concept validation: entity types, typed predicates with direction, "does the quote actually state it?", and the First Nations / Métis / Inuit scope guard. Called from `learning_validation.validate_hub_nodes`. |
+| `src/enumeration.py`, `ui/enumeration_panel.py`, `scripts/scan_guide.py` | Separate "scan the whole guide" workflow for list questions: reads passages (quick = literal word match, thorough = all), validates a verbatim quote per item, lists the guide's own wording separately. Opt-in (`STUDY_ENUMERATION=1`); never reached from Q&A and never calls the retriever. |
 | `src/suggestions.py`, `artifacts/suggestion_bank.json`, `scripts/build_suggestion_bank.py` | "Did you mean…" when the guide has no match: one LLM call guesses the intent, then each guess is snapped by embedding to the nearest question in a pre-built bank of questions the guide answers (each kept only if frozen retrieval returns its own passage). See [VOICE_ARCHITECTURE.md](VOICE_ARCHITECTURE.md). |
 | `ui/voice_tutor.py` | The learner app's **Talk** page and the Atlas's **Voice** tab (both opt-in, `STUDY_VOICE=1`; the Atlas passes `styled=False`): record → editable transcript → confirm → `tutor.handle_turn` → text + citations + audio. Thin: it never answers or grades by itself. |
 | `ui/chapter_carousel.py`, `ui/chapter_carousel.js` | The Learn page’s chapter picker: a 3-D coverflow carousel (CCv2 component). Tap a side card, use the arrows/←→, or swipe to bring a chapter forward; tapping the front card or “Open” returns the chapter name to Python (`setTriggerValue("open")`), which runs the same `explain_scope` path as before. Pure presentation, no retrieval. |

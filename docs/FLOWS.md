@@ -267,3 +267,39 @@ Every action maps onto the same functions the research app uses:
 
 Before each generation `ui/session_limits.charge()` reserves budget (default 40 actions per session,
 `STUDY_MAX_ACTIONS`); cached hubs/timelines are refunded; topics are trimmed to 120 characters.
+
+
+## J. Application layers around the frozen core (see APPLICATION_LAYERS.md)
+
+```mermaid
+sequenceDiagram
+    actor L as Learner
+    participant T as tutor.handle_turn / Learn page
+    participant Q as query_understanding (application layer)
+    participant R as Variant A retrieval (frozen, k=5)
+    participant G as LLM
+    L->>T: "What first-nation languages are mentioned in Discover Canada?"
+    T->>Q: retrieval_query(question)
+    Q-->>T: "What first-nation languages are mentioned?" (words only deleted)
+    T->>R: retrieve(cleaned string, k=5)
+    R-->>T: 5 passages
+    T->>G: the EXACT original question + the 5 passages
+    G-->>T: grounded answer
+```
+
+```mermaid
+flowchart LR
+    S["'Scan the whole guide' (explicit button, cost shown first)"] --> P["plan: quick = passages with the learner's own word (literal stem); thorough = all passages"]
+    P --> X["LLM reads batches of 8 passages → items + verbatim quote"]
+    X --> V["validate: real source, verbatim quote, item named, kind's word or the guide's word, people focus ties it"]
+    V --> GR["group: guide words it as the kind | worded differently (listed separately)"]
+    GR --> OUT["list + page + quote, passages read, AI calls, dropped items"]
+```
+
+```mermaid
+flowchart LR
+    C["concept hub candidates (retrieve k=12 on the concept phrase)"] --> M["LLM: typed nodes (entity_type, predicate, direction, quote)"]
+    M --> V1["learning_validation: sources, verbatim quote, years, duplicates"]
+    V1 --> V2["concept_semantics: scope guard → types/signature/direction → cue in quote → ok / revised ('is mentioned with') / rejected"]
+    V2 --> R["render (an empty hub shows the 'not enough connected facts' message)"]
+```

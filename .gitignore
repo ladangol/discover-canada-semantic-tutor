@@ -23,3 +23,6 @@ artifacts/generated/
 # runtime data (usage ledger)
 data/
 .hf-cache/
+
+# local voice models (downloaded, never committed)
+models/

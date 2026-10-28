@@ -230,3 +230,16 @@ def test_a_sentence_that_lists_all_three_peoples_ties_an_item_to_none_of_them():
     assert cs.scope_conflict("First Nations languages", "Inuktitut", "the Inuktitut language, live in small", tail) == ""
     assert cs.nearest_scopes("Inuktitut", Q_INUIT, P11) == {"Inuit"}                                          # its own sentence names the Inuit
     assert cs.nearest_scopes("Michif", Q_METIS, P11) == {"Métis"}                                             # "They…" looks back to "The Métis are…"
+
+
+def test_a_hub_with_no_supported_relationships_still_renders():
+    """'First Nation Languages' correctly ends up empty; the learner app must draw that, not crash."""
+    from src.corpus import load_corpus
+    from src.infographic_models import hub_spec
+    from src.infographic_renderers import hub_svg
+    hub = ConceptHub("First Nation Languages", "concept", "", [], [], ["Inuktitut: its passage places it with the Inuit, not the First Nations"],
+                     central_category="concept", central_entity_type="language")
+    spec = hub_spec(hub, load_corpus())
+    assert spec.nodes == []
+    for canvas in ("landscape", "portrait"):
+        assert hub_svg(spec, canvas=canvas).lstrip().startswith("<svg")

@@ -14,7 +14,7 @@ import random
 import streamlit as st
 
 from src import budget, facts, learning_extractors as ex, tutor
-from src.config import generation_configured, voice_enabled
+from src.config import enumeration_enabled, generation_configured, voice_enabled
 from src.corpus import load_corpus
 from src.embeddings import encode_query
 from src.retrieval import page_label, retrieve
@@ -24,6 +24,7 @@ from ui.chapter_carousel import chapter_carousel
 from ui.flashcards import flashcard_deck
 from ui.infographic_components import render_hub_infographic, render_timeline_infographic
 from ui import voice_tutor
+from ui.enumeration_panel import render as scan_panel
 from ui.theme_sync import sync as sync_theme
 from ui.session_limits import LIMIT_MESSAGE, charge, clean_topic, refund
 
@@ -147,6 +148,8 @@ def learn_page() -> None:
     if st.session_state.learn:
         with answer_slot:
             show_answer(st.session_state.learn)
+    if enumeration_enabled():
+        scan_panel(c)                                  # a separate, explicit action: not question answering
 
 
 # --- Practice -------------------------------------------------------------------------------------------

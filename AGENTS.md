@@ -88,6 +88,18 @@ repo, not a research repo.
 - Do not add wake word, streaming/VAD or barge-in until Milestone 2/3. Tests use mocks only (no models, audio hardware or API key).
 - The Talk page stays opt-in (`STUDY_VOICE=1`) and voice packages stay out of `requirements.txt`/the production image.
 
+## Application layers around the frozen core
+
+- The benchmarked retrieval core is frozen and stays untouched: ChromaDB, the chunk corpus, MiniLM and the Variant A retrieval function (plain dense, k = 5).
+  Never re-run the held-out evaluation for product changes. Product behaviour lives in layers around it (see docs/APPLICATION_LAYERS.md).
+- **Query understanding** (`src/query_understanding.py`) only DELETES document-reference boilerplate from a separate search string. It must never add, replace
+  or rewrite words, never map synonyms or categories ("First Nations", "Aboriginal", "Indigenous", "Métis", "Inuit" are different), and the exact original question
+  always goes to generation. The research Atlas does not use it.
+- **Concept validation** (`src/concept_semantics.py`): types, direction and support are checked in code; a relationship the quote does not state is weakened to
+  "is mentioned with" or rejected, never drawn as stated. Keep First Nations, Métis and Inuit apart.
+- **Enumeration** (`src/enumeration.py`) is a separate workflow for "list everything" questions. Do not widen the normal retriever for it, do not call `retrieve` from
+  it, and do not merge differently-worded items (dialect, word) into the requested kind. State the scope and cost.
+
 ## Running
 
 ```bash

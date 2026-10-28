@@ -72,6 +72,13 @@ publishing a deployment. Models are downloaded, never part of this repository. I
 The production droplet (2 GB) does not run voice; it needs roughly ≥ 4 GB RAM / 2 vCPU. Measure with `scripts/voice_proper_nouns.py`
 (see [docs/VOICE_EVALUATION.md](docs/VOICE_EVALUATION.md)); no WER figures are claimed until real recordings are collected.
 
+## Application layers (around the frozen core)
+
+Retrieval is frozen. Three product layers sit around it, each removable without changing a retrieval result ([docs/APPLICATION_LAYERS.md](docs/APPLICATION_LAYERS.md)):
+**query cleanup** (deletes "in Discover Canada"-style boilerplate from the search string only; `QUERY_CLEANUP=0` turns it off), **concept validation** (entity types, direction,
+what the quote states, First Nations / Métis / Inuit kept apart) and **"scan the whole guide"** for list questions (opt-in `STUDY_ENUMERATION=1`, or
+`python scripts/scan_guide.py languages [--mode thorough] [--focus "First Nations"]`).
+
 ## Frozen retrieval configuration
 
 `sentence-transformers/all-MiniLM-L6-v2` · normalized embeddings · cosine · plain dense

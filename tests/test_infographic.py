@@ -161,13 +161,13 @@ def test_helpers():
 # --- both Streamlit entry points run, the learner app stays non-technical -----------------------------
 
 @pytest.mark.parametrize("script", ["app.py", "study_app.py"])
-def test_entry_points_run_without_exceptions(script, monkeypatch):
+def test_entry_points_run_without_exceptions(script, monkeypatch, fresh_ui):
     monkeypatch.delenv("VENICE_API_KEY", raising=False)
     at = AppTest.from_file(str(ROOT / script), default_timeout=180).run()
     assert not at.exception
 
 
-def test_learner_app_shows_no_technical_vocabulary(monkeypatch):
+def test_learner_app_shows_no_technical_vocabulary(monkeypatch, fresh_ui):
     monkeypatch.delenv("VENICE_API_KEY", raising=False)
     at = AppTest.from_file(str(ROOT / "study_app.py"), default_timeout=180).run()
     shown = " ".join(str(getattr(e, "value", "")) for e in list(at.markdown) + list(at.caption) + list(at.subheader)
