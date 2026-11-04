@@ -303,3 +303,36 @@ flowchart LR
     V1 --> V2["concept_semantics: scope guard → types/signature/direction → cue in quote → ok / revised ('is mentioned with') / rejected"]
     V2 --> R["render (an empty hub shows the 'not enough connected facts' message)"]
 ```
+
+## K. Where latency is measured in a spoken turn (Milestone 4, `scripts/voice_eval/`)
+
+The evaluation harness drives the real pipeline and reads the existing timers; it adds nothing to the app. Browser microphone capture and WebRTC
+transport are outside the harness (not measured). Wake-word latency is a placeholder until Milestone 3 exists.
+
+```mermaid
+sequenceDiagram
+    autonumber
+    actor L as Learner (synthetic voice in the harness)
+    participant V as Silero VAD + Endpointer (live.py)
+    participant A as Whisper + name fixer (asr.py, names.py)
+    participant T as tutor.handle_turn
+    participant R as Frozen retrieval (k=5)
+    participant G as LLM (Venice)
+    participant S as Kokoro TTS (tts.py)
+    L->>V: speech, then silence
+    Note over L,V: t0 = last sample of speech
+    V-->>A: utterance (after the hangover, default 0.8 s)
+    Note over V,A: [endpoint] = sample clock, t0 to utterance emitted
+    A-->>T: text (hint, then name corrections)
+    Note over A,T: [asr] = inference seconds
+    T->>R: search_text(question)
+    R-->>T: 5 passages
+    Note over T,R: [retrieval]
+    T->>G: question + passages
+    G-->>T: grounded answer
+    Note over T,G: [generation]; [tutor total] = retrieval + generation + glue
+    T-->>S: speech_text (first 350 characters, whole sentences)
+    S-->>L: first audio (today = after the WHOLE reply is synthesised)
+    Note over T,S: [tts] = whole-reply synthesis = time to first audio today
+    Note over L,S: [total] = endpoint + asr + tutor total + tts. NOT included: wake word (M3), browser/WebRTC, playback start. TTS real-time factor is reported apart from [total].
+```

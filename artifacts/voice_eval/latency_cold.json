@@ -1,0 +1,221 @@
+{
+ "environment": {
+  "machine": "Apple M4 Pro",
+  "memory_gb": 24,
+  "os": "macOS-27.0.1-arm64-arm-64bit",
+  "python": "3.11.16",
+  "packages": {
+   "faster-whisper": "1.2.1",
+   "torch": "2.13.0",
+   "kokoro": "0.9.4",
+   "silero-vad": "6.2.3",
+   "onnxruntime": "1.29.1",
+   "sentence-transformers": "6.1.0",
+   "chromadb": "1.5.9",
+   "streamlit": "1.65.0",
+   "streamlit-webrtc": "0.79.0",
+   "jiwer": "4.0.0"
+  },
+  "asr": {
+   "model": "small",
+   "device": "cpu",
+   "compute_type": "int8",
+   "language": "en"
+  },
+  "tts_engine": "kokoro",
+  "tts_voice": "af_heart",
+  "llm_model": "z-ai-glm-5-3-flash",
+  "vad": "silero",
+  "hangover_ms": 800,
+  "browser": "not used: the harness drives the Python pipeline directly; browser microphone/WebRTC path is NOT measured"
+ },
+ "kind": "cold",
+ "audio": "synthetic macOS `say` voice Samantha",
+ "note": "A cold start = a fresh Python process (models loaded from disk, files likely in the OS page cache). A reboot/never-opened-model cold disk start was NOT measured.",
+ "runs": 3,
+ "ok": 3,
+ "summary": {
+  "model_load_total": {
+   "n": 3,
+   "median": 4.648286790936254,
+   "p90": 5.036934891785495,
+   "p95": 5.0855159043916505,
+   "min": 4.496474125015084,
+   "max": 5.134096916997805,
+   "mean": 4.759619277649715
+  },
+  "first_turn_total": {
+   "n": 3,
+   "median": 8.03990058403369,
+   "p90": 8.061483550426178,
+   "p95": 8.06418142122524,
+   "min": 7.857779498991091,
+   "max": 8.0668792920243,
+   "mean": 7.988186458349695
+  },
+  "first_turn_asr": {
+   "n": 3,
+   "median": 1.1911862919805571,
+   "p90": 1.3096778920153156,
+   "p95": 1.3244893420196604,
+   "min": 1.1679967910167761,
+   "max": 1.3393007920240052,
+   "mean": 1.2328279583404462
+  },
+  "first_turn_tts": {
+   "n": 3,
+   "median": 4.225219374988228,
+   "p90": 4.613418275024742,
+   "p95": 4.661943137529306,
+   "min": 3.1739509170292877,
+   "max": 4.71046800003387,
+   "mean": 4.036546097350462
+  },
+  "first_turn_retrieval": {
+   "n": 3,
+   "median": 0.06632012501358986,
+   "p90": 0.12355242497287691,
+   "p95": 0.13070646246778778,
+   "min": 0.05327054095687345,
+   "max": 0.13786049996269867,
+   "mean": 0.08581705531105399
+  },
+  "first_turn_vs_load_plus_turn": {
+   "n": 3,
+   "median": 12.536374709048774,
+   "p90": 13.06805590902744,
+   "p95": 13.134516059024772,
+   "min": 12.506066289927345,
+   "max": 13.200976209022105,
+   "mean": 12.747805735999409
+  },
+  "load_vad_load": {
+   "n": 3,
+   "median": 0.04668637498980388,
+   "p90": 0.0488234085845761,
+   "p95": 0.049090537783922625,
+   "min": 0.046051666024141014,
+   "max": 0.049357666983269155,
+   "mean": 0.04736523599907135
+  },
+  "load_asr_load": {
+   "n": 3,
+   "median": 0.9360614169854671,
+   "p90": 0.970356249762699,
+   "p95": 0.974643103859853,
+   "min": 0.8285805840278044,
+   "max": 0.978929957957007,
+   "mean": 0.9145239863234261
+  },
+  "load_retrieval_load": {
+   "n": 3,
+   "median": 1.8805799999972805,
+   "p90": 1.9475349663989618,
+   "p95": 1.955904337199172,
+   "min": 1.8316834999714047,
+   "max": 1.9642737079993822,
+   "mean": 1.8921790693226892
+  },
+  "load_tts_load": {
+   "n": 3,
+   "median": 1.7901583749917336,
+   "p90": 2.105554975022096,
+   "p95": 2.1449795500258917,
+   "min": 1.7420904579921626,
+   "max": 2.184404125029687,
+   "mean": 1.9055509860045277
+  }
+ },
+ "rows": [
+  {
+   "loads": {
+    "vad_load": 0.049357666983269155,
+    "asr_load": 0.9360614169854671,
+    "retrieval_load": 1.9642737079993822,
+    "tts_load": 2.184404125029687
+   },
+   "turn": {
+    "id": "q01",
+    "voice": "samantha",
+    "heard": "",
+    "abstained": false,
+    "endpoint": 0.8330625,
+    "vad_compute": 0.01166437502251938,
+    "vad_ms_per_frame": 0.11435661786783706,
+    "asr": 1.1911862919805571,
+    "asr_wall": 1.2143302909680642,
+    "retrieval": 0.13786049996269867,
+    "generation": 1.1942994999699295,
+    "tutor_total": 1.332162500009872,
+    "tts": 4.71046800003387,
+    "tts_first_sentence": 0.700742540997453,
+    "speech_audio_s": 1.8309375,
+    "reply_audio_s": 25.6,
+    "asr_rtf": 0.4897969950577949,
+    "tts_rtf": 0.18400265625132306,
+    "total": 8.0668792920243,
+    "total_if_streamed": 4.057153832987883
+   }
+  },
+  {
+   "loads": {
+    "vad_load": 0.046051666024141014,
+    "asr_load": 0.8285805840278044,
+    "retrieval_load": 1.8316834999714047,
+    "tts_load": 1.7901583749917336
+   },
+   "turn": {
+    "id": "q02",
+    "voice": "samantha",
+    "heard": "",
+    "abstained": false,
+    "endpoint": 0.8444375,
+    "vad_compute": 0.01635175000410527,
+    "vad_ms_per_frame": 0.10415127391149853,
+    "asr": 1.3393007920240052,
+    "asr_wall": 1.3604410840198398,
+    "retrieval": 0.06632012501358986,
+    "generation": 2.6158882919698954,
+    "tutor_total": 2.6822113749803975,
+    "tts": 3.1739509170292877,
+    "tts_first_sentence": 0.3564070829888806,
+    "speech_audio_s": 3.5795625,
+    "reply_audio_s": 17.375,
+    "asr_rtf": 0.319489692753818,
+    "tts_rtf": 0.18267343407362807,
+    "total": 8.03990058403369,
+    "total_if_streamed": 5.222356749993283
+   }
+  },
+  {
+   "loads": {
+    "vad_load": 0.04668637498980388,
+    "asr_load": 0.978929957957007,
+    "retrieval_load": 1.8805799999972805,
+    "tts_load": 1.7420904579921626
+   },
+   "turn": {
+    "id": "q03",
+    "voice": "samantha",
+    "heard": "",
+    "abstained": false,
+    "endpoint": 0.8400625,
+    "vad_compute": 0.01124920800793916,
+    "vad_ms_per_frame": 0.11597121657669238,
+    "asr": 1.1679967910167761,
+    "asr_wall": 1.1886857919744216,
+    "retrieval": 0.05327054095687345,
+    "generation": 1.5712281249579974,
+    "tutor_total": 1.6245008329860866,
+    "tts": 4.225219374988228,
+    "tts_first_sentence": 2.854423208977096,
+    "speech_audio_s": 1.6639375,
+    "reply_audio_s": 24.475,
+    "asr_rtf": 0.5140830946376655,
+    "tts_rtf": 0.17263409090860993,
+    "total": 7.857779498991091,
+    "total_if_streamed": 6.486983332979959
+   }
+  }
+ ]
+}

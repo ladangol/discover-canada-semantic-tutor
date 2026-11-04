@@ -1,0 +1,8429 @@
+{
+ "environment": {
+  "machine": "Apple M4 Pro",
+  "memory_gb": 24,
+  "os": "macOS-27.0.1-arm64-arm-64bit",
+  "python": "3.11.16",
+  "packages": {
+   "faster-whisper": "1.2.1",
+   "torch": "2.13.0",
+   "kokoro": "0.9.4",
+   "silero-vad": "6.2.3",
+   "onnxruntime": "1.29.1",
+   "sentence-transformers": "6.1.0",
+   "chromadb": "1.5.9",
+   "streamlit": "1.65.0",
+   "streamlit-webrtc": "0.79.0",
+   "jiwer": "4.0.0"
+  },
+  "asr": {
+   "model": "small",
+   "device": "cpu",
+   "compute_type": "int8",
+   "language": "en"
+  },
+  "tts_engine": "kokoro",
+  "tts_voice": "af_heart",
+  "llm_model": "z-ai-glm-5-3-flash",
+  "vad": "silero",
+  "hangover_ms": 800,
+  "browser": "not used: the harness drives the Python pipeline directly; browser microphone/WebRTC path is NOT measured"
+ },
+ "model": "medium",
+ "audio": "SYNTHETIC speech (macOS `say` voices + the app's Kokoro voice); pink noise where an SNR is given. Not people.",
+ "clips": 160,
+ "scores": {
+  "raw | clean": {
+   "clips": 160,
+   "wer": 0.08144329896907217,
+   "cer": 0.028816793893129772,
+   "name_mentions": 135,
+   "name_errors": 43,
+   "name_error_rate": 0.31851851851851853,
+   "exact_transcripts": 0.7,
+   "clips_with_a_name_wrong": 42,
+   "clips_with_names": 120,
+   "retrieval_top1_kept": 0.91875,
+   "retrieval_top1_same": 0.85,
+   "name_wrong_and_retrieval_lost": 13
+  },
+  "hint | clean": {
+   "clips": 160,
+   "wer": 0.021649484536082474,
+   "cer": 0.007824427480916031,
+   "name_mentions": 135,
+   "name_errors": 13,
+   "name_error_rate": 0.0962962962962963,
+   "exact_transcripts": 0.90625,
+   "clips_with_a_name_wrong": 13,
+   "clips_with_names": 120,
+   "retrieval_top1_kept": 0.99375,
+   "retrieval_top1_same": 0.9875,
+   "name_wrong_and_retrieval_lost": 1
+  },
+  "hint+fix | clean": {
+   "clips": 160,
+   "wer": 0.01752577319587629,
+   "cer": 0.007061068702290076,
+   "name_mentions": 135,
+   "name_errors": 10,
+   "name_error_rate": 0.07407407407407407,
+   "exact_transcripts": 0.925,
+   "clips_with_a_name_wrong": 10,
+   "clips_with_names": 120,
+   "retrieval_top1_kept": 0.99375,
+   "retrieval_top1_same": 0.9875,
+   "name_wrong_and_retrieval_lost": 1
+  }
+ },
+ "per_entity": {
+  "Confederation": {
+   "raw": "0/10",
+   "hint": "0/10",
+   "hint+fix": "0/10"
+  },
+  "Haida Gwaii": {
+   "raw": "3/5",
+   "hint": "0/5",
+   "hint+fix": "0/5"
+  },
+  "Inuktitut": {
+   "raw": "2/10",
+   "hint": "0/10",
+   "hint+fix": "0/10"
+  },
+  "Jacques Cartier": {
+   "raw": "1/5",
+   "hint": "1/5",
+   "hint+fix": "1/5"
+  },
+  "Laura Secord": {
+   "raw": "1/5",
+   "hint": "0/5",
+   "hint+fix": "0/5"
+  },
+  "Louis Riel": {
+   "raw": "3/5",
+   "hint": "0/5",
+   "hint+fix": "0/5"
+  },
+  "Louis-Hippolyte La Fontaine": {
+   "raw": "3/5",
+   "hint": "0/5",
+   "hint+fix": "0/5"
+  },
+  "Louis-Joseph Papineau": {
+   "raw": "1/5",
+   "hint": "0/5",
+   "hint+fix": "0/5"
+  },
+  "Mi'kmaq": {
+   "raw": "5/5",
+   "hint": "0/5",
+   "hint+fix": "0/5"
+  },
+  "Michif": {
+   "raw": "7/10",
+   "hint": "0/10",
+   "hint+fix": "0/10"
+  },
+  "Métis": {
+   "raw": "3/5",
+   "hint": "1/5",
+   "hint+fix": "1/5"
+  },
+  "Nunavut": {
+   "raw": "0/10",
+   "hint": "0/10",
+   "hint+fix": "0/10"
+  },
+  "Prince Edward Island": {
+   "raw": "0/10",
+   "hint": "0/10",
+   "hint+fix": "0/10"
+  },
+  "RCMP": {
+   "raw": "0/5",
+   "hint": "0/5",
+   "hint+fix": "0/5"
+  },
+  "Samuel de Champlain": {
+   "raw": "2/5",
+   "hint": "3/5",
+   "hint+fix": "3/5"
+  },
+  "Saskatchewan": {
+   "raw": "0/5",
+   "hint": "0/5",
+   "hint+fix": "0/5"
+  },
+  "Sir George-Étienne Cartier": {
+   "raw": "5/5",
+   "hint": "4/5",
+   "hint+fix": "4/5"
+  },
+  "Sir Isaac Brock": {
+   "raw": "1/5",
+   "hint": "1/5",
+   "hint+fix": "1/5"
+  },
+  "Sir John A. Macdonald": {
+   "raw": "2/5",
+   "hint": "0/5",
+   "hint+fix": "0/5"
+  },
+  "Sir Wilfrid Laurier": {
+   "raw": "3/5",
+   "hint": "3/5",
+   "hint+fix": "0/5"
+  },
+  "Tecumseh": {
+   "raw": "1/5",
+   "hint": "0/5",
+   "hint+fix": "0/5"
+  },
+  "Terry Fox": {
+   "raw": "0/5",
+   "hint": "0/5",
+   "hint+fix": "0/5"
+  }
+ },
+ "per_voice_clean_hint_fix": {
+  "daniel": {
+   "clips": 32,
+   "wer": 0.010309278350515464
+  },
+  "karen": {
+   "clips": 32,
+   "wer": 0.015463917525773196
+  },
+  "kokoro": {
+   "clips": 32,
+   "wer": 0.010309278350515464
+  },
+  "rishi": {
+   "clips": 32,
+   "wer": 0.020618556701030927
+  },
+  "samantha": {
+   "clips": 32,
+   "wer": 0.030927835051546393
+  }
+ },
+ "failures": [
+  {
+   "ref": "Who are the Métis?",
+   "heard": "Who are the mages?",
+   "voice": "karen",
+   "snr_db": null,
+   "entities_missed": [
+    "Métis"
+   ],
+   "ref_top1_kept": false
+  },
+  {
+   "ref": "Who was Samuel de Champlain?",
+   "heard": "Who was Samuel D. Champlain?",
+   "voice": "samantha",
+   "snr_db": null,
+   "entities_missed": [
+    "Samuel de Champlain"
+   ],
+   "ref_top1_kept": true
+  },
+  {
+   "ref": "Who was Samuel de Champlain?",
+   "heard": "Who was Samuel D. Champlain?",
+   "voice": "karen",
+   "snr_db": null,
+   "entities_missed": [
+    "Samuel de Champlain"
+   ],
+   "ref_top1_kept": true
+  },
+  {
+   "ref": "Who was Samuel de Champlain?",
+   "heard": "Who was Samuel D. Champlain?",
+   "voice": "rishi",
+   "snr_db": null,
+   "entities_missed": [
+    "Samuel de Champlain"
+   ],
+   "ref_top1_kept": true
+  },
+  {
+   "ref": "What did Sir George-Étienne Cartier do for Confederation?",
+   "heard": "What did Sir George E.G.N. Cartier do for Confederation?",
+   "voice": "samantha",
+   "snr_db": null,
+   "entities_missed": [
+    "Sir George-Étienne Cartier"
+   ],
+   "ref_top1_kept": true
+  },
+  {
+   "ref": "What did Sir George-Étienne Cartier do for Confederation?",
+   "heard": "What did Sir George Ichien Cartier do for Confederation?",
+   "voice": "daniel",
+   "snr_db": null,
+   "entities_missed": [
+    "Sir George-Étienne Cartier"
+   ],
+   "ref_top1_kept": true
+  },
+  {
+   "ref": "What did Sir George-Étienne Cartier do for Confederation?",
+   "heard": "What did Sir George Chien Cartier do for Confederation?",
+   "voice": "karen",
+   "snr_db": null,
+   "entities_missed": [
+    "Sir George-Étienne Cartier"
+   ],
+   "ref_top1_kept": true
+  },
+  {
+   "ref": "What did Sir George-Étienne Cartier do for Confederation?",
+   "heard": "What did Sir George Ichi and Cartier do for Confederation?",
+   "voice": "rishi",
+   "snr_db": null,
+   "entities_missed": [
+    "Sir George-Étienne Cartier"
+   ],
+   "ref_top1_kept": true
+  },
+  {
+   "ref": "Who was Jacques Cartier?",
+   "heard": "Who was Jax Cartier?",
+   "voice": "rishi",
+   "snr_db": null,
+   "entities_missed": [
+    "Jacques Cartier"
+   ],
+   "ref_top1_kept": true
+  },
+  {
+   "ref": "Who was Sir Isaac Brock?",
+   "heard": "Who was Isaac Brock?",
+   "voice": "daniel",
+   "snr_db": null,
+   "entities_missed": [
+    "Sir Isaac Brock"
+   ],
+   "ref_top1_kept": true
+  },
+  {
+   "ref": "Where was the North West Mounted Police headquartered?",
+   "heard": "Where was the Northwest mounted police headquartered?",
+   "voice": "kokoro",
+   "snr_db": null,
+   "entities_missed": [],
+   "ref_top1_kept": true
+  },
+  {
+   "ref": "Where was the North West Mounted Police headquartered?",
+   "heard": "Where was the Northwest Mounted Police headquartered?",
+   "voice": "samantha",
+   "snr_db": null,
+   "entities_missed": [],
+   "ref_top1_kept": true
+  }
+ ],
+ "rows": [
+  {
+   "id": "q01",
+   "voice": "kokoro",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "What does RCMP stand for?",
+   "heard": "What does RCMP stand for?",
+   "entities": [
+    "RCMP"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.375,
+   "asr_s": 3.2484996669809334,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q01",
+   "voice": "kokoro",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "What does RCMP stand for?",
+   "heard": "What does RCMP stand for?",
+   "entities": [
+    "RCMP"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.375,
+   "asr_s": 3.370116083009634,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q01",
+   "voice": "kokoro",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "What does RCMP stand for?",
+   "heard": "What does RCMP stand for?",
+   "entities": [
+    "RCMP"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.375,
+   "asr_s": 3.370116083009634,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q01",
+   "voice": "samantha",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "What does RCMP stand for?",
+   "heard": "What does RCMP stand for?",
+   "entities": [
+    "RCMP"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.0341875,
+   "asr_s": 3.1657594579737633,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q01",
+   "voice": "samantha",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "What does RCMP stand for?",
+   "heard": "What does RCMP stand for?",
+   "entities": [
+    "RCMP"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.0341875,
+   "asr_s": 3.4134659589617513,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q01",
+   "voice": "samantha",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "What does RCMP stand for?",
+   "heard": "What does RCMP stand for?",
+   "entities": [
+    "RCMP"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.0341875,
+   "asr_s": 3.4134659589617513,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q01",
+   "voice": "daniel",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "What does RCMP stand for?",
+   "heard": "What does RCMP stand for?",
+   "entities": [
+    "RCMP"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.4055,
+   "asr_s": 3.2834418329875916,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q01",
+   "voice": "daniel",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "What does RCMP stand for?",
+   "heard": "What does RCMP stand for?",
+   "entities": [
+    "RCMP"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.4055,
+   "asr_s": 3.4699585830094293,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q01",
+   "voice": "daniel",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "What does RCMP stand for?",
+   "heard": "What does RCMP stand for?",
+   "entities": [
+    "RCMP"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.4055,
+   "asr_s": 3.4699585830094293,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q01",
+   "voice": "karen",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "What does RCMP stand for?",
+   "heard": "What does RCMP stand for?",
+   "entities": [
+    "RCMP"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.2014375,
+   "asr_s": 3.3472785420017317,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q01",
+   "voice": "karen",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "What does RCMP stand for?",
+   "heard": "What does RCMP stand for?",
+   "entities": [
+    "RCMP"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.2014375,
+   "asr_s": 3.71873395802686,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q01",
+   "voice": "karen",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "What does RCMP stand for?",
+   "heard": "What does RCMP stand for?",
+   "entities": [
+    "RCMP"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.2014375,
+   "asr_s": 3.71873395802686,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q01",
+   "voice": "rishi",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "What does RCMP stand for?",
+   "heard": "What does RCMP stand for?",
+   "entities": [
+    "RCMP"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.2494375,
+   "asr_s": 4.5180938330013305,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q01",
+   "voice": "rishi",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "What does RCMP stand for?",
+   "heard": "What does RCMP stand for?",
+   "entities": [
+    "RCMP"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.2494375,
+   "asr_s": 4.051297208003234,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q01",
+   "voice": "rishi",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "What does RCMP stand for?",
+   "heard": "What does RCMP stand for?",
+   "entities": [
+    "RCMP"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.2494375,
+   "asr_s": 4.051297208003234,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q02",
+   "voice": "kokoro",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "What did Chief Tecumseh do in the War of 1812?",
+   "heard": "What did Chief Tecumseh do in the War of 1812?",
+   "entities": [
+    "Tecumseh"
+   ],
+   "entities_missed": [],
+   "audio_s": 3.5,
+   "asr_s": 3.692249624989927,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q02",
+   "voice": "kokoro",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "What did Chief Tecumseh do in the War of 1812?",
+   "heard": "What did Chief Tecumseh do in the War of 1812?",
+   "entities": [
+    "Tecumseh"
+   ],
+   "entities_missed": [],
+   "audio_s": 3.5,
+   "asr_s": 4.967691208003089,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q02",
+   "voice": "kokoro",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "What did Chief Tecumseh do in the War of 1812?",
+   "heard": "What did Chief Tecumseh do in the War of 1812?",
+   "entities": [
+    "Tecumseh"
+   ],
+   "entities_missed": [],
+   "audio_s": 3.5,
+   "asr_s": 4.967691208003089,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q02",
+   "voice": "samantha",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "What did Chief Tecumseh do in the War of 1812?",
+   "heard": "What did Chief Tecumseh do in the War of 1812?",
+   "entities": [
+    "Tecumseh"
+   ],
+   "entities_missed": [],
+   "audio_s": 3.822125,
+   "asr_s": 3.743967332993634,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q02",
+   "voice": "samantha",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "What did Chief Tecumseh do in the War of 1812?",
+   "heard": "What did Chief Tecumseh do in the War of 1812?",
+   "entities": [
+    "Tecumseh"
+   ],
+   "entities_missed": [],
+   "audio_s": 3.822125,
+   "asr_s": 7.896670375019312,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q02",
+   "voice": "samantha",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "What did Chief Tecumseh do in the War of 1812?",
+   "heard": "What did Chief Tecumseh do in the War of 1812?",
+   "entities": [
+    "Tecumseh"
+   ],
+   "entities_missed": [],
+   "audio_s": 3.822125,
+   "asr_s": 7.896670375019312,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q02",
+   "voice": "daniel",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "What did Chief Tecumseh do in the War of 1812?",
+   "heard": "What did chief Tecumseh do in the war of 1812?",
+   "entities": [
+    "Tecumseh"
+   ],
+   "entities_missed": [],
+   "audio_s": 3.21825,
+   "asr_s": 5.163246708980296,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q02",
+   "voice": "daniel",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "What did Chief Tecumseh do in the War of 1812?",
+   "heard": "What did Chief Tecumseh do in the war of 1812?",
+   "entities": [
+    "Tecumseh"
+   ],
+   "entities_missed": [],
+   "audio_s": 3.21825,
+   "asr_s": 4.456855416006874,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q02",
+   "voice": "daniel",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "What did Chief Tecumseh do in the War of 1812?",
+   "heard": "What did Chief Tecumseh do in the war of 1812?",
+   "entities": [
+    "Tecumseh"
+   ],
+   "entities_missed": [],
+   "audio_s": 3.21825,
+   "asr_s": 4.456855416006874,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q02",
+   "voice": "karen",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "What did Chief Tecumseh do in the War of 1812?",
+   "heard": "What did Chief Tecumseh do in the War of 1812?",
+   "entities": [
+    "Tecumseh"
+   ],
+   "entities_missed": [],
+   "audio_s": 3.2119375,
+   "asr_s": 5.532108791987412,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q02",
+   "voice": "karen",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "What did Chief Tecumseh do in the War of 1812?",
+   "heard": "What did Chief Tecumseh do in the War of 1812?",
+   "entities": [
+    "Tecumseh"
+   ],
+   "entities_missed": [],
+   "audio_s": 3.2119375,
+   "asr_s": 5.18461183400359,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q02",
+   "voice": "karen",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "What did Chief Tecumseh do in the War of 1812?",
+   "heard": "What did Chief Tecumseh do in the War of 1812?",
+   "entities": [
+    "Tecumseh"
+   ],
+   "entities_missed": [],
+   "audio_s": 3.2119375,
+   "asr_s": 5.18461183400359,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q02",
+   "voice": "rishi",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "What did Chief Tecumseh do in the War of 1812?",
+   "heard": "What did Chief Takamsa do in the war of 1812?",
+   "entities": [
+    "Tecumseh"
+   ],
+   "entities_missed": [
+    "Tecumseh"
+   ],
+   "audio_s": 3.456875,
+   "asr_s": 4.951984332990833,
+   "ref_top1_kept": true,
+   "top1_same": false,
+   "overlap5": 0.8
+  },
+  {
+   "id": "q02",
+   "voice": "rishi",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "What did Chief Tecumseh do in the War of 1812?",
+   "heard": "What did Chief Tecumseh do in the war of 1812?",
+   "entities": [
+    "Tecumseh"
+   ],
+   "entities_missed": [],
+   "audio_s": 3.456875,
+   "asr_s": 6.322380666038953,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q02",
+   "voice": "rishi",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "What did Chief Tecumseh do in the War of 1812?",
+   "heard": "What did Chief Tecumseh do in the war of 1812?",
+   "entities": [
+    "Tecumseh"
+   ],
+   "entities_missed": [],
+   "audio_s": 3.456875,
+   "asr_s": 6.322380666038953,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q03",
+   "voice": "kokoro",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "Who was Samuel de Champlain?",
+   "heard": "Who was Samuel de Champlain?",
+   "entities": [
+    "Samuel de Champlain"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.1,
+   "asr_s": 3.554687457974069,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q03",
+   "voice": "kokoro",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "Who was Samuel de Champlain?",
+   "heard": "Who was Samuel de Champlain?",
+   "entities": [
+    "Samuel de Champlain"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.1,
+   "asr_s": 4.244221374974586,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q03",
+   "voice": "kokoro",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "Who was Samuel de Champlain?",
+   "heard": "Who was Samuel de Champlain?",
+   "entities": [
+    "Samuel de Champlain"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.1,
+   "asr_s": 4.244221374974586,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q03",
+   "voice": "samantha",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "Who was Samuel de Champlain?",
+   "heard": "Who was Samuel de Champlain?",
+   "entities": [
+    "Samuel de Champlain"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.8878125,
+   "asr_s": 4.176689999992959,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q03",
+   "voice": "samantha",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "Who was Samuel de Champlain?",
+   "heard": "Who was Samuel D. Champlain?",
+   "entities": [
+    "Samuel de Champlain"
+   ],
+   "entities_missed": [
+    "Samuel de Champlain"
+   ],
+   "audio_s": 1.8878125,
+   "asr_s": 3.972129917005077,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q03",
+   "voice": "samantha",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "Who was Samuel de Champlain?",
+   "heard": "Who was Samuel D. Champlain?",
+   "entities": [
+    "Samuel de Champlain"
+   ],
+   "entities_missed": [
+    "Samuel de Champlain"
+   ],
+   "audio_s": 1.8878125,
+   "asr_s": 3.972129917005077,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q03",
+   "voice": "daniel",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "Who was Samuel de Champlain?",
+   "heard": "Who was Samuel de Champlain?",
+   "entities": [
+    "Samuel de Champlain"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.9850625,
+   "asr_s": 4.335758542001713,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q03",
+   "voice": "daniel",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "Who was Samuel de Champlain?",
+   "heard": "Who was Samuel de Champlain?",
+   "entities": [
+    "Samuel de Champlain"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.9850625,
+   "asr_s": 3.9357120000058785,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q03",
+   "voice": "daniel",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "Who was Samuel de Champlain?",
+   "heard": "Who was Samuel de Champlain?",
+   "entities": [
+    "Samuel de Champlain"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.9850625,
+   "asr_s": 3.9357120000058785,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q03",
+   "voice": "karen",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "Who was Samuel de Champlain?",
+   "heard": "Who was Samuel D Champlain?",
+   "entities": [
+    "Samuel de Champlain"
+   ],
+   "entities_missed": [
+    "Samuel de Champlain"
+   ],
+   "audio_s": 1.9810625,
+   "asr_s": 4.120533749985043,
+   "ref_top1_kept": true,
+   "top1_same": false,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q03",
+   "voice": "karen",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "Who was Samuel de Champlain?",
+   "heard": "Who was Samuel D. Champlain?",
+   "entities": [
+    "Samuel de Champlain"
+   ],
+   "entities_missed": [
+    "Samuel de Champlain"
+   ],
+   "audio_s": 1.9810625,
+   "asr_s": 4.585647416999564,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q03",
+   "voice": "karen",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "Who was Samuel de Champlain?",
+   "heard": "Who was Samuel D. Champlain?",
+   "entities": [
+    "Samuel de Champlain"
+   ],
+   "entities_missed": [
+    "Samuel de Champlain"
+   ],
+   "audio_s": 1.9810625,
+   "asr_s": 4.585647416999564,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q03",
+   "voice": "rishi",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "Who was Samuel de Champlain?",
+   "heard": "who was Samuel D Champlain.",
+   "entities": [
+    "Samuel de Champlain"
+   ],
+   "entities_missed": [
+    "Samuel de Champlain"
+   ],
+   "audio_s": 2.1419375,
+   "asr_s": 3.899416292028036,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q03",
+   "voice": "rishi",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "Who was Samuel de Champlain?",
+   "heard": "Who was Samuel D. Champlain?",
+   "entities": [
+    "Samuel de Champlain"
+   ],
+   "entities_missed": [
+    "Samuel de Champlain"
+   ],
+   "audio_s": 2.1419375,
+   "asr_s": 3.819865541998297,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q03",
+   "voice": "rishi",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "Who was Samuel de Champlain?",
+   "heard": "Who was Samuel D. Champlain?",
+   "entities": [
+    "Samuel de Champlain"
+   ],
+   "entities_missed": [
+    "Samuel de Champlain"
+   ],
+   "audio_s": 2.1419375,
+   "asr_s": 3.819865541998297,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q04",
+   "voice": "kokoro",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "Who was Sir Wilfrid Laurier?",
+   "heard": "Who was Sir Wilfrid Laurier?",
+   "entities": [
+    "Sir Wilfrid Laurier"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.175,
+   "asr_s": 4.8646505829528905,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q04",
+   "voice": "kokoro",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "Who was Sir Wilfrid Laurier?",
+   "heard": "Who was Sir Wilfrid Laurier?",
+   "entities": [
+    "Sir Wilfrid Laurier"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.175,
+   "asr_s": 5.397609750041738,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q04",
+   "voice": "kokoro",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "Who was Sir Wilfrid Laurier?",
+   "heard": "Who was Sir Wilfrid Laurier?",
+   "entities": [
+    "Sir Wilfrid Laurier"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.175,
+   "asr_s": 5.397609750041738,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q04",
+   "voice": "samantha",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "Who was Sir Wilfrid Laurier?",
+   "heard": "Who was Sir Wilfrid Laurier?",
+   "entities": [
+    "Sir Wilfrid Laurier"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.7716875,
+   "asr_s": 3.856795499974396,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q04",
+   "voice": "samantha",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "Who was Sir Wilfrid Laurier?",
+   "heard": "Who was Sir Wilfrid Laurier?",
+   "entities": [
+    "Sir Wilfrid Laurier"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.7716875,
+   "asr_s": 5.429577832983341,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q04",
+   "voice": "samantha",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "Who was Sir Wilfrid Laurier?",
+   "heard": "Who was Sir Wilfrid Laurier?",
+   "entities": [
+    "Sir Wilfrid Laurier"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.7716875,
+   "asr_s": 5.429577832983341,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q04",
+   "voice": "daniel",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "Who was Sir Wilfrid Laurier?",
+   "heard": "Who was Sir Wilfred Loria?",
+   "entities": [
+    "Sir Wilfrid Laurier"
+   ],
+   "entities_missed": [
+    "Sir Wilfrid Laurier"
+   ],
+   "audio_s": 1.66,
+   "asr_s": 4.740891374996863,
+   "ref_top1_kept": true,
+   "top1_same": false,
+   "overlap5": 0.6
+  },
+  {
+   "id": "q04",
+   "voice": "daniel",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "Who was Sir Wilfrid Laurier?",
+   "heard": "Who was Sir Wilfred Laurier?",
+   "entities": [
+    "Sir Wilfrid Laurier"
+   ],
+   "entities_missed": [
+    "Sir Wilfrid Laurier"
+   ],
+   "audio_s": 1.66,
+   "asr_s": 4.015923542028759,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 0.6
+  },
+  {
+   "id": "q04",
+   "voice": "daniel",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "Who was Sir Wilfrid Laurier?",
+   "heard": "Who was Sir Wilfrid Laurier?",
+   "entities": [
+    "Sir Wilfrid Laurier"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.66,
+   "asr_s": 4.015923542028759,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q04",
+   "voice": "karen",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "Who was Sir Wilfrid Laurier?",
+   "heard": "Who was Sir Wilfred Laurier?",
+   "entities": [
+    "Sir Wilfrid Laurier"
+   ],
+   "entities_missed": [
+    "Sir Wilfrid Laurier"
+   ],
+   "audio_s": 1.7836875,
+   "asr_s": 3.405247832997702,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 0.6
+  },
+  {
+   "id": "q04",
+   "voice": "karen",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "Who was Sir Wilfrid Laurier?",
+   "heard": "Who was Sir Wilfred Laurier?",
+   "entities": [
+    "Sir Wilfrid Laurier"
+   ],
+   "entities_missed": [
+    "Sir Wilfrid Laurier"
+   ],
+   "audio_s": 1.7836875,
+   "asr_s": 5.054677542007994,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 0.6
+  },
+  {
+   "id": "q04",
+   "voice": "karen",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "Who was Sir Wilfrid Laurier?",
+   "heard": "Who was Sir Wilfrid Laurier?",
+   "entities": [
+    "Sir Wilfrid Laurier"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.7836875,
+   "asr_s": 5.054677542007994,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q04",
+   "voice": "rishi",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "Who was Sir Wilfrid Laurier?",
+   "heard": "who was Sir Wilfred Laurier.",
+   "entities": [
+    "Sir Wilfrid Laurier"
+   ],
+   "entities_missed": [
+    "Sir Wilfrid Laurier"
+   ],
+   "audio_s": 1.979375,
+   "asr_s": 3.61994429200422,
+   "ref_top1_kept": true,
+   "top1_same": false,
+   "overlap5": 0.6
+  },
+  {
+   "id": "q04",
+   "voice": "rishi",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "Who was Sir Wilfrid Laurier?",
+   "heard": "Who was Sir Wilfred Laurier?",
+   "entities": [
+    "Sir Wilfrid Laurier"
+   ],
+   "entities_missed": [
+    "Sir Wilfrid Laurier"
+   ],
+   "audio_s": 1.979375,
+   "asr_s": 3.718154832953587,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 0.6
+  },
+  {
+   "id": "q04",
+   "voice": "rishi",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "Who was Sir Wilfrid Laurier?",
+   "heard": "Who was Sir Wilfrid Laurier?",
+   "entities": [
+    "Sir Wilfrid Laurier"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.979375,
+   "asr_s": 3.718154832953587,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q05",
+   "voice": "kokoro",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "What is the capital of Nunavut?",
+   "heard": "What is the capital of Nunavut?",
+   "entities": [
+    "Nunavut"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.425,
+   "asr_s": 4.35993195901392,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q05",
+   "voice": "kokoro",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "What is the capital of Nunavut?",
+   "heard": "What is the capital of Nunavut?",
+   "entities": [
+    "Nunavut"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.425,
+   "asr_s": 4.343028582981788,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q05",
+   "voice": "kokoro",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "What is the capital of Nunavut?",
+   "heard": "What is the capital of Nunavut?",
+   "entities": [
+    "Nunavut"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.425,
+   "asr_s": 4.343028582981788,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q05",
+   "voice": "samantha",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "What is the capital of Nunavut?",
+   "heard": "What is the capital of Nunavut?",
+   "entities": [
+    "Nunavut"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.8019375,
+   "asr_s": 4.196084292023443,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q05",
+   "voice": "samantha",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "What is the capital of Nunavut?",
+   "heard": "What is the capital of Nunavut?",
+   "entities": [
+    "Nunavut"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.8019375,
+   "asr_s": 5.877193958032876,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q05",
+   "voice": "samantha",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "What is the capital of Nunavut?",
+   "heard": "What is the capital of Nunavut?",
+   "entities": [
+    "Nunavut"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.8019375,
+   "asr_s": 5.877193958032876,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q05",
+   "voice": "daniel",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "What is the capital of Nunavut?",
+   "heard": "What is the capital of Nunavut?",
+   "entities": [
+    "Nunavut"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.9295625,
+   "asr_s": 3.9301856249803677,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q05",
+   "voice": "daniel",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "What is the capital of Nunavut?",
+   "heard": "What is the capital of Nunavut?",
+   "entities": [
+    "Nunavut"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.9295625,
+   "asr_s": 4.866950124967843,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q05",
+   "voice": "daniel",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "What is the capital of Nunavut?",
+   "heard": "What is the capital of Nunavut?",
+   "entities": [
+    "Nunavut"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.9295625,
+   "asr_s": 4.866950124967843,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q05",
+   "voice": "karen",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "What is the capital of Nunavut?",
+   "heard": "What is the capital of Nunavut?",
+   "entities": [
+    "Nunavut"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.8415,
+   "asr_s": 3.795682083000429,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q05",
+   "voice": "karen",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "What is the capital of Nunavut?",
+   "heard": "What is the capital of Nunavut?",
+   "entities": [
+    "Nunavut"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.8415,
+   "asr_s": 3.6813759580254555,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q05",
+   "voice": "karen",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "What is the capital of Nunavut?",
+   "heard": "What is the capital of Nunavut?",
+   "entities": [
+    "Nunavut"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.8415,
+   "asr_s": 3.6813759580254555,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q05",
+   "voice": "rishi",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "What is the capital of Nunavut?",
+   "heard": "What is the capital of Nunavut?",
+   "entities": [
+    "Nunavut"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.110125,
+   "asr_s": 3.3410331669729203,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q05",
+   "voice": "rishi",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "What is the capital of Nunavut?",
+   "heard": "What is the capital of Nunavut?",
+   "entities": [
+    "Nunavut"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.110125,
+   "asr_s": 4.338140874984674,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q05",
+   "voice": "rishi",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "What is the capital of Nunavut?",
+   "heard": "What is the capital of Nunavut?",
+   "entities": [
+    "Nunavut"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.110125,
+   "asr_s": 4.338140874984674,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q06",
+   "voice": "kokoro",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "Who was Louis Riel?",
+   "heard": "Who was Louis Riel?",
+   "entities": [
+    "Louis Riel"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.75,
+   "asr_s": 4.083687916980125,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q06",
+   "voice": "kokoro",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "Who was Louis Riel?",
+   "heard": "Who was Louis Riel?",
+   "entities": [
+    "Louis Riel"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.75,
+   "asr_s": 3.639694084005896,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q06",
+   "voice": "kokoro",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "Who was Louis Riel?",
+   "heard": "Who was Louis Riel?",
+   "entities": [
+    "Louis Riel"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.75,
+   "asr_s": 3.639694084005896,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q06",
+   "voice": "samantha",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "Who was Louis Riel?",
+   "heard": "Who was Louis Riel?",
+   "entities": [
+    "Louis Riel"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.3305625,
+   "asr_s": 4.3617337080067955,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q06",
+   "voice": "samantha",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "Who was Louis Riel?",
+   "heard": "Who was Louis Riel?",
+   "entities": [
+    "Louis Riel"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.3305625,
+   "asr_s": 3.7223863329854794,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q06",
+   "voice": "samantha",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "Who was Louis Riel?",
+   "heard": "Who was Louis Riel?",
+   "entities": [
+    "Louis Riel"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.3305625,
+   "asr_s": 3.7223863329854794,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q06",
+   "voice": "daniel",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "Who was Louis Riel?",
+   "heard": "Who was Louie Real?",
+   "entities": [
+    "Louis Riel"
+   ],
+   "entities_missed": [
+    "Louis Riel"
+   ],
+   "audio_s": 1.26525,
+   "asr_s": 3.3736812919960357,
+   "ref_top1_kept": false,
+   "top1_same": false,
+   "overlap5": 0.0
+  },
+  {
+   "id": "q06",
+   "voice": "daniel",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "Who was Louis Riel?",
+   "heard": "Who was Louis Riel?",
+   "entities": [
+    "Louis Riel"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.26525,
+   "asr_s": 4.34253320901189,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q06",
+   "voice": "daniel",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "Who was Louis Riel?",
+   "heard": "Who was Louis Riel?",
+   "entities": [
+    "Louis Riel"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.26525,
+   "asr_s": 4.34253320901189,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q06",
+   "voice": "karen",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "Who was Louis Riel?",
+   "heard": "Who was Lewis Real?",
+   "entities": [
+    "Louis Riel"
+   ],
+   "entities_missed": [
+    "Louis Riel"
+   ],
+   "audio_s": 1.3889375,
+   "asr_s": 4.239869416982401,
+   "ref_top1_kept": false,
+   "top1_same": false,
+   "overlap5": 0.0
+  },
+  {
+   "id": "q06",
+   "voice": "karen",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "Who was Louis Riel?",
+   "heard": "Who was Louis Riel?",
+   "entities": [
+    "Louis Riel"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.3889375,
+   "asr_s": 4.031437166966498,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q06",
+   "voice": "karen",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "Who was Louis Riel?",
+   "heard": "Who was Louis Riel?",
+   "entities": [
+    "Louis Riel"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.3889375,
+   "asr_s": 4.031437166966498,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q06",
+   "voice": "rishi",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "Who was Louis Riel?",
+   "heard": "Who was Louie Real?",
+   "entities": [
+    "Louis Riel"
+   ],
+   "entities_missed": [
+    "Louis Riel"
+   ],
+   "audio_s": 1.3756875,
+   "asr_s": 4.753275458991993,
+   "ref_top1_kept": false,
+   "top1_same": false,
+   "overlap5": 0.0
+  },
+  {
+   "id": "q06",
+   "voice": "rishi",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "Who was Louis Riel?",
+   "heard": "Who was Louis Riel?",
+   "entities": [
+    "Louis Riel"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.3756875,
+   "asr_s": 4.44185900001321,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q06",
+   "voice": "rishi",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "Who was Louis Riel?",
+   "heard": "Who was Louis Riel?",
+   "entities": [
+    "Louis Riel"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.3756875,
+   "asr_s": 4.44185900001321,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q07",
+   "voice": "kokoro",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "What does Nunavut mean in Inuktitut?",
+   "heard": "What does Nunavut mean in Inuktitut?",
+   "entities": [
+    "Nunavut",
+    "Inuktitut"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.575,
+   "asr_s": 3.7267129170359112,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q07",
+   "voice": "kokoro",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "What does Nunavut mean in Inuktitut?",
+   "heard": "What does Nunavut mean in Inuktitut?",
+   "entities": [
+    "Nunavut",
+    "Inuktitut"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.575,
+   "asr_s": 5.665614125027787,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q07",
+   "voice": "kokoro",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "What does Nunavut mean in Inuktitut?",
+   "heard": "What does Nunavut mean in Inuktitut?",
+   "entities": [
+    "Nunavut",
+    "Inuktitut"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.575,
+   "asr_s": 5.665614125027787,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q07",
+   "voice": "samantha",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "What does Nunavut mean in Inuktitut?",
+   "heard": "What does Nunavut mean in Inuktitut?",
+   "entities": [
+    "Nunavut",
+    "Inuktitut"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.0341875,
+   "asr_s": 3.769376625015866,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q07",
+   "voice": "samantha",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "What does Nunavut mean in Inuktitut?",
+   "heard": "What does Nunavut mean in Inuktitut?",
+   "entities": [
+    "Nunavut",
+    "Inuktitut"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.0341875,
+   "asr_s": 3.7157364999875426,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q07",
+   "voice": "samantha",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "What does Nunavut mean in Inuktitut?",
+   "heard": "What does Nunavut mean in Inuktitut?",
+   "entities": [
+    "Nunavut",
+    "Inuktitut"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.0341875,
+   "asr_s": 3.7157364999875426,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q07",
+   "voice": "daniel",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "What does Nunavut mean in Inuktitut?",
+   "heard": "What does Nunavut mean in Inuktitut?",
+   "entities": [
+    "Nunavut",
+    "Inuktitut"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.1965,
+   "asr_s": 3.5904092920245603,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q07",
+   "voice": "daniel",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "What does Nunavut mean in Inuktitut?",
+   "heard": "What does Nunavut mean in Inuktitut?",
+   "entities": [
+    "Nunavut",
+    "Inuktitut"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.1965,
+   "asr_s": 4.20668820902938,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q07",
+   "voice": "daniel",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "What does Nunavut mean in Inuktitut?",
+   "heard": "What does Nunavut mean in Inuktitut?",
+   "entities": [
+    "Nunavut",
+    "Inuktitut"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.1965,
+   "asr_s": 4.20668820902938,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q07",
+   "voice": "karen",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "What does Nunavut mean in Inuktitut?",
+   "heard": "What does Nunavut mean in Inuktitut?",
+   "entities": [
+    "Nunavut",
+    "Inuktitut"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.1665625,
+   "asr_s": 3.6608602500054985,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q07",
+   "voice": "karen",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "What does Nunavut mean in Inuktitut?",
+   "heard": "What does Nunavut mean in Inuktitut?",
+   "entities": [
+    "Nunavut",
+    "Inuktitut"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.1665625,
+   "asr_s": 4.425481375015806,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q07",
+   "voice": "karen",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "What does Nunavut mean in Inuktitut?",
+   "heard": "What does Nunavut mean in Inuktitut?",
+   "entities": [
+    "Nunavut",
+    "Inuktitut"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.1665625,
+   "asr_s": 4.425481375015806,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q07",
+   "voice": "rishi",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "What does Nunavut mean in Inuktitut?",
+   "heard": "What does Nunavut mean in Inuktitut?",
+   "entities": [
+    "Nunavut",
+    "Inuktitut"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.412,
+   "asr_s": 3.724774290982168,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q07",
+   "voice": "rishi",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "What does Nunavut mean in Inuktitut?",
+   "heard": "What does Nunavut mean in Inuktitut?",
+   "entities": [
+    "Nunavut",
+    "Inuktitut"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.412,
+   "asr_s": 3.967140084016137,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q07",
+   "voice": "rishi",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "What does Nunavut mean in Inuktitut?",
+   "heard": "What does Nunavut mean in Inuktitut?",
+   "entities": [
+    "Nunavut",
+    "Inuktitut"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.412,
+   "asr_s": 3.967140084016137,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q08",
+   "voice": "kokoro",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "When did Confederation happen?",
+   "heard": "When did confederation happen?",
+   "entities": [
+    "Confederation"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.45,
+   "asr_s": 3.7048705000197515,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q08",
+   "voice": "kokoro",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "When did Confederation happen?",
+   "heard": "When did confederation happen?",
+   "entities": [
+    "Confederation"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.45,
+   "asr_s": 3.5343972080154344,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q08",
+   "voice": "kokoro",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "When did Confederation happen?",
+   "heard": "When did confederation happen?",
+   "entities": [
+    "Confederation"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.45,
+   "asr_s": 3.5343972080154344,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q08",
+   "voice": "samantha",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "When did Confederation happen?",
+   "heard": "When did confederation happen?",
+   "entities": [
+    "Confederation"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.8363125,
+   "asr_s": 3.6919312910176814,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q08",
+   "voice": "samantha",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "When did Confederation happen?",
+   "heard": "When did confederation happen?",
+   "entities": [
+    "Confederation"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.8363125,
+   "asr_s": 3.7288896659738384,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q08",
+   "voice": "samantha",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "When did Confederation happen?",
+   "heard": "When did confederation happen?",
+   "entities": [
+    "Confederation"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.8363125,
+   "asr_s": 3.7288896659738384,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q08",
+   "voice": "daniel",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "When did Confederation happen?",
+   "heard": "When did confederation happen?",
+   "entities": [
+    "Confederation"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.999125,
+   "asr_s": 3.533633542014286,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q08",
+   "voice": "daniel",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "When did Confederation happen?",
+   "heard": "When did confederation happen?",
+   "entities": [
+    "Confederation"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.999125,
+   "asr_s": 3.7949907499714755,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q08",
+   "voice": "daniel",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "When did Confederation happen?",
+   "heard": "When did confederation happen?",
+   "entities": [
+    "Confederation"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.999125,
+   "asr_s": 3.7949907499714755,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q08",
+   "voice": "karen",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "When did Confederation happen?",
+   "heard": "When did confederation happen?",
+   "entities": [
+    "Confederation"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.9925,
+   "asr_s": 3.7626489590038545,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q08",
+   "voice": "karen",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "When did Confederation happen?",
+   "heard": "When did confederation happen?",
+   "entities": [
+    "Confederation"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.9925,
+   "asr_s": 3.630197666003369,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q08",
+   "voice": "karen",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "When did Confederation happen?",
+   "heard": "When did confederation happen?",
+   "entities": [
+    "Confederation"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.9925,
+   "asr_s": 3.630197666003369,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q08",
+   "voice": "rishi",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "When did Confederation happen?",
+   "heard": "When did confederation happen?",
+   "entities": [
+    "Confederation"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.040375,
+   "asr_s": 3.761533583048731,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q08",
+   "voice": "rishi",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "When did Confederation happen?",
+   "heard": "When did confederation happen?",
+   "entities": [
+    "Confederation"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.040375,
+   "asr_s": 3.6443270829622634,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q08",
+   "voice": "rishi",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "When did Confederation happen?",
+   "heard": "When did confederation happen?",
+   "entities": [
+    "Confederation"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.040375,
+   "asr_s": 3.6443270829622634,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q09",
+   "voice": "kokoro",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "What did Sir George-Étienne Cartier do for Confederation?",
+   "heard": "What did Sir Georgetien Cartier do for Confederation?",
+   "entities": [
+    "Sir George-Étienne Cartier",
+    "Confederation"
+   ],
+   "entities_missed": [
+    "Sir George-Étienne Cartier"
+   ],
+   "audio_s": 3.9,
+   "asr_s": 4.237904665991664,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 0.8
+  },
+  {
+   "id": "q09",
+   "voice": "kokoro",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "What did Sir George-Étienne Cartier do for Confederation?",
+   "heard": "What did Sir George Etienne Cartier do for Confederation?",
+   "entities": [
+    "Sir George-Étienne Cartier",
+    "Confederation"
+   ],
+   "entities_missed": [],
+   "audio_s": 3.9,
+   "asr_s": 4.6825572500238195,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 0.8
+  },
+  {
+   "id": "q09",
+   "voice": "kokoro",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "What did Sir George-Étienne Cartier do for Confederation?",
+   "heard": "What did Sir George Etienne Cartier do for Confederation?",
+   "entities": [
+    "Sir George-Étienne Cartier",
+    "Confederation"
+   ],
+   "entities_missed": [],
+   "audio_s": 3.9,
+   "asr_s": 4.6825572500238195,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 0.8
+  },
+  {
+   "id": "q09",
+   "voice": "samantha",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "What did Sir George-Étienne Cartier do for Confederation?",
+   "heard": "What did Sir George E.G.N. Cartier do for Confederation?",
+   "entities": [
+    "Sir George-Étienne Cartier",
+    "Confederation"
+   ],
+   "entities_missed": [
+    "Sir George-Étienne Cartier"
+   ],
+   "audio_s": 3.41575,
+   "asr_s": 3.8709098330000415,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 0.8
+  },
+  {
+   "id": "q09",
+   "voice": "samantha",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "What did Sir George-Étienne Cartier do for Confederation?",
+   "heard": "What did Sir George E.G.N. Cartier do for Confederation?",
+   "entities": [
+    "Sir George-Étienne Cartier",
+    "Confederation"
+   ],
+   "entities_missed": [
+    "Sir George-Étienne Cartier"
+   ],
+   "audio_s": 3.41575,
+   "asr_s": 5.406316958018579,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 0.8
+  },
+  {
+   "id": "q09",
+   "voice": "samantha",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "What did Sir George-Étienne Cartier do for Confederation?",
+   "heard": "What did Sir George E.G.N. Cartier do for Confederation?",
+   "entities": [
+    "Sir George-Étienne Cartier",
+    "Confederation"
+   ],
+   "entities_missed": [
+    "Sir George-Étienne Cartier"
+   ],
+   "audio_s": 3.41575,
+   "asr_s": 5.406316958018579,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 0.8
+  },
+  {
+   "id": "q09",
+   "voice": "daniel",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "What did Sir George-Étienne Cartier do for Confederation?",
+   "heard": "What did Sir George E. Chien party A do for confederation?",
+   "entities": [
+    "Sir George-Étienne Cartier",
+    "Confederation"
+   ],
+   "entities_missed": [
+    "Sir George-Étienne Cartier"
+   ],
+   "audio_s": 3.6361875,
+   "asr_s": 3.5506661660037935,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 0.6
+  },
+  {
+   "id": "q09",
+   "voice": "daniel",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "What did Sir George-Étienne Cartier do for Confederation?",
+   "heard": "What did Sir George Ichien Cartier do for Confederation?",
+   "entities": [
+    "Sir George-Étienne Cartier",
+    "Confederation"
+   ],
+   "entities_missed": [
+    "Sir George-Étienne Cartier"
+   ],
+   "audio_s": 3.6361875,
+   "asr_s": 3.826186374993995,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q09",
+   "voice": "daniel",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "What did Sir George-Étienne Cartier do for Confederation?",
+   "heard": "What did Sir George Ichien Cartier do for Confederation?",
+   "entities": [
+    "Sir George-Étienne Cartier",
+    "Confederation"
+   ],
+   "entities_missed": [
+    "Sir George-Étienne Cartier"
+   ],
+   "audio_s": 3.6361875,
+   "asr_s": 3.826186374993995,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q09",
+   "voice": "karen",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "What did Sir George-Étienne Cartier do for Confederation?",
+   "heard": "What did Sir Georgie Chien Cartier do for Confederation?",
+   "entities": [
+    "Sir George-Étienne Cartier",
+    "Confederation"
+   ],
+   "entities_missed": [
+    "Sir George-Étienne Cartier"
+   ],
+   "audio_s": 3.5598125,
+   "asr_s": 3.5198029580060393,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 0.6
+  },
+  {
+   "id": "q09",
+   "voice": "karen",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "What did Sir George-Étienne Cartier do for Confederation?",
+   "heard": "What did Sir Georgie Chien Cartier do for Confederation?",
+   "entities": [
+    "Sir George-Étienne Cartier",
+    "Confederation"
+   ],
+   "entities_missed": [
+    "Sir George-Étienne Cartier"
+   ],
+   "audio_s": 3.5598125,
+   "asr_s": 3.8189155829604715,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 0.6
+  },
+  {
+   "id": "q09",
+   "voice": "karen",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "What did Sir George-Étienne Cartier do for Confederation?",
+   "heard": "What did Sir George Chien Cartier do for Confederation?",
+   "entities": [
+    "Sir George-Étienne Cartier",
+    "Confederation"
+   ],
+   "entities_missed": [
+    "Sir George-Étienne Cartier"
+   ],
+   "audio_s": 3.5598125,
+   "asr_s": 3.8189155829604715,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 0.8
+  },
+  {
+   "id": "q09",
+   "voice": "rishi",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "What did Sir George-Étienne Cartier do for Confederation?",
+   "heard": "What did Sir George Ichi and Cartier do for Confederation?",
+   "entities": [
+    "Sir George-Étienne Cartier",
+    "Confederation"
+   ],
+   "entities_missed": [
+    "Sir George-Étienne Cartier"
+   ],
+   "audio_s": 3.75875,
+   "asr_s": 3.533178624988068,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 0.8
+  },
+  {
+   "id": "q09",
+   "voice": "rishi",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "What did Sir George-Étienne Cartier do for Confederation?",
+   "heard": "What did Sir George Ichi and Cartier do for Confederation?",
+   "entities": [
+    "Sir George-Étienne Cartier",
+    "Confederation"
+   ],
+   "entities_missed": [
+    "Sir George-Étienne Cartier"
+   ],
+   "audio_s": 3.75875,
+   "asr_s": 3.888498999993317,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 0.8
+  },
+  {
+   "id": "q09",
+   "voice": "rishi",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "What did Sir George-Étienne Cartier do for Confederation?",
+   "heard": "What did Sir George Ichi and Cartier do for Confederation?",
+   "entities": [
+    "Sir George-Étienne Cartier",
+    "Confederation"
+   ],
+   "entities_missed": [
+    "Sir George-Étienne Cartier"
+   ],
+   "audio_s": 3.75875,
+   "asr_s": 3.888498999993317,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 0.8
+  },
+  {
+   "id": "q10",
+   "voice": "kokoro",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "Who was Sir Louis-Hippolyte La Fontaine?",
+   "heard": "Who was Sir Louis-Yipolite Lafontaine?",
+   "entities": [
+    "Louis-Hippolyte La Fontaine"
+   ],
+   "entities_missed": [
+    "Louis-Hippolyte La Fontaine"
+   ],
+   "audio_s": 2.475,
+   "asr_s": 3.4135336669860408,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 0.8
+  },
+  {
+   "id": "q10",
+   "voice": "kokoro",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "Who was Sir Louis-Hippolyte La Fontaine?",
+   "heard": "Who was Sir Louis-Hippolyte La Fontaine?",
+   "entities": [
+    "Louis-Hippolyte La Fontaine"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.475,
+   "asr_s": 3.6492605410167016,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q10",
+   "voice": "kokoro",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "Who was Sir Louis-Hippolyte La Fontaine?",
+   "heard": "Who was Sir Louis-Hippolyte La Fontaine?",
+   "entities": [
+    "Louis-Hippolyte La Fontaine"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.475,
+   "asr_s": 3.6492605410167016,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q10",
+   "voice": "samantha",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "Who was Sir Louis-Hippolyte La Fontaine?",
+   "heard": "Who was Sir Louis Hippolyti Lafontaine?",
+   "entities": [
+    "Louis-Hippolyte La Fontaine"
+   ],
+   "entities_missed": [
+    "Louis-Hippolyte La Fontaine"
+   ],
+   "audio_s": 2.503125,
+   "asr_s": 3.435506167006679,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 0.6
+  },
+  {
+   "id": "q10",
+   "voice": "samantha",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "Who was Sir Louis-Hippolyte La Fontaine?",
+   "heard": "Who was Sir Louis-Hippolyte La Fontaine?",
+   "entities": [
+    "Louis-Hippolyte La Fontaine"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.503125,
+   "asr_s": 3.6875984580256045,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q10",
+   "voice": "samantha",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "Who was Sir Louis-Hippolyte La Fontaine?",
+   "heard": "Who was Sir Louis-Hippolyte La Fontaine?",
+   "entities": [
+    "Louis-Hippolyte La Fontaine"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.503125,
+   "asr_s": 3.6875984580256045,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q10",
+   "voice": "daniel",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "Who was Sir Louis-Hippolyte La Fontaine?",
+   "heard": "Who was salui Hippolyte Lafontaine?",
+   "entities": [
+    "Louis-Hippolyte La Fontaine"
+   ],
+   "entities_missed": [
+    "Louis-Hippolyte La Fontaine"
+   ],
+   "audio_s": 2.519125,
+   "asr_s": 3.3953149170265533,
+   "ref_top1_kept": true,
+   "top1_same": false,
+   "overlap5": 0.4
+  },
+  {
+   "id": "q10",
+   "voice": "daniel",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "Who was Sir Louis-Hippolyte La Fontaine?",
+   "heard": "Who was Sir Louis-Hippolyte La Fontaine?",
+   "entities": [
+    "Louis-Hippolyte La Fontaine"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.519125,
+   "asr_s": 3.7292962089995854,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q10",
+   "voice": "daniel",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "Who was Sir Louis-Hippolyte La Fontaine?",
+   "heard": "Who was Sir Louis-Hippolyte La Fontaine?",
+   "entities": [
+    "Louis-Hippolyte La Fontaine"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.519125,
+   "asr_s": 3.7292962089995854,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q10",
+   "voice": "karen",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "Who was Sir Louis-Hippolyte La Fontaine?",
+   "heard": "Who was Sir Louis Hippolyte Lafontaine?",
+   "entities": [
+    "Louis-Hippolyte La Fontaine"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.52675,
+   "asr_s": 3.385256459005177,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 0.6
+  },
+  {
+   "id": "q10",
+   "voice": "karen",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "Who was Sir Louis-Hippolyte La Fontaine?",
+   "heard": "Who was Sir Louis Hippolyte La Fontaine?",
+   "entities": [
+    "Louis-Hippolyte La Fontaine"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.52675,
+   "asr_s": 3.7444832919863984,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q10",
+   "voice": "karen",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "Who was Sir Louis-Hippolyte La Fontaine?",
+   "heard": "Who was Sir Louis Hippolyte La Fontaine?",
+   "entities": [
+    "Louis-Hippolyte La Fontaine"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.52675,
+   "asr_s": 3.7444832919863984,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q10",
+   "voice": "rishi",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "Who was Sir Louis-Hippolyte La Fontaine?",
+   "heard": "who was Sir Louis Hippolyte Lafontaine.",
+   "entities": [
+    "Louis-Hippolyte La Fontaine"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.664375,
+   "asr_s": 3.551105665974319,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 0.8
+  },
+  {
+   "id": "q10",
+   "voice": "rishi",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "Who was Sir Louis-Hippolyte La Fontaine?",
+   "heard": "who was Sir Louis-Hippolyte La Fontaine.",
+   "entities": [
+    "Louis-Hippolyte La Fontaine"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.664375,
+   "asr_s": 3.6844031660002656,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q10",
+   "voice": "rishi",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "Who was Sir Louis-Hippolyte La Fontaine?",
+   "heard": "who was Sir Louis-Hippolyte La Fontaine.",
+   "entities": [
+    "Louis-Hippolyte La Fontaine"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.664375,
+   "asr_s": 3.6844031660002656,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q11",
+   "voice": "kokoro",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "Who was Jacques Cartier?",
+   "heard": "Who was Jacques Cartier?",
+   "entities": [
+    "Jacques Cartier"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.9,
+   "asr_s": 3.0962597919860855,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q11",
+   "voice": "kokoro",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "Who was Jacques Cartier?",
+   "heard": "Who was Jacques Cartier?",
+   "entities": [
+    "Jacques Cartier"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.9,
+   "asr_s": 3.36232045898214,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q11",
+   "voice": "kokoro",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "Who was Jacques Cartier?",
+   "heard": "Who was Jacques Cartier?",
+   "entities": [
+    "Jacques Cartier"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.9,
+   "asr_s": 3.36232045898214,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q11",
+   "voice": "samantha",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "Who was Jacques Cartier?",
+   "heard": "Who was Jacques Cartier?",
+   "entities": [
+    "Jacques Cartier"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.469875,
+   "asr_s": 3.1644377920310944,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q11",
+   "voice": "samantha",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "Who was Jacques Cartier?",
+   "heard": "Who was Jacques Cartier?",
+   "entities": [
+    "Jacques Cartier"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.469875,
+   "asr_s": 3.3659786250209436,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q11",
+   "voice": "samantha",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "Who was Jacques Cartier?",
+   "heard": "Who was Jacques Cartier?",
+   "entities": [
+    "Jacques Cartier"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.469875,
+   "asr_s": 3.3659786250209436,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q11",
+   "voice": "daniel",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "Who was Jacques Cartier?",
+   "heard": "Who was Jacques Cartier?",
+   "entities": [
+    "Jacques Cartier"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.520625,
+   "asr_s": 3.1250627909903415,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q11",
+   "voice": "daniel",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "Who was Jacques Cartier?",
+   "heard": "Who was Jacques Cartier?",
+   "entities": [
+    "Jacques Cartier"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.520625,
+   "asr_s": 3.36584312497871,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q11",
+   "voice": "daniel",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "Who was Jacques Cartier?",
+   "heard": "Who was Jacques Cartier?",
+   "entities": [
+    "Jacques Cartier"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.520625,
+   "asr_s": 3.36584312497871,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q11",
+   "voice": "karen",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "Who was Jacques Cartier?",
+   "heard": "Who was Jacques Cartier?",
+   "entities": [
+    "Jacques Cartier"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.539875,
+   "asr_s": 3.1248490000143647,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q11",
+   "voice": "karen",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "Who was Jacques Cartier?",
+   "heard": "Who was Jacques Cartier?",
+   "entities": [
+    "Jacques Cartier"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.539875,
+   "asr_s": 3.323363875038922,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q11",
+   "voice": "karen",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "Who was Jacques Cartier?",
+   "heard": "Who was Jacques Cartier?",
+   "entities": [
+    "Jacques Cartier"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.539875,
+   "asr_s": 3.323363875038922,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q11",
+   "voice": "rishi",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "Who was Jacques Cartier?",
+   "heard": "Who was Jax Cartier?",
+   "entities": [
+    "Jacques Cartier"
+   ],
+   "entities_missed": [
+    "Jacques Cartier"
+   ],
+   "audio_s": 1.6659375,
+   "asr_s": 3.1906602919916622,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 0.6
+  },
+  {
+   "id": "q11",
+   "voice": "rishi",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "Who was Jacques Cartier?",
+   "heard": "Who was Jax Cartier?",
+   "entities": [
+    "Jacques Cartier"
+   ],
+   "entities_missed": [
+    "Jacques Cartier"
+   ],
+   "audio_s": 1.6659375,
+   "asr_s": 3.397800584032666,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 0.6
+  },
+  {
+   "id": "q11",
+   "voice": "rishi",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "Who was Jacques Cartier?",
+   "heard": "Who was Jax Cartier?",
+   "entities": [
+    "Jacques Cartier"
+   ],
+   "entities_missed": [
+    "Jacques Cartier"
+   ],
+   "audio_s": 1.6659375,
+   "asr_s": 3.397800584032666,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 0.6
+  },
+  {
+   "id": "q12",
+   "voice": "kokoro",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "Who discovered insulin?",
+   "heard": "Who discovered insulin?",
+   "entities": [],
+   "entities_missed": [],
+   "audio_s": 2.025,
+   "asr_s": 3.135732541035395,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q12",
+   "voice": "kokoro",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "Who discovered insulin?",
+   "heard": "Who discovered insulin?",
+   "entities": [],
+   "entities_missed": [],
+   "audio_s": 2.025,
+   "asr_s": 3.3478422079933807,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q12",
+   "voice": "kokoro",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "Who discovered insulin?",
+   "heard": "Who discovered insulin?",
+   "entities": [],
+   "entities_missed": [],
+   "audio_s": 2.025,
+   "asr_s": 3.3478422079933807,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q12",
+   "voice": "samantha",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "Who discovered insulin?",
+   "heard": "Who discovered insulin?",
+   "entities": [],
+   "entities_missed": [],
+   "audio_s": 1.469875,
+   "asr_s": 3.133741333964281,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q12",
+   "voice": "samantha",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "Who discovered insulin?",
+   "heard": "Who discovered insulin?",
+   "entities": [],
+   "entities_missed": [],
+   "audio_s": 1.469875,
+   "asr_s": 3.356784667004831,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q12",
+   "voice": "samantha",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "Who discovered insulin?",
+   "heard": "Who discovered insulin?",
+   "entities": [],
+   "entities_missed": [],
+   "audio_s": 1.469875,
+   "asr_s": 3.356784667004831,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q12",
+   "voice": "daniel",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "Who discovered insulin?",
+   "heard": "Who discovered insulin?",
+   "entities": [],
+   "entities_missed": [],
+   "audio_s": 1.625125,
+   "asr_s": 3.490905832964927,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q12",
+   "voice": "daniel",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "Who discovered insulin?",
+   "heard": "Who discovered insulin?",
+   "entities": [],
+   "entities_missed": [],
+   "audio_s": 1.625125,
+   "asr_s": 3.3515558750368655,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q12",
+   "voice": "daniel",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "Who discovered insulin?",
+   "heard": "Who discovered insulin?",
+   "entities": [],
+   "entities_missed": [],
+   "audio_s": 1.625125,
+   "asr_s": 3.3515558750368655,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q12",
+   "voice": "karen",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "Who discovered insulin?",
+   "heard": "Who discovered insulin?",
+   "entities": [],
+   "entities_missed": [],
+   "audio_s": 1.656,
+   "asr_s": 3.069280124967918,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q12",
+   "voice": "karen",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "Who discovered insulin?",
+   "heard": "Who discovered insulin?",
+   "entities": [],
+   "entities_missed": [],
+   "audio_s": 1.656,
+   "asr_s": 3.3115213330020197,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q12",
+   "voice": "karen",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "Who discovered insulin?",
+   "heard": "Who discovered insulin?",
+   "entities": [],
+   "entities_missed": [],
+   "audio_s": 1.656,
+   "asr_s": 3.3115213330020197,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q12",
+   "voice": "rishi",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "Who discovered insulin?",
+   "heard": "who discovered insulin.",
+   "entities": [],
+   "entities_missed": [],
+   "audio_s": 1.712375,
+   "asr_s": 3.1681030000327155,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q12",
+   "voice": "rishi",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "Who discovered insulin?",
+   "heard": "Who Discovered Insulin?",
+   "entities": [],
+   "entities_missed": [],
+   "audio_s": 1.712375,
+   "asr_s": 3.3712897090008482,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q12",
+   "voice": "rishi",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "Who discovered insulin?",
+   "heard": "Who Discovered Insulin?",
+   "entities": [],
+   "entities_missed": [],
+   "audio_s": 1.712375,
+   "asr_s": 3.3712897090008482,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q13",
+   "voice": "kokoro",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "What is the smallest province in Canada?",
+   "heard": "What is the smallest province in Canada?",
+   "entities": [],
+   "entities_missed": [],
+   "audio_s": 2.775,
+   "asr_s": 3.2043547079665586,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q13",
+   "voice": "kokoro",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "What is the smallest province in Canada?",
+   "heard": "What is the smallest province in Canada?",
+   "entities": [],
+   "entities_missed": [],
+   "audio_s": 2.775,
+   "asr_s": 3.4616393340402283,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q13",
+   "voice": "kokoro",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "What is the smallest province in Canada?",
+   "heard": "What is the smallest province in Canada?",
+   "entities": [],
+   "entities_missed": [],
+   "audio_s": 2.775,
+   "asr_s": 3.4616393340402283,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q13",
+   "voice": "samantha",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "What is the smallest province in Canada?",
+   "heard": "What is the smallest province in Canada?",
+   "entities": [],
+   "entities_missed": [],
+   "audio_s": 2.278,
+   "asr_s": 3.2436911670374684,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q13",
+   "voice": "samantha",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "What is the smallest province in Canada?",
+   "heard": "What is the smallest province in Canada?",
+   "entities": [],
+   "entities_missed": [],
+   "audio_s": 2.278,
+   "asr_s": 4.219389332982246,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q13",
+   "voice": "samantha",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "What is the smallest province in Canada?",
+   "heard": "What is the smallest province in Canada?",
+   "entities": [],
+   "entities_missed": [],
+   "audio_s": 2.278,
+   "asr_s": 4.219389332982246,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q13",
+   "voice": "daniel",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "What is the smallest province in Canada?",
+   "heard": "What is the smallest province in Canada?",
+   "entities": [],
+   "entities_missed": [],
+   "audio_s": 2.32425,
+   "asr_s": 3.3487435419810936,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q13",
+   "voice": "daniel",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "What is the smallest province in Canada?",
+   "heard": "What is the smallest province in Canada?",
+   "entities": [],
+   "entities_missed": [],
+   "audio_s": 2.32425,
+   "asr_s": 3.519272458041087,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q13",
+   "voice": "daniel",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "What is the smallest province in Canada?",
+   "heard": "What is the smallest province in Canada?",
+   "entities": [],
+   "entities_missed": [],
+   "audio_s": 2.32425,
+   "asr_s": 3.519272458041087,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q13",
+   "voice": "karen",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "What is the smallest province in Canada?",
+   "heard": "What is the smallest province in Canada?",
+   "entities": [],
+   "entities_missed": [],
+   "audio_s": 2.2943125,
+   "asr_s": 3.306279167009052,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q13",
+   "voice": "karen",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "What is the smallest province in Canada?",
+   "heard": "What is the smallest province in Canada?",
+   "entities": [],
+   "entities_missed": [],
+   "audio_s": 2.2943125,
+   "asr_s": 3.5709744169726036,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q13",
+   "voice": "karen",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "What is the smallest province in Canada?",
+   "heard": "What is the smallest province in Canada?",
+   "entities": [],
+   "entities_missed": [],
+   "audio_s": 2.2943125,
+   "asr_s": 3.5709744169726036,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q13",
+   "voice": "rishi",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "What is the smallest province in Canada?",
+   "heard": "What is the smallest province in Canada?",
+   "entities": [],
+   "entities_missed": [],
+   "audio_s": 2.6325625,
+   "asr_s": 3.312949542014394,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q13",
+   "voice": "rishi",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "What is the smallest province in Canada?",
+   "heard": "What is the smallest province in Canada?",
+   "entities": [],
+   "entities_missed": [],
+   "audio_s": 2.6325625,
+   "asr_s": 3.5425397499930114,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q13",
+   "voice": "rishi",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "What is the smallest province in Canada?",
+   "heard": "What is the smallest province in Canada?",
+   "entities": [],
+   "entities_missed": [],
+   "audio_s": 2.6325625,
+   "asr_s": 3.5425397499930114,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q14",
+   "voice": "kokoro",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "What did Terry Fox do in 1980?",
+   "heard": "What did Terry Fox do in 1980?",
+   "entities": [
+    "Terry Fox"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.725,
+   "asr_s": 3.6743145419750363,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q14",
+   "voice": "kokoro",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "What did Terry Fox do in 1980?",
+   "heard": "What did Terry Fox do in 1980?",
+   "entities": [
+    "Terry Fox"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.725,
+   "asr_s": 3.5719122089794837,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q14",
+   "voice": "kokoro",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "What did Terry Fox do in 1980?",
+   "heard": "What did Terry Fox do in 1980?",
+   "entities": [
+    "Terry Fox"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.725,
+   "asr_s": 3.5719122089794837,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q14",
+   "voice": "samantha",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "What did Terry Fox do in 1980?",
+   "heard": "What did Terry Fox do in 1980?",
+   "entities": [
+    "Terry Fox"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.4869375,
+   "asr_s": 3.3139268750092015,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q14",
+   "voice": "samantha",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "What did Terry Fox do in 1980?",
+   "heard": "What did Terry Fox do in 1980?",
+   "entities": [
+    "Terry Fox"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.4869375,
+   "asr_s": 3.600192334037274,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q14",
+   "voice": "samantha",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "What did Terry Fox do in 1980?",
+   "heard": "What did Terry Fox do in 1980?",
+   "entities": [
+    "Terry Fox"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.4869375,
+   "asr_s": 3.600192334037274,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q14",
+   "voice": "daniel",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "What did Terry Fox do in 1980?",
+   "heard": "What did Terry Fox do in 1980?",
+   "entities": [
+    "Terry Fox"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.6376875,
+   "asr_s": 3.3255859169876203,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q14",
+   "voice": "daniel",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "What did Terry Fox do in 1980?",
+   "heard": "What did Terry Fox do in 1980?",
+   "entities": [
+    "Terry Fox"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.6376875,
+   "asr_s": 3.541661125025712,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q14",
+   "voice": "daniel",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "What did Terry Fox do in 1980?",
+   "heard": "What did Terry Fox do in 1980?",
+   "entities": [
+    "Terry Fox"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.6376875,
+   "asr_s": 3.541661125025712,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q14",
+   "voice": "karen",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "What did Terry Fox do in 1980?",
+   "heard": "What did Terry Fox do in 1980?",
+   "entities": [
+    "Terry Fox"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.5613125,
+   "asr_s": 3.2836236669681966,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q14",
+   "voice": "karen",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "What did Terry Fox do in 1980?",
+   "heard": "What did Terry Fox do in 1980?",
+   "entities": [
+    "Terry Fox"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.5613125,
+   "asr_s": 3.550219292053953,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q14",
+   "voice": "karen",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "What did Terry Fox do in 1980?",
+   "heard": "What did Terry Fox do in 1980?",
+   "entities": [
+    "Terry Fox"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.5613125,
+   "asr_s": 3.550219292053953,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q14",
+   "voice": "rishi",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "What did Terry Fox do in 1980?",
+   "heard": "What did Terry Fox do in 1980?",
+   "entities": [
+    "Terry Fox"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.7370625,
+   "asr_s": 3.35640470898943,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q14",
+   "voice": "rishi",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "What did Terry Fox do in 1980?",
+   "heard": "What did Terry Fox do in 1980?",
+   "entities": [
+    "Terry Fox"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.7370625,
+   "asr_s": 3.5641627080040053,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q14",
+   "voice": "rishi",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "What did Terry Fox do in 1980?",
+   "heard": "What did Terry Fox do in 1980?",
+   "entities": [
+    "Terry Fox"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.7370625,
+   "asr_s": 3.5641627080040053,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q15",
+   "voice": "kokoro",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "Who was Sir John A. Macdonald?",
+   "heard": "Who was Sir John A? McDonald.",
+   "entities": [
+    "Sir John A. Macdonald"
+   ],
+   "entities_missed": [
+    "Sir John A. Macdonald"
+   ],
+   "audio_s": 3.5,
+   "asr_s": 3.343382083985489,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 0.6
+  },
+  {
+   "id": "q15",
+   "voice": "kokoro",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "Who was Sir John A. Macdonald?",
+   "heard": "Who was Sir John A.? Macdonald.",
+   "entities": [
+    "Sir John A. Macdonald"
+   ],
+   "entities_missed": [],
+   "audio_s": 3.5,
+   "asr_s": 3.569281750009395,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q15",
+   "voice": "kokoro",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "Who was Sir John A. Macdonald?",
+   "heard": "Who was Sir John A.? Macdonald.",
+   "entities": [
+    "Sir John A. Macdonald"
+   ],
+   "entities_missed": [],
+   "audio_s": 3.5,
+   "asr_s": 3.569281750009395,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q15",
+   "voice": "samantha",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "Who was Sir John A. Macdonald?",
+   "heard": "Who was Sir John A. McDonald?",
+   "entities": [
+    "Sir John A. Macdonald"
+   ],
+   "entities_missed": [
+    "Sir John A. Macdonald"
+   ],
+   "audio_s": 1.864625,
+   "asr_s": 3.346229000017047,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 0.6
+  },
+  {
+   "id": "q15",
+   "voice": "samantha",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "Who was Sir John A. Macdonald?",
+   "heard": "Who was Sir John A. Macdonald?",
+   "entities": [
+    "Sir John A. Macdonald"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.864625,
+   "asr_s": 3.5955189999658614,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q15",
+   "voice": "samantha",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "Who was Sir John A. Macdonald?",
+   "heard": "Who was Sir John A. Macdonald?",
+   "entities": [
+    "Sir John A. Macdonald"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.864625,
+   "asr_s": 3.5955189999658614,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q15",
+   "voice": "daniel",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "Who was Sir John A. Macdonald?",
+   "heard": "Who was Sir John A. Macdonald?",
+   "entities": [
+    "Sir John A. Macdonald"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.7644375,
+   "asr_s": 3.3723801669548266,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q15",
+   "voice": "daniel",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "Who was Sir John A. Macdonald?",
+   "heard": "Who was Sir John A. Macdonald?",
+   "entities": [
+    "Sir John A. Macdonald"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.7644375,
+   "asr_s": 3.8948008330189623,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q15",
+   "voice": "daniel",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "Who was Sir John A. Macdonald?",
+   "heard": "Who was Sir John A. Macdonald?",
+   "entities": [
+    "Sir John A. Macdonald"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.7644375,
+   "asr_s": 3.8948008330189623,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q15",
+   "voice": "karen",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "Who was Sir John A. Macdonald?",
+   "heard": "Who was Sir John A MacDonald?",
+   "entities": [
+    "Sir John A. Macdonald"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.911375,
+   "asr_s": 3.350857666984666,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 0.8
+  },
+  {
+   "id": "q15",
+   "voice": "karen",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "Who was Sir John A. Macdonald?",
+   "heard": "Who was Sir John A. Macdonald?",
+   "entities": [
+    "Sir John A. Macdonald"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.911375,
+   "asr_s": 3.6093397079966962,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q15",
+   "voice": "karen",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "Who was Sir John A. Macdonald?",
+   "heard": "Who was Sir John A. Macdonald?",
+   "entities": [
+    "Sir John A. Macdonald"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.911375,
+   "asr_s": 3.6093397079966962,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q15",
+   "voice": "rishi",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "Who was Sir John A. Macdonald?",
+   "heard": "Who was Sir John A. Macdonald?",
+   "entities": [
+    "Sir John A. Macdonald"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.0955,
+   "asr_s": 3.3867522499640472,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q15",
+   "voice": "rishi",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "Who was Sir John A. Macdonald?",
+   "heard": "Who was Sir John A. Macdonald?",
+   "entities": [
+    "Sir John A. Macdonald"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.0955,
+   "asr_s": 3.6680330829694867,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q15",
+   "voice": "rishi",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "Who was Sir John A. Macdonald?",
+   "heard": "Who was Sir John A. Macdonald?",
+   "entities": [
+    "Sir John A. Macdonald"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.0955,
+   "asr_s": 3.6680330829694867,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q16",
+   "voice": "kokoro",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "What is Michif?",
+   "heard": "What is me sheath?",
+   "entities": [
+    "Michif"
+   ],
+   "entities_missed": [
+    "Michif"
+   ],
+   "audio_s": 1.7,
+   "asr_s": 3.1915111250127666,
+   "ref_top1_kept": false,
+   "top1_same": false,
+   "overlap5": 0.0
+  },
+  {
+   "id": "q16",
+   "voice": "kokoro",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "What is Michif?",
+   "heard": "What is Michif?",
+   "entities": [
+    "Michif"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.7,
+   "asr_s": 3.4305469160317443,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q16",
+   "voice": "kokoro",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "What is Michif?",
+   "heard": "What is Michif?",
+   "entities": [
+    "Michif"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.7,
+   "asr_s": 3.4305469160317443,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q16",
+   "voice": "samantha",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "What is Michif?",
+   "heard": "What is midship?",
+   "entities": [
+    "Michif"
+   ],
+   "entities_missed": [
+    "Michif"
+   ],
+   "audio_s": 1.000875,
+   "asr_s": 3.2028136670123786,
+   "ref_top1_kept": false,
+   "top1_same": false,
+   "overlap5": 0.0
+  },
+  {
+   "id": "q16",
+   "voice": "samantha",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "What is Michif?",
+   "heard": "What is Michif?",
+   "entities": [
+    "Michif"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.000875,
+   "asr_s": 3.4569849999970756,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q16",
+   "voice": "samantha",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "What is Michif?",
+   "heard": "What is Michif?",
+   "entities": [
+    "Michif"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.000875,
+   "asr_s": 3.4569849999970756,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q16",
+   "voice": "daniel",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "What is Michif?",
+   "heard": "What is midship?",
+   "entities": [
+    "Michif"
+   ],
+   "entities_missed": [
+    "Michif"
+   ],
+   "audio_s": 1.198125,
+   "asr_s": 3.191021709004417,
+   "ref_top1_kept": false,
+   "top1_same": false,
+   "overlap5": 0.0
+  },
+  {
+   "id": "q16",
+   "voice": "daniel",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "What is Michif?",
+   "heard": "What is Michif?",
+   "entities": [
+    "Michif"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.198125,
+   "asr_s": 3.439178417029325,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q16",
+   "voice": "daniel",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "What is Michif?",
+   "heard": "What is Michif?",
+   "entities": [
+    "Michif"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.198125,
+   "asr_s": 3.439178417029325,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q16",
+   "voice": "karen",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "What is Michif?",
+   "heard": "What is Michif?",
+   "entities": [
+    "Michif"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.17975,
+   "asr_s": 3.243729874957353,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q16",
+   "voice": "karen",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "What is Michif?",
+   "heard": "What is Michif?",
+   "entities": [
+    "Michif"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.17975,
+   "asr_s": 3.4699634999851696,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q16",
+   "voice": "karen",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "What is Michif?",
+   "heard": "What is Michif?",
+   "entities": [
+    "Michif"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.17975,
+   "asr_s": 3.4699634999851696,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q16",
+   "voice": "rishi",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "What is Michif?",
+   "heard": "What is Michif?",
+   "entities": [
+    "Michif"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.204625,
+   "asr_s": 3.133305667026434,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q16",
+   "voice": "rishi",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "What is Michif?",
+   "heard": "What is Michif?",
+   "entities": [
+    "Michif"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.204625,
+   "asr_s": 3.294831541948952,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q16",
+   "voice": "rishi",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "What is Michif?",
+   "heard": "What is Michif?",
+   "entities": [
+    "Michif"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.204625,
+   "asr_s": 3.294831541948952,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q17",
+   "voice": "kokoro",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "What does the guide say about the Mi'kmaq?",
+   "heard": "What does the guide say about the MiGMA?",
+   "entities": [
+    "Mi'kmaq"
+   ],
+   "entities_missed": [
+    "Mi'kmaq"
+   ],
+   "audio_s": 2.5,
+   "asr_s": 3.3100224580266513,
+   "ref_top1_kept": false,
+   "top1_same": false,
+   "overlap5": 0.0
+  },
+  {
+   "id": "q17",
+   "voice": "kokoro",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "What does the guide say about the Mi'kmaq?",
+   "heard": "What does the guide say about the Mi'kmaq?",
+   "entities": [
+    "Mi'kmaq"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.5,
+   "asr_s": 4.024449500022456,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q17",
+   "voice": "kokoro",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "What does the guide say about the Mi'kmaq?",
+   "heard": "What does the guide say about the Mi'kmaq?",
+   "entities": [
+    "Mi'kmaq"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.5,
+   "asr_s": 4.024449500022456,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q17",
+   "voice": "samantha",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "What does the guide say about the Mi'kmaq?",
+   "heard": "What does the guide say about the MIGMAC?",
+   "entities": [
+    "Mi'kmaq"
+   ],
+   "entities_missed": [
+    "Mi'kmaq"
+   ],
+   "audio_s": 2.25475,
+   "asr_s": 3.487349166010972,
+   "ref_top1_kept": false,
+   "top1_same": false,
+   "overlap5": 0.0
+  },
+  {
+   "id": "q17",
+   "voice": "samantha",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "What does the guide say about the Mi'kmaq?",
+   "heard": "What does the guide say about the Mi'kmaq?",
+   "entities": [
+    "Mi'kmaq"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.25475,
+   "asr_s": 3.7464279999840073,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q17",
+   "voice": "samantha",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "What does the guide say about the Mi'kmaq?",
+   "heard": "What does the guide say about the Mi'kmaq?",
+   "entities": [
+    "Mi'kmaq"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.25475,
+   "asr_s": 3.7464279999840073,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q17",
+   "voice": "daniel",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "What does the guide say about the Mi'kmaq?",
+   "heard": "What does the guide say about the MicMac?",
+   "entities": [
+    "Mi'kmaq"
+   ],
+   "entities_missed": [
+    "Mi'kmaq"
+   ],
+   "audio_s": 2.3706875,
+   "asr_s": 3.4012252910179086,
+   "ref_top1_kept": false,
+   "top1_same": false,
+   "overlap5": 0.0
+  },
+  {
+   "id": "q17",
+   "voice": "daniel",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "What does the guide say about the Mi'kmaq?",
+   "heard": "What does the guide say about the Mi'kmaq?",
+   "entities": [
+    "Mi'kmaq"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.3706875,
+   "asr_s": 3.7891774169984274,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q17",
+   "voice": "daniel",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "What does the guide say about the Mi'kmaq?",
+   "heard": "What does the guide say about the Mi'kmaq?",
+   "entities": [
+    "Mi'kmaq"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.3706875,
+   "asr_s": 3.7891774169984274,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q17",
+   "voice": "karen",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "What does the guide say about the Mi'kmaq?",
+   "heard": "What does the guide say about the MIGMAC?",
+   "entities": [
+    "Mi'kmaq"
+   ],
+   "entities_missed": [
+    "Mi'kmaq"
+   ],
+   "audio_s": 2.2710625,
+   "asr_s": 3.465970166027546,
+   "ref_top1_kept": false,
+   "top1_same": false,
+   "overlap5": 0.0
+  },
+  {
+   "id": "q17",
+   "voice": "karen",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "What does the guide say about the Mi'kmaq?",
+   "heard": "What does the guide say about the Mi'kmaq?",
+   "entities": [
+    "Mi'kmaq"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.2710625,
+   "asr_s": 3.6991027499898337,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q17",
+   "voice": "karen",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "What does the guide say about the Mi'kmaq?",
+   "heard": "What does the guide say about the Mi'kmaq?",
+   "entities": [
+    "Mi'kmaq"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.2710625,
+   "asr_s": 3.6991027499898337,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q17",
+   "voice": "rishi",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "What does the guide say about the Mi'kmaq?",
+   "heard": "What does the guide say about the MicMac?",
+   "entities": [
+    "Mi'kmaq"
+   ],
+   "entities_missed": [
+    "Mi'kmaq"
+   ],
+   "audio_s": 2.5165,
+   "asr_s": 3.4358499589725398,
+   "ref_top1_kept": false,
+   "top1_same": false,
+   "overlap5": 0.0
+  },
+  {
+   "id": "q17",
+   "voice": "rishi",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "What does the guide say about the Mi'kmaq?",
+   "heard": "What does the guide say about the Mi'kmaq?",
+   "entities": [
+    "Mi'kmaq"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.5165,
+   "asr_s": 3.7293472919845954,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q17",
+   "voice": "rishi",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "What does the guide say about the Mi'kmaq?",
+   "heard": "What does the guide say about the Mi'kmaq?",
+   "entities": [
+    "Mi'kmaq"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.5165,
+   "asr_s": 3.7293472919845954,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q18",
+   "voice": "kokoro",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "Where is Haida Gwaii?",
+   "heard": "Where is Haida Gwaii?",
+   "entities": [
+    "Haida Gwaii"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.9,
+   "asr_s": 3.2180950840120204,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q18",
+   "voice": "kokoro",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "Where is Haida Gwaii?",
+   "heard": "Where is Haida Gwaii?",
+   "entities": [
+    "Haida Gwaii"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.9,
+   "asr_s": 3.48564070899738,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q18",
+   "voice": "kokoro",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "Where is Haida Gwaii?",
+   "heard": "Where is Haida Gwaii?",
+   "entities": [
+    "Haida Gwaii"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.9,
+   "asr_s": 3.48564070899738,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q18",
+   "voice": "samantha",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "Where is Haida Gwaii?",
+   "heard": "Where is Haida Gwaii?",
+   "entities": [
+    "Haida Gwaii"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.337125,
+   "asr_s": 3.2395115830004215,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q18",
+   "voice": "samantha",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "Where is Haida Gwaii?",
+   "heard": "Where is Haida Gwaii?",
+   "entities": [
+    "Haida Gwaii"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.337125,
+   "asr_s": 3.488779541978147,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q18",
+   "voice": "samantha",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "Where is Haida Gwaii?",
+   "heard": "Where is Haida Gwaii?",
+   "entities": [
+    "Haida Gwaii"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.337125,
+   "asr_s": 3.488779541978147,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q18",
+   "voice": "daniel",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "Where is Haida Gwaii?",
+   "heard": "Where is Haida Dweyi?",
+   "entities": [
+    "Haida Gwaii"
+   ],
+   "entities_missed": [
+    "Haida Gwaii"
+   ],
+   "audio_s": 1.32575,
+   "asr_s": 3.206895000010263,
+   "ref_top1_kept": true,
+   "top1_same": false,
+   "overlap5": 0.4
+  },
+  {
+   "id": "q18",
+   "voice": "daniel",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "Where is Haida Gwaii?",
+   "heard": "Where is Haida Gwaii?",
+   "entities": [
+    "Haida Gwaii"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.32575,
+   "asr_s": 3.466159500007052,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q18",
+   "voice": "daniel",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "Where is Haida Gwaii?",
+   "heard": "Where is Haida Gwaii?",
+   "entities": [
+    "Haida Gwaii"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.32575,
+   "asr_s": 3.466159500007052,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q18",
+   "voice": "karen",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "Where is Haida Gwaii?",
+   "heard": "Where is Hida Gwae?",
+   "entities": [
+    "Haida Gwaii"
+   ],
+   "entities_missed": [
+    "Haida Gwaii"
+   ],
+   "audio_s": 1.423625,
+   "asr_s": 3.1890568339731544,
+   "ref_top1_kept": true,
+   "top1_same": false,
+   "overlap5": 0.2
+  },
+  {
+   "id": "q18",
+   "voice": "karen",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "Where is Haida Gwaii?",
+   "heard": "Where is Haida Gwaii?",
+   "entities": [
+    "Haida Gwaii"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.423625,
+   "asr_s": 3.787414916965645,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q18",
+   "voice": "karen",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "Where is Haida Gwaii?",
+   "heard": "Where is Haida Gwaii?",
+   "entities": [
+    "Haida Gwaii"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.423625,
+   "asr_s": 3.787414916965645,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q18",
+   "voice": "rishi",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "Where is Haida Gwaii?",
+   "heard": "Where is hideaway?",
+   "entities": [
+    "Haida Gwaii"
+   ],
+   "entities_missed": [
+    "Haida Gwaii"
+   ],
+   "audio_s": 1.39025,
+   "asr_s": 3.106726208992768,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 0.2
+  },
+  {
+   "id": "q18",
+   "voice": "rishi",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "Where is Haida Gwaii?",
+   "heard": "Where is Haida Gwaii?",
+   "entities": [
+    "Haida Gwaii"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.39025,
+   "asr_s": 3.5439463339862414,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q18",
+   "voice": "rishi",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "Where is Haida Gwaii?",
+   "heard": "Where is Haida Gwaii?",
+   "entities": [
+    "Haida Gwaii"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.39025,
+   "asr_s": 3.5439463339862414,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q19",
+   "voice": "kokoro",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "What is the capital of Saskatchewan?",
+   "heard": "What is the capital of Saskatchewan?",
+   "entities": [
+    "Saskatchewan"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.475,
+   "asr_s": 3.245749749999959,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q19",
+   "voice": "kokoro",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "What is the capital of Saskatchewan?",
+   "heard": "What is the capital of Saskatchewan?",
+   "entities": [
+    "Saskatchewan"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.475,
+   "asr_s": 3.537666291987989,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q19",
+   "voice": "kokoro",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "What is the capital of Saskatchewan?",
+   "heard": "What is the capital of Saskatchewan?",
+   "entities": [
+    "Saskatchewan"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.475,
+   "asr_s": 3.537666291987989,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q19",
+   "voice": "samantha",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "What is the capital of Saskatchewan?",
+   "heard": "What is the capital of Saskatchewan?",
+   "entities": [
+    "Saskatchewan"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.336,
+   "asr_s": 3.3064218329964206,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q19",
+   "voice": "samantha",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "What is the capital of Saskatchewan?",
+   "heard": "What is the capital of Saskatchewan?",
+   "entities": [
+    "Saskatchewan"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.336,
+   "asr_s": 3.5144842080189846,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q19",
+   "voice": "samantha",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "What is the capital of Saskatchewan?",
+   "heard": "What is the capital of Saskatchewan?",
+   "entities": [
+    "Saskatchewan"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.336,
+   "asr_s": 3.5144842080189846,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q19",
+   "voice": "daniel",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "What is the capital of Saskatchewan?",
+   "heard": "What is the capital of Saskatchewan?",
+   "entities": [
+    "Saskatchewan"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.4055,
+   "asr_s": 3.3026454159989953,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q19",
+   "voice": "daniel",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "What is the capital of Saskatchewan?",
+   "heard": "What is the capital of Saskatchewan?",
+   "entities": [
+    "Saskatchewan"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.4055,
+   "asr_s": 3.6755022080033086,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q19",
+   "voice": "daniel",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "What is the capital of Saskatchewan?",
+   "heard": "What is the capital of Saskatchewan?",
+   "entities": [
+    "Saskatchewan"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.4055,
+   "asr_s": 3.6755022080033086,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q19",
+   "voice": "karen",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "What is the capital of Saskatchewan?",
+   "heard": "What is the capital of Saskatchewan?",
+   "entities": [
+    "Saskatchewan"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.34075,
+   "asr_s": 3.3106859999825247,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q19",
+   "voice": "karen",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "What is the capital of Saskatchewan?",
+   "heard": "What is the capital of Saskatchewan?",
+   "entities": [
+    "Saskatchewan"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.34075,
+   "asr_s": 3.568322792008985,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q19",
+   "voice": "karen",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "What is the capital of Saskatchewan?",
+   "heard": "What is the capital of Saskatchewan?",
+   "entities": [
+    "Saskatchewan"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.34075,
+   "asr_s": 3.568322792008985,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q19",
+   "voice": "rishi",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "What is the capital of Saskatchewan?",
+   "heard": "What is the capital of Saskatchewan?",
+   "entities": [
+    "Saskatchewan"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.481625,
+   "asr_s": 3.311186707986053,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q19",
+   "voice": "rishi",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "What is the capital of Saskatchewan?",
+   "heard": "What is the capital of Saskatchewan?",
+   "entities": [
+    "Saskatchewan"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.481625,
+   "asr_s": 3.545204499969259,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q19",
+   "voice": "rishi",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "What is the capital of Saskatchewan?",
+   "heard": "What is the capital of Saskatchewan?",
+   "entities": [
+    "Saskatchewan"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.481625,
+   "asr_s": 3.545204499969259,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q20",
+   "voice": "kokoro",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "Who are the Métis?",
+   "heard": "Who are the Métis?",
+   "entities": [
+    "Métis"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.8,
+   "asr_s": 3.150921041960828,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q20",
+   "voice": "kokoro",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "Who are the Métis?",
+   "heard": "Who are the Métis?",
+   "entities": [
+    "Métis"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.8,
+   "asr_s": 3.3868235829868354,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q20",
+   "voice": "kokoro",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "Who are the Métis?",
+   "heard": "Who are the Métis?",
+   "entities": [
+    "Métis"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.8,
+   "asr_s": 3.3868235829868354,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q20",
+   "voice": "samantha",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "Who are the Métis?",
+   "heard": "Who are the Métis?",
+   "entities": [
+    "Métis"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.2956875,
+   "asr_s": 3.1880392500315793,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q20",
+   "voice": "samantha",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "Who are the Métis?",
+   "heard": "Who are the Métis?",
+   "entities": [
+    "Métis"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.2956875,
+   "asr_s": 3.6927090829703957,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q20",
+   "voice": "samantha",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "Who are the Métis?",
+   "heard": "Who are the Métis?",
+   "entities": [
+    "Métis"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.2956875,
+   "asr_s": 3.6927090829703957,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q20",
+   "voice": "daniel",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "Who are the Métis?",
+   "heard": "Who are the Matus?",
+   "entities": [
+    "Métis"
+   ],
+   "entities_missed": [
+    "Métis"
+   ],
+   "audio_s": 1.242,
+   "asr_s": 3.1798385829897597,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 0.4
+  },
+  {
+   "id": "q20",
+   "voice": "daniel",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "Who are the Métis?",
+   "heard": "Who are the Métis?",
+   "entities": [
+    "Métis"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.242,
+   "asr_s": 3.4248232080135494,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q20",
+   "voice": "daniel",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "Who are the Métis?",
+   "heard": "Who are the Métis?",
+   "entities": [
+    "Métis"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.242,
+   "asr_s": 3.4248232080135494,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q20",
+   "voice": "karen",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "Who are the Métis?",
+   "heard": "Who are the mages?",
+   "entities": [
+    "Métis"
+   ],
+   "entities_missed": [
+    "Métis"
+   ],
+   "audio_s": 1.249625,
+   "asr_s": 3.1550624999799766,
+   "ref_top1_kept": false,
+   "top1_same": false,
+   "overlap5": 0.0
+  },
+  {
+   "id": "q20",
+   "voice": "karen",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "Who are the Métis?",
+   "heard": "Who are the mages?",
+   "entities": [
+    "Métis"
+   ],
+   "entities_missed": [
+    "Métis"
+   ],
+   "audio_s": 1.249625,
+   "asr_s": 3.366801875003148,
+   "ref_top1_kept": false,
+   "top1_same": false,
+   "overlap5": 0.0
+  },
+  {
+   "id": "q20",
+   "voice": "karen",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "Who are the Métis?",
+   "heard": "Who are the mages?",
+   "entities": [
+    "Métis"
+   ],
+   "entities_missed": [
+    "Métis"
+   ],
+   "audio_s": 1.249625,
+   "asr_s": 3.366801875003148,
+   "ref_top1_kept": false,
+   "top1_same": false,
+   "overlap5": 0.0
+  },
+  {
+   "id": "q20",
+   "voice": "rishi",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "Who are the Métis?",
+   "heard": "Who are the Mates?",
+   "entities": [
+    "Métis"
+   ],
+   "entities_missed": [
+    "Métis"
+   ],
+   "audio_s": 1.28275,
+   "asr_s": 3.157107457984239,
+   "ref_top1_kept": false,
+   "top1_same": false,
+   "overlap5": 0.0
+  },
+  {
+   "id": "q20",
+   "voice": "rishi",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "Who are the Métis?",
+   "heard": "Who are the Métis?",
+   "entities": [
+    "Métis"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.28275,
+   "asr_s": 3.3746849579620175,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q20",
+   "voice": "rishi",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "Who are the Métis?",
+   "heard": "Who are the Métis?",
+   "entities": [
+    "Métis"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.28275,
+   "asr_s": 3.3746849579620175,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q21",
+   "voice": "kokoro",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "Which languages are Inuktitut and Michif?",
+   "heard": "which languages are Inuktitut and Mishif.",
+   "entities": [
+    "Inuktitut",
+    "Michif"
+   ],
+   "entities_missed": [
+    "Michif"
+   ],
+   "audio_s": 2.925,
+   "asr_s": 3.385891249985434,
+   "ref_top1_kept": true,
+   "top1_same": false,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q21",
+   "voice": "kokoro",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "Which languages are Inuktitut and Michif?",
+   "heard": "Which languages are Inuktitut and Michif?",
+   "entities": [
+    "Inuktitut",
+    "Michif"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.925,
+   "asr_s": 3.565437708981335,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q21",
+   "voice": "kokoro",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "Which languages are Inuktitut and Michif?",
+   "heard": "Which languages are Inuktitut and Michif?",
+   "entities": [
+    "Inuktitut",
+    "Michif"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.925,
+   "asr_s": 3.565437708981335,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q21",
+   "voice": "samantha",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "Which languages are Inuktitut and Michif?",
+   "heard": "Which languages are enacted at Enmichiv?",
+   "entities": [
+    "Inuktitut",
+    "Michif"
+   ],
+   "entities_missed": [
+    "Inuktitut",
+    "Michif"
+   ],
+   "audio_s": 2.38225,
+   "asr_s": 3.377643875021022,
+   "ref_top1_kept": true,
+   "top1_same": false,
+   "overlap5": 0.6
+  },
+  {
+   "id": "q21",
+   "voice": "samantha",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "Which languages are Inuktitut and Michif?",
+   "heard": "Which languages are Inuktitut and Michif?",
+   "entities": [
+    "Inuktitut",
+    "Michif"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.38225,
+   "asr_s": 3.714829667005688,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q21",
+   "voice": "samantha",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "Which languages are Inuktitut and Michif?",
+   "heard": "Which languages are Inuktitut and Michif?",
+   "entities": [
+    "Inuktitut",
+    "Michif"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.38225,
+   "asr_s": 3.714829667005688,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q21",
+   "voice": "daniel",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "Which languages are Inuktitut and Michif?",
+   "heard": "Which languages are Inuktitut and Mechev?",
+   "entities": [
+    "Inuktitut",
+    "Michif"
+   ],
+   "entities_missed": [
+    "Michif"
+   ],
+   "audio_s": 2.5679375,
+   "asr_s": 3.41457379196072,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 0.8
+  },
+  {
+   "id": "q21",
+   "voice": "daniel",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "Which languages are Inuktitut and Michif?",
+   "heard": "Which languages are Inuktitut and Michif?",
+   "entities": [
+    "Inuktitut",
+    "Michif"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.5679375,
+   "asr_s": 3.582133290998172,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q21",
+   "voice": "daniel",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "Which languages are Inuktitut and Michif?",
+   "heard": "Which languages are Inuktitut and Michif?",
+   "entities": [
+    "Inuktitut",
+    "Michif"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.5679375,
+   "asr_s": 3.582133290998172,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q21",
+   "voice": "karen",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "Which languages are Inuktitut and Michif?",
+   "heard": "Which languages are inuktitut and mitchif?",
+   "entities": [
+    "Inuktitut",
+    "Michif"
+   ],
+   "entities_missed": [
+    "Michif"
+   ],
+   "audio_s": 2.5264375,
+   "asr_s": 3.404217000002973,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 0.8
+  },
+  {
+   "id": "q21",
+   "voice": "karen",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "Which languages are Inuktitut and Michif?",
+   "heard": "Which languages are Inuktitut and Michif?",
+   "entities": [
+    "Inuktitut",
+    "Michif"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.5264375,
+   "asr_s": 3.5623006670502946,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q21",
+   "voice": "karen",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "Which languages are Inuktitut and Michif?",
+   "heard": "Which languages are Inuktitut and Michif?",
+   "entities": [
+    "Inuktitut",
+    "Michif"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.5264375,
+   "asr_s": 3.5623006670502946,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q21",
+   "voice": "rishi",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "Which languages are Inuktitut and Michif?",
+   "heard": "Which languages are in Aptitut and Michif?",
+   "entities": [
+    "Inuktitut",
+    "Michif"
+   ],
+   "entities_missed": [
+    "Inuktitut"
+   ],
+   "audio_s": 2.65575,
+   "asr_s": 3.501474875025451,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 0.8
+  },
+  {
+   "id": "q21",
+   "voice": "rishi",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "Which languages are Inuktitut and Michif?",
+   "heard": "Which languages are Inuktitut and Michif?",
+   "entities": [
+    "Inuktitut",
+    "Michif"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.65575,
+   "asr_s": 3.710994374996517,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q21",
+   "voice": "rishi",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "Which languages are Inuktitut and Michif?",
+   "heard": "Which languages are Inuktitut and Michif?",
+   "entities": [
+    "Inuktitut",
+    "Michif"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.65575,
+   "asr_s": 3.710994374996517,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q22",
+   "voice": "kokoro",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "Who was Laura Secord?",
+   "heard": "Who was Laura Secord?",
+   "entities": [
+    "Laura Secord"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.925,
+   "asr_s": 3.141035875014495,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q22",
+   "voice": "kokoro",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "Who was Laura Secord?",
+   "heard": "Who was Laura Secord?",
+   "entities": [
+    "Laura Secord"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.925,
+   "asr_s": 3.39558162499452,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q22",
+   "voice": "kokoro",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "Who was Laura Secord?",
+   "heard": "Who was Laura Secord?",
+   "entities": [
+    "Laura Secord"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.925,
+   "asr_s": 3.39558162499452,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q22",
+   "voice": "samantha",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "Who was Laura Secord?",
+   "heard": "Who was Laura Seekert?",
+   "entities": [
+    "Laura Secord"
+   ],
+   "entities_missed": [
+    "Laura Secord"
+   ],
+   "audio_s": 1.377,
+   "asr_s": 3.1693732909625396,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 0.6
+  },
+  {
+   "id": "q22",
+   "voice": "samantha",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "Who was Laura Secord?",
+   "heard": "Who was Laura Secord?",
+   "entities": [
+    "Laura Secord"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.377,
+   "asr_s": 3.3494520419626497,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q22",
+   "voice": "samantha",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "Who was Laura Secord?",
+   "heard": "Who was Laura Secord?",
+   "entities": [
+    "Laura Secord"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.377,
+   "asr_s": 3.3494520419626497,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q22",
+   "voice": "daniel",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "Who was Laura Secord?",
+   "heard": "Who was Laura Secord?",
+   "entities": [
+    "Laura Secord"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.5090625,
+   "asr_s": 3.1419946249807253,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q22",
+   "voice": "daniel",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "Who was Laura Secord?",
+   "heard": "Who was Laura Secord?",
+   "entities": [
+    "Laura Secord"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.5090625,
+   "asr_s": 3.3746300830389373,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q22",
+   "voice": "daniel",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "Who was Laura Secord?",
+   "heard": "Who was Laura Secord?",
+   "entities": [
+    "Laura Secord"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.5090625,
+   "asr_s": 3.3746300830389373,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q22",
+   "voice": "karen",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "Who was Laura Secord?",
+   "heard": "Who was Laura Secord?",
+   "entities": [
+    "Laura Secord"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.4701875,
+   "asr_s": 3.129000791988801,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q22",
+   "voice": "karen",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "Who was Laura Secord?",
+   "heard": "Who was Laura Secord?",
+   "entities": [
+    "Laura Secord"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.4701875,
+   "asr_s": 3.3652491660322994,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q22",
+   "voice": "karen",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "Who was Laura Secord?",
+   "heard": "Who was Laura Secord?",
+   "entities": [
+    "Laura Secord"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.4701875,
+   "asr_s": 3.3652491660322994,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q22",
+   "voice": "rishi",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "Who was Laura Secord?",
+   "heard": "Who was Laura Secord?",
+   "entities": [
+    "Laura Secord"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.5381875,
+   "asr_s": 3.132628332998138,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q22",
+   "voice": "rishi",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "Who was Laura Secord?",
+   "heard": "Who was Laura Secord?",
+   "entities": [
+    "Laura Secord"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.5381875,
+   "asr_s": 3.3735407919739373,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q22",
+   "voice": "rishi",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "Who was Laura Secord?",
+   "heard": "Who was Laura Secord?",
+   "entities": [
+    "Laura Secord"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.5381875,
+   "asr_s": 3.3735407919739373,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q23",
+   "voice": "kokoro",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "Where was the North West Mounted Police headquartered?",
+   "heard": "Where was the Northwest mounted police headquartered?",
+   "entities": [],
+   "entities_missed": [],
+   "audio_s": 3.425,
+   "asr_s": 3.2948811250389554,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 0.8
+  },
+  {
+   "id": "q23",
+   "voice": "kokoro",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "Where was the North West Mounted Police headquartered?",
+   "heard": "Where was the Northwest mounted police headquartered?",
+   "entities": [],
+   "entities_missed": [],
+   "audio_s": 3.425,
+   "asr_s": 3.5599429580033757,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 0.8
+  },
+  {
+   "id": "q23",
+   "voice": "kokoro",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "Where was the North West Mounted Police headquartered?",
+   "heard": "Where was the Northwest mounted police headquartered?",
+   "entities": [],
+   "entities_missed": [],
+   "audio_s": 3.425,
+   "asr_s": 3.5599429580033757,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 0.8
+  },
+  {
+   "id": "q23",
+   "voice": "samantha",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "Where was the North West Mounted Police headquartered?",
+   "heard": "Where was the Northwest Mounted Police headquartered?",
+   "entities": [],
+   "entities_missed": [],
+   "audio_s": 2.811625,
+   "asr_s": 3.3162966670352034,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 0.8
+  },
+  {
+   "id": "q23",
+   "voice": "samantha",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "Where was the North West Mounted Police headquartered?",
+   "heard": "Where was the Northwest Mounted Police headquartered?",
+   "entities": [],
+   "entities_missed": [],
+   "audio_s": 2.811625,
+   "asr_s": 3.632018624979537,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 0.8
+  },
+  {
+   "id": "q23",
+   "voice": "samantha",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "Where was the North West Mounted Police headquartered?",
+   "heard": "Where was the Northwest Mounted Police headquartered?",
+   "entities": [],
+   "entities_missed": [],
+   "audio_s": 2.811625,
+   "asr_s": 3.632018624979537,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 0.8
+  },
+  {
+   "id": "q23",
+   "voice": "daniel",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "Where was the North West Mounted Police headquartered?",
+   "heard": "Where was the northwest mounted police headquartered?",
+   "entities": [],
+   "entities_missed": [],
+   "audio_s": 2.986,
+   "asr_s": 3.358818667009473,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 0.8
+  },
+  {
+   "id": "q23",
+   "voice": "daniel",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "Where was the North West Mounted Police headquartered?",
+   "heard": "Where was the North West Mounted Police Headquartered?",
+   "entities": [],
+   "entities_missed": [],
+   "audio_s": 2.986,
+   "asr_s": 3.9251786660170183,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q23",
+   "voice": "daniel",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "Where was the North West Mounted Police headquartered?",
+   "heard": "Where was the North West Mounted Police Headquartered?",
+   "entities": [],
+   "entities_missed": [],
+   "audio_s": 2.986,
+   "asr_s": 3.9251786660170183,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q23",
+   "voice": "karen",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "Where was the North West Mounted Police headquartered?",
+   "heard": "Where was the Northwest Mounted Police Headquartered?",
+   "entities": [],
+   "entities_missed": [],
+   "audio_s": 2.8865,
+   "asr_s": 3.422207667026669,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 0.8
+  },
+  {
+   "id": "q23",
+   "voice": "karen",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "Where was the North West Mounted Police headquartered?",
+   "heard": "Where was the North West Mounted Police Headquartered?",
+   "entities": [],
+   "entities_missed": [],
+   "audio_s": 2.8865,
+   "asr_s": 3.6748062080005184,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q23",
+   "voice": "karen",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "Where was the North West Mounted Police headquartered?",
+   "heard": "Where was the North West Mounted Police Headquartered?",
+   "entities": [],
+   "entities_missed": [],
+   "audio_s": 2.8865,
+   "asr_s": 3.6748062080005184,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q23",
+   "voice": "rishi",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "Where was the North West Mounted Police headquartered?",
+   "heard": "Where was the north-west mounted police headquartered?",
+   "entities": [],
+   "entities_missed": [],
+   "audio_s": 3.329125,
+   "asr_s": 3.355802208010573,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q23",
+   "voice": "rishi",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "Where was the North West Mounted Police headquartered?",
+   "heard": "Where was the North West Mounted Police Headquartered?",
+   "entities": [],
+   "entities_missed": [],
+   "audio_s": 3.329125,
+   "asr_s": 3.6621513330028392,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q23",
+   "voice": "rishi",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "Where was the North West Mounted Police headquartered?",
+   "heard": "Where was the North West Mounted Police Headquartered?",
+   "entities": [],
+   "entities_missed": [],
+   "audio_s": 3.329125,
+   "asr_s": 3.6621513330028392,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q24",
+   "voice": "kokoro",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "Who was Louis-Joseph Papineau?",
+   "heard": "Who was Lee Joseph Papineau?",
+   "entities": [
+    "Louis-Joseph Papineau"
+   ],
+   "entities_missed": [
+    "Louis-Joseph Papineau"
+   ],
+   "audio_s": 2.175,
+   "asr_s": 3.235011915967334,
+   "ref_top1_kept": true,
+   "top1_same": false,
+   "overlap5": 0.6
+  },
+  {
+   "id": "q24",
+   "voice": "kokoro",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "Who was Louis-Joseph Papineau?",
+   "heard": "Who was Louis-Joseph Papineau?",
+   "entities": [
+    "Louis-Joseph Papineau"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.175,
+   "asr_s": 3.51953308301745,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q24",
+   "voice": "kokoro",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "Who was Louis-Joseph Papineau?",
+   "heard": "Who was Louis-Joseph Papineau?",
+   "entities": [
+    "Louis-Joseph Papineau"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.175,
+   "asr_s": 3.51953308301745,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q24",
+   "voice": "samantha",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "Who was Louis-Joseph Papineau?",
+   "heard": "Who was Louis Joseph Papineau?",
+   "entities": [
+    "Louis-Joseph Papineau"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.9575,
+   "asr_s": 3.3009080829797313,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q24",
+   "voice": "samantha",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "Who was Louis-Joseph Papineau?",
+   "heard": "Who was Louis-Joseph Papineau?",
+   "entities": [
+    "Louis-Joseph Papineau"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.9575,
+   "asr_s": 3.5692378749954514,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q24",
+   "voice": "samantha",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "Who was Louis-Joseph Papineau?",
+   "heard": "Who was Louis-Joseph Papineau?",
+   "entities": [
+    "Louis-Joseph Papineau"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.9575,
+   "asr_s": 3.5692378749954514,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q24",
+   "voice": "daniel",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "Who was Louis-Joseph Papineau?",
+   "heard": "Who was Louis-Joseph Papineau?",
+   "entities": [
+    "Louis-Joseph Papineau"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.915375,
+   "asr_s": 3.324939667014405,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q24",
+   "voice": "daniel",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "Who was Louis-Joseph Papineau?",
+   "heard": "Who was Louis-Joseph Papineau?",
+   "entities": [
+    "Louis-Joseph Papineau"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.915375,
+   "asr_s": 3.567976791993715,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q24",
+   "voice": "daniel",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "Who was Louis-Joseph Papineau?",
+   "heard": "Who was Louis-Joseph Papineau?",
+   "entities": [
+    "Louis-Joseph Papineau"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.915375,
+   "asr_s": 3.567976791993715,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q24",
+   "voice": "karen",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "Who was Louis-Joseph Papineau?",
+   "heard": "Who was Louis Joseph Papineau?",
+   "entities": [
+    "Louis-Joseph Papineau"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.0623125,
+   "asr_s": 3.187790625030175,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q24",
+   "voice": "karen",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "Who was Louis-Joseph Papineau?",
+   "heard": "Who was Louis-Joseph Papineau?",
+   "entities": [
+    "Louis-Joseph Papineau"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.0623125,
+   "asr_s": 3.5417858749860898,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q24",
+   "voice": "karen",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "Who was Louis-Joseph Papineau?",
+   "heard": "Who was Louis-Joseph Papineau?",
+   "entities": [
+    "Louis-Joseph Papineau"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.0623125,
+   "asr_s": 3.5417858749860898,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q24",
+   "voice": "rishi",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "Who was Louis-Joseph Papineau?",
+   "heard": "Who was Louis-Joseph Papineau?",
+   "entities": [
+    "Louis-Joseph Papineau"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.979375,
+   "asr_s": 3.304313042026479,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q24",
+   "voice": "rishi",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "Who was Louis-Joseph Papineau?",
+   "heard": "Who was Louis-Joseph Papineau?",
+   "entities": [
+    "Louis-Joseph Papineau"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.979375,
+   "asr_s": 3.531890125013888,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q24",
+   "voice": "rishi",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "Who was Louis-Joseph Papineau?",
+   "heard": "Who was Louis-Joseph Papineau?",
+   "entities": [
+    "Louis-Joseph Papineau"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.979375,
+   "asr_s": 3.531890125013888,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q25",
+   "voice": "kokoro",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "Who is the current prime minister of Canada?",
+   "heard": "Who is the current Prime Minister of Canada?",
+   "entities": [],
+   "entities_missed": [],
+   "audio_s": 2.95,
+   "asr_s": 3.445494333980605,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q25",
+   "voice": "kokoro",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "Who is the current prime minister of Canada?",
+   "heard": "Who is the current Prime Minister of Canada?",
+   "entities": [],
+   "entities_missed": [],
+   "audio_s": 2.95,
+   "asr_s": 3.483547208015807,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q25",
+   "voice": "kokoro",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "Who is the current prime minister of Canada?",
+   "heard": "Who is the current Prime Minister of Canada?",
+   "entities": [],
+   "entities_missed": [],
+   "audio_s": 2.95,
+   "asr_s": 3.483547208015807,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q25",
+   "voice": "samantha",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "Who is the current prime minister of Canada?",
+   "heard": "Who is the current Prime Minister of Canada?",
+   "entities": [],
+   "entities_missed": [],
+   "audio_s": 2.4566875,
+   "asr_s": 3.250687665946316,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q25",
+   "voice": "samantha",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "Who is the current prime minister of Canada?",
+   "heard": "Who is the current Prime Minister of Canada?",
+   "entities": [],
+   "entities_missed": [],
+   "audio_s": 2.4566875,
+   "asr_s": 3.474485917016864,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q25",
+   "voice": "samantha",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "Who is the current prime minister of Canada?",
+   "heard": "Who is the current Prime Minister of Canada?",
+   "entities": [],
+   "entities_missed": [],
+   "audio_s": 2.4566875,
+   "asr_s": 3.474485917016864,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q25",
+   "voice": "daniel",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "Who is the current prime minister of Canada?",
+   "heard": "Who is the current Prime Minister of Canada?",
+   "entities": [],
+   "entities_missed": [],
+   "audio_s": 2.5539375,
+   "asr_s": 3.269041959021706,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q25",
+   "voice": "daniel",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "Who is the current prime minister of Canada?",
+   "heard": "Who is the current Prime Minister of Canada?",
+   "entities": [],
+   "entities_missed": [],
+   "audio_s": 2.5539375,
+   "asr_s": 3.496681416989304,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q25",
+   "voice": "daniel",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "Who is the current prime minister of Canada?",
+   "heard": "Who is the current Prime Minister of Canada?",
+   "entities": [],
+   "entities_missed": [],
+   "audio_s": 2.5539375,
+   "asr_s": 3.496681416989304,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q25",
+   "voice": "karen",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "Who is the current prime minister of Canada?",
+   "heard": "Who is the current Prime Minister of Canada?",
+   "entities": [],
+   "entities_missed": [],
+   "audio_s": 2.4686875,
+   "asr_s": 3.237776124966331,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q25",
+   "voice": "karen",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "Who is the current prime minister of Canada?",
+   "heard": "Who is the current Prime Minister of Canada?",
+   "entities": [],
+   "entities_missed": [],
+   "audio_s": 2.4686875,
+   "asr_s": 3.4731831249664538,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q25",
+   "voice": "karen",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "Who is the current prime minister of Canada?",
+   "heard": "Who is the current Prime Minister of Canada?",
+   "entities": [],
+   "entities_missed": [],
+   "audio_s": 2.4686875,
+   "asr_s": 3.4731831249664538,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q25",
+   "voice": "rishi",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "Who is the current prime minister of Canada?",
+   "heard": "who is the current Prime Minister of Canada.",
+   "entities": [],
+   "entities_missed": [],
+   "audio_s": 2.664375,
+   "asr_s": 3.2633572499617003,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q25",
+   "voice": "rishi",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "Who is the current prime minister of Canada?",
+   "heard": "who is the current Prime Minister of Canada.",
+   "entities": [],
+   "entities_missed": [],
+   "audio_s": 2.664375,
+   "asr_s": 3.463024916010909,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q25",
+   "voice": "rishi",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "Who is the current prime minister of Canada?",
+   "heard": "who is the current Prime Minister of Canada.",
+   "entities": [],
+   "entities_missed": [],
+   "audio_s": 2.664375,
+   "asr_s": 3.463024916010909,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q26",
+   "voice": "kokoro",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "What is the population of Toronto today?",
+   "heard": "What is the population of Toronto today?",
+   "entities": [],
+   "entities_missed": [],
+   "audio_s": 2.9,
+   "asr_s": 3.195941290992778,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q26",
+   "voice": "kokoro",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "What is the population of Toronto today?",
+   "heard": "What is the population of Toronto today?",
+   "entities": [],
+   "entities_missed": [],
+   "audio_s": 2.9,
+   "asr_s": 3.4246537080034614,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q26",
+   "voice": "kokoro",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "What is the population of Toronto today?",
+   "heard": "What is the population of Toronto today?",
+   "entities": [],
+   "entities_missed": [],
+   "audio_s": 2.9,
+   "asr_s": 3.4246537080034614,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q26",
+   "voice": "samantha",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "What is the population of Toronto today?",
+   "heard": "What is the population of Toronto today?",
+   "entities": [],
+   "entities_missed": [],
+   "audio_s": 2.4869375,
+   "asr_s": 3.2153709580306895,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q26",
+   "voice": "samantha",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "What is the population of Toronto today?",
+   "heard": "What is the population of Toronto today?",
+   "entities": [],
+   "entities_missed": [],
+   "audio_s": 2.4869375,
+   "asr_s": 3.4411425000289455,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q26",
+   "voice": "samantha",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "What is the population of Toronto today?",
+   "heard": "What is the population of Toronto today?",
+   "entities": [],
+   "entities_missed": [],
+   "audio_s": 2.4869375,
+   "asr_s": 3.4411425000289455,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q26",
+   "voice": "daniel",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "What is the population of Toronto today?",
+   "heard": "What is the population of Toronto today?",
+   "entities": [],
+   "entities_missed": [],
+   "audio_s": 2.521625,
+   "asr_s": 3.1930151249980554,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q26",
+   "voice": "daniel",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "What is the population of Toronto today?",
+   "heard": "What is the population of Toronto today?",
+   "entities": [],
+   "entities_missed": [],
+   "audio_s": 2.521625,
+   "asr_s": 3.3963046250282787,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q26",
+   "voice": "daniel",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "What is the population of Toronto today?",
+   "heard": "What is the population of Toronto today?",
+   "entities": [],
+   "entities_missed": [],
+   "audio_s": 2.521625,
+   "asr_s": 3.3963046250282787,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q26",
+   "voice": "karen",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "What is the population of Toronto today?",
+   "heard": "What is the population of Toronto today?",
+   "entities": [],
+   "entities_missed": [],
+   "audio_s": 2.5729375,
+   "asr_s": 3.408146083005704,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q26",
+   "voice": "karen",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "What is the population of Toronto today?",
+   "heard": "What is the population of Toronto today?",
+   "entities": [],
+   "entities_missed": [],
+   "audio_s": 2.5729375,
+   "asr_s": 3.4429341250215657,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q26",
+   "voice": "karen",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "What is the population of Toronto today?",
+   "heard": "What is the population of Toronto today?",
+   "entities": [],
+   "entities_missed": [],
+   "audio_s": 2.5729375,
+   "asr_s": 3.4429341250215657,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q26",
+   "voice": "rishi",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "What is the population of Toronto today?",
+   "heard": "What is the population of Toronto today?",
+   "entities": [],
+   "entities_missed": [],
+   "audio_s": 2.609375,
+   "asr_s": 3.177879665978253,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q26",
+   "voice": "rishi",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "What is the population of Toronto today?",
+   "heard": "What is the population of Toronto today?",
+   "entities": [],
+   "entities_missed": [],
+   "audio_s": 2.609375,
+   "asr_s": 3.41734375001397,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q26",
+   "voice": "rishi",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "What is the population of Toronto today?",
+   "heard": "What is the population of Toronto today?",
+   "entities": [],
+   "entities_missed": [],
+   "audio_s": 2.609375,
+   "asr_s": 3.41734375001397,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q27",
+   "voice": "kokoro",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "Who won the Stanley Cup last year?",
+   "heard": "Who won the Stanley Cup last year?",
+   "entities": [],
+   "entities_missed": [],
+   "audio_s": 2.375,
+   "asr_s": 3.1840148749761283,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q27",
+   "voice": "kokoro",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "Who won the Stanley Cup last year?",
+   "heard": "Who won the Stanley Cup last year?",
+   "entities": [],
+   "entities_missed": [],
+   "audio_s": 2.375,
+   "asr_s": 3.4037394169718027,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q27",
+   "voice": "kokoro",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "Who won the Stanley Cup last year?",
+   "heard": "Who won the Stanley Cup last year?",
+   "entities": [],
+   "entities_missed": [],
+   "audio_s": 2.375,
+   "asr_s": 3.4037394169718027,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q27",
+   "voice": "samantha",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "Who won the Stanley Cup last year?",
+   "heard": "who won the Stanley Cup last year.",
+   "entities": [],
+   "entities_missed": [],
+   "audio_s": 2.0851875,
+   "asr_s": 3.2199794169864617,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q27",
+   "voice": "samantha",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "Who won the Stanley Cup last year?",
+   "heard": "who won the Stanley Cup last year.",
+   "entities": [],
+   "entities_missed": [],
+   "audio_s": 2.0851875,
+   "asr_s": 3.4183374579879455,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q27",
+   "voice": "samantha",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "Who won the Stanley Cup last year?",
+   "heard": "who won the Stanley Cup last year.",
+   "entities": [],
+   "entities_missed": [],
+   "audio_s": 2.0851875,
+   "asr_s": 3.4183374579879455,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q27",
+   "voice": "daniel",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "Who won the Stanley Cup last year?",
+   "heard": "Who won the Stanley Cup last year?",
+   "entities": [],
+   "entities_missed": [],
+   "audio_s": 2.205625,
+   "asr_s": 3.1895737089798786,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q27",
+   "voice": "daniel",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "Who won the Stanley Cup last year?",
+   "heard": "Who won the Stanley Cup last year?",
+   "entities": [],
+   "entities_missed": [],
+   "audio_s": 2.205625,
+   "asr_s": 3.4350524580222555,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q27",
+   "voice": "daniel",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "Who won the Stanley Cup last year?",
+   "heard": "Who won the Stanley Cup last year?",
+   "entities": [],
+   "entities_missed": [],
+   "audio_s": 2.205625,
+   "asr_s": 3.4350524580222555,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q27",
+   "voice": "karen",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "Who won the Stanley Cup last year?",
+   "heard": "who won the Stanley Cup last year.",
+   "entities": [],
+   "entities_missed": [],
+   "audio_s": 2.1551875,
+   "asr_s": 3.1787612910266034,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q27",
+   "voice": "karen",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "Who won the Stanley Cup last year?",
+   "heard": "Who won the Stanley Cup last year?",
+   "entities": [],
+   "entities_missed": [],
+   "audio_s": 2.1551875,
+   "asr_s": 3.4199839170323685,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q27",
+   "voice": "karen",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "Who won the Stanley Cup last year?",
+   "heard": "Who won the Stanley Cup last year?",
+   "entities": [],
+   "entities_missed": [],
+   "audio_s": 2.1551875,
+   "asr_s": 3.4199839170323685,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q27",
+   "voice": "rishi",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "Who won the Stanley Cup last year?",
+   "heard": "who won the Stanley Cup last year.",
+   "entities": [],
+   "entities_missed": [],
+   "audio_s": 2.4901875,
+   "asr_s": 3.2084311670041643,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q27",
+   "voice": "rishi",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "Who won the Stanley Cup last year?",
+   "heard": "Who won the Stanley Cup last year?",
+   "entities": [],
+   "entities_missed": [],
+   "audio_s": 2.4901875,
+   "asr_s": 3.4569167500012554,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q27",
+   "voice": "rishi",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "Who won the Stanley Cup last year?",
+   "heard": "Who won the Stanley Cup last year?",
+   "entities": [],
+   "entities_missed": [],
+   "audio_s": 2.4901875,
+   "asr_s": 3.4569167500012554,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q28",
+   "voice": "kokoro",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "What is the best pizza restaurant in Montreal?",
+   "heard": "What is the best pizza restaurant in Montreal?",
+   "entities": [],
+   "entities_missed": [],
+   "audio_s": 2.95,
+   "asr_s": 3.2310482910252176,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q28",
+   "voice": "kokoro",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "What is the best pizza restaurant in Montreal?",
+   "heard": "What is the best pizza restaurant in Montreal?",
+   "entities": [],
+   "entities_missed": [],
+   "audio_s": 2.95,
+   "asr_s": 3.4734349170466885,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q28",
+   "voice": "kokoro",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "What is the best pizza restaurant in Montreal?",
+   "heard": "What is the best pizza restaurant in Montreal?",
+   "entities": [],
+   "entities_missed": [],
+   "audio_s": 2.95,
+   "asr_s": 3.4734349170466885,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q28",
+   "voice": "samantha",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "What is the best pizza restaurant in Montreal?",
+   "heard": "What is the best pizza restaurant in Montreal?",
+   "entities": [],
+   "entities_missed": [],
+   "audio_s": 2.754,
+   "asr_s": 3.2792505839606747,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q28",
+   "voice": "samantha",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "What is the best pizza restaurant in Montreal?",
+   "heard": "What is the best pizza restaurant in Montreal?",
+   "entities": [],
+   "entities_missed": [],
+   "audio_s": 2.754,
+   "asr_s": 3.687074749963358,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q28",
+   "voice": "samantha",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "What is the best pizza restaurant in Montreal?",
+   "heard": "What is the best pizza restaurant in Montreal?",
+   "entities": [],
+   "entities_missed": [],
+   "audio_s": 2.754,
+   "asr_s": 3.687074749963358,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q28",
+   "voice": "daniel",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "What is the best pizza restaurant in Montreal?",
+   "heard": "What is the best pizza restaurant in Montreal?",
+   "entities": [],
+   "entities_missed": [],
+   "audio_s": 2.7421875,
+   "asr_s": 3.2571151250158437,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q28",
+   "voice": "daniel",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "What is the best pizza restaurant in Montreal?",
+   "heard": "What is the best pizza restaurant in Montreal?",
+   "entities": [],
+   "entities_missed": [],
+   "audio_s": 2.7421875,
+   "asr_s": 3.49830379197374,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q28",
+   "voice": "daniel",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "What is the best pizza restaurant in Montreal?",
+   "heard": "What is the best pizza restaurant in Montreal?",
+   "entities": [],
+   "entities_missed": [],
+   "audio_s": 2.7421875,
+   "asr_s": 3.49830379197374,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q28",
+   "voice": "karen",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "What is the best pizza restaurant in Montreal?",
+   "heard": "What is the best pizza restaurant in Montreal?",
+   "entities": [],
+   "entities_missed": [],
+   "audio_s": 2.7470625,
+   "asr_s": 3.2423933329991996,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q28",
+   "voice": "karen",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "What is the best pizza restaurant in Montreal?",
+   "heard": "What is the best pizza restaurant in Montreal?",
+   "entities": [],
+   "entities_missed": [],
+   "audio_s": 2.7470625,
+   "asr_s": 3.4822426249738783,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q28",
+   "voice": "karen",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "What is the best pizza restaurant in Montreal?",
+   "heard": "What is the best pizza restaurant in Montreal?",
+   "entities": [],
+   "entities_missed": [],
+   "audio_s": 2.7470625,
+   "asr_s": 3.4822426249738783,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q28",
+   "voice": "rishi",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "What is the best pizza restaurant in Montreal?",
+   "heard": "What is the best pizza restaurant in Montreal?",
+   "entities": [],
+   "entities_missed": [],
+   "audio_s": 3.2130625,
+   "asr_s": 3.2460923329927027,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q28",
+   "voice": "rishi",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "What is the best pizza restaurant in Montreal?",
+   "heard": "What is the best pizza restaurant in Montreal?",
+   "entities": [],
+   "entities_missed": [],
+   "audio_s": 3.2130625,
+   "asr_s": 3.4894348749658093,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q28",
+   "voice": "rishi",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "What is the best pizza restaurant in Montreal?",
+   "heard": "What is the best pizza restaurant in Montreal?",
+   "entities": [],
+   "entities_missed": [],
+   "audio_s": 3.2130625,
+   "asr_s": 3.4894348749658093,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q29",
+   "voice": "kokoro",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "Who was Sir Isaac Brock?",
+   "heard": "Who was Sir Isaac Brock?",
+   "entities": [
+    "Sir Isaac Brock"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.975,
+   "asr_s": 3.0953319999971427,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q29",
+   "voice": "kokoro",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "Who was Sir Isaac Brock?",
+   "heard": "Who was Sir Isaac Brock?",
+   "entities": [
+    "Sir Isaac Brock"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.975,
+   "asr_s": 3.325129625038244,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q29",
+   "voice": "kokoro",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "Who was Sir Isaac Brock?",
+   "heard": "Who was Sir Isaac Brock?",
+   "entities": [
+    "Sir Isaac Brock"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.975,
+   "asr_s": 3.325129625038244,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q29",
+   "voice": "samantha",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "Who was Sir Isaac Brock?",
+   "heard": "Who was Sir Isaac Brock?",
+   "entities": [
+    "Sir Isaac Brock"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.5163125,
+   "asr_s": 3.1107763340114616,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q29",
+   "voice": "samantha",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "Who was Sir Isaac Brock?",
+   "heard": "Who was Sir Isaac Brock?",
+   "entities": [
+    "Sir Isaac Brock"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.5163125,
+   "asr_s": 3.353868667036295,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q29",
+   "voice": "samantha",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "Who was Sir Isaac Brock?",
+   "heard": "Who was Sir Isaac Brock?",
+   "entities": [
+    "Sir Isaac Brock"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.5163125,
+   "asr_s": 3.353868667036295,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q29",
+   "voice": "daniel",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "Who was Sir Isaac Brock?",
+   "heard": "Who was Isaac Brock?",
+   "entities": [
+    "Sir Isaac Brock"
+   ],
+   "entities_missed": [
+    "Sir Isaac Brock"
+   ],
+   "audio_s": 1.53225,
+   "asr_s": 3.1402349160052836,
+   "ref_top1_kept": true,
+   "top1_same": false,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q29",
+   "voice": "daniel",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "Who was Sir Isaac Brock?",
+   "heard": "Who was Isaac Brock?",
+   "entities": [
+    "Sir Isaac Brock"
+   ],
+   "entities_missed": [
+    "Sir Isaac Brock"
+   ],
+   "audio_s": 1.53225,
+   "asr_s": 3.321777540957555,
+   "ref_top1_kept": true,
+   "top1_same": false,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q29",
+   "voice": "daniel",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "Who was Sir Isaac Brock?",
+   "heard": "Who was Isaac Brock?",
+   "entities": [
+    "Sir Isaac Brock"
+   ],
+   "entities_missed": [
+    "Sir Isaac Brock"
+   ],
+   "audio_s": 1.53225,
+   "asr_s": 3.321777540957555,
+   "ref_top1_kept": true,
+   "top1_same": false,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q29",
+   "voice": "karen",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "Who was Sir Isaac Brock?",
+   "heard": "Who was Sir Isaac Brock?",
+   "entities": [
+    "Sir Isaac Brock"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.73725,
+   "asr_s": 3.1107479999773204,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q29",
+   "voice": "karen",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "Who was Sir Isaac Brock?",
+   "heard": "Who was Sir Isaac Brock?",
+   "entities": [
+    "Sir Isaac Brock"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.73725,
+   "asr_s": 3.3254934169817716,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q29",
+   "voice": "karen",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "Who was Sir Isaac Brock?",
+   "heard": "Who was Sir Isaac Brock?",
+   "entities": [
+    "Sir Isaac Brock"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.73725,
+   "asr_s": 3.3254934169817716,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q29",
+   "voice": "rishi",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "Who was Sir Isaac Brock?",
+   "heard": "Who was Sir Isaac Brock?",
+   "entities": [
+    "Sir Isaac Brock"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.80525,
+   "asr_s": 3.1391160000348464,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q29",
+   "voice": "rishi",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "Who was Sir Isaac Brock?",
+   "heard": "Who was Sir Isaac Brock?",
+   "entities": [
+    "Sir Isaac Brock"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.80525,
+   "asr_s": 3.6183165840338916,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q29",
+   "voice": "rishi",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "Who was Sir Isaac Brock?",
+   "heard": "Who was Sir Isaac Brock?",
+   "entities": [
+    "Sir Isaac Brock"
+   ],
+   "entities_missed": [],
+   "audio_s": 1.80525,
+   "asr_s": 3.6183165840338916,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q30",
+   "voice": "kokoro",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "What is the capital of Prince Edward Island?",
+   "heard": "What is the capital of Prince Edward Island?",
+   "entities": [
+    "Prince Edward Island"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.875,
+   "asr_s": 3.238646916055586,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q30",
+   "voice": "kokoro",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "What is the capital of Prince Edward Island?",
+   "heard": "What is the capital of Prince Edward Island?",
+   "entities": [
+    "Prince Edward Island"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.875,
+   "asr_s": 3.4660303329583257,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q30",
+   "voice": "kokoro",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "What is the capital of Prince Edward Island?",
+   "heard": "What is the capital of Prince Edward Island?",
+   "entities": [
+    "Prince Edward Island"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.875,
+   "asr_s": 3.4660303329583257,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q30",
+   "voice": "samantha",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "What is the capital of Prince Edward Island?",
+   "heard": "What is the capital of Prince Edward Island?",
+   "entities": [
+    "Prince Edward Island"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.3128125,
+   "asr_s": 3.23768670798745,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q30",
+   "voice": "samantha",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "What is the capital of Prince Edward Island?",
+   "heard": "What is the capital of Prince Edward Island?",
+   "entities": [
+    "Prince Edward Island"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.3128125,
+   "asr_s": 3.4925109170144424,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q30",
+   "voice": "samantha",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "What is the capital of Prince Edward Island?",
+   "heard": "What is the capital of Prince Edward Island?",
+   "entities": [
+    "Prince Edward Island"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.3128125,
+   "asr_s": 3.4925109170144424,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q30",
+   "voice": "daniel",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "What is the capital of Prince Edward Island?",
+   "heard": "What is the capital of Prince Edward Island?",
+   "entities": [
+    "Prince Edward Island"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.498375,
+   "asr_s": 3.2290940830134787,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q30",
+   "voice": "daniel",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "What is the capital of Prince Edward Island?",
+   "heard": "What is the capital of Prince Edward Island?",
+   "entities": [
+    "Prince Edward Island"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.498375,
+   "asr_s": 3.47231116698822,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q30",
+   "voice": "daniel",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "What is the capital of Prince Edward Island?",
+   "heard": "What is the capital of Prince Edward Island?",
+   "entities": [
+    "Prince Edward Island"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.498375,
+   "asr_s": 3.47231116698822,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q30",
+   "voice": "karen",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "What is the capital of Prince Edward Island?",
+   "heard": "What is the capital of Prince Edward Island?",
+   "entities": [
+    "Prince Edward Island"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.433625,
+   "asr_s": 3.2871104999794625,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q30",
+   "voice": "karen",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "What is the capital of Prince Edward Island?",
+   "heard": "What is the capital of Prince Edward Island?",
+   "entities": [
+    "Prince Edward Island"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.433625,
+   "asr_s": 3.4911010829964653,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q30",
+   "voice": "karen",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "What is the capital of Prince Edward Island?",
+   "heard": "What is the capital of Prince Edward Island?",
+   "entities": [
+    "Prince Edward Island"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.433625,
+   "asr_s": 3.4911010829964653,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q30",
+   "voice": "rishi",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "What is the capital of Prince Edward Island?",
+   "heard": "What is the capital of Prince Edward Island?",
+   "entities": [
+    "Prince Edward Island"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.8531875,
+   "asr_s": 3.3138305000029504,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q30",
+   "voice": "rishi",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "What is the capital of Prince Edward Island?",
+   "heard": "What is the capital of Prince Edward Island?",
+   "entities": [
+    "Prince Edward Island"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.8531875,
+   "asr_s": 3.493576250039041,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q30",
+   "voice": "rishi",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "What is the capital of Prince Edward Island?",
+   "heard": "What is the capital of Prince Edward Island?",
+   "entities": [
+    "Prince Edward Island"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.8531875,
+   "asr_s": 3.493576250039041,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q31",
+   "voice": "kokoro",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "When did Prince Edward Island join Canada?",
+   "heard": "When did Prince Edward Island join Canada?",
+   "entities": [
+    "Prince Edward Island"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.925,
+   "asr_s": 3.1744494170416147,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q31",
+   "voice": "kokoro",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "When did Prince Edward Island join Canada?",
+   "heard": "When did Prince Edward Island join Canada?",
+   "entities": [
+    "Prince Edward Island"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.925,
+   "asr_s": 3.41850691603031,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q31",
+   "voice": "kokoro",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "When did Prince Edward Island join Canada?",
+   "heard": "When did Prince Edward Island join Canada?",
+   "entities": [
+    "Prince Edward Island"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.925,
+   "asr_s": 3.41850691603031,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q31",
+   "voice": "samantha",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "When did Prince Edward Island join Canada?",
+   "heard": "When did Prince Edward Island join Canada?",
+   "entities": [
+    "Prince Edward Island"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.370375,
+   "asr_s": 3.168922041018959,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q31",
+   "voice": "samantha",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "When did Prince Edward Island join Canada?",
+   "heard": "When did Prince Edward Island join Canada?",
+   "entities": [
+    "Prince Edward Island"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.370375,
+   "asr_s": 3.403239917010069,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q31",
+   "voice": "samantha",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "When did Prince Edward Island join Canada?",
+   "heard": "When did Prince Edward Island join Canada?",
+   "entities": [
+    "Prince Edward Island"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.370375,
+   "asr_s": 3.403239917010069,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q31",
+   "voice": "daniel",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "When did Prince Edward Island join Canada?",
+   "heard": "When did Prince Edward Island join Canada?",
+   "entities": [
+    "Prince Edward Island"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.451875,
+   "asr_s": 3.2566127920290455,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q31",
+   "voice": "daniel",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "When did Prince Edward Island join Canada?",
+   "heard": "When did Prince Edward Island join Canada?",
+   "entities": [
+    "Prince Edward Island"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.451875,
+   "asr_s": 3.609726499998942,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q31",
+   "voice": "daniel",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "When did Prince Edward Island join Canada?",
+   "heard": "When did Prince Edward Island join Canada?",
+   "entities": [
+    "Prince Edward Island"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.451875,
+   "asr_s": 3.609726499998942,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q31",
+   "voice": "karen",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "When did Prince Edward Island join Canada?",
+   "heard": "When did Prince Edward Island join Canada?",
+   "entities": [
+    "Prince Edward Island"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.4220625,
+   "asr_s": 3.2180266669602133,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q31",
+   "voice": "karen",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "When did Prince Edward Island join Canada?",
+   "heard": "When did Prince Edward Island join Canada?",
+   "entities": [
+    "Prince Edward Island"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.4220625,
+   "asr_s": 3.441131125029642,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q31",
+   "voice": "karen",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "When did Prince Edward Island join Canada?",
+   "heard": "When did Prince Edward Island join Canada?",
+   "entities": [
+    "Prince Edward Island"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.4220625,
+   "asr_s": 3.441131125029642,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q31",
+   "voice": "rishi",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "When did Prince Edward Island join Canada?",
+   "heard": "When did Prince Edward Island join Canada?",
+   "entities": [
+    "Prince Edward Island"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.7485625,
+   "asr_s": 3.2308850830304436,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q31",
+   "voice": "rishi",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "When did Prince Edward Island join Canada?",
+   "heard": "When did Prince Edward Island join Canada?",
+   "entities": [
+    "Prince Edward Island"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.7485625,
+   "asr_s": 3.431005834019743,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q31",
+   "voice": "rishi",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "When did Prince Edward Island join Canada?",
+   "heard": "When did Prince Edward Island join Canada?",
+   "entities": [
+    "Prince Edward Island"
+   ],
+   "entities_missed": [],
+   "audio_s": 2.7485625,
+   "asr_s": 3.431005834019743,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q32",
+   "voice": "kokoro",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "What is the Charter of Rights and Freedoms?",
+   "heard": "What is the Charter of Rights and Freedoms?",
+   "entities": [],
+   "entities_missed": [],
+   "audio_s": 2.75,
+   "asr_s": 3.3289317499729805,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q32",
+   "voice": "kokoro",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "What is the Charter of Rights and Freedoms?",
+   "heard": "What is the Charter of Rights and Freedoms?",
+   "entities": [],
+   "entities_missed": [],
+   "audio_s": 2.75,
+   "asr_s": 3.6279616249958053,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q32",
+   "voice": "kokoro",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "What is the Charter of Rights and Freedoms?",
+   "heard": "What is the Charter of Rights and Freedoms?",
+   "entities": [],
+   "entities_missed": [],
+   "audio_s": 2.75,
+   "asr_s": 3.6279616249958053,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q32",
+   "voice": "samantha",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "What is the Charter of Rights and Freedoms?",
+   "heard": "What is the Charter of Rights and Freedoms?",
+   "entities": [],
+   "entities_missed": [],
+   "audio_s": 2.2199375,
+   "asr_s": 3.3606892089592293,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q32",
+   "voice": "samantha",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "What is the Charter of Rights and Freedoms?",
+   "heard": "What is the Charter of Rights and Freedoms?",
+   "entities": [],
+   "entities_missed": [],
+   "audio_s": 2.2199375,
+   "asr_s": 3.633314375008922,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q32",
+   "voice": "samantha",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "What is the Charter of Rights and Freedoms?",
+   "heard": "What is the Charter of Rights and Freedoms?",
+   "entities": [],
+   "entities_missed": [],
+   "audio_s": 2.2199375,
+   "asr_s": 3.633314375008922,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q32",
+   "voice": "daniel",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "What is the Charter of Rights and Freedoms?",
+   "heard": "What is the Charter of Rights and Freedoms?",
+   "entities": [],
+   "entities_missed": [],
+   "audio_s": 2.452,
+   "asr_s": 3.368985707988031,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q32",
+   "voice": "daniel",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "What is the Charter of Rights and Freedoms?",
+   "heard": "What is the Charter of Rights and Freedoms?",
+   "entities": [],
+   "entities_missed": [],
+   "audio_s": 2.452,
+   "asr_s": 3.6261804579989985,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q32",
+   "voice": "daniel",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "What is the Charter of Rights and Freedoms?",
+   "heard": "What is the Charter of Rights and Freedoms?",
+   "entities": [],
+   "entities_missed": [],
+   "audio_s": 2.452,
+   "asr_s": 3.6261804579989985,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q32",
+   "voice": "karen",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "What is the Charter of Rights and Freedoms?",
+   "heard": "What is the Charter of Rights and Freedoms?",
+   "entities": [],
+   "entities_missed": [],
+   "audio_s": 2.2014375,
+   "asr_s": 3.3661350840120576,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q32",
+   "voice": "karen",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "What is the Charter of Rights and Freedoms?",
+   "heard": "What is the Charter of Rights and Freedoms?",
+   "entities": [],
+   "entities_missed": [],
+   "audio_s": 2.2014375,
+   "asr_s": 3.6460141250281595,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q32",
+   "voice": "karen",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "What is the Charter of Rights and Freedoms?",
+   "heard": "What is the Charter of Rights and Freedoms?",
+   "entities": [],
+   "entities_missed": [],
+   "audio_s": 2.2014375,
+   "asr_s": 3.6460141250281595,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q32",
+   "voice": "rishi",
+   "snr_db": null,
+   "pipeline": "raw",
+   "ref": "What is the Charter of Rights and Freedoms?",
+   "heard": "What is the Charter of Rights and Freedoms?",
+   "entities": [],
+   "entities_missed": [],
+   "audio_s": 2.679,
+   "asr_s": 3.358375374984462,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q32",
+   "voice": "rishi",
+   "snr_db": null,
+   "pipeline": "hint",
+   "ref": "What is the Charter of Rights and Freedoms?",
+   "heard": "What is the Charter of Rights and Freedoms?",
+   "entities": [],
+   "entities_missed": [],
+   "audio_s": 2.679,
+   "asr_s": 3.601506542006973,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  },
+  {
+   "id": "q32",
+   "voice": "rishi",
+   "snr_db": null,
+   "pipeline": "hint+fix",
+   "ref": "What is the Charter of Rights and Freedoms?",
+   "heard": "What is the Charter of Rights and Freedoms?",
+   "entities": [],
+   "entities_missed": [],
+   "audio_s": 2.679,
+   "asr_s": 3.601506542006973,
+   "ref_top1_kept": true,
+   "top1_same": true,
+   "overlap5": 1.0
+  }
+ ]
+}

@@ -1,0 +1,665 @@
+{
+ "environment": {
+  "machine": "Apple M4 Pro",
+  "memory_gb": 24,
+  "os": "macOS-27.0.1-arm64-arm-64bit",
+  "python": "3.11.16",
+  "packages": {
+   "faster-whisper": "1.2.1",
+   "torch": "2.13.0",
+   "kokoro": "0.9.4",
+   "silero-vad": "6.2.3",
+   "onnxruntime": "1.29.1",
+   "sentence-transformers": "6.1.0",
+   "chromadb": "1.5.9",
+   "streamlit": "1.65.0",
+   "streamlit-webrtc": "0.79.0",
+   "jiwer": "4.0.0"
+  },
+  "asr": {
+   "model": "small",
+   "device": "cpu",
+   "compute_type": "int8",
+   "language": "en"
+  },
+  "tts_engine": "kokoro",
+  "tts_voice": "af_heart",
+  "llm_model": "z-ai-glm-5-3-flash",
+  "vad": "silero",
+  "hangover_ms": 800,
+  "browser": "not used: the harness drives the Python pipeline directly; browser microphone/WebRTC path is NOT measured"
+ },
+ "audio": "synthetic macOS `say` voice (Samantha), clean",
+ "summary": {
+  "questions": 28,
+  "capture_failures": 0,
+  "guide_questions_answered": {
+   "n": 23,
+   "ok": 23
+  },
+  "out_of_guide_abstained": {
+   "n": 5,
+   "ok": 5
+  },
+  "answer_has_expected_facts": {
+   "n": 23,
+   "ok": 23
+  },
+  "citations_accurate": {
+   "n": 23,
+   "ok": 23
+  },
+  "answer_numbers_and_names_in_evidence": {
+   "n": 23,
+   "ok": 21
+  },
+  "asr_text_differs": 4,
+  "asr_error_changed_decision": 0,
+  "asr_error_changed_sources": 0,
+  "shown_vs_spoken_wer": {
+   "n": 23,
+   "median": 0.0,
+   "p90": 0.0,
+   "p95": 0.0,
+   "min": 0.0,
+   "max": 0.0,
+   "mean": 0.0
+  },
+  "roundtrip_wer_no_numbers": {
+   "n": 23,
+   "median": 0.017241379310344827,
+   "p90": 0.05163572060123784,
+   "p95": 0.09827586206896544,
+   "min": 0.0,
+   "max": 0.13114754098360656,
+   "mean": 0.02303986755962901
+  }
+ },
+ "rows": [
+  {
+   "id": "q01",
+   "ref": "What does RCMP stand for?",
+   "guide": true,
+   "heard": "What does RCMP stand for?",
+   "failed_at": "",
+   "abstained": false,
+   "cited": [
+    "p.19",
+    "p.37"
+   ],
+   "kind": "answer",
+   "answer": "RCMP stands for the **Royal Canadian Mounted Police**. In the guide, they're also affectionately known as \"the Mounties,\" and they serve as Canada's national police force and one of the country's best-known symbols [Discover Canada, p. 19, Challenge in the west]. They enforce federal laws throughout Canada and act as the provincial police in all provinces and territories except Ontario and Quebec [Discover Canada, p. 37, Courts].",
+   "abstain_correct": true,
+   "expected_ok": true,
+   "citation_ok": true,
+   "unsupported_numbers": [],
+   "unsupported_names": [],
+   "supported": true,
+   "shown_vs_spoken_wer": 0.0,
+   "roundtrip_wer_no_numbers": 0.0
+  },
+  {
+   "id": "q02",
+   "ref": "What did Chief Tecumseh do in the War of 1812?",
+   "guide": true,
+   "heard": "What did Chief Tecumseh do in the War of 1812?",
+   "failed_at": "",
+   "abstained": false,
+   "cited": [
+    "p.17",
+    "p.17"
+   ],
+   "kind": "answer",
+   "answer": "Great question! Here's what the guide tells us about Chief Tecumseh:\n\nDuring the War of 1812, when the United States invaded Canada believing it would be easy to conquer, Chief Tecumseh led the Shawnee and, together with other First Nations, supported British soldiers in Canada's defence [Discover Canada, p. 17, The War of 1812: The Fight for Canada]. Alongside Canadian volunteers and British troops, First Nations fighters like Tecumseh's helped defeat the American invasion in 1812–14 [Discover Canada, p. 17, The War of 1812: The Fight for Canada].\n\nThe guide also mentions that Major-General Sir Isaac Brock captured Detroit in July 1812 and later died at the Battle of Queenston Heights, thou",
+   "abstain_correct": true,
+   "expected_ok": true,
+   "citation_ok": true,
+   "unsupported_numbers": [],
+   "unsupported_names": [],
+   "supported": true,
+   "shown_vs_spoken_wer": 0.0,
+   "roundtrip_wer_no_numbers": 0.02
+  },
+  {
+   "id": "q03",
+   "ref": "Who was Samuel de Champlain?",
+   "guide": true,
+   "heard": "Who was Samuel D. Champlain?",
+   "failed_at": "",
+   "abstained": false,
+   "cited": [
+    "p.15",
+    "p.15"
+   ],
+   "kind": "answer",
+   "answer": "Samuel de Champlain was a French explorer who, together with Pierre de Monts, established the first European settlement north of Florida in 1604 — first on St. Croix Island (in present-day Maine), and then at Port-Royal in Acadia (present-day Nova Scotia) [Discover Canada, p. 15, Royal New France].\n\nIn 1608, Champlain built a fortress at what is now Québec City [Discover Canada, p. 15, Royal New France]. He also allied the colony with the Algonquin, Montagnais and Huron — historic enemies of the Iroquois, a confederation of five (later six) First Nations who battled with the French settlements for a century [Discover Canada, p. 15, Royal New France].\n\nThe guide may mention other details abou",
+   "abstain_correct": true,
+   "expected_ok": true,
+   "citation_ok": true,
+   "unsupported_numbers": [],
+   "unsupported_names": [],
+   "supported": true,
+   "shown_vs_spoken_wer": 0.0,
+   "roundtrip_wer_no_numbers": 0.017543859649122806,
+   "asr_text_differs": true,
+   "typed_abstained": false,
+   "same_decision": true,
+   "same_sources": true
+  },
+  {
+   "id": "q04",
+   "ref": "Who was Sir Wilfrid Laurier?",
+   "guide": true,
+   "heard": "Who was Sir Wilfrid Laurier?",
+   "failed_at": "",
+   "abstained": false,
+   "cited": [
+    "p.20"
+   ],
+   "kind": "answer",
+   "answer": "Sir Wilfrid Laurier was the first French-Canadian prime minister since Confederation. He encouraged immigration to the West during the economic boom of the 1890s and early 1900s, a time when one million British and one million Americans came to Canada. Today, his portrait appears on the $5 bill [Discover Canada, p. 20, A Railway from Sea to Sea].",
+   "abstain_correct": true,
+   "expected_ok": true,
+   "citation_ok": true,
+   "unsupported_numbers": [],
+   "unsupported_names": [],
+   "supported": true,
+   "shown_vs_spoken_wer": 0.0,
+   "roundtrip_wer_no_numbers": 0.022222222222222223
+  },
+  {
+   "id": "q05",
+   "ref": "What is the capital of Nunavut?",
+   "guide": true,
+   "heard": "What is the capital of Nunavut?",
+   "failed_at": "",
+   "abstained": false,
+   "cited": [
+    "p.51",
+    "p.45"
+   ],
+   "kind": "answer",
+   "answer": "The capital of Nunavut is **Iqaluit** — formerly known as Frobisher Bay, named after the English explorer Martin Frobisher [Discover Canada, p. 51, Nunavut]. The guide also confirms this in its table of provinces, territories, and capital cities, where Nunavut is listed in the North region with Iqaluit as its capital [Discover Canada, p. 45, Regions, Provinces/Territories and Capital Cities].",
+   "abstain_correct": true,
+   "expected_ok": true,
+   "citation_ok": true,
+   "unsupported_numbers": [],
+   "unsupported_names": [],
+   "supported": true,
+   "shown_vs_spoken_wer": 0.0,
+   "roundtrip_wer_no_numbers": 0.0
+  },
+  {
+   "id": "q06",
+   "ref": "Who was Louis Riel?",
+   "guide": true,
+   "heard": "Who was Louis Riel?",
+   "failed_at": "",
+   "abstained": false,
+   "cited": [
+    "p.19",
+    "p.19"
+   ],
+   "kind": "answer",
+   "answer": "Louis Riel was a Métis leader who played a key role in Canada's westward expansion. Here's what the guide tells us about him:\n\n- When Canada took over the vast northwest region from the Hudson's Bay Company in 1869, the 12,000 Métis of the Red River were not consulted. In response, Riel led an armed uprising and seized Fort Garry, the territorial capital [Discover Canada, p. 19, Challenge in the west].\n- Ottawa sent soldiers to retake Fort Garry in 1870. Riel fled to the United States, and Canada established a new province: Manitoba [Discover Canada, p. 19, Challenge in the west].\n- Riel was elected to Parliament but never took his seat [Discover Canada, p. 19, Challenge in the west].\n- Late",
+   "abstain_correct": true,
+   "expected_ok": true,
+   "citation_ok": true,
+   "unsupported_numbers": [],
+   "unsupported_names": [
+    "Hudson",
+    "Today"
+   ],
+   "supported": false,
+   "shown_vs_spoken_wer": 0.0,
+   "roundtrip_wer_no_numbers": 0.0
+  },
+  {
+   "id": "q07",
+   "ref": "What does Nunavut mean in Inuktitut?",
+   "guide": true,
+   "heard": "What does Nunavut mean in Inuktitut?",
+   "failed_at": "",
+   "abstained": false,
+   "cited": [
+    "p.51"
+   ],
+   "kind": "answer",
+   "answer": "Nunavut means **\"our land\"** in Inuktitut [Discover Canada, p. 51, Nunavut].\n\nAs a friendly bonus fact: the guide also tells us that Nunavut was established in 1999 from the eastern part of the Northwest Territories, and its capital is Iqaluit [Discover Canada, p. 51, Nunavut].",
+   "abstain_correct": true,
+   "expected_ok": true,
+   "citation_ok": true,
+   "unsupported_numbers": [],
+   "unsupported_names": [],
+   "supported": true,
+   "shown_vs_spoken_wer": 0.0,
+   "roundtrip_wer_no_numbers": 0.029411764705882353
+  },
+  {
+   "id": "q08",
+   "ref": "When did Confederation happen?",
+   "guide": true,
+   "heard": "When did Confederation happen?",
+   "failed_at": "",
+   "abstained": false,
+   "cited": [
+    "p.18",
+    "p.18",
+    "p.18"
+   ],
+   "kind": "answer",
+   "answer": "Confederation happened on **July 1, 1867**, when the Dominion of Canada was officially born [Discover Canada, p. 18, Confederation].\n\nHere's a bit more context from the guide: from 1864 to 1867, representatives of Nova Scotia, New Brunswick and the Province of Canada worked together, with British support, to establish the new country. The British Parliament passed the British North America Act in 1867, and the old Province of Canada was split into Ontario and Quebec, which joined New Brunswick and Nova Scotia to form the Dominion of Canada [Discover Canada, p. 18, Confederation]. That's why July 1 is celebrated today as Canada Day (it was known as \"Dominion Day\" until 1982) [Discover Canada,",
+   "abstain_correct": true,
+   "expected_ok": true,
+   "citation_ok": true,
+   "unsupported_numbers": [],
+   "unsupported_names": [],
+   "supported": true,
+   "shown_vs_spoken_wer": 0.0,
+   "roundtrip_wer_no_numbers": 0.0
+  },
+  {
+   "id": "q09",
+   "ref": "What did Sir George-Étienne Cartier do for Confederation?",
+   "guide": true,
+   "heard": "What did Sir George Iqian Cartier do for Confederation?",
+   "failed_at": "",
+   "abstained": false,
+   "cited": [
+    "p.19",
+    "p.18"
+   ],
+   "kind": "answer",
+   "answer": "Great question! Just a small note first: the guide refers to him as **Sir George-Étienne Cartier** (not \"Iqian\"), so that's the name to remember for your test.\n\nAccording to the guide, here's what he did for Confederation:\n\n- **He was the key architect of Confederation from Quebec.** He was a railway lawyer, a Montrealer, a close ally of Sir John A. Macdonald, and a patriotic Canadien [Discover Canada, p. 19, Canada’s First Prime Minister].\n- **He led Quebec into Confederation** [Discover Canada, p. 19, Canada’s First Prime Minister].\n- **He helped negotiate the entry of the Northwest Territories, Manitoba and British Columbia into Canada** [Discover Canada, p. 19, Canada’s First Prime Minis",
+   "abstain_correct": true,
+   "expected_ok": true,
+   "citation_ok": true,
+   "unsupported_numbers": [],
+   "unsupported_names": [],
+   "supported": true,
+   "shown_vs_spoken_wer": 0.0,
+   "roundtrip_wer_no_numbers": 0.045454545454545456,
+   "asr_text_differs": true,
+   "typed_abstained": false,
+   "same_decision": true,
+   "same_sources": true
+  },
+  {
+   "id": "q10",
+   "ref": "Who was Sir Louis-Hippolyte La Fontaine?",
+   "guide": true,
+   "heard": "Who was Sir Louis-Hippolyte La Fontaine?",
+   "failed_at": "",
+   "abstained": false,
+   "cited": [
+    "p.18",
+    "p.18"
+   ],
+   "kind": "answer",
+   "answer": "Sir Louis-Hippolyte La Fontaine was a reformer and a champion of democracy and French language rights. After Upper and Lower Canada were united as the Province of Canada in 1840, he worked alongside Robert Baldwin (and, in parallel, Joseph Howe in Nova Scotia) with the British governors to bring about responsible government [Discover Canada, p. 18, Responsible government].\n\nWhen responsible government was introduced in United Canada in 1848–49 by Governor Lord Elgin, La Fontaine became the first head of a responsible government in Canada in 1849 — a role similar to a prime minister today [Discover Canada, p. 18, Responsible government]. This is the system Canada still has: if the government ",
+   "abstain_correct": true,
+   "expected_ok": true,
+   "citation_ok": true,
+   "unsupported_numbers": [],
+   "unsupported_names": [],
+   "supported": true,
+   "shown_vs_spoken_wer": 0.0,
+   "roundtrip_wer_no_numbers": 0.05172413793103448
+  },
+  {
+   "id": "q11",
+   "ref": "Who was Jacques Cartier?",
+   "guide": true,
+   "heard": "Who was Choc Cartier?",
+   "failed_at": "",
+   "abstained": false,
+   "cited": [
+    "p.14",
+    "p.14",
+    "p.18"
+   ],
+   "kind": "answer",
+   "answer": "I don't see anyone named \"Choc Cartier\" in the guide — that may be a small typo. There are two Cartiers mentioned in the guide, and you might mean one of them:\n\n1. **Jacques Cartier** — He was the first European to explore the St. Lawrence River and to set eyes on present-day Québec City and Montreal [Discover Canada, p. 14, Exploring a river, naming Canada]. Between 1534 and 1542, he made three voyages across the Atlantic, claiming the land for King Francis I of France. He heard two captured guides speak the Iroquoian word *kanata*, meaning \"village,\" and by the 1550s the name \"Canada\" began appearing on maps [Discover Canada, p. 14, Exploring a river, naming Canada].\n\n2. **Sir George-Étien",
+   "abstain_correct": true,
+   "expected_ok": true,
+   "citation_ok": true,
+   "unsupported_numbers": [],
+   "unsupported_names": [
+    "Cartiers"
+   ],
+   "supported": false,
+   "shown_vs_spoken_wer": 0.0,
+   "roundtrip_wer_no_numbers": 0.017241379310344827,
+   "asr_text_differs": true,
+   "typed_abstained": false,
+   "same_decision": true,
+   "same_sources": true
+  },
+  {
+   "id": "q12",
+   "ref": "Who discovered insulin?",
+   "guide": true,
+   "heard": "Who Discovered Insulin?",
+   "failed_at": "",
+   "abstained": false,
+   "cited": [
+    "p.27"
+   ],
+   "kind": "answer",
+   "answer": "Insulin was discovered by **Sir Frederick Banting of Toronto and Charles Best**. According to the guide, insulin is a hormone used to treat diabetes that has saved 16 million lives worldwide [Discover Canada, p. 27, GREAT CANADIAN DISCOVERIES AND INVENTIONS].\n\nThis is one of the great Canadian discoveries highlighted in the guide's section on Canadian inventions — and there may be more examples in other parts of the guide.",
+   "abstain_correct": true,
+   "expected_ok": true,
+   "citation_ok": true,
+   "unsupported_numbers": [],
+   "unsupported_names": [],
+   "supported": true,
+   "shown_vs_spoken_wer": 0.0,
+   "roundtrip_wer_no_numbers": 0.0
+  },
+  {
+   "id": "q13",
+   "ref": "What is the smallest province in Canada?",
+   "guide": true,
+   "heard": "What is the smallest province in Canada?",
+   "failed_at": "",
+   "abstained": false,
+   "cited": [
+    "p.46"
+   ],
+   "kind": "answer",
+   "answer": "The smallest province in Canada is **Prince Edward Island (P.E.I.)**. According to the guide, P.E.I. is known for its beaches, red soil and agriculture, especially potatoes. It's also the birthplace of Confederation and is connected to mainland Canada by the Confederation Bridge, one of the longest continuous multispan bridges in the world [Discover Canada, p. 46, Prince Edward Island].\n\nFun fact: it's also the setting of *Anne of Green Gables* by Lucy Maud Montgomery [Discover Canada, p. 46, Prince Edward Island]!",
+   "abstain_correct": true,
+   "expected_ok": true,
+   "citation_ok": true,
+   "unsupported_numbers": [],
+   "unsupported_names": [],
+   "supported": true,
+   "shown_vs_spoken_wer": 0.0,
+   "roundtrip_wer_no_numbers": 0.13114754098360656
+  },
+  {
+   "id": "q14",
+   "ref": "What did Terry Fox do in 1980?",
+   "guide": true,
+   "heard": "What did Terry Fox do in 1980?",
+   "failed_at": "",
+   "abstained": false,
+   "cited": [
+    "p.25-26",
+    "p.26"
+   ],
+   "kind": "answer",
+   "answer": "In 1980, Terry Fox, a British Columbian who had lost his right leg to cancer at the age of 18, began a cross-country run called the \"Marathon of Hope\" to raise money for cancer research. He became a hero to Canadians. Although he did not finish the run and ultimately lost his battle with cancer, his legacy continues through yearly fundraising events held in his name [Discover Canada, pp. 25–26, Arts and culture in Canada] [Discover Canada, p. 26, Arts and culture in Canada].",
+   "abstain_correct": true,
+   "expected_ok": true,
+   "citation_ok": true,
+   "unsupported_numbers": [],
+   "unsupported_names": [],
+   "supported": true,
+   "shown_vs_spoken_wer": 0.0,
+   "roundtrip_wer_no_numbers": 0.0
+  },
+  {
+   "id": "q15",
+   "ref": "Who was Sir John A. Macdonald?",
+   "guide": true,
+   "heard": "Who was Sir John A. Macdonald?",
+   "failed_at": "",
+   "abstained": false,
+   "cited": [
+    "p.19",
+    "p.18"
+   ],
+   "kind": "answer",
+   "answer": "Sir John A. Macdonald was Canada's first Prime Minister. In 1867, he became Prime Minister and is recognized as a Father of Confederation [Discover Canada, p. 19, Canada’s First Prime Minister].\n\nHere's what the guide tells us about him:\n\n- **Born in Scotland** on January 11, 1815, he came to Upper Canada as a child [Discover Canada, p. 19, Canada’s First Prime Minister]\n- He was a **lawyer in Kingston, Ontario**, and was known as a gifted politician with a colourful personality [Discover Canada, p. 19, Canada’s First Prime Minister]\n- Parliament has recognized **January 11 as Sir John A. Macdonald Day**, and his portrait appears on the **$10 bill** [Discover Canada, p. 19, Canada’s First Pr",
+   "abstain_correct": true,
+   "expected_ok": true,
+   "citation_ok": true,
+   "unsupported_numbers": [],
+   "unsupported_names": [],
+   "supported": true,
+   "shown_vs_spoken_wer": 0.0,
+   "roundtrip_wer_no_numbers": 0.020833333333333332
+  },
+  {
+   "id": "q19",
+   "ref": "What is the capital of Saskatchewan?",
+   "guide": true,
+   "heard": "What is the capital of Saskatchewan?",
+   "failed_at": "",
+   "abstained": false,
+   "cited": [
+    "p.48",
+    "p.45"
+   ],
+   "kind": "answer",
+   "answer": "The capital of Saskatchewan is **Regina**. The guide mentions that Regina is home to the training academy of the Royal Canadian Mounted Police [Discover Canada, p. 48, Saskatchewan]. Saskatchewan is one of the Prairie Provinces [Discover Canada, p. 45, Regions, Provinces/Territories and Capital Cities].",
+   "abstain_correct": true,
+   "expected_ok": true,
+   "citation_ok": true,
+   "unsupported_numbers": [],
+   "unsupported_names": [],
+   "supported": true,
+   "shown_vs_spoken_wer": 0.0,
+   "roundtrip_wer_no_numbers": 0.0
+  },
+  {
+   "id": "q20",
+   "ref": "Who are the Métis?",
+   "guide": true,
+   "heard": "Who are the Métis?",
+   "failed_at": "",
+   "abstained": false,
+   "cited": [
+    "p.11",
+    "p.10",
+    "p.19"
+   ],
+   "kind": "answer",
+   "answer": "Great question! According to the guide, the Métis are a distinct people of mixed Aboriginal and European ancestry. The majority of them live in the Prairie provinces, and they come from both French- and English-speaking backgrounds. They also speak their own dialect, called Michif [Discover Canada, p. 11, Unity in Diversity].\n\nA bit of context: the guide explains that \"Aboriginal peoples\" refers to three distinct groups — First Nations, the Métis, and the Inuit. About 30% of Aboriginal people in Canada are Métis [Discover Canada, p. 11, Unity in Diversity] [Discover Canada, p. 10, Aboriginal peoples].\n\nThe guide also mentions Gabriel Dumont, who was the Métis' greatest military leader, in co",
+   "abstain_correct": true,
+   "expected_ok": true,
+   "citation_ok": true,
+   "unsupported_numbers": [],
+   "unsupported_names": [],
+   "supported": true,
+   "shown_vs_spoken_wer": 0.0,
+   "roundtrip_wer_no_numbers": 0.0196078431372549
+  },
+  {
+   "id": "q22",
+   "ref": "Who was Laura Secord?",
+   "guide": true,
+   "heard": "Who was Laura Secord?",
+   "failed_at": "",
+   "abstained": false,
+   "cited": [
+    "p.17"
+   ],
+   "kind": "answer",
+   "answer": "Laura Secord was a pioneer wife and mother of five children. In 1813, during the War of 1812, she made a dangerous 19-mile (30-km) journey on foot to warn Lieutenant James FitzGibbon of a planned American attack. Her bravery contributed to the victory at the Battle of Beaver Dams, and she is recognized as a heroine to this day [Discover Canada, p. 17, The War of 1812: The Fight for Canada].",
+   "abstain_correct": true,
+   "expected_ok": true,
+   "citation_ok": true,
+   "unsupported_numbers": [],
+   "unsupported_names": [],
+   "supported": true,
+   "shown_vs_spoken_wer": 0.0,
+   "roundtrip_wer_no_numbers": 0.0
+  },
+  {
+   "id": "q23",
+   "ref": "Where was the North West Mounted Police headquartered?",
+   "guide": true,
+   "heard": "Where was the Northwest Mounted Police Headquartered?",
+   "failed_at": "",
+   "abstained": false,
+   "cited": [
+    "p.19"
+   ],
+   "kind": "answer",
+   "answer": "The North West Mounted Police (NWMP) had its headquarters in **Regina**. The guide explains that Prime Minister Macdonald established the NWMP in 1873 to pacify the West and assist in negotiations with the Indians, and that \"Regina became its headquarters.\" [Discover Canada, p. 19, Challenge in the west]",
+   "abstain_correct": true,
+   "expected_ok": true,
+   "citation_ok": true,
+   "unsupported_numbers": [],
+   "unsupported_names": [],
+   "supported": true,
+   "shown_vs_spoken_wer": 0.0,
+   "roundtrip_wer_no_numbers": 0.05128205128205128,
+   "asr_text_differs": true,
+   "typed_abstained": false,
+   "same_decision": true,
+   "same_sources": true
+  },
+  {
+   "id": "q24",
+   "ref": "Who was Louis-Joseph Papineau?",
+   "guide": false,
+   "heard": "Who was Louis-Joseph Papineau?",
+   "failed_at": "",
+   "abstained": true,
+   "cited": [],
+   "kind": "answer",
+   "answer": "I couldn't find that in the guide, so I won't guess. It may be worded differently there.\n\nDid you mean one of these? The guide answers them.",
+   "abstain_correct": true
+  },
+  {
+   "id": "q25",
+   "ref": "Who is the current prime minister of Canada?",
+   "guide": false,
+   "heard": "Who is the current Prime Minister of Canada?",
+   "failed_at": "",
+   "abstained": true,
+   "cited": [],
+   "kind": "answer",
+   "answer": "I couldn't find that in the guide, so I won't guess. It may be worded differently there.\n\nDid you mean one of these? The guide answers them.",
+   "abstain_correct": true
+  },
+  {
+   "id": "q26",
+   "ref": "What is the population of Toronto today?",
+   "guide": false,
+   "heard": "What is the population of Toronto today?",
+   "failed_at": "",
+   "abstained": true,
+   "cited": [],
+   "kind": "answer",
+   "answer": "I couldn't find that in the guide, so I won't guess. It may be worded differently there.\n\nDid you mean one of these? The guide answers them.",
+   "abstain_correct": true
+  },
+  {
+   "id": "q27",
+   "ref": "Who won the Stanley Cup last year?",
+   "guide": false,
+   "heard": "Who won the Stanley Cup last year?",
+   "failed_at": "",
+   "abstained": true,
+   "cited": [],
+   "kind": "answer",
+   "answer": "I couldn't find that in the guide, so I won't guess. It may be worded differently there.\n\nDid you mean one of these? The guide answers them.",
+   "abstain_correct": true
+  },
+  {
+   "id": "q28",
+   "ref": "What is the best pizza restaurant in Montreal?",
+   "guide": false,
+   "heard": "What is the best pizza restaurant in Montreal?",
+   "failed_at": "",
+   "abstained": true,
+   "cited": [],
+   "kind": "answer",
+   "answer": "I couldn't find that in the guide, so I won't guess. It may be worded differently there.\n\nDid you mean one of these? The guide answers them.",
+   "abstain_correct": true
+  },
+  {
+   "id": "q29",
+   "ref": "Who was Sir Isaac Brock?",
+   "guide": true,
+   "heard": "Who was Sir Isaac Brock?",
+   "failed_at": "",
+   "abstained": false,
+   "cited": [
+    "p.17",
+    "p.17"
+   ],
+   "kind": "answer",
+   "answer": "Great question! Sir Isaac Brock was a Major-General who played a key role in defending Canada during the War of 1812. According to the guide, when the United States launched an invasion of Canada in June 1812, believing it would be easy to conquer, Brock helped lead the defence. In July 1812, he captured Detroit, but he was killed later while defending against an American attack at Queenston Heights, near Niagara Falls — a battle the Americans ultimately lost [Discover Canada, p. 17, The War of 1812: The Fight for Canada]. The guide also notes that he worked alongside Chief Tecumseh, and that together British troops, First Nations, and Canadian volunteers defeated the American invasion of 18",
+   "abstain_correct": true,
+   "expected_ok": true,
+   "citation_ok": true,
+   "unsupported_numbers": [],
+   "unsupported_names": [],
+   "supported": true,
+   "shown_vs_spoken_wer": 0.0,
+   "roundtrip_wer_no_numbers": 0.0
+  },
+  {
+   "id": "q30",
+   "ref": "What is the capital of Prince Edward Island?",
+   "guide": true,
+   "heard": "What is the capital of Prince Edward Island?",
+   "failed_at": "",
+   "abstained": false,
+   "cited": [
+    "p.45",
+    "p.46"
+   ],
+   "kind": "answer",
+   "answer": "The capital of Prince Edward Island is **Charlottetown** [Discover Canada, p. 45, Regions, Provinces/Territories and Capital Cities].\n\nFun fact: the guide also mentions that P.E.I. is known as the birthplace of Confederation [Discover Canada, p. 46, Prince Edward Island], so Charlottetown is a historically significant capital city!",
+   "abstain_correct": true,
+   "expected_ok": true,
+   "citation_ok": true,
+   "unsupported_numbers": [],
+   "unsupported_names": [],
+   "supported": true,
+   "shown_vs_spoken_wer": 0.0,
+   "roundtrip_wer_no_numbers": 0.0
+  },
+  {
+   "id": "q31",
+   "ref": "When did Prince Edward Island join Canada?",
+   "guide": true,
+   "heard": "When did Prince Edward Island join Canada?",
+   "failed_at": "",
+   "abstained": false,
+   "cited": [
+    "p.19",
+    "p.46"
+   ],
+   "kind": "answer",
+   "answer": "Prince Edward Island joined Canada in **1873** [Discover Canada, p. 19, Expansion of the Dominion].\n\nThe guide lists this in its timeline of the expansion of the Dominion, where 1873 is shown as the year P.E.I. joined Confederation [Discover Canada, p. 19, Expansion of the Dominion]. Interestingly, the guide also notes that P.E.I. is known as the birthplace of Confederation [Discover Canada, p. 46, Prince Edward Island], even though it joined a few years after the original four provinces in 1867.",
+   "abstain_correct": true,
+   "expected_ok": true,
+   "citation_ok": true,
+   "unsupported_numbers": [],
+   "unsupported_names": [],
+   "supported": true,
+   "shown_vs_spoken_wer": 0.0,
+   "roundtrip_wer_no_numbers": 0.10344827586206896
+  },
+  {
+   "id": "q32",
+   "ref": "What is the Charter of Rights and Freedoms?",
+   "guide": true,
+   "heard": "What is the Charter of Rights and Freedoms?",
+   "failed_at": "",
+   "abstained": false,
+   "cited": [
+    "p.8",
+    "p.8",
+    "p.8"
+   ],
+   "kind": "answer",
+   "answer": "Great question! The Charter of Rights and Freedoms is a key part of Canada's Constitution.\n\nAccording to the guide, the Constitution of Canada was amended in 1982 to entrench the Canadian Charter of Rights and Freedoms [Discover Canada, p. 8, Rights and Responsibilities of Citizenship]. It begins with the words, \"Whereas Canada is founded upon principles that recognize the supremacy of God and the rule of law.\" This phrase underlines the importance of religious traditions to Canadian society and the dignity and worth of the human person [Discover Canada, p. 8, Rights and Responsibilities of Citizenship].\n\nThe guide also explains that the Charter attempts to summarize fundamental freedoms whi",
+   "abstain_correct": true,
+   "expected_ok": true,
+   "citation_ok": true,
+   "unsupported_numbers": [],
+   "unsupported_names": [],
+   "supported": true,
+   "shown_vs_spoken_wer": 0.0,
+   "roundtrip_wer_no_numbers": 0.0
+  }
+ ]
+}

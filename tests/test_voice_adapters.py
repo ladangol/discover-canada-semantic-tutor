@@ -355,3 +355,38 @@ def test_michif_is_pronounced_and_known_to_the_speech_recognizer():
     from src import config
     assert tts.apply_pronunciations("The Métis speak Michif.") == "The [Métis](/mAtˈi/) speak [Michif](/miʃˈif/)."
     assert "Michif" in config.ASR_INITIAL_PROMPT_DEFAULT and "Inuktitut" in config.ASR_INITIAL_PROMPT_DEFAULT
+
+
+# --- short spoken replies for hands-free use ----------------------------------------------------------------------------------------------------
+
+def test_a_short_reply_is_spoken_in_full_and_a_long_one_is_cut_at_a_sentence_with_a_pointer_to_the_screen():
+    short = "Confederation took place in 1867."
+    assert tts.brief_speech(short, 350) == short
+    long = " ".join(f"This is sentence number {i} about Canada and its history." for i in range(40))
+    spoken = tts.brief_speech(long, 350)
+    assert len(spoken) < 420 and spoken.endswith("There is more on the screen.") and "sentence number 39" not in spoken
+    assert spoken.count("This is sentence number") >= 3
+
+
+def test_brief_speech_strips_citations_and_markup_like_normal_speech():
+    text = "**RCMP** enforces federal laws [Discover Canada, p. 37, Courts]. " + "More detail about the police. " * 40
+    spoken = tts.brief_speech(text, 200)
+    assert "[" not in spoken and "**" not in spoken and spoken.startswith("RCMP enforces federal laws.")
+
+
+def test_one_endless_sentence_is_still_cut():
+    spoken = tts.brief_speech("word " * 500, 100)
+    assert len(spoken) < 200 and spoken.endswith("There is more on the screen.")
+
+
+def test_silero_import_does_not_leave_pytorch_stuck_on_one_thread():
+    """Importing silero_vad calls torch.set_num_threads(1) for the whole process, which made Kokoro and the search model ~5x slower."""
+    import importlib.util
+    import pytest as _pt
+    torch = _pt.importorskip("torch")
+    if importlib.util.find_spec("silero_vad") is None or torch.get_num_threads() < 2:
+        _pt.skip("needs silero-vad and a multi-core machine")
+    from src.voice import vad
+    before = vad._TORCH_THREADS
+    vad.get_vad("silero")
+    assert torch.get_num_threads() == before and before > 1

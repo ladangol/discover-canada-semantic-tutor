@@ -28,8 +28,8 @@ def _state() -> vsession.VoiceState:
     return st.session_state[STATE]
 
 
-def _speak(text: str) -> SpeechOutput:
-    return tts.get_synthesizer().synthesize(text)
+def _speak(text: str, max_chars: int | None = None) -> SpeechOutput:
+    return tts.get_synthesizer().synthesize(tts.brief_speech(text, max_chars) if max_chars else text)
 
 
 def _readiness() -> tuple[bool, bool]:
@@ -37,9 +37,9 @@ def _readiness() -> tuple[bool, bool]:
     return importlib.util.find_spec("faster_whisper") is not None, tts.engine_ready()
 
 
-def _question_audio(q: tutor.QuizQuestion, qid) -> None:
+def _question_audio(q: tutor.QuizQuestion, qid, cache_key: str = "voice_q_audio", autoplay: bool = False) -> SpeechOutput | None:
     """Read the open question (and its options) aloud; synthesized once per question, then kept in the session."""
-    cache = st.session_state.setdefault("voice_q_audio", {})
+    cache = st.session_state.setdefault(cache_key, {})
     if cache.get("id") != qid:
         spoken = q.question
         if q.kind == "mcq":
@@ -51,9 +51,10 @@ def _question_audio(q: tutor.QuizQuestion, qid) -> None:
         except VoiceError as exc:
             cache.update(id=qid, audio=None, note=str(exc))
     if cache.get("audio"):
-        st.audio(cache["audio"].audio_bytes, format=cache["audio"].mime_type)
+        st.audio(cache["audio"].audio_bytes, format=cache["audio"].mime_type, autoplay=autoplay)
     elif cache.get("note"):
         st.caption(cache["note"])
+    return cache.get("audio")
 
 
 # The learner app has custom CSS; the technical Atlas does not, so every styled element has a plain-widget twin.
@@ -91,10 +92,12 @@ def _pick_suggestion(text: str) -> None:
     st.session_state["voice_pending_text"] = text          # handled at the top of the next run, once
 
 
-def _show_turn(turn: vsession.VoiceTurn, *, accent: str, cite, latest: bool, styled: bool) -> None:
+def _show_turn(turn: vsession.VoiceTurn, *, accent: str, cite, latest: bool, styled: bool, autoplay: bool = False) -> None:
     r = turn.result
     with st.chat_message("user", avatar=":material/mic:"):
         st.markdown(turn.said)
+        if turn.fixes:
+            st.caption("Name fixed: " + ", ".join(f"{a} → {b}" for a, b in turn.fixes))
         if turn.edited:
             st.caption("You corrected what I heard.")
     with st.chat_message("assistant", avatar=":material/school:"):
@@ -108,9 +111,38 @@ def _show_turn(turn: vsession.VoiceTurn, *, accent: str, cite, latest: bool, sty
             for i, sug in enumerate(r.suggestions):
                 st.button(sug, key=f"voice_sug_{turn.id}_{i}", icon=":material/help:", on_click=_pick_suggestion, args=(sug,))
         if turn.audio:
-            st.audio(turn.audio.audio_bytes, format=turn.audio.mime_type, autoplay=False)
+            st.audio(turn.audio.audio_bytes, format=turn.audio.mime_type, autoplay=autoplay)
         elif turn.audio_note and latest:
             st.caption(turn.audio_note)
+
+
+def send_turn(c, vs: vsession.VoiceState, text: str, *, mode: str, q, quiz_state, open_q: bool, record, voice_ok: bool, speech_chars: int | None = None):
+    """Send confirmed text to the shared tutor exactly once and return the new turn (None if blocked or it failed). No redraw.
+    Used by the Talk page and by the Live page, so both answer, grade, charge and refund through the same code."""
+    answering = mode == QUIZ and open_q
+    needs_llm = (not answering) or q.kind == "free"
+    if needs_llm and not charge():
+        st.warning(LIMIT_MESSAGE)
+        return None
+    active_q = q if answering else None
+    turn = generate_or_explain(
+        vsession.submit_turn, vs, text, mode="quiz" if answering else "ask",
+        turn_fn=lambda t: tutor.handle_turn(t, quiz=active_q, corpus=c),
+        synth_fn=(lambda t: _speak(t, speech_chars)) if voice_ok else None)
+    if turn is None:
+        if needs_llm:
+            refund()
+        return None
+    if turn.result.kind == "clarify" and needs_llm:
+        refund()
+    if turn.result.abstained and turn.result.suggestions:
+        charge()                                         # the suggestion guess was one extra AI call: count it (best effort)
+    if turn.result.kind == "quiz_feedback":              # grade once, record once
+        quiz_state["res"], quiz_state["pick"] = turn.result.quiz_result, turn.result.chosen_index
+        record(q, turn.result.quiz_result)
+    if not voice_ok:
+        turn.audio_note = turn.audio_note or "Spoken replies aren't set up on this server. The written answer is below."
+    return turn
 
 
 def _diagnostics(t: VoiceTimings) -> None:
@@ -151,31 +183,9 @@ def render(c, *, new_question, record, cite, accent: str = "#E11D74", styled: bo
         st.caption("Answer out loud: say a letter (“B”), a position (“the second one”), or the answer itself.")
 
     def send_text(text: str) -> None:
-        """Send confirmed text to the tutor exactly once (form submit or a tapped suggestion)."""
-        answering = mode == QUIZ and open_q
-        needs_llm = (not answering) or q.kind == "free"
-        if needs_llm and not charge():
-            st.warning(LIMIT_MESSAGE)
-            return
-        active_q = q if answering else None
-        turn = generate_or_explain(
-            vsession.submit_turn, vs, text, mode="quiz" if answering else "ask",
-            turn_fn=lambda t: tutor.handle_turn(t, quiz=active_q, corpus=c),
-            synth_fn=_speak if voice_ok else None)
-        if turn is None:
-            if needs_llm:
-                refund()
-            return
-        if turn.result.kind == "clarify" and needs_llm:
-            refund()
-        if turn.result.abstained and turn.result.suggestions:
-            charge()                                         # the suggestion guess was one extra AI call: count it (best effort)
-        if turn.result.kind == "quiz_feedback":          # grade once, record once
-            quiz_state["res"], quiz_state["pick"] = turn.result.quiz_result, turn.result.chosen_index
-            record(q, turn.result.quiz_result)
-        if not voice_ok:
-            turn.audio_note = turn.audio_note or "Spoken replies aren't set up on this server. The written answer is below."
-        st.rerun()
+        """Send confirmed text to the tutor exactly once (form submit or a tapped suggestion), then redraw."""
+        if send_turn(c, vs, text, mode=mode, q=q, quiz_state=quiz_state, open_q=open_q, record=record, voice_ok=voice_ok) is not None:
+            st.rerun()
 
     pending = st.session_state.pop("voice_pending_text", None)      # a "did you mean…" suggestion that was tapped
     if pending and mode == ASK:
@@ -198,6 +208,8 @@ def render(c, *, new_question, record, cite, accent: str = "#E11D74", styled: bo
     if can_record and vs.has_draft:
         if vs.notice:
             st.warning(vs.notice)
+        if vs.fixes:
+            st.info("I fixed a name: " + ", ".join(f"“{a}” → “{b}”" for a, b in vs.fixes) + ". Change it below if that's wrong.", icon=":material/spellcheck:")
         with st.form("voice_confirm", border=False):
             _title(styled, "You said — fix anything I got wrong")
             text = st.text_input("Your message", value=vs.heard, key=f"voice_draft_{vs.draft_version}", max_chars=300,

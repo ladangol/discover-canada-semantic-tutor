@@ -14,7 +14,7 @@ from src.config import DEFAULT_K, EMBEDDING_MODEL_NAME, generation_configured, g
 from src.corpus import load_corpus
 from src.generation import GenerationNotConfigured
 from src.retrieval import page_label
-from ui import voice_tutor
+from ui import voice_live, voice_tutor
 
 # Streamlit's file watcher probes every transformers submodule (some need torchvision, which
 # this app does not use) and logs a harmless warning per module. Silence only that logger so it
@@ -345,15 +345,30 @@ def voice_tab() -> None:
     st.caption("Speak a question or a quiz answer. Whisper (local) transcribes, you confirm the text, the same tutor answers or grades "
                "it, and Kokoro (local) reads the reply. Audio never leaves this machine; only the confirmed text goes to the LLM.")
 
-    def new_voice_question(kind: str) -> None:
+    def new_voice_question(kind: str, key: str = "voice_quiz") -> None:
         q = run_generation(tutor.generate_quiz, c, kind=kind, exclude_ids=st.session_state.asked_ids, rng=st.session_state.rng,
                            difficulty=st.session_state.get("difficulty", tutor.DEFAULT_DIFFICULTY))
-        st.session_state["voice_quiz"] = {"q": q, "res": None, "pick": None, "id": random.random()} if q else None
+        st.session_state[key] = {"q": q, "res": None, "pick": None, "id": random.random()} if q else None
         if q:
             st.session_state.asked_ids.add(q.chunk_id)
 
     voice_tutor.render(c, new_question=new_voice_question, record=lambda q, res: record(q, res.correct),
                        cite=lambda ch: f"{page_label(ch.page)} · {ch.section}", styled=False, diagnostics=True)
+
+
+def live_tab() -> None:
+    """Hands-free voice (Milestone 2): listens, notices when you pause, answers, speaks, listens again. Local test page, Atlas only."""
+    c = corpus()
+    voice_live.render(c, new_question=lambda kind: voice_tab_new_question(c, kind), record=lambda q, res: record(q, res.correct),
+                      cite=lambda ch: f"{page_label(ch.page)} · {ch.section}")
+
+
+def voice_tab_new_question(c, kind: str) -> None:
+    q = run_generation(tutor.generate_quiz, c, kind=kind, exclude_ids=st.session_state.asked_ids, rng=st.session_state.rng,
+                       difficulty=st.session_state.get("difficulty", tutor.DEFAULT_DIFFICULTY))
+    st.session_state["voice_live_quiz"] = {"q": q, "res": None, "pick": None, "id": random.random()} if q else None
+    if q:
+        st.session_state.asked_ids.add(q.chunk_id)
 
 
 def quiz_ui(c) -> None:
@@ -467,7 +482,7 @@ def main() -> None:
         st.error(str(exc))
         st.stop()
     sidebar()
-    names = ["🗺️ Atlas", "🔬 Analyze", "💬 Ask", "📚 Study"] + (["🎙️ Voice"] if voice_enabled() else [])
+    names = ["🗺️ Atlas", "🔬 Analyze", "💬 Ask", "📚 Study"] + (["🎙️ Voice", "🎧 Live"] if voice_enabled() else [])
     atlas, analyze, ask, study, *voice = st.tabs(names)
     with atlas:
         atlas_tab()
@@ -480,6 +495,8 @@ def main() -> None:
     if voice:
         with voice[0]:
             voice_tab()
+        with voice[1]:
+            live_tab()
 
 
 main()

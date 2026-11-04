@@ -82,7 +82,7 @@ def voice_diagnostics() -> bool:
 
 
 ASR_MODEL_DEFAULT = "small"
-ASR_INITIAL_PROMPT_DEFAULT = ("Discover Canada. Sir John A. Macdonald, Louis-Hippolyte La Fontaine, Laura Secord, "
+ASR_INITIAL_PROMPT_DEFAULT = ("Discover Canada. Louis-Joseph Papineau, Sir John A. Macdonald, Louis-Hippolyte La Fontaine, Laura Secord, "
                               "James FitzGibbon, Tecumseh, Nunavut, Iqaluit, Confederation, Louis Riel, Métis, Michif, Inuktitut, Inuit, "
                               "Mi'kmaq, Haida Gwaii, Champlain, Cartier, Laurier, RCMP, P.E.I.")
 
@@ -151,3 +151,20 @@ def query_cleanup_enabled() -> bool:
 def enumeration_enabled() -> bool:
     """The 'scan the whole guide' panel (several AI calls per use) is opt-in: STUDY_ENUMERATION=1."""
     return os.environ.get("STUDY_ENUMERATION", "0") == "1"
+
+
+def live_settings() -> dict:
+    """Milestone 2 (hands-free turns). Defaults suit a quiet room; the Live page lets you change sensitivity and pause length."""
+    def num(name, default, cast=float, lo=None, hi=None):
+        try:
+            v = cast(os.environ.get(name) or default)
+        except ValueError:
+            v = default
+        return min(max(v, lo), hi) if lo is not None else v
+    return {"vad": (os.environ.get("VOICE_VAD") or "silero").lower(),
+            "threshold": num("VOICE_LIVE_THRESHOLD", 0.5, float, 0.2, 0.9),
+            "hangover_ms": num("VOICE_LIVE_HANGOVER_MS", 800, int, 300, 2500),      # silence that ends a turn
+            "min_speech_ms": num("VOICE_LIVE_MIN_SPEECH_MS", 250, int, 100, 1000),
+            "idle_timeout_s": num("VOICE_LIVE_IDLE_S", 180, float, 15, 1800),         # no speech this long: stop listening
+            "margin_s": num("VOICE_LIVE_MARGIN_S", 0.8, float, 0.0, 5.0),            # mic stays closed this long after the tutor finishes speaking
+            "stun": os.environ.get("VOICE_LIVE_STUN", "0") == "1"}                    # public STUN (Google) only when you need it, e.g. not on localhost

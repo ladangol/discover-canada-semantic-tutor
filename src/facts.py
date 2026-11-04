@@ -6,8 +6,13 @@ fact can never drift away from the source.
 """
 from __future__ import annotations
 
+import json
 import random
 from dataclasses import dataclass
+
+from src.config import ARTIFACTS_DIR
+
+BANK_PATH = ARTIFACTS_DIR / "fact_bank.json"
 
 
 @dataclass(frozen=True)
@@ -18,7 +23,7 @@ class Fact:
     quote: str         # verbatim sentence fragment from the guide (case/punctuation-insensitive match)
 
 
-FACTS: list[Fact] = [
+HAND_WRITTEN: list[Fact] = [
     Fact("basketball was invented by a Canadian, James Naismith, in 1891?", "26", "Arts and culture in Canada",
          "Basketball was invented by Canadian James Naismith in 1891"),
     Fact("Canadians Sir Frederick Banting and Charles Best discovered insulin, which has saved 16 million lives worldwide?",
@@ -52,7 +57,29 @@ FACTS: list[Fact] = [
 ]
 
 
-def pick(rng: random.Random, avoid: int | None = None) -> int:
-    """Index of a random fact, different from `avoid` when possible."""
-    choices = [i for i in range(len(FACTS)) if i != avoid]
-    return rng.choice(choices)
+def _bank() -> list[Fact]:
+    """Facts written offline by scripts/build_fact_bank.py (quote-checked there and again in tests/test_facts.py). Missing file = none."""
+    try:
+        rows = json.loads(BANK_PATH.read_text())["facts"]
+        return [Fact(r["text"], r["page"], r["section"], r["quote"]) for r in rows]
+    except (OSError, ValueError, KeyError):
+        return []
+
+
+FACTS: list[Fact] = HAND_WRITTEN + _bank()
+
+
+def new_deck(rng: random.Random, avoid: int | None = None) -> list[int]:
+    """A shuffled deck of every fact. The learner sees each fact once before any comes round again; `avoid` (the fact just shown) is never first."""
+    deck = list(range(len(FACTS)))
+    rng.shuffle(deck)
+    if avoid is not None and len(deck) > 1 and deck[-1] == avoid:       # draw() takes from the end
+        deck[0], deck[-1] = deck[-1], deck[0]
+    return deck
+
+
+def draw(rng: random.Random, deck: list[int], avoid: int | None = None) -> int:
+    """Next fact index, refilling the deck when it runs out."""
+    if not deck:
+        deck.extend(new_deck(rng, avoid))
+    return deck.pop()

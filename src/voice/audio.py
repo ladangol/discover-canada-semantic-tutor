@@ -52,3 +52,22 @@ def read_wav(data: bytes, *, max_seconds: float | None = None, max_bytes: int | 
         n = max(1, int(round(len(x) * TARGET_RATE / rate)))
         x = np.interp(np.linspace(0, len(x) - 1, n), np.arange(len(x)), x).astype(np.float32)
     return x.astype(np.float32), AudioInfo(duration, rate, ch)
+
+
+def encode_wav(samples: np.ndarray, rate: int = TARGET_RATE) -> bytes:
+    """16-bit mono WAV bytes from float samples in [-1, 1] (an utterance cut out of a live stream, ready for `read_wav` / the recognizer)."""
+    pcm = (np.clip(np.asarray(samples, dtype=np.float32), -1.0, 1.0) * 32767).astype("<i2")
+    buf = io.BytesIO()
+    with wave.open(buf, "wb") as w:
+        w.setnchannels(1), w.setsampwidth(2), w.setframerate(rate)
+        w.writeframes(pcm.tobytes())
+    return buf.getvalue()
+
+
+def wav_seconds(data: bytes) -> float:
+    """Length of a WAV in seconds (0.0 if unreadable)."""
+    try:
+        with wave.open(io.BytesIO(data), "rb") as w:
+            return w.getnframes() / max(1, w.getframerate())
+    except (wave.Error, EOFError):
+        return 0.0

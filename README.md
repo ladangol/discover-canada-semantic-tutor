@@ -64,6 +64,9 @@ streamlit run study_app.py                                  # learner app: the T
 streamlit run app.py                                        # technical Atlas: the Voice tab
 ```
 
+**Hands-free (Milestone 2):** the technical Atlas gets a **🎧 Live** tab with `STUDY_VOICE=1` (it is not part of the deployed learner app). Press START once and talk: it detects when you pause, answers, speaks, and
+listens again. It needs `streamlit-webrtc` and `silero-vad` (in `requirements-voice.txt`); on localhost nothing else is needed. Settings for the pause length, sensitivity and spoken reply length are on the page.
+
 Optional environment (see `.env.example`): `ASR_MODEL`, `ASR_DEVICE`, `ASR_COMPUTE_TYPE`, `ASR_LANGUAGE`, `ASR_INITIAL_PROMPT`,
 `TTS_ENGINE`, `KOKORO_VOICE`, `KOKORO_SPEED`, Piper-only `TTS_LENGTH_SCALE` / `TTS_NOISE_SCALE` / `TTS_NOISE_W`, `TTS_SENTENCE_PAUSE_MS`, `VOICE_MAX_SECONDS` (30), `VOICE_MAX_BYTES`, `VOICE_MAX_CONCURRENCY` (1), `STUDY_VOICE_DIAGNOSTICS=1` (per-stage timings).
 **Licences:** Kokoro-82M is Apache-2.0. `piper-tts` is GPL-3.0 and every Piper voice has its own licence: read the voice's model card before

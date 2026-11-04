@@ -48,7 +48,8 @@ def init_state() -> None:
                  "rng": random.Random(), "study_hub": None, "study_tl": None, "voice_quiz": None}.items():
         st.session_state.setdefault(k, v)
     if "fact" not in st.session_state:
-        st.session_state.fact = facts.pick(st.session_state.rng)
+        st.session_state.fact_deck = facts.new_deck(st.session_state.rng)
+        st.session_state.fact = facts.draw(st.session_state.rng, st.session_state.fact_deck)
         st.session_state.mascot = st.session_state.rng.choice(theme.MASCOTS)
 
 
@@ -61,7 +62,7 @@ def mascot() -> str:
 
 
 def another_fact() -> None:
-    st.session_state.fact = facts.pick(st.session_state.rng, avoid=st.session_state.fact)
+    st.session_state.fact = facts.draw(st.session_state.rng, st.session_state.fact_deck, avoid=st.session_state.fact)
     st.session_state.mascot = st.session_state.rng.choice(theme.MASCOTS)
 
 

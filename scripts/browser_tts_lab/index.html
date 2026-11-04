@@ -1,0 +1,72 @@
+<!doctype html>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Browser TTS lab (kokoro-js)</title>
+<style>
+  body { font: 15px/1.45 system-ui, sans-serif; max-width: 860px; margin: 1.5rem auto; padding: 0 1rem; color: #1b1b3a; }
+  textarea { width: 100%; height: 5.5rem; font: inherit; } select, button, input { font: inherit; padding: .35rem .6rem; }
+  pre { background: #f4f1ec; padding: .8rem; border-radius: 10px; overflow: auto; white-space: pre-wrap; } .row { display: flex; gap: .6rem; flex-wrap: wrap; margin: .6rem 0; }
+</style>
+<h2>Browser TTS lab — kokoro-js</h2>
+<p>Development page: loads Kokoro-82M (ONNX) <b>in this browser</b> via <code>kokoro-js@1.2.0</code>, nothing runs on a server. The model
+downloads from Hugging Face the first time (the browser caches it afterwards).</p>
+<div class="row">
+  <label>device <select id="device"><option>wasm</option><option>webgpu</option></select></label>
+  <label>dtype <select id="dtype"><option>q8</option><option>q8f16</option><option>fp16</option><option>fp32</option><option>q4</option></select></label>
+  <label>voice <input id="voice" value="af_heart" size="10"></label>
+</div>
+<textarea id="text">The Royal Canadian Mounted Police, or RCMP, is Canada's national police force. It began as the North West Mounted Police in 1873. P.E.I. is Canada's smallest province, and Queen Elizabeth the Second visited it. Samuel de Champlain founded Quebec City in 1608.</textarea>
+<div class="row"><button id="load">1. Load model</button><button id="speak" disabled>2. Speak + measure</button><button id="names" disabled>3. Phonemes for names</button></div>
+<div id="env"></div><pre id="log"></pre>
+<script type="module">
+import { KokoroTTS, TextSplitterStream } from "https://cdn.jsdelivr.net/npm/kokoro-js@1.2.0/dist/kokoro.web.js";
+const $ = (id) => document.getElementById(id);
+const log = (m) => { $("log").textContent += m + "\n"; console.log(m); };
+$("env").textContent = `WebGPU available: ${!!navigator.gpu} · hardwareConcurrency: ${navigator.hardwareConcurrency} · deviceMemory: ${navigator.deviceMemory ?? "n/a"} GB · ${navigator.userAgent.slice(0, 90)}`;
+let tts = null, results = {};
+async function load(device = $("device").value, dtype = $("dtype").value) {
+  const t0 = performance.now();
+  log(`loading kokoro (${device}, ${dtype}) …`);
+  tts = await KokoroTTS.from_pretrained("onnx-community/Kokoro-82M-v1.0-ONNX", { dtype, device, progress_callback: () => {} });
+  const s = (performance.now() - t0) / 1000;
+  log(`loaded in ${s.toFixed(1)} s`); results.load_s = s; $("speak").disabled = $("names").disabled = false; return s;
+}
+async function speak(text = $("text").value, voice = $("voice").value) {
+  const rows = []; const t0 = performance.now(); let first = null;
+  const splitter = new TextSplitterStream(); const stream = tts.stream(splitter, { voice });
+  splitter.push(text); splitter.close();
+  let samples = 0, rate = 24000;
+  for await (const { text: t, phonemes, audio } of stream) {
+    if (first === null) first = (performance.now() - t0) / 1000;
+    samples += audio.audio.length; rate = audio.sampling_rate; rows.push({ t, phonemes });
+  }
+  const total = (performance.now() - t0) / 1000, dur = samples / rate;
+  results.speak = { seconds: total, audio_seconds: dur, rtf: total / dur, first_chunk_s: first, sentences: rows.length };
+  log(`speak: ${total.toFixed(2)} s for ${dur.toFixed(1)} s of audio (RTF ${(total / dur).toFixed(2)}) · first sentence ready after ${first.toFixed(2)} s`);
+  rows.forEach((r) => log(`   ${r.t}\n      ${r.phonemes}`)); return { ...results.speak, rows };
+}
+async function names() {
+  const out = {};
+  for (const w of ["RCMP", "Champlain", "Cartier", "Laurier", "Métis", "Iqaluit", "Nunavut", "Tecumseh", "Pierre Elliott Trudeau", "Queen Elizabeth the Second"]) {
+    const sp = new TextSplitterStream(); const st = tts.stream(sp, { voice: $("voice").value }); sp.push(w + "."); sp.close();
+    for await (const { phonemes } of st) { out[w] = phonemes; log(`${w.padEnd(28)} ${phonemes}`); }
+  }
+  results.names = out; return out;
+}
+// Phonemes made on the server (misaki + our name fixes) -> token ids -> the neural model only, so pronunciation matches the Python engines.
+async function speakPhonemes(list, voice = $("voice").value) {
+  const t0 = performance.now(); let first = null, samples = 0, rate = 24000;
+  for (const ph of list) {
+    const { input_ids } = tts.tokenizer(ph, { truncation: true });
+    const audio = await tts.generate_from_ids(input_ids, { voice });
+    if (first === null) first = (performance.now() - t0) / 1000;
+    samples += audio.audio.length; rate = audio.sampling_rate;
+  }
+  const total = (performance.now() - t0) / 1000, dur = samples / rate;
+  results.phonemes = { seconds: total, audio_seconds: dur, rtf: total / dur, first_chunk_s: first, sentences: list.length };
+  log(`speakPhonemes: ${total.toFixed(2)} s for ${dur.toFixed(1)} s of audio (RTF ${(total / dur).toFixed(2)}) · first sentence ${first.toFixed(2)} s`);
+  return results.phonemes;
+}
+$("load").onclick = () => load(); $("speak").onclick = () => speak(); $("names").onclick = () => names();
+window.lab = { load, speak, names, speakPhonemes, results: () => results, KokoroTTS };
+log("ready. (window.lab.load / speak / names)");
+</script>

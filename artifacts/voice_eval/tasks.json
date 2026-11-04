@@ -1,0 +1,255 @@
+{
+ "environment": {
+  "machine": "Apple M4 Pro",
+  "memory_gb": 24,
+  "os": "macOS-27.0.1-arm64-arm-64bit",
+  "python": "3.11.16",
+  "packages": {
+   "faster-whisper": "1.2.1",
+   "torch": "2.13.0",
+   "kokoro": "0.9.4",
+   "silero-vad": "6.2.3",
+   "onnxruntime": "1.29.1",
+   "sentence-transformers": "6.1.0",
+   "chromadb": "1.5.9",
+   "streamlit": "1.65.0",
+   "streamlit-webrtc": "0.79.0",
+   "jiwer": "4.0.0"
+  },
+  "asr": {
+   "model": "small",
+   "device": "cpu",
+   "compute_type": "int8",
+   "language": "en"
+  },
+  "tts_engine": "kokoro",
+  "tts_voice": "af_heart",
+  "llm_model": "z-ai-glm-5-3-flash",
+  "vad": "silero",
+  "hangover_ms": 800,
+  "browser": "not used: the harness drives the Python pipeline directly; browser microphone/WebRTC path is NOT measured"
+ },
+ "audio": "synthetic macOS `say` voice (samantha), clean",
+ "steps": 21,
+ "attempted": 17,
+ "passed": 16,
+ "failed": 1,
+ "unsupported": 2,
+ "not_performed": 2,
+ "failures_by_component": {
+  "asr": 1
+ },
+ "rows": [
+  {
+   "task": "ask a question, get a grounded spoken answer",
+   "line": "What does RCMP stand for?",
+   "status": "pass",
+   "component": "",
+   "detail": "",
+   "heard": "What does RCMP stand for?",
+   "extra": {
+    "abstained": false,
+    "cited": [
+     "p.19",
+     "p.37"
+    ],
+    "audio": true
+   }
+  },
+  {
+   "task": "ask a question with a name",
+   "line": "What did Chief Tecumseh do in the War of 1812?",
+   "status": "pass",
+   "component": "",
+   "detail": "",
+   "heard": "What did Chief Tecumseh do in the War of 1812?",
+   "extra": {
+    "abstained": false,
+    "cited": [
+     "p.17",
+     "p.17"
+    ],
+    "audio": true
+   }
+  },
+  {
+   "task": "ask a question with a name",
+   "line": "Who was Samuel de Champlain?",
+   "status": "fail",
+   "component": "asr",
+   "detail": "name misheard: ['Samuel de Champlain']",
+   "heard": "Who was Samuel D. Champlain?",
+   "extra": {}
+  },
+  {
+   "task": "ask something the guide does not cover (must abstain)",
+   "line": "Who was Louis-Joseph Papineau?",
+   "status": "pass",
+   "component": "",
+   "detail": "",
+   "heard": "Who was Louis-Joseph Papineau?",
+   "extra": {
+    "abstained": true,
+    "cited": [],
+    "audio": true
+   }
+  },
+  {
+   "task": "ask something the guide does not cover (must abstain)",
+   "line": "Who is the current prime minister of Canada?",
+   "status": "pass",
+   "component": "",
+   "detail": "",
+   "heard": "Who is the current Prime Minister of Canada?",
+   "extra": {
+    "abstained": true,
+    "cited": [],
+    "audio": true
+   }
+  },
+  {
+   "task": "quiz answer by letter",
+   "line": "Option A.",
+   "status": "pass",
+   "component": "",
+   "detail": "",
+   "heard": "Option A.",
+   "extra": {}
+  },
+  {
+   "task": "quiz answer by ordinal",
+   "line": "The second one.",
+   "status": "pass",
+   "component": "",
+   "detail": "",
+   "heard": "The second one.",
+   "extra": {}
+  },
+  {
+   "task": "quiz answer by answer text",
+   "line": "Anglophones",
+   "status": "pass",
+   "component": "",
+   "detail": "",
+   "heard": "Anglophones.",
+   "extra": {}
+  },
+  {
+   "task": "quiz answer by letter",
+   "line": "Option B.",
+   "status": "pass",
+   "component": "",
+   "detail": "",
+   "heard": "Option B.",
+   "extra": {}
+  },
+  {
+   "task": "quiz answer by ordinal",
+   "line": "The third one.",
+   "status": "pass",
+   "component": "",
+   "detail": "",
+   "heard": "The third one.",
+   "extra": {}
+  },
+  {
+   "task": "quiz answer by answer text",
+   "line": "The Books of Remembrance",
+   "status": "pass",
+   "component": "",
+   "detail": "",
+   "heard": "The Books of Remembrance",
+   "extra": {}
+  },
+  {
+   "task": "quiz answer by letter",
+   "line": "Option C.",
+   "status": "pass",
+   "component": "",
+   "detail": "",
+   "heard": "Option C.",
+   "extra": {}
+  },
+  {
+   "task": "quiz answer by ordinal",
+   "line": "The fourth one.",
+   "status": "pass",
+   "component": "",
+   "detail": "",
+   "heard": "The fourth one.",
+   "extra": {}
+  },
+  {
+   "task": "quiz answer by answer text",
+   "line": "Francophones",
+   "status": "pass",
+   "component": "",
+   "detail": "",
+   "heard": "Francophones.",
+   "extra": {}
+  },
+  {
+   "task": "quiz: mumbled non-answer is not graded",
+   "line": "Hmm, I don't know.",
+   "status": "pass",
+   "component": "",
+   "detail": "",
+   "heard": "I don't know.",
+   "extra": {}
+  },
+  {
+   "task": "correct the transcript before sending",
+   "line": "What did Laura Secord do in 1813?",
+   "status": "pass",
+   "component": "",
+   "detail": "",
+   "heard": "What did Laura Secord do in 1813?",
+   "extra": {}
+  },
+  {
+   "task": "request a quiz by voice",
+   "line": "Quiz me about the RCMP.",
+   "status": "unsupported",
+   "component": "intent (voice commands are not implemented; the quiz starts from a button)",
+   "detail": "treated as an ordinary question → answered",
+   "heard": "Quiz me about the RCMP.",
+   "extra": {}
+  },
+  {
+   "task": "ask for clarification of the previous answer",
+   "line": "Can you explain that again in simpler words?",
+   "status": "unsupported",
+   "component": "dialogue memory (each turn is answered on its own; 'that' has no referent)",
+   "detail": "outcome: answered with: Happy to help! I'm just not sure which part you'd like me to simplify, since I don't have ",
+   "heard": "Can you explain that again in simpler words?",
+   "extra": {}
+  },
+  {
+   "task": "interrupt an explanation",
+   "line": "(speak over the tutor)",
+   "status": "not performed",
+   "component": "barge-in",
+   "detail": "Milestone 3 (barge-in) is not built; there is nothing to interrupt yet",
+   "heard": "",
+   "extra": {}
+  },
+  {
+   "task": "continue studying after an interruption",
+   "line": "(resume the same topic)",
+   "status": "not performed",
+   "component": "barge-in",
+   "detail": "Milestone 3 (barge-in) is not built; there is nothing to interrupt yet",
+   "heard": "",
+   "extra": {}
+  },
+  {
+   "task": "dialogue state stays consistent over the whole session",
+   "line": "17 turns",
+   "status": "pass",
+   "component": "",
+   "detail": "ids increase, no draft left over",
+   "heard": "",
+   "extra": {}
+  }
+ ]
+}

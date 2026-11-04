@@ -1,0 +1,1273 @@
+{
+ "version": 1,
+ "model": "z-ai-glm-5-3-flash",
+ "stats": {
+  "passages": 201,
+  "proposed": 282,
+  "kept": 209,
+  "rejected": {
+   "a capitalised word is not in the passage": 20,
+   "near-duplicate of a fact already kept": 30,
+   "a number in the fact is not in the quote": 20,
+   "not a single sentence ending in ?": 1,
+   "quote is not verbatim in the passage": 1
+  },
+  "targeted": []
+ },
+ "facts": [
+  {
+   "text": "Canadians swear loyalty to a person who represents all Canadians, not to a constitution, a flag or even the country itself?",
+   "page": "2",
+   "section": "Understanding the Oath",
+   "quote": "loyalty to a person who represents all Canadians and not to a document"
+  },
+  {
+   "text": "Canadian law comes from English common law, the civil code of France and an unwritten constitution inherited from Great Britain?",
+   "page": "8",
+   "section": "Rights and Responsibilities of Citizenship",
+   "quote": "English common law, the civil code of France and the unwritten constitution that we have inherited from Great Britain"
+  },
+  {
+   "text": "the Canadian Charter of Rights and Freedoms begins by recognizing the supremacy of God and the rule of law?",
+   "page": "8",
+   "section": "Rights and Responsibilities of Citizenship",
+   "quote": "Whereas Canada is founded upon principles that recognize the supremacy of God and the rule of law"
+  },
+  {
+   "text": "Canadians' freedoms are secured by an 800-year old tradition of ordered liberty dating back to Magna Carta in 1215?",
+   "page": "8",
+   "section": "Rights and Responsibilities of Citizenship",
+   "quote": "an 800-year old tradition of ordered liberty, which dates back to the signing of Magna Carta in 1215"
+  },
+  {
+   "text": "habeas corpus — the right to challenge unlawful detention by the state — comes from English common law?",
+   "page": "8",
+   "section": "Rights and Responsibilities of Citizenship",
+   "quote": "Habeas corpus, the right to challenge unlawful detention by the state, comes from English common law."
+  },
+  {
+   "text": "Canadians can live and work anywhere they choose in Canada, leave and enter the country freely, and apply for a passport?",
+   "page": "8",
+   "section": "Rights and Responsibilities of Citizenship",
+   "quote": "Canadians can live and work anywhere they choose in Canada, enter and leave the country freely, and apply for a passport."
+  },
+  {
+   "text": "multiculturalism is a fundamental characteristic of the Canadian heritage and identity?",
+   "page": "8",
+   "section": "Rights and Responsibilities of Citizenship",
+   "quote": "A fundamental characteristic of the Canadian heritage and identity."
+  },
+  {
+   "text": "there is no compulsory military service in Canada?",
+   "page": "9",
+   "section": "Defending Canada",
+   "quote": "There is no compulsory military service in Canada."
+  },
+  {
+   "text": "Canada’s openness and generosity do not extend to barbaric cultural practices like “honour killings” or forced marriage?",
+   "page": "9",
+   "section": "The Equality of Women and Men",
+   "quote": "Canada’s openness and generosity do not extend to barbaric cultural practices"
+  },
+  {
+   "text": "when called for jury duty in Canada, you are legally required to serve?",
+   "page": "9",
+   "section": "Citizenship Responsibilities",
+   "quote": "When called to do so, you are legally required to serve."
+  },
+  {
+   "text": "no person or group in Canada is above the law?",
+   "page": "9",
+   "section": "Citizenship Responsibilities",
+   "quote": "No person or group is above the law."
+  },
+  {
+   "text": "volunteering is an excellent way to gain useful skills and develop friends and contacts?",
+   "page": "9",
+   "section": "Citizenship Responsibilities",
+   "quote": "Volunteering is an excellent way to gain useful skills and develop friends and contacts."
+  },
+  {
+   "text": "Canada is the only constitutional monarchy in North America?",
+   "page": "10",
+   "section": "Who We Are",
+   "quote": "We are the only constitutional monarchy in North America."
+  },
+  {
+   "text": "Canada has inherited the oldest continuous constitutional tradition in the world?",
+   "page": "10",
+   "section": "Who We Are",
+   "quote": "We have inherited the oldest continuous constitutional tradition in the world."
+  },
+  {
+   "text": "poets and songwriters have hailed Canada as the \"Great Dominion\"?",
+   "page": "10",
+   "section": "Who We Are",
+   "quote": "poets and songwriters have hailed Canada as the \"Great Dominion.\""
+  },
+  {
+   "text": "in residential schools, Aboriginal languages and cultural practices were mostly prohibited?",
+   "page": "10",
+   "section": "Aboriginal peoples",
+   "quote": "Aboriginal languages and cultural practices were mostly prohibited."
+  },
+  {
+   "text": "Ottawa formally apologized to former residential school students in 2008?",
+   "page": "10",
+   "section": "Aboriginal peoples",
+   "quote": "In 2008, Ottawa formally apologized to the former students."
+  },
+  {
+   "text": "the ancestors of Aboriginal peoples are believed to have migrated from Asia many thousands of years ago?",
+   "page": "10",
+   "section": "Aboriginal peoples",
+   "quote": "The ancestors of Aboriginal peoples are believed to have migrated from Asia many thousands of years ago."
+  },
+  {
+   "text": "territorial rights for Aboriginal peoples were first guaranteed through the Royal Proclamation of 1763 by King George III?",
+   "page": "10",
+   "section": "Aboriginal peoples",
+   "quote": "Territorial rights were first guaranteed through the Royal Proclamation of 1763 by King George III"
+  },
+  {
+   "text": "about half of First Nations people live on reserve land in about 600 communities?",
+   "page": "10",
+   "section": "Aboriginal peoples",
+   "quote": "about half of First Nations people live on reserve land in about 600 communities"
+  },
+  {
+   "text": "the word Inuit means “the people” in the Inuktitut language?",
+   "page": "11",
+   "section": "Unity in Diversity",
+   "quote": "The Inuit, which means “the people” in the Inuktitut language"
+  },
+  {
+   "text": "the Métis speak their own dialect, called Michif?",
+   "page": "11",
+   "section": "Unity in Diversity",
+   "quote": "They come from both French- and English-speaking backgrounds and speak their own dialect, Michif."
+  },
+  {
+   "text": "New Brunswick is the only officially bilingual province?",
+   "page": "11",
+   "section": "English and French",
+   "quote": "New Brunswick is the only officially bilingual province."
+  },
+  {
+   "text": "most Quebecers are descendants of 8,500 French settlers from the 1600s and 1700s?",
+   "page": "11",
+   "section": "English and French",
+   "quote": "Most are descendants of 8,500 French settlers from the 1600s and 1700s"
+  },
+  {
+   "text": "most immigrants to Canada since the 1970s have come from Asian countries?",
+   "page": "12",
+   "section": "Diversity in Canada",
+   "quote": "Since the 1970s, most immigrants have come from Asian countries."
+  },
+  {
+   "text": "Chinese languages are the second most-spoken at home, after English, in two of Canada's biggest cities?",
+   "page": "12-13",
+   "section": "Diversity in Canada",
+   "quote": "Chinese languages are the second most-spoken at home, after English, in two of Canada's biggest cities."
+  },
+  {
+   "text": "in Vancouver, 13% of the population speak Chinese languages at home?",
+   "page": "12-13",
+   "section": "Diversity in Canada",
+   "quote": "In Vancouver, 13% of the population speak Chinese languages at home"
+  },
+  {
+   "text": "the largest religious affiliation in Canada is Catholic, followed by various Protestant churches?",
+   "page": "13",
+   "section": "Diversity in Canada",
+   "quote": "The largest religious affiliation is Catholic, followed by various Protestant churches."
+  },
+  {
+   "text": "in Canada the state has traditionally partnered with faith communities to provide schools and health care and to resettle refugees?",
+   "page": "13",
+   "section": "Diversity in Canada",
+   "quote": "the state has traditionally partnered with faith communities to promote social welfare"
+  },
+  {
+   "text": "gay and lesbian Canadians enjoy access to civil marriage?",
+   "page": "13",
+   "section": "Diversity in Canada",
+   "quote": "including access to civil marriage"
+  },
+  {
+   "text": "the Sioux were nomadic, following the bison herd across the land?",
+   "page": "14",
+   "section": "Aboriginal peoples",
+   "quote": "The Sioux were nomadic, following the bison (buffalo) herd."
+  },
+  {
+   "text": "large numbers of Aboriginals died of European diseases to which they had no immunity?",
+   "page": "14",
+   "section": "Aboriginal peoples",
+   "quote": "Large numbers of Aboriginals died of European diseases to which they lacked immunity."
+  },
+  {
+   "text": "the first 200 years of coexistence between Aboriginals and Europeans laid the foundations of Canada?",
+   "page": "14",
+   "section": "Aboriginal peoples",
+   "quote": "Aboriginals and Europeans formed strong economic, religious and military bonds in the first 200 years of coexistence which laid the foundations of Canada"
+  },
+  {
+   "text": "Vikings from Iceland reached Labrador and Newfoundland 1,000 years ago, and the remains of their settlement are a World Heritage site?",
+   "page": "14",
+   "section": "The First Europeans",
+   "quote": "The Vikings from Iceland who colonized Greenland 1,000 years ago also reached Labrador and the island of Newfoundland"
+  },
+  {
+   "text": "John Cabot was the first to draw a map of Canada's East Coast?",
+   "page": "14",
+   "section": "The First Europeans",
+   "quote": "John Cabot, who was the first to draw a map of Canada's East Coast"
+  },
+  {
+   "text": "the name Canada comes from the Iroquoian word kanata, meaning village?",
+   "page": "14",
+   "section": "Exploring a river, naming Canada",
+   "quote": "Cartier heard two captured guides speak the Iroquoian word kanata, meaning \"village.\""
+  },
+  {
+   "text": "the first European settlement north of Florida was on St. Croix Island, in present-day Maine?",
+   "page": "15",
+   "section": "Royal New France",
+   "quote": "the first European settlement north of Florida was established by French explorers Pierre de Monts and Samuel de Champlain"
+  },
+  {
+   "text": "the French Empire in North America once reached from Hudson Bay to the Gulf of Mexico?",
+   "page": "15",
+   "section": "Royal New France",
+   "quote": "built a French Empire in North America that reached from Hudson Bay to the Gulf of Mexico"
+  },
+  {
+   "text": "the skilled men who travelled by canoe to trade were called voyageurs and coureurs des bois?",
+   "page": "15",
+   "section": "Struggle for a continent",
+   "quote": "The skilled and courageous men who travelled by canoe were called voyageurs and coureurs des bois"
+  },
+  {
+   "text": "both commanders at the Battle of the Plains of Abraham, Wolfe and Montcalm, were killed leading their troops in battle?",
+   "page": "15",
+   "section": "Struggle for a continent",
+   "quote": "The commanders of both armies, Brigadier James Wolfe and the Marquis de Montcalm, were killed leading their troops in battle."
+  },
+  {
+   "text": "the Hudson's Bay Company was granted exclusive trading rights over the watershed draining into Hudson Bay?",
+   "page": "15",
+   "section": "Struggle for a continent",
+   "quote": "King Charles II of England granted the Hudson’s Bay Company exclusive trading rights over the watershed draining into Hudson Bay."
+  },
+  {
+   "text": "more than 40,000 Loyalists fled the oppression of the American Revolution to settle in Nova Scotia and Quebec?",
+   "page": "15",
+   "section": "United empire loyalists",
+   "quote": "More than 40,000 people loyal to the Crown, called “Loyalists,” fled the oppression of the American Revolution to settle in Nova Scotia and Quebec."
+  },
+  {
+   "text": "about 3,000 black Loyalists, freedmen and slaves, came north seeking a better life?",
+   "page": "15",
+   "section": "United empire loyalists",
+   "quote": "About 3,000 black Loyalists, freedmen and slaves came north seeking a better life."
+  },
+  {
+   "text": "some black Nova Scotians moved to establish Freetown, Sierra Leone, a new British colony for freed slaves?",
+   "page": "15",
+   "section": "United empire loyalists",
+   "quote": "some black Nova Scotians, who were given poor land, moved on to establish Freetown, Sierra Leone"
+  },
+  {
+   "text": "the first representative assembly was elected in Halifax, Nova Scotia, in 1758?",
+   "page": "16",
+   "section": "The Beginnings of Democracy",
+   "quote": "The first representative assembly was elected in Halifax, Nova Scotia, in 1758."
+  },
+  {
+   "text": "Upper Canada became the first province in the Empire to move toward abolishing slavery?",
+   "page": "16",
+   "section": "Abolition of slavery",
+   "quote": "Upper Canada, led by Lieutenant Governor John Graves Simcoe, a Loyalist military officer, became the first province in the Empire to move toward abolition"
+  },
+  {
+   "text": "thousands of escaped slaves followed “the North Star” to Canada via the Underground Railroad?",
+   "page": "16",
+   "section": "Abolition of slavery",
+   "quote": "Thousands of slaves escaped from the United States, followed “the North Star” and settled in Canada via the Underground Railroad"
+  },
+  {
+   "text": "the Montreal Stock Exchange opened in 1832?",
+   "page": "16",
+   "section": "A growing economy",
+   "quote": "The Montreal Stock Exchange opened in 1832."
+  },
+  {
+   "text": "Major-General Sir Isaac Brock captured Detroit but was later killed defending against an American attack at Queenston Heights?",
+   "page": "17",
+   "section": "The War of 1812: The Fight for Canada",
+   "quote": "Major-General Sir Isaac Brock captured Detroit but was killed while defending against an American attack at Queenston Heights"
+  },
+  {
+   "text": "Lieutenant-Colonel Charles de Salaberry and 460 soldiers, mostly French Canadiens, turned back 4,000 American invaders at Châteauguay?",
+   "page": "17",
+   "section": "The War of 1812: The Fight for Canada",
+   "quote": "Lieutenant-Colonel Charles de Salaberry and 460 soldiers, mostly French Canadiens, turned back 4,000 American invaders at Châteauguay"
+  },
+  {
+   "text": "the present-day Canada-U.S.A. border is partly an outcome of the War of 1812, which ensured Canada would remain independent of the United States?",
+   "page": "17",
+   "section": "The War of 1812: The Fight for Canada",
+   "quote": "The present-day Canada-U.S.A. border is partly an outcome of the War of 1812, which ensured that Canada would remain independent of the United States."
+  },
+  {
+   "text": "Lord Durham controversially claimed the quickest way for the Canadiens to progress was to assimilate into English-speaking Protestant culture?",
+   "page": "17-18",
+   "section": "Rebellions of 1837–38",
+   "quote": "the quickest way for the Canadiens to achieve progress was to assimilate into English-speaking Protestant culture"
+  },
+  {
+   "text": "Sir John A. Macdonald, a Father of Confederation, was once a member of the voluntary government militia in Upper Canada?",
+   "page": "18",
+   "section": "Rebellions of 1837–38",
+   "quote": "a former member of the voluntary government militia in Upper Canada, Sir John A. Macdonald"
+  },
+  {
+   "text": "the term Dominion of Canada was inspired by Psalm 72 in the Bible?",
+   "page": "18",
+   "section": "Dominion from Sea to Sea",
+   "quote": "He was inspired by Psalm 72 in the Bible which refers to “dominion from sea to sea and from the river to the ends of the earth.”"
+  },
+  {
+   "text": "Nova Scotia was the first British North American colony to attain full responsible government?",
+   "page": "18",
+   "section": "Responsible government",
+   "quote": "The first British North American colony to attain full responsible government was Nova Scotia in 1847–48."
+  },
+  {
+   "text": "the old Province of Canada was split into two new provinces, Ontario and Quebec?",
+   "page": "18",
+   "section": "Confederation",
+   "quote": "The old Province of Canada was split into two new provinces: Ontario and Quebec"
+  },
+  {
+   "text": "July 1 was celebrated as \"Dominion Day\" until 1982, when it became officially known as Canada Day?",
+   "page": "18",
+   "section": "Confederation",
+   "quote": "Until 1982, July 1 was celebrated as “Dominion Day”"
+  },
+  {
+   "text": "in the 1920s, some believed the British West Indies in the Caribbean should become part of Canada?",
+   "page": "19",
+   "section": "Expansion of the Dominion",
+   "quote": "In the 1920s, some believed that the British West Indies (British territories in the Caribbean Sea) should become part of Canada."
+  },
+  {
+   "text": "Canada's first Prime Minister, Sir John Alexander Macdonald, was born in Scotland?",
+   "page": "19",
+   "section": "Canada’s First Prime Minister",
+   "quote": "Born in Scotland on January 11, 1815, he came to Upper Canada as a child."
+  },
+  {
+   "text": "Sir George-Étienne Cartier, a railway lawyer, led Quebec into Confederation?",
+   "page": "19",
+   "section": "Canada’s First Prime Minister",
+   "quote": "Cartier led Quebec into Confederation and helped negotiate the entry of the Northwest Territories, Manitoba and British Columbia into Canada."
+  },
+  {
+   "text": "Louis Riel was elected to Parliament but never took his seat?",
+   "page": "19",
+   "section": "Challenge in the west",
+   "quote": "Riel was elected to Parliament but never took his seat."
+  },
+  {
+   "text": "Louis Riel responded to the takeover of the northwest by seizing Fort Garry, the territorial capital?",
+   "page": "19",
+   "section": "Challenge in the west",
+   "quote": "Louis Riel led an armed uprising and seized Fort Garry, the territorial capital."
+  },
+  {
+   "text": "the North West Mounted Police founded Fort Calgary, Fort MacLeod and other centres that today are cities and towns?",
+   "page": "19",
+   "section": "Challenge in the west",
+   "quote": "The NWMP founded Fort Calgary, Fort MacLeod and other centres that today are cities and towns."
+  },
+  {
+   "text": "Regina became the headquarters of the North West Mounted Police?",
+   "page": "19",
+   "section": "Challenge in the west",
+   "quote": "Regina became its headquarters."
+  },
+  {
+   "text": "the Government of Canada apologized in 2006 for the Head Tax imposed on Chinese railway workers?",
+   "page": "20",
+   "section": "A Railway from Sea to Sea",
+   "quote": "The Government of Canada apologized in 2006 for this discriminatory policy."
+  },
+  {
+   "text": "the last spike of the railway to the West Coast was driven by Donald Smith, a Scottish-born director of the Canadian Pacific Railway?",
+   "page": "20",
+   "section": "A Railway from Sea to Sea",
+   "quote": "Donald Smith (Lord Strathcona), the Scottish-born director of the Canadian Pacific Railway (CPR), drove the last spike"
+  },
+  {
+   "text": "Sir Wilfrid Laurier, the first French-Canadian prime minister since Confederation, has his portrait on the $5 bill?",
+   "page": "20",
+   "section": "A Railway from Sea to Sea",
+   "quote": "Sir Wilfrid Laurier became the first French-Canadian prime minister since Confederation and encouraged immigration to the West. His portrait is on the $5 bill"
+  },
+  {
+   "text": "before 1914, 170,000 Ukrainians and 115,000 Poles settled in the Canadian West thanks to the railway?",
+   "page": "20",
+   "section": "A Railway from Sea to Sea",
+   "quote": "including 170,000 Ukrainians, 115,000 Poles and tens of thousands from Germany, France, Norway and Sweden to settle in the West before 1914"
+  },
+  {
+   "text": "the Canadian Corps captured Vimy Ridge in April 1917 at a cost of 10,000 killed or wounded?",
+   "page": "21",
+   "section": "The First World War",
+   "quote": "The Canadian Corps captured Vimy Ridge in April 1917, with 10,000 killed or wounded"
+  },
+  {
+   "text": "a Canadian officer said of Vimy Ridge, \"In those few minutes I witnessed the birth of a nation\"?",
+   "page": "21",
+   "section": "The First World War",
+   "quote": "It was Canada from the Atlantic to the Pacific on parade ... In those few minutes I witnessed the birth of a nation."
+  },
+  {
+   "text": "over 7,000 Canadians volunteered to fight in the South African War, and over 260 died?",
+   "page": "21",
+   "section": "The First World War",
+   "quote": "Over 7,000 volunteered to fight in the South African War (1899–1902), popularly known as the Boer War, and over 260 died"
+  },
+  {
+   "text": "Ottawa interned over 8,000 former Austro-Hungarian subjects, mainly Ukrainian men, as \"enemy aliens\" in 24 labour camps, even though Britain advised against it?",
+   "page": "21",
+   "section": "The First World War",
+   "quote": "Ottawa interned over 8,000 former Austro-Hungarian subjects, mainly Ukrainian men, as “enemy aliens” in 24 labour camps across Canada, even though Britain advised against the policy."
+  },
+  {
+   "text": "the Germans called the victorious Battle of Amiens on August 8, 1918 \"the black day of the German Army\"?",
+   "page": "21",
+   "section": "The First World War",
+   "quote": "the victorious Battle of Amiens on August 8, 1918–which the Germans called “the black day of the German Army”"
+  },
+  {
+   "text": "Quebec only granted women the vote in 1940, thanks to the work of Thérèse Casgrain and others?",
+   "page": "21",
+   "section": "Women get the vote",
+   "quote": "Due to the work of Thérèse Casgrain and others, Quebec granted women the vote in 1940."
+  },
+  {
+   "text": "at Confederation, the vote was limited to property-owning adult white males?",
+   "page": "21",
+   "section": "Women get the vote",
+   "quote": "At the time of Confederation, the vote was limited to property-owning adult white males."
+  },
+  {
+   "text": "Manitoba was the first province to grant voting rights to women?",
+   "page": "21",
+   "section": "Women get the vote",
+   "quote": "In 1916, Manitoba became the first province to grant voting rights to women."
+  },
+  {
+   "text": "the poem \"In Flanders Fields\" was composed by a Canadian medical officer, Lieutenant-Colonel John McCrae?",
+   "page": "22",
+   "section": "Between the wars",
+   "quote": "Canadian medical officer Lieutenant- Colonel John McCrae composed the poem “In Flanders Fields” in 1915"
+  },
+  {
+   "text": "after the First World War, the British Empire evolved into a free association of states known as the British Commonwealth of Nations?",
+   "page": "22",
+   "section": "Between the wars",
+   "quote": "the British Empire evolved into a free association of states known as the British Commonwealth of Nations"
+  },
+  {
+   "text": "unemployment reached 27% in 1933 during the Great Depression?",
+   "page": "22",
+   "section": "Between the wars",
+   "quote": "Unemployment reached 27% in 1933 and many businesses were wiped out."
+  },
+  {
+   "text": "many refugees were turned away during the Depression, including Jews trying to flee Nazi Germany in 1939?",
+   "page": "22",
+   "section": "Between the wars",
+   "quote": "Immigration dropped and many refugees were turned away, including Jews trying to flee Nazi Germany in 1939."
+  },
+  {
+   "text": "approximately one in ten Allied soldiers on D-Day was Canadian?",
+   "page": "23",
+   "section": "The D-Day Invasion, June 6, 1944",
+   "quote": "Approximately one in ten Allied soldiers on D-Day was Canadian."
+  },
+  {
+   "text": "at the end of the Second World War, Canada had the third-largest navy in the world?",
+   "page": "23",
+   "section": "The Second World War",
+   "quote": "At the end of the Second World War, Canada had the third-largest navy in the world."
+  },
+  {
+   "text": "Japan launched fire balloons over B.C. and the Prairies during the Pacific war?",
+   "page": "23",
+   "section": "The Second World War",
+   "quote": "launched fire balloons over B.C. and the Prairies"
+  },
+  {
+   "text": "the military and the RCMP told Ottawa that Canadians of Japanese origin posed little danger to Canada?",
+   "page": "23",
+   "section": "The Second World War",
+   "quote": "even though the military and the RCMP told Ottawa that they posed little danger to Canada"
+  },
+  {
+   "text": "the discovery of oil in Alberta in 1947 began Canada's modern energy industry?",
+   "page": "24",
+   "section": "Trade and economic growth",
+   "quote": "The discovery of oil in Alberta in 1947 began Canada's modern energy industry."
+  },
+  {
+   "text": "in 1951, for the first time, a majority of Canadians could afford adequate food, shelter and clothing?",
+   "page": "24",
+   "section": "Trade and economic growth",
+   "quote": "In 1951, for the first time, a majority of Canadians were able to afford adequate food, shelter and clothing."
+  },
+  {
+   "text": "Canadians enjoy one of the world's highest standards of living, maintained by hard work and trade, especially with the United States?",
+   "page": "24",
+   "section": "Trade and economic growth",
+   "quote": "Canadians enjoy one of the world's highest standards of living—maintained by the hard work of Canadians and by trade with other nations"
+  },
+  {
+   "text": "Old Age Security was devised as early as 1927?",
+   "page": "24",
+   "section": "Trade and economic growth",
+   "quote": "Old Age Security was devised as early as 1927"
+  },
+  {
+   "text": "unemployment insurance, now called employment insurance, was introduced by the federal government in 1940?",
+   "page": "24",
+   "section": "Trade and economic growth",
+   "quote": "Unemployment insurance (now called \"employment insurance\") was introduced by the federal government in 1940."
+  },
+  {
+   "text": "Canada took part in the UN operation defending South Korea, with 500 dead and 1,000 wounded?",
+   "page": "24",
+   "section": "Trade and economic growth",
+   "quote": "It participated in the UN operation defending South Korea in the Korean War (1950–53), with 500 dead and 1,000 wounded."
+  },
+  {
+   "text": "Canada has taken part in UN peacekeeping missions in places as varied as Egypt, Cyprus and Haiti?",
+   "page": "24",
+   "section": "Trade and economic growth",
+   "quote": "Canada has taken part in numerous UN peacekeeping missions in places as varied as Egypt, Cyprus and Haiti"
+  },
+  {
+   "text": "Canada helped form NATO, a military alliance with other democratic countries of the West, during the Cold War?",
+   "page": "24",
+   "section": "International engagement",
+   "quote": "Canada joined with other democratic countries of the West to form the North Atlantic Treaty Organization (NATO)"
+  },
+  {
+   "text": "Canada and the United States formed a defence partnership called NORAD?",
+   "page": "24",
+   "section": "International engagement",
+   "quote": "and with the United States in the North American Aerospace Defence Command (NORAD)"
+  },
+  {
+   "text": "Quebec's era of rapid change in the 1960s is known as the Quiet Revolution?",
+   "page": "24",
+   "section": "Canada and Quebec",
+   "quote": "Quebec experienced an era of rapid change in the 1960s known as the Quiet Revolution"
+  },
+  {
+   "text": "Canada helped found La Francophonie, an international association of French-speaking countries, in 1970?",
+   "page": "24",
+   "section": "Canada and Quebec",
+   "quote": "In 1970, Canada helped found La Francophonie, an international association of French-speaking countries"
+  },
+  {
+   "text": "the Constitution was amended in 1982 without the agreement of Quebec?",
+   "page": "24",
+   "section": "Canada and Quebec",
+   "quote": "in 1982 the Constitution was amended without the agreement of Quebec"
+  },
+  {
+   "text": "Japanese-Canadians were the last Canadians of Asian descent to gain the right to vote, in 1948?",
+   "page": "25",
+   "section": "A Changing Society",
+   "quote": "In 1948 the last of these, the Japanese- Canadians, gained the right to vote"
+  },
+  {
+   "text": "Aboriginal people were only granted the vote in 1960?",
+   "page": "25",
+   "section": "A Changing Society",
+   "quote": "Aboriginal people were granted the vote in 1960"
+  },
+  {
+   "text": "Canada welcomed about 37,000 refugees who escaped Soviet tyranny in Hungary in 1956?",
+   "page": "25",
+   "section": "A Changing Society",
+   "quote": "about 37,000 who escaped Soviet tyranny in Hungary in 1956"
+  },
+  {
+   "text": "by the 1960s, one-third of Canadians had origins that were neither British nor French?",
+   "page": "25",
+   "section": "A Changing Society",
+   "quote": "By the 1960s, one-third of Canadians had origins that were neither British nor French"
+  },
+  {
+   "text": "writers such as Joy Kogawa, Michael Ondaatje and Rohinton Mistry have diversified Canada's literary experience?",
+   "page": "25",
+   "section": "Arts and culture in Canada",
+   "quote": "Writers such as Joy Kogawa, Michael Ondaatje and Rohinton Mistry have diversified Canada's literary experience."
+  },
+  {
+   "text": "the Group of Seven, founded in 1920, developed a style of painting to capture Canada's rugged wilderness landscapes?",
+   "page": "25",
+   "section": "Arts and culture in Canada",
+   "quote": "the Group of Seven, founded in 1920, who developed a style of painting to capture the rugged wilderness landscapes"
+  },
+  {
+   "text": "Kenojuak Ashevak pioneered modern Inuit art with etchings, prints and soapstone sculptures?",
+   "page": "25",
+   "section": "Arts and culture in Canada",
+   "quote": "Kenojuak Ashevak pioneered modern Inuit art with etchings, prints and soapstone sculptures"
+  },
+  {
+   "text": "Emily Carr painted the forests and Aboriginal artifacts of the West Coast?",
+   "page": "25",
+   "section": "Arts and culture in Canada",
+   "quote": "Emily Carr painted the forests and Aboriginal artifacts of the West Coast"
+  },
+  {
+   "text": "the films of Denys Arcand have won international awards?",
+   "page": "25",
+   "section": "Arts and culture in Canada",
+   "quote": "The films of Denys Arcand have been popular in Quebec and across the country, and have won international awards"
+  },
+  {
+   "text": "Canadian astronauts have participated in space exploration, often using the Canadian-designed and built Canadarm?",
+   "page": "26",
+   "section": "Arts and culture in Canada",
+   "quote": "often using the Canadian-designed and built Canadarm"
+  },
+  {
+   "text": "Sir Sandford Fleming invented the worldwide system of standard time zones?",
+   "page": "27",
+   "section": "GREAT CANADIAN DISCOVERIES AND INVENTIONS",
+   "quote": "Sir Sandford Fleming — invented the worldwide system of standard time zones"
+  },
+  {
+   "text": "Matthew Evans and Henry Woodward invented the first electric light bulb and later sold the patent to Thomas Edison?",
+   "page": "27",
+   "section": "GREAT CANADIAN DISCOVERIES AND INVENTIONS",
+   "quote": "invented the first electric light bulb and later sold the patent to Thomas Edison"
+  },
+  {
+   "text": "national historic sites are located in all provinces and territories and include battlefields, archaeological sites, buildings and sacred spaces?",
+   "page": "27",
+   "section": "GREAT CANADIAN DISCOVERIES AND INVENTIONS",
+   "quote": "National historic sites are located in all provinces and territories"
+  },
+  {
+   "text": "Reginald Fessenden sent the first wireless voice message in the world?",
+   "page": "27",
+   "section": "GREAT CANADIAN DISCOVERIES AND INVENTIONS",
+   "quote": "sending the first wireless voice message in the world"
+  },
+  {
+   "text": "brain surgeon Dr. Wilder Penfield was known as \"the greatest living Canadian\"?",
+   "page": "27",
+   "section": "GREAT CANADIAN DISCOVERIES AND INVENTIONS",
+   "quote": "was known as “the greatest living Canadian.”"
+  },
+  {
+   "text": "Dr. John A. Hopps invented the first cardiac pacemaker, used today to save lives?",
+   "page": "27",
+   "section": "GREAT CANADIAN DISCOVERIES AND INVENTIONS",
+   "quote": "invented the first cardiac pacemaker, used today to save the lives of people with heart disorders"
+  },
+  {
+   "text": "agriculture and immigration are shared by both the federal government and the provinces?",
+   "page": "28",
+   "section": "Federal state",
+   "quote": "The federal government and the provinces share jurisdiction over agriculture and immigration."
+  },
+  {
+   "text": "federalism gives provinces the flexibility to experiment with new ideas and policies?",
+   "page": "28",
+   "section": "Federal state",
+   "quote": "gives provinces the flexibility to experiment with new ideas and policies"
+  },
+  {
+   "text": "the three northern territories are not provinces, yet their governments and assemblies carry out many of the same functions?",
+   "page": "28",
+   "section": "Federal state",
+   "quote": "their governments and assemblies carry out many of the same functions"
+  },
+  {
+   "text": "every province has its own elected Legislative Assembly, like the House of Commons in Ottawa?",
+   "page": "28",
+   "section": "Federal state",
+   "quote": "Every province has its own elected Legislative Assembly, like the House of Commons in Ottawa."
+  },
+  {
+   "text": "cabinet ministers must resign if they are defeated in a non-confidence vote?",
+   "page": "28",
+   "section": "Parliamentary democracy",
+   "quote": "they must retain the “confidence of the House” and have to resign if they are defeated in a non-confidence vote"
+  },
+  {
+   "text": "Parliament has three parts: the Sovereign, the Senate and the House of Commons?",
+   "page": "28",
+   "section": "Parliamentary democracy",
+   "quote": "Parliament has three parts: the Sovereign (Queen or King), the Senate and the House of Commons."
+  },
+  {
+   "text": "senators serve until age 75?",
+   "page": "28",
+   "section": "Parliamentary democracy",
+   "quote": "Senators are appointed by the Governor General on the advice of the Prime Minister and serve until age 75."
+  },
+  {
+   "text": "no bill can become law in Canada until it has been passed by both chambers and received royal assent?",
+   "page": "28",
+   "section": "Parliamentary democracy",
+   "quote": "No bill can become law in Canada until it has been passed by both chambers and has received royal assent"
+  },
+  {
+   "text": "the three branches of government sometimes work in creative tension, which helps secure Canadians' rights and freedoms?",
+   "page": "29",
+   "section": "Parliamentary democracy",
+   "quote": "which work together but also sometimes in creative tension, helps to secure the rights and freedoms"
+  },
+  {
+   "text": "provincial and territorial legislators go by different names—MLAs, MNAs, MPPs or MHAs—depending on where they serve?",
+   "page": "29",
+   "section": "Parliamentary democracy",
+   "quote": "called members of the Legislative Assembly (MLAs), members of the National Assembly (MNAs), members of the Provincial Parliament (MPPs)"
+  },
+  {
+   "text": "as Head of the Commonwealth, the Sovereign links Canada to 53 other nations that cooperate to advance progress?",
+   "page": "29",
+   "section": "Constitutional monarchy",
+   "quote": "As Head of the Commonwealth, the Sovereign links Canada to 53 other nations"
+  },
+  {
+   "text": "the Sovereign is a part of Parliament, playing a non-partisan role as the focus of citizenship and allegiance?",
+   "page": "29",
+   "section": "Constitutional monarchy",
+   "quote": "The Sovereign is a part of Parliament, playing an important, non-partisan role"
+  },
+  {
+   "text": "there is a clear distinction in Canada between the head of state, the Sovereign, and the head of government, the Prime Minister?",
+   "page": "29",
+   "section": "Constitutional monarchy",
+   "quote": "There is a clear distinction in Canada between the head of state—the Sovereign—and the head of government"
+  },
+  {
+   "text": "federal elections must be held on the third Monday in October every four years following the most recent general election?",
+   "page": "30",
+   "section": "Federal Elections",
+   "quote": "federal elections must be held on the third Monday in October every four years"
+  },
+  {
+   "text": "Canada is divided into 308 electoral districts, also known as ridings or constituencies?",
+   "page": "30",
+   "section": "Federal Elections",
+   "quote": "Canada is divided into 308 electoral districts, also known as ridings or constituencies"
+  },
+  {
+   "text": "the candidate who receives the most votes in an electoral district becomes its MP?",
+   "page": "30",
+   "section": "Federal Elections",
+   "quote": "The candidate who receives the most votes becomes the MP for that electoral district."
+  },
+  {
+   "text": "voters’ lists for federal elections are produced by a neutral agency of Parliament called Elections Canada?",
+   "page": "30",
+   "section": "Voting",
+   "quote": "produced from the National Register of Electors by a neutral agency of Parliament called Elections Canada"
+  },
+  {
+   "text": "once an election is called, Elections Canada mails a voter information card to each elector in the National Register of Electors?",
+   "page": "30",
+   "section": "Voting",
+   "quote": "Elections Canada mails a voter information card to each elector whose name is in the National Register of Electors"
+  },
+  {
+   "text": "if a majority of MPs vote against a major government decision, the party in power is defeated, usually leading to an election?",
+   "page": "31",
+   "section": "Secret ballot",
+   "quote": "If a majority of the members of the House of Commons vote against a major government decision, the party in power is defeated"
+  },
+  {
+   "text": "no one, not even family members, your employer or union representative, can insist that you tell them how you voted?",
+   "page": "31",
+   "section": "Secret ballot",
+   "quote": "no one, including family members, your employer or union representative, has the right to insist that you tell them how you voted"
+  },
+  {
+   "text": "the Prime Minister and Cabinet ministers, called the Cabinet, prepare the budget and propose most new laws?",
+   "page": "31",
+   "section": "Secret ballot",
+   "quote": "They prepare the budget and propose most new laws."
+  },
+  {
+   "text": "the Governor General invites the leader of the party with the most seats in the House of Commons to form the government?",
+   "page": "31",
+   "section": "After an election",
+   "quote": "the leader of the political party with the most seats in the House of Commons is invited by the Governor General to form the government"
+  },
+  {
+   "text": "Canada's Official Opposition is also called Her Majesty's Loyal Opposition?",
+   "page": "31",
+   "section": "After an election",
+   "quote": "The opposition party with the most members of the House of Commons is the Official Opposition or Her Majesty’s Loyal Opposition."
+  },
+  {
+   "text": "municipal councils pass laws called \"by-laws\" that affect only the local community?",
+   "page": "33",
+   "section": "Other levels of government in Canada",
+   "quote": "passes laws called “by-laws” that affect only the local community"
+  },
+  {
+   "text": "First Nations reserves have band chiefs and councillors responsible for services like housing and schools?",
+   "page": "33",
+   "section": "Other levels of government in Canada",
+   "quote": "band chiefs and councillors who have major responsibilities on First Nations reserves, including housing, schools"
+  },
+  {
+   "text": "the rules for voting in provincial, territorial and municipal elections are not the same as those for federal elections?",
+   "page": "33",
+   "section": "Other levels of government in Canada",
+   "quote": "the rules are not the same as those for federal elections"
+  },
+  {
+   "text": "in criminal matters, everyone is presumed innocent until proven guilty?",
+   "page": "36",
+   "section": "The Justice System",
+   "quote": "the presumption of innocence in criminal matters, meaning everyone is innocent until proven guilty"
+  },
+  {
+   "text": "the law in Canada applies to everyone, including judges, politicians and the police?",
+   "page": "36",
+   "section": "The Justice System",
+   "quote": "The law in Canada applies to everyone, including judges, politicians and the police."
+  },
+  {
+   "text": "in most provinces, the trial court is sometimes called the Court of Queen's Bench or the Supreme Court?",
+   "page": "37",
+   "section": "Courts",
+   "quote": "a trial court, sometimes called the Court of Queen’s Bench or the Supreme Court"
+  },
+  {
+   "text": "the RCMP serve as the provincial police in all provinces and territories except Ontario and Quebec?",
+   "page": "37",
+   "section": "Courts",
+   "quote": "serve as the provincial police in all provinces and territories except Ontario and Quebec"
+  },
+  {
+   "text": "you can question the police about their service or conduct?",
+   "page": "37",
+   "section": "Courts",
+   "quote": "You can also question the police about their service or conduct if you feel you need to."
+  },
+  {
+   "text": "you can ask the police for help in all kinds of situations, even if someone you know has gone missing?",
+   "page": "37",
+   "section": "Police",
+   "quote": "You can ask the police for help in all kinds of situations"
+  },
+  {
+   "text": "if you cannot pay for a lawyer, most communities have legal aid services available free of charge or at a low cost?",
+   "page": "37",
+   "section": "Getting legal help",
+   "quote": "in most communities there are legal aid services available free of charge or at a low cost"
+  },
+  {
+   "text": "maple leaves have appeared on Canadian uniforms and insignia since the 1850s?",
+   "page": "38",
+   "section": "The Canadian Crown",
+   "quote": "have appeared on Canadian uniforms and insignia since the 1850s"
+  },
+  {
+   "text": "maple leaves are carved into the headstones of fallen Canadian soldiers buried overseas and in Canada?",
+   "page": "38",
+   "section": "The Canadian Crown",
+   "quote": "are carved into the headstones of our fallen soldiers buried overseas and in Canada"
+  },
+  {
+   "text": "Canada's red-white-red flag pattern comes from the flag of the Royal Military College in Kingston?",
+   "page": "38",
+   "section": "Flags in Canada",
+   "quote": "The red-white-red pattern comes from the flag of the Royal Military College, Kingston"
+  },
+  {
+   "text": "red and white have been Canada's national colours since 1921?",
+   "page": "38",
+   "section": "Flags in Canada",
+   "quote": "Red and white had been colours of France and England since the Middle Ages and the national colours of Canada since 1921"
+  },
+  {
+   "text": "the Canadian Red Ensign served as the Canadian flag for about 100 years?",
+   "page": "38",
+   "section": "Flags in Canada",
+   "quote": "The Canadian Red Ensign served as the Canadian flag for about 100 years"
+  },
+  {
+   "text": "Canada's national motto, A mari usque ad mare, means \"from sea to sea\" in Latin?",
+   "page": "38",
+   "section": "Coat of arms and motto",
+   "quote": "A mari usque ad mare, which in Latin means \"from sea to sea.\""
+  },
+  {
+   "text": "Canada's coat of arms contains symbols of England, France, Scotland and Ireland as well as red maple leaves?",
+   "page": "38",
+   "section": "Coat of arms and motto",
+   "quote": "The arms contain symbols of England, France, Scotland and Ireland as well as red maple leaves"
+  },
+  {
+   "text": "soccer has the most registered players of any game in Canada?",
+   "page": "39",
+   "section": "The maple leaf",
+   "quote": "Soccer has the most registered players of any game in Canada."
+  },
+  {
+   "text": "the beaver appears on the five-cent coin and on the coats of arms of Saskatchewan and Alberta?",
+   "page": "39",
+   "section": "The beaver",
+   "quote": "This industrious rodent can be seen on the five-cent coin, on the coats of arms of Saskatchewan and Alberta"
+  },
+  {
+   "text": "the Stanley Cup was donated by Lord Stanley, the Governor General, in 1892?",
+   "page": "39",
+   "section": "Popular sports",
+   "quote": "The National Hockey League plays for the championship Stanley Cup, donated by Lord Stanley, the Governor General, in 1892."
+  },
+  {
+   "text": "the Clarkson Cup, awarded for women's hockey, was established by the first Governor General of Asian origin?",
+   "page": "39",
+   "section": "Popular sports",
+   "quote": "The Clarkson Cup, established in 2005 by Adrienne Clarkson, the 26th Governor General (and the first of Asian origin), is awarded for women's hockey."
+  },
+  {
+   "text": "curling, an ice game popular in Canada, was introduced by Scottish pioneers?",
+   "page": "39",
+   "section": "Popular sports",
+   "quote": "Curling, an ice game introduced by Scottish pioneers, is popular."
+  },
+  {
+   "text": "English and French speakers have lived together in partnership and creative tension for more than 300 years?",
+   "page": "39",
+   "section": "Canada’s official languages",
+   "quote": "have lived together in partnership and creative tension for more than 300 years"
+  },
+  {
+   "text": "Canada started its own honours system with the Order of Canada in 1967, the centennial of Confederation?",
+   "page": "40",
+   "section": "The Order of Canada and other honours",
+   "quote": "Canada started its own honours system with the Order of Canada in 1967, the centennial of Confederation"
+  },
+  {
+   "text": "the Victoria Cross has been awarded to 96 Canadians since 1854?",
+   "page": "41",
+   "section": "The Victoria Cross",
+   "quote": "The V.C. has been awarded to 96 Canadians since 1854"
+  },
+  {
+   "text": "William Hall, whose parents were American slaves, was the first black man to be awarded the Victoria Cross?",
+   "page": "41",
+   "section": "The Victoria Cross",
+   "quote": "whose parents were American slaves, was the first black man to be awarded the V.C."
+  },
+  {
+   "text": "Corporal Filip Konowal, born in Ukraine, was the first member of the Canadian Corps not born in the British Empire to receive the V.C.?",
+   "page": "41",
+   "section": "The Victoria Cross",
+   "quote": "became the first member of the Canadian Corps not born in the British Empire to be awarded the V.C."
+  },
+  {
+   "text": "more than 75% of working Canadians now have jobs in service industries?",
+   "page": "42",
+   "section": "Canada’s economy includes three main types of industries:",
+   "quote": "More than 75% of working Canadians now have jobs in service industries."
+  },
+  {
+   "text": "Canada and the United States have the biggest bilateral trading relationship in the world?",
+   "page": "42-43",
+   "section": "Canada’s economy includes three main types of industries:",
+   "quote": "In fact we have the biggest bilateral trading relationship in the world."
+  },
+  {
+   "text": "over three-quarters of Canadian exports are destined for the U.S.A.?",
+   "page": "43",
+   "section": "Canada’s economy includes three main types of industries:",
+   "quote": "Over three-quarters of Canadian exports are destined for the U.S.A."
+  },
+  {
+   "text": "the Peace Arch at Blaine, Washington, is inscribed with the words \"children of a common mother\" and \"brethren dwelling together in unity\"?",
+   "page": "43",
+   "section": "Canada’s economy includes three main types of industries:",
+   "quote": "the Peace Arch, inscribed with the words “children of a common mother” and “brethren dwelling together in unity,”"
+  },
+  {
+   "text": "Canada is the second largest country on earth, at 10 million square kilometres?",
+   "page": "44",
+   "section": "Canada’s Regions",
+   "quote": "Canada is the second largest country on earth—10 million square kilometres."
+  },
+  {
+   "text": "three oceans line Canada's frontiers: the Pacific, the Atlantic and the Arctic?",
+   "page": "44",
+   "section": "Canada’s Regions",
+   "quote": "Three oceans line Canada’s frontiers: the Pacific Ocean in the west, the Atlantic Ocean in the east, and the Arctic Ocean to the north."
+  },
+  {
+   "text": "Ottawa was chosen as Canada's capital in 1857 by Queen Victoria, the great-great-grandmother of Queen Elizabeth II?",
+   "page": "44",
+   "section": "The Regions of Canada",
+   "quote": "was chosen as the capital in 1857 by Queen Victoria, the great-great-grandmother of Queen Elizabeth II"
+  },
+  {
+   "text": "Ottawa is Canada's fourth largest metropolitan area?",
+   "page": "44",
+   "section": "The Regions of Canada",
+   "quote": "Today it is Canada’s fourth largest metropolitan area."
+  },
+  {
+   "text": "Newfoundland and Labrador is the most easterly point in North America and has its own time zone?",
+   "page": "46",
+   "section": "Newfoundland and Labrador",
+   "quote": "Newfoundland and Labrador is the most easterly point in North America and has its own time zone."
+  },
+  {
+   "text": "Newfoundland and Labrador was the oldest colony of the British Empire?",
+   "page": "46",
+   "section": "Newfoundland and Labrador",
+   "quote": "The oldest colony of the British Empire and a strategic prize in Canada’s early history"
+  },
+  {
+   "text": "Prince Edward Island is the birthplace of Confederation?",
+   "page": "46",
+   "section": "Prince Edward Island",
+   "quote": "P.E.I. is the birthplace of Confederation"
+  },
+  {
+   "text": "the Bay of Fundy in Nova Scotia has the world's highest tides?",
+   "page": "46",
+   "section": "Nova Scotia",
+   "quote": "Known for the world's highest tides in the Bay of Fundy"
+  },
+  {
+   "text": "Nova Scotia is home to over 700 annual festivals?",
+   "page": "46",
+   "section": "Nova Scotia",
+   "quote": "Nova Scotia is home to over 700 annual festivals"
+  },
+  {
+   "text": "Quebec is Canada's largest producer of hydro-electricity?",
+   "page": "47",
+   "section": "Quebec",
+   "quote": "Canada's largest producer of hydro-electricity"
+  },
+  {
+   "text": "Montreal is the second largest mainly French-speaking city in the world after Paris?",
+   "page": "47",
+   "section": "Quebec",
+   "quote": "the second largest mainly French-speaking city in the world after Paris"
+  },
+  {
+   "text": "Ontario and Quebec together produce more than three-quarters of all Canadian manufactured goods?",
+   "page": "47",
+   "section": "Central canada",
+   "quote": "Together, Ontario and Quebec produce more than three-quarters of all Canadian manufactured goods."
+  },
+  {
+   "text": "Ontario has the largest French-speaking population outside of Quebec?",
+   "page": "48",
+   "section": "Ontario",
+   "quote": "Ontario also has the largest French-speaking population outside of Quebec, with a proud history of preserving their language and culture."
+  },
+  {
+   "text": "Lake Superior is the largest freshwater lake in the world?",
+   "page": "48",
+   "section": "Ontario",
+   "quote": "Lake Superior, the largest freshwater lake in the world."
+  },
+  {
+   "text": "the Prairie Provinces have some of the most fertile farmland in the world?",
+   "page": "48",
+   "section": "The Prairie Provinces",
+   "quote": "rich in energy resources and some of the most fertile farmland in the world"
+  },
+  {
+   "text": "Winnipeg's Exchange District includes the most famous street intersection in Canada, Portage and Main?",
+   "page": "48",
+   "section": "Manitoba",
+   "quote": "the most famous street intersection in Canada, Portage and Main"
+  },
+  {
+   "text": "Manitoba has the largest Aboriginal population of any province, at over 15%?",
+   "page": "48",
+   "section": "Manitoba",
+   "quote": "the largest Aboriginal population of any province, at over 15%"
+  },
+  {
+   "text": "Saskatchewan has 40% of the arable land in Canada?",
+   "page": "48",
+   "section": "Saskatchewan",
+   "quote": "has 40% of the arable land in Canada and is the country's largest producer of grains and oilseeds"
+  },
+  {
+   "text": "Saskatchewan boasts the world's richest deposits of uranium and potash?",
+   "page": "48",
+   "section": "Saskatchewan",
+   "quote": "It also boasts the world's richest deposits of uranium and potash"
+  },
+  {
+   "text": "Alberta and Lake Louise were both named after Princess Louise Caroline Alberta, fourth daughter of Queen Victoria?",
+   "page": "49",
+   "section": "Alberta",
+   "quote": "were both named after Princess Louise Caroline Alberta, fourth daughter of Queen Victoria"
+  },
+  {
+   "text": "Alberta's rugged Badlands house some of the world's richest deposits of prehistoric fossils and dinosaur finds?",
+   "page": "49",
+   "section": "Alberta",
+   "quote": "The rugged Badlands house some of the world's richest deposits of prehistoric fossils and dinosaur finds"
+  },
+  {
+   "text": "the Port of Vancouver is Canada's largest and busiest port, handling billions of dollars in goods traded around the world?",
+   "page": "49",
+   "section": "The West Coast",
+   "quote": "The Port of Vancouver, Canada's largest and busiest, handles billions of dollars in goods traded around the world."
+  },
+  {
+   "text": "about one-half of all goods produced in British Columbia are forestry products, making it the most valuable forestry industry in Canada?",
+   "page": "49",
+   "section": "British Columbia",
+   "quote": "About one-half of all the goods produced in B.C. are forestry products"
+  },
+  {
+   "text": "B.C. has the most extensive park system in Canada, with approximately 600 provincial parks?",
+   "page": "49",
+   "section": "British Columbia",
+   "quote": "B.C. has the most extensive park system in Canada, with approximately 600 provincial parks."
+  },
+  {
+   "text": "Yellowknife is called the \"diamond capital of North America\"?",
+   "page": "50",
+   "section": "Northwest Territories",
+   "quote": "The capital, Yellowknife (population 20,000), is called the \"diamond capital of North America.\""
+  },
+  {
+   "text": "the Northwest Territories, Nunavut and Yukon contain one-third of Canada's land mass but have a population of only 100,000?",
+   "page": "50",
+   "section": "The Northern Territories",
+   "quote": "contain one-third of Canada's land mass but have a population of only 100,000"
+  },
+  {
+   "text": "the North is called the \"Land of the Midnight Sun\" because summer daylight can last up to 24 hours?",
+   "page": "50",
+   "section": "The Northern Territories",
+   "quote": "at the height of summer, daylight can last up to 24 hours"
+  },
+  {
+   "text": "in the North, winter darkness can set in for three months?",
+   "page": "50",
+   "section": "The Northern Territories",
+   "quote": "In winter, the sun disappears and darkness sets in for three months"
+  },
+  {
+   "text": "Yukon holds the record for the coldest temperature ever recorded in Canada, at -63°C?",
+   "page": "50",
+   "section": "Yukon",
+   "quote": "Yukon holds the record for the coldest temperature ever recorded in Canada (-63°C)."
+  },
+  {
+   "text": "the Canadian Rangers travel by snowmobile in winter from Resolute to the Magnetic North Pole?",
+   "page": "51",
+   "section": "The Canadian Rangers",
+   "quote": "the Rangers travel by snowmobile in the winter and all-terrain vehicles in the summer from Resolute to the Magnetic North Pole"
+  },
+  {
+   "text": "the Supreme Court of Canada has nine judges appointed by the Governor General?",
+   "page": "29",
+   "section": "Canada's System of Government",
+   "quote": "the Supreme Court of Canada has nine judges appointed by the Governor General"
+  },
+  {
+   "text": "senators are appointed on the Prime Minister's recommendation?",
+   "page": "29",
+   "section": "Canada's System of Government",
+   "quote": "Senators are appointed on the Prime Minister's recommendation."
+  },
+  {
+   "text": "the first to map Canada's Atlantic shore was an Italian immigrant to England?",
+   "page": "14",
+   "section": "The First Europeans",
+   "quote": "John Cabot, an Italian immigrant to England, was the first to map Canada’s Atlantic shore"
+  },
+  {
+   "text": "English settlement in Canada did not begin until more than a century after Cabot first set foot there?",
+   "page": "14",
+   "section": "The First Europeans",
+   "quote": "English settlement did not begin until 1610"
+  },
+  {
+   "text": "a hero of New France won victories over the English from James Bay all the way to the Caribbean?",
+   "page": "15",
+   "section": "Royal New France",
+   "quote": "winning many victories over the English, from James Bay in the north to Nevis in the Caribbean"
+  },
+  {
+   "text": "the Governor of Quebec defeated an American military invasion of Quebec in 1775?",
+   "page": "15",
+   "section": "United empire loyalists",
+   "quote": "defended the rights of the Canadiens, defeated an American military invasion of Quebec in 1775"
+  },
+  {
+   "text": "Mary Ann Shadd Cary became the first woman publisher in Canada in 1853?",
+   "page": "16",
+   "section": "Abolition of slavery",
+   "quote": "In 1853 she became the first woman publisher in Canada"
+  },
+  {
+   "text": "Laura Secord walked 19 miles on foot to warn of a planned American attack?",
+   "page": "17",
+   "section": "The War of 1812: The Fight for Canada",
+   "quote": "made a dangerous 19-mile (30-km) journey on foot to warn Lieutenant James FitzGibbon of a planned American attack"
+  },
+  {
+   "text": "the Battle of Vimy Ridge was the first British victory of the First World War?",
+   "page": "21",
+   "section": "The First World War",
+   "quote": "the first British victory of the First World War"
+  },
+  {
+   "text": "Phil Edwards won bronze medals for Canada in three Olympics before becoming a Montreal doctor and expert in tropical diseases?",
+   "page": "22",
+   "section": "Between the wars",
+   "quote": "he won bronze medals for Canada in the 1928, 1932 and 1936 Olympics"
+  },
+  {
+   "text": "the Grey Cup was donated by Lord Grey, the Governor General, in 1909?",
+   "page": "26",
+   "section": "Arts and culture in Canada",
+   "quote": "the championship Grey Cup, donated by Lord Grey, the Governor General, in 1909"
+  },
+  {
+   "text": "Canada's highest mountain, Mount Logan, is located in the Yukon?",
+   "page": "50",
+   "section": "Yukon",
+   "quote": "Mount Logan, located in the Yukon, is the highest mountain in Canada."
+  },
+  {
+   "text": "Mount Logan is named after Sir William Logan, a world-famous geologist considered one of Canada's greatest scientists?",
+   "page": "50",
+   "section": "Yukon",
+   "quote": "It is named in honour of Sir William Logan, a world-famous geologist"
+  }
+ ]
+}

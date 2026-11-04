@@ -85,7 +85,13 @@ repo, not a research repo.
   `VoiceError` messages that are safe to show, never tracebacks.
 - Nothing reaches the tutor until the learner confirms the (editable) transcript. Raw audio and transcripts are never written to
   disk, logged, or sent to Venice (only the confirmed text is). Keep the original ASR text separate from the learner's correction.
-- Do not add wake word, streaming/VAD or barge-in until Milestone 2/3. Tests use mocks only (no models, audio hardware or API key).
+- Milestone 2 (hands-free Live page: streaming mic, Silero VAD, endpointing) exists ONLY in the technical Atlas (`app.py`); `study_app.py` must never import it. The tutor is gated shut while it
+  thinks or speaks (half-duplex). Do not add wake word or barge-in (interruption) until Milestone 3. Keep `src/voice/{vad,endpointing,live}.py` free of Streamlit.
+- Importing `silero_vad` resets PyTorch to 1 thread; `src/voice/vad.py` restores it. Do not remove that. Tests use mocks only (no models, audio hardware or API key).
+- **Milestone 4 is the evaluation and reliability milestone, not a feature milestone.** Its harness lives in `scripts/voice_eval/` (results in `artifacts/voice_eval/`, report in `docs/VOICE_EVALUATION.md`)
+  and is kept apart from the app: nothing in `src/` or `ui/` imports it, and it reuses the production voice path and `VoiceTimings` instead of adding a speech framework. Never write a number into the
+  report that did not come from a results file; say what was NOT measured (real people, real rooms, several browsers, wake word and barge-in until Milestone 3 exists). Synthetic speech is not accuracy.
+  Never re-run or tune against the frozen held-out benchmark; the harness only reads the frozen retrieval.
 - The Talk page stays opt-in (`STUDY_VOICE=1`) and voice packages stay out of `requirements.txt`/the production image.
 
 ## Application layers around the frozen core

@@ -91,6 +91,21 @@ def prepare_speech_text(text: str) -> str:
     return t
 
 
+def brief_speech(text: str, max_chars: int = 350) -> str:
+    """The first sentences of a reply, for hands-free use where the microphone stays closed while the tutor talks. The full text stays on screen."""
+    spoken = prepare_speech_text(text)
+    if max_chars is None or len(spoken) <= max_chars:
+        return spoken
+    out = ""
+    for sentence in split_sentences(spoken):
+        if out and len(out) + 1 + len(sentence) > max_chars:
+            break
+        out = f"{out} {sentence}".strip()
+    if len(out) > max_chars * 1.5:                                          # one very long sentence: cut at the last space
+        out = out[:max_chars].rsplit(" ", 1)[0].rstrip(",;:") + "."
+    return f"{out} There is more on the screen."
+
+
 class Synthesizer(Protocol):
     def synthesize(self, text: str) -> SpeechOutput: ...
 
