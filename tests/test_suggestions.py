@@ -84,3 +84,16 @@ def test_the_shipped_bank_is_well_formed_and_every_question_retrieves_its_own_pa
     step = max(1, len(bank) // 12)
     for b in bank[::step]:                                       # a spread of ~12: each must come back in the frozen top-5
         assert b["chunk_id"] in [c.chunk_id for c in retrieve(b["q"], k=5)], b["q"]
+
+
+def test_pick_offered_resolves_yes_that_and_ordinals():
+    from src.suggestions import pick_offered
+    o = ["Who was Louis-Joseph Papineau?", "What was the Rebellions of 1837?", "Who led Lower Canada?"]
+    assert pick_offered("Yes, I meant that.", o) == o[0]
+    assert pick_offered("yeah that one", o) == o[0]
+    assert pick_offered("the second one", o) == o[1]
+    assert pick_offered("number 3", o) == o[2]
+    assert pick_offered("the last one", o) == o[2]
+    assert pick_offered("Who was Papineau?", o) is None
+    assert pick_offered("yes", []) is None
+    assert pick_offered("Tell me about the rebellions of 1837 in Lower Canada please", o) is None

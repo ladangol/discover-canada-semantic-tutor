@@ -125,9 +125,11 @@ def send_turn(c, vs: vsession.VoiceState, text: str, *, mode: str, q, quiz_state
         st.warning(LIMIT_MESSAGE)
         return None
     active_q = q if answering else None
+    last = vs.turns[-1].result if vs.turns else None
+    offered = list(last.suggestions) if last is not None and not answering else []     # "yes, that one" answers the last "Did you mean…?"
     turn = generate_or_explain(
         vsession.submit_turn, vs, text, mode="quiz" if answering else "ask",
-        turn_fn=lambda t: tutor.handle_turn(t, quiz=active_q, corpus=c),
+        turn_fn=lambda t: tutor.handle_turn(t, quiz=active_q, corpus=c, offered=offered),
         synth_fn=(lambda t: _speak(t, speech_chars)) if voice_ok else None)
     if turn is None:
         if needs_llm:

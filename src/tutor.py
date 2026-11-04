@@ -22,7 +22,7 @@ from src.embeddings import encode_query
 from src.generation import GenerationResult, generate
 from src.query_understanding import retrieval_query
 from src.retrieval import RetrievedChunk, page_label, retrieve
-from src.suggestions import snap as snap_to_bank
+from src.suggestions import pick_offered, snap as snap_to_bank
 
 Generate = Callable[..., GenerationResult]
 
@@ -767,14 +767,23 @@ def answer_turn(ans: TutorAnswer, timings: dict[str, float] | None = None) -> Tu
     return TurnResult("answer", ans.answer, ans.answer, ans.cited, abstained=ans.abstained, timings=timings or {})
 
 
+def _with_lead(turn: TurnResult, question: str) -> TurnResult:
+    """Say which suggestion was taken, so the learner can see what the answer is for."""
+    return replace(turn, text=f"*{question}*\n\n{turn.text}", speech_text=f"{question} {turn.speech_text}")
+
+
 def handle_turn(message: str, *, quiz: QuizQuestion | None = None, corpus: Corpus | None = None,
-                retrieve_fn=retrieve, gen: Generate = generate, snap_fn=snap_to_bank) -> TurnResult:
+                retrieve_fn=retrieve, gen: Generate = generate, snap_fn=snap_to_bank, offered: list[str] | None = None) -> TurnResult:
     """Handle one confirmed learner message. With an open `quiz` question the message is an ANSWER to it (graded by the
     existing graders); otherwise it is a question answered from the guide. Blank text never reaches retrieval or the LLM.
     If the guide has no match and `corpus` is given, the reply offers up to 3 "did you mean…" questions from the guide's own question
-    bank (one LLM call to guess the intent, then an embedding lookup; best effort)."""
+    bank (one LLM call to guess the intent, then an embedding lookup; best effort). `offered` is what the previous reply suggested: a bare
+    "yes, that one" / "the second" then means that question instead of going to the guide as the word "that"."""
     t0 = time.perf_counter()
     message = (message or "").strip()
+    chosen = pick_offered(message, offered or []) if quiz is None else None
+    if chosen:
+        return _with_lead(handle_turn(chosen, corpus=corpus, retrieve_fn=retrieve_fn, gen=gen, snap_fn=snap_fn), chosen)
     if not message:
         return TurnResult("clarify", "I didn't catch anything. Please say or type your question.",
                           "I didn't catch anything. Please say or type your question.")

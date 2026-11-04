@@ -62,3 +62,28 @@ def snap(candidates: list[str], asked: str = "", n: int = MAX_SUGGESTIONS, min_s
         seen_q.add(j), seen_sections.add(b["section"])
         out.append(b["q"])
     return out
+
+
+_YES = {"yes", "yeah", "yep", "yup", "sure", "ok", "okay", "correct", "right", "please", "exactly", "that", "this", "those", "one", "it", "i", "meant",
+        "mean", "the", "thats", "that's", "is", "was", "did", "do", "go", "ahead", "tell", "me", "about", "more", "so"}
+_ORDINALS = {"first": 0, "1st": 0, "1": 0, "one": 0, "second": 1, "2nd": 1, "2": 1, "two": 1, "third": 2, "3rd": 2, "3": 2, "three": 2}
+
+
+def pick_offered(message: str, offered: list[str]) -> str | None:
+    """If `message` is just an answer to "Did you mean one of these?" (yes / that one / the second one / I meant that), return the
+    offered question it points at; otherwise None. Rule-based: a longer message is a new question and is never touched."""
+    if not offered:
+        return None
+    words = re.sub(r"[^a-z0-9' ]", " ", (message or "").lower()).split()
+    if not words or len(words) > 8:
+        return None
+    for i, w in enumerate(words):                               # "the second one", "number 2", "the last one"
+        if w in ("last", "final") and "one" in words:
+            return offered[-1]
+        if w in _ORDINALS and (w not in ("one", "1", "2", "3", "two", "three") or "number" in words or "option" in words):
+            return offered[_ORDINALS[w]] if _ORDINALS[w] < len(offered) else None
+        if w in ("first", "second", "third", "1st", "2nd", "3rd") and _ORDINALS[w] < len(offered):
+            return offered[_ORDINALS[w]]
+    if all(w in _YES for w in words) and any(w in ("yes", "yeah", "yep", "yup", "sure", "ok", "okay", "correct", "right", "that", "this", "those", "exactly", "please") for w in words):
+        return offered[0]                                       # the closest guess comes first
+    return None
