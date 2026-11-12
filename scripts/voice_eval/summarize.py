@@ -31,6 +31,20 @@ def latency_tables() -> str:
         out.append("Not latencies (kept apart on purpose): ASR real-time factor median "
                    f"{s['asr_rtf']['median']:.2f}× (p95 {s['asr_rtf']['p95']:.2f}×); TTS real-time factor median {s['tts_rtf']['median']:.2f}× "
                    f"(p95 {s['tts_rtf']['p95']:.2f}×); VAD cost {s['vad_ms_per_frame']['median']:.2f} ms per 32 ms frame.\n")
+    st = C.load("latency_streamed")
+    if st:
+        s = st["summary"]
+        out.append(f"**Streaming path, Live page** ({st['ok']}/{st['runs']} turns, the same questions and voices as the warm run above; {st['what']}) Seconds.\n")
+        out += ["| Stage | n | median | p90 | p95 | max |", "|---|---|---|---|---|---|"]
+        for k, label in (("endpoint", "VAD endpoint decision (audio time)"), ("asr", "Speech to text (Whisper)"), ("retrieval", "Retrieval (frozen top-5)"),
+                         ("generation", "LLM generation (whole answer, text only: it now overlaps with speech)"),
+                         ("first_audio_after_asr", "Transcript → first reply audio (retrieval + first LLM sentence + first-sentence synthesis)"),
+                         ("total_to_first_audio", "**End of speech → first audio of the reply (streamed)**"),
+                         ("total_to_reply_done", "End of speech → the whole spoken reply synthesised"), ("reply_audio_s", "Length of the spoken reply (seconds of audio)")):
+            v = s[k]
+            out.append(f"| {label} | {v['n']} | {sec(v['median'])} | {sec(v['p90'])} | {sec(v['p95'])} | {sec(v['max'])} |")
+        out.append("")
+        out.append(f"The acknowledgement phrase was queued in {s['acknowledgement_played']}/{st['runs']} turns, at the moment the engine decided you had finished (it adds nothing to the numbers above).\n")
     if c:
         s = c["summary"]
         out.append(f"**Cold** ({c['ok']}/{c['runs']} fresh processes). {c['note']} Seconds.\n")
@@ -131,6 +145,17 @@ def key_numbers() -> dict[str, str]:
                  warm_streamed_p95=sec(s["total_if_streamed"]["p95"]), tts_rtf_med=sec(s["tts_rtf"]["median"]), asr_rtf_med=sec(s["asr_rtf"]["median"]),
                  vad_ms_med=sec(s["vad_ms_per_frame"]["median"]), warm_tutor_med=sec(s["tutor_total"]["median"]), warm_tutor_p95=sec(s["tutor_total"]["p95"]),
                  warm_abstained=str(sum(bool(r.get("abstained")) for r in w["rows"] if "total" in r)))
+    st = C.load("latency_streamed")
+    if st:
+        s = st["summary"]
+        k.update(stream_n=str(st["ok"]), stream_first_med=sec(s["total_to_first_audio"]["median"]), stream_first_p90=sec(s["total_to_first_audio"]["p90"]),
+                 stream_first_p95=sec(s["total_to_first_audio"]["p95"]), stream_first_min=sec(s["total_to_first_audio"]["min"]),
+                 stream_first_max=sec(s["total_to_first_audio"]["max"]), stream_done_med=sec(s["total_to_reply_done"]["median"]),
+                 stream_after_asr_med=sec(s["first_audio_after_asr"]["median"]), stream_ack_n=str(s["acknowledgement_played"]),
+                 stream_audio_med=sec(s["reply_audio_s"]["median"]), stream_streamed_n=str(s["answered_streamed"]))
+        if w:
+            k["stream_gain_med"] = f"{w['summary']['total']['median'] - s['total_to_first_audio']['median']:.2f}"
+            k["stream_gain_p95"] = f"{w['summary']['total']['p95'] - s['total_to_first_audio']['p95']:.2f}"
     if c:
         s = c["summary"]
         k.update(cold_n=str(c["ok"]), cold_load_med=sec(s["model_load_total"]["median"]), cold_turn_med=sec(s["first_turn_total"]["median"]),

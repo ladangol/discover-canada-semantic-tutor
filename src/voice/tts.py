@@ -63,7 +63,7 @@ def split_sentences(text: str) -> list[str]:
     return out
 
 
-def prepare_speech_text(text: str) -> str:
+def prepare_speech_text(text: str, limit: int = MAX_SPOKEN_CHARS) -> str:
     """Deterministic clean-up so the voice never reads citation syntax, markup or JSON. Meaning is not changed.
 
     '[Discover Canada, p. 18, Confederation]', '[S2]', '[p.18]'   -> removed (citations stay visible on screen)
@@ -85,15 +85,15 @@ def prepare_speech_text(text: str) -> str:
     t = re.sub(r"\s+([.,!?;:])", r"\1", t)
     t = re.sub(r"\s{2,}", " ", t).strip()
     t = spoken_forms(t)
-    if len(t) > MAX_SPOKEN_CHARS:                                                                      # keep it a short lesson
-        cut = t.rfind(". ", 0, MAX_SPOKEN_CHARS)
-        t = t[: cut + 1] if cut > 200 else t[:MAX_SPOKEN_CHARS]
+    if len(t) > limit:                                                                                 # keep it a short lesson
+        cut = t.rfind(". ", 0, limit)
+        t = t[: cut + 1] if cut > 200 else t[:limit]
     return t
 
 
-def brief_speech(text: str, max_chars: int = 350) -> str:
+def brief_speech(text: str, max_chars: int | None = 350, limit: int = MAX_SPOKEN_CHARS) -> str:
     """The first sentences of a reply, for hands-free use where the microphone stays closed while the tutor talks. The full text stays on screen."""
-    spoken = prepare_speech_text(text)
+    spoken = prepare_speech_text(text, limit)
     if max_chars is None or len(spoken) <= max_chars:
         return spoken
     out = ""
@@ -108,6 +108,11 @@ def brief_speech(text: str, max_chars: int = 350) -> str:
 
 class Synthesizer(Protocol):
     def synthesize(self, text: str) -> SpeechOutput: ...
+
+
+def can_stream(synth) -> bool:
+    """Engines with a per-sentence `pcm()` (Kokoro, both builds) can be spoken while the answer is still being written; Piper is not wired for it."""
+    return callable(getattr(synth, "pcm", None))
 
 
 class PiperSynthesizer:
@@ -189,33 +194,42 @@ class KokoroSynthesizer:
         except Exception:
             raise VoiceUnavailable("The Kokoro voice could not be loaded. The written answer is below.") from None
 
+    def pcm(self, sentence: str) -> np.ndarray:
+        """One already-prepared sentence -> 24 kHz int16 samples (the streaming path speaks a reply sentence by sentence)."""
+        slot = acquire_slot()
+        try:
+            pieces = []
+            for _gs, _ps, audio in self._pipe(apply_pronunciations(sentence), voice=self._voice, speed=self._speed, split_pattern=r"\n+"):
+                if audio is not None:
+                    pieces.append((np.clip(np.asarray(audio, dtype=np.float32), -1.0, 1.0) * 32767).astype("<i2"))
+            return np.concatenate(pieces) if pieces else np.zeros(0, np.int16)
+        finally:
+            slot.release()
+
+    @property
+    def pause_ms(self) -> int:
+        return self._pause_ms
+
     def synthesize(self, text: str) -> SpeechOutput:
         spoken = prepare_speech_text(text)
         if not spoken:
             raise VoiceUnavailable("There is nothing to read aloud.")
-        spoken = apply_pronunciations(spoken)
-        slot = acquire_slot()
-        try:
-            t0 = time.perf_counter()
-            pieces: list[np.ndarray] = []
-            gap = np.zeros(int(self.SAMPLE_RATE * self._pause_ms / 1000), np.int16)
-            for sentence in split_sentences(spoken):
-                for _gs, _ps, audio in self._pipe(sentence, voice=self._voice, speed=self._speed, split_pattern=r"\n+"):
-                    if audio is None:
-                        continue
-                    if pieces and len(gap):
-                        pieces.append(gap)
-                    x = np.clip(np.asarray(audio, dtype=np.float32), -1.0, 1.0)
-                    pieces.append((x * 32767).astype("<i2"))
-            if not pieces:
-                raise VoiceUnavailable("There is nothing to read aloud.")
-            buf = io.BytesIO()
-            with wave.open(buf, "wb") as w:
-                w.setnchannels(1), w.setsampwidth(2), w.setframerate(self.SAMPLE_RATE)
-                w.writeframes(np.concatenate(pieces).tobytes())
-            return SpeechOutput(buf.getvalue(), "audio/wav", time.perf_counter() - t0)
-        finally:
-            slot.release()
+        t0 = time.perf_counter()
+        pieces: list[np.ndarray] = []
+        gap = np.zeros(int(self.SAMPLE_RATE * self._pause_ms / 1000), np.int16)
+        for sentence in split_sentences(spoken):
+            x = self.pcm(sentence)
+            if len(x):
+                if pieces and len(gap):
+                    pieces.append(gap)
+                pieces.append(x)
+        if not pieces:
+            raise VoiceUnavailable("There is nothing to read aloud.")
+        buf = io.BytesIO()
+        with wave.open(buf, "wb") as w:
+            w.setnchannels(1), w.setsampwidth(2), w.setframerate(self.SAMPLE_RATE)
+            w.writeframes(np.concatenate(pieces).tobytes())
+        return SpeechOutput(buf.getvalue(), "audio/wav", time.perf_counter() - t0)
 
 
 class KokoroOnnxSynthesizer:
@@ -239,33 +253,42 @@ class KokoroOnnxSynthesizer:
         except Exception:
             raise VoiceUnavailable("The Kokoro (ONNX) voice could not be loaded. The written answer is below.") from None
 
+    def pcm(self, sentence: str) -> np.ndarray:
+        """One already-prepared sentence -> 24 kHz int16 samples (the streaming path speaks a reply sentence by sentence)."""
+        slot = acquire_slot()
+        try:
+            phonemes, _ = self._g2p(apply_pronunciations(sentence))
+            if not phonemes:
+                return np.zeros(0, np.int16)
+            audio, _sr = self._ko.create(phonemes, voice=self._voice, speed=self._speed, is_phonemes=True)
+            return (np.clip(np.asarray(audio, dtype=np.float32), -1.0, 1.0) * 32767).astype("<i2")
+        finally:
+            slot.release()
+
+    @property
+    def pause_ms(self) -> int:
+        return self._pause_ms
+
     def synthesize(self, text: str) -> SpeechOutput:
         spoken = prepare_speech_text(text)
         if not spoken:
             raise VoiceUnavailable("There is nothing to read aloud.")
-        spoken = apply_pronunciations(spoken)
-        slot = acquire_slot()
-        try:
-            t0 = time.perf_counter()
-            pieces: list[np.ndarray] = []
-            gap = np.zeros(int(self.SAMPLE_RATE * self._pause_ms / 1000), np.int16)
-            for sentence in split_sentences(spoken):                              # one model call per sentence (token limit per call)
-                phonemes, _ = self._g2p(sentence)
-                if not phonemes:
-                    continue
-                audio, _sr = self._ko.create(phonemes, voice=self._voice, speed=self._speed, is_phonemes=True)
+        t0 = time.perf_counter()
+        pieces: list[np.ndarray] = []
+        gap = np.zeros(int(self.SAMPLE_RATE * self._pause_ms / 1000), np.int16)
+        for sentence in split_sentences(spoken):                              # one model call per sentence (token limit per call)
+            x = self.pcm(sentence)
+            if len(x):
                 if pieces and len(gap):
                     pieces.append(gap)
-                pieces.append((np.clip(np.asarray(audio, dtype=np.float32), -1.0, 1.0) * 32767).astype("<i2"))
-            if not pieces:
-                raise VoiceUnavailable("There is nothing to read aloud.")
-            buf = io.BytesIO()
-            with wave.open(buf, "wb") as w:
-                w.setnchannels(1), w.setsampwidth(2), w.setframerate(self.SAMPLE_RATE)
-                w.writeframes(np.concatenate(pieces).tobytes())
-            return SpeechOutput(buf.getvalue(), "audio/wav", time.perf_counter() - t0)
-        finally:
-            slot.release()
+                pieces.append(x)
+        if not pieces:
+            raise VoiceUnavailable("There is nothing to read aloud.")
+        buf = io.BytesIO()
+        with wave.open(buf, "wb") as w:
+            w.setnchannels(1), w.setsampwidth(2), w.setframerate(self.SAMPLE_RATE)
+            w.writeframes(np.concatenate(pieces).tobytes())
+        return SpeechOutput(buf.getvalue(), "audio/wav", time.perf_counter() - t0)
 
 
 def engine_ready() -> bool:

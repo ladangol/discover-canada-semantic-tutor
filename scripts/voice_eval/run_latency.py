@@ -80,6 +80,85 @@ def one_turn(q: dict, corpus, vad, voice: str, rng) -> dict:
     return row
 
 
+def one_turn_streamed(q: dict, corpus, vad, voice: str, rng, acks, max_chars: int = 240) -> dict:
+    """The same turn as `one_turn`, through the Live page's streaming path: the LLM's text is spoken sentence by sentence while it is written
+    (src/voice/speak.py), with a short acknowledgement pushed the moment the engine decides the learner has finished. The browser is replaced by a
+    speaker that only records WHEN each piece of audio was handed over; WebRTC transport and playback start-up are not included."""
+    from src import tutor
+    from src.voice import asr, audio, live, session as vsession, speak, tts
+    speech = C.say_samples(voice, q["text"])
+    signal, end = C.stream(speech, noise_snr_db=None, rng=rng)
+    pushes: list[tuple[float, float, str]] = []                 # (wall time, seconds of audio, kind)
+    kind = ["ack"]
+    speaker = speak.Speaker(lambda x: pushes.append((time.perf_counter(), len(x) / speak.SAMPLE_RATE, kind[0])))
+    ack_pcm = acks.pick()
+    ack_at: list[float] = []
+    engine = live.LiveEngine(vad=vad, cfg=live.endpoint_config(),
+                             on_utterance=lambda u: (speaker.push(ack_pcm), ack_at.append(time.perf_counter())) if ack_pcm is not None else None)
+    vad.reset()
+    t_cap0 = time.perf_counter()
+    utt, at, vad_wall = C.capture(engine, signal)
+    if utt is None:
+        return {"id": q["id"], "voice": voice, "failed": "vad: no utterance emitted"}
+    endpoint_s = (at - end) / C.SR
+    vs = vsession.VoiceState()
+    t0 = time.perf_counter()
+    ok = live.ingest_utterance(vs, utt, asr.get_transcriber)
+    asr_wall = time.perf_counter() - t0
+    if not ok:
+        return {"id": q["id"], "voice": voice, "failed": "asr: nothing recognised", "heard": vs.raw_heard}
+    kind[0] = "reply"
+    synth = tts.get_synthesizer()
+    streamer = speak.SpeechStreamer(synth, speaker, max_chars=max_chars, verdict=tutor.speak_verdict)
+    t_turn = time.perf_counter()
+    turn = vsession.submit_turn(vs, vs.heard, mode="ask", turn_fn=lambda t: tutor.handle_turn(t, corpus=corpus, on_text=streamer.feed),
+                                synth_fn=streamer.finish)
+    t_done = time.perf_counter()
+    tm = turn.timings
+    reply = [p for p in pushes if p[2] == "reply"]
+    first_after_asr = (streamer.first_audio_at - t_turn) if streamer.first_audio_at else None
+    row = {"id": q["id"], "voice": voice, "heard": vs.raw_heard, "abstained": turn.result.abstained, "streamed": streamer.streamed,
+           "endpoint": endpoint_s, "asr": tm.asr, "asr_wall": asr_wall, "retrieval": tm.retrieval, "generation": tm.generation,
+           "tutor_total": tm.tutor_total, "turn_wall": t_done - t_turn, "reply_audio_s": sum(p[1] for p in reply),
+           "first_audio_after_asr": first_after_asr, "ack_played": bool(ack_at), "ack_audio_s": sum(p[1] for p in pushes if p[2] == "ack")}
+    row["total_to_first_audio"] = endpoint_s + (tm.asr or 0) + first_after_asr if first_after_asr is not None else None
+    row["total_to_reply_done"] = endpoint_s + (tm.asr or 0) + (t_done - t_turn)
+    row["sentences_pushed"] = len(reply)
+    return row
+
+
+def streamed(n: int) -> None:
+    from src.voice import speak, tts
+    corpus, vad, loads = _load_stack()
+    acks = speak.Acks()
+    acks.warm(tts.get_synthesizer())
+    deadline = time.time() + 30
+    while acks.pick() is None and time.time() < deadline:
+        time.sleep(0.1)
+    qs = [q for q in C.questions() if q.get("latency")]
+    voices = ["samantha", "daniel", "karen", "rishi"]
+    rng = np.random.default_rng(1)
+    one_turn_streamed(qs[0], corpus, vad, "samantha", rng, acks)           # untimed warm-up
+    rows = []
+    for i in range(n):
+        q, v = qs[i % len(qs)], voices[i % len(voices)]
+        r = one_turn_streamed(q, corpus, vad, v, rng, acks)
+        rows.append(r)
+        print(f"[{i + 1}/{n}] {q['id']} {v:8} " + (f"first audio {r['total_to_first_audio']:.1f}s, done {r['total_to_reply_done']:.1f}s "
+              f"(endpoint {r['endpoint']:.2f} asr {r['asr']:.2f} first-after-asr {r['first_audio_after_asr'] or float('nan'):.2f} sentences {r['sentences_pushed']})"
+              if r.get("total_to_first_audio") else r.get("failed", "no reply audio")), flush=True)
+    good = [r for r in rows if r.get("total_to_first_audio") is not None]
+    keys = ["endpoint", "asr", "retrieval", "generation", "tutor_total", "first_audio_after_asr", "total_to_first_audio", "total_to_reply_done", "reply_audio_s"]
+    summary = {k: C.pct([r[k] for r in good if r.get(k) is not None]) for k in keys}
+    summary["answered_streamed"] = sum(bool(r["streamed"]) for r in good)
+    summary["acknowledgement_played"] = sum(r["ack_played"] for r in rows)
+    p = C.save("latency_streamed", {"kind": "streamed", "audio": "synthetic macOS `say` voices (US, UK, AU, IN accents), clean, 0.6 s lead + 2.5 s tail silence",
+                                    "what": "Live page streaming path: LLM text spoken sentence by sentence, 240-character spoken budget, acknowledgement at the end of speech. "
+                                            "Browser/WebRTC transport and playback start-up not included.",
+                                    "runs": n, "ok": len(good), "summary": summary, "rows": rows})
+    print("->", p)
+
+
 def warm(n: int) -> None:
     corpus, vad, loads = _load_stack()
     qs = [q for q in C.questions() if q.get("latency")]
@@ -138,13 +217,16 @@ if __name__ == "__main__":
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--warm", type=int, default=0)
     ap.add_argument("--cold", type=int, default=0)
+    ap.add_argument("--stream", type=int, default=0, help="N turns through the streaming path (Live page), same questions as --warm")
     ap.add_argument("--cold-once", type=int, default=None)
     a = ap.parse_args()
     if a.cold_once is not None:
         cold_once(a.cold_once)
+    elif a.stream:
+        streamed(a.stream)
     elif a.warm:
         warm(a.warm)
     elif a.cold:
         cold(a.cold)
     else:
-        ap.error("give --warm N or --cold N")
+        ap.error("give --warm N, --stream N or --cold N")
