@@ -19,7 +19,7 @@ import numpy as np
 from src.config import DEFAULT_K, query_cleanup_enabled
 from src.corpus import Corpus, split_breadcrumb
 from src.embeddings import encode_query
-from src.generation import GenerationResult, generate
+from src.generation import GenerationResult, generate, generate_stream
 from src.query_understanding import retrieval_query
 from src.retrieval import RetrievedChunk, page_label, retrieve
 from src.suggestions import pick_offered, snap as snap_to_bank
@@ -84,6 +84,23 @@ def split_text(text: str) -> str:
 
 def is_abstention(text: str) -> bool:
     return ABSTENTION_PATTERN.search(text) is not None
+
+
+_ABSTENTION_FORMS = ("i don't know based on discover canada", "i do not know based on discover canada")
+
+
+def speak_verdict(partial: str) -> bool | None:
+    """For voice, while an answer is still being written: True = a real answer (safe to start speaking), False = it is the "I don't know"
+    reply (never read that out; the abstention turn has its own spoken text), None = too little text to tell yet."""
+    t = re.sub(r"\s+", " ", (partial or "").strip().lower().replace("’", "'"))
+    if not t:
+        return None
+    for form in _ABSTENTION_FORMS:
+        if t.startswith(form):
+            return False
+        if form.startswith(t):
+            return None
+    return True
 
 
 def resolve_citations(raw: str, chunks: list[RetrievedChunk]) -> tuple[str, list[RetrievedChunk]]:
@@ -232,24 +249,29 @@ class TutorAnswer:
 
 
 def _grounded_answer(
-    system: str, user: str, subject: str, sources: list[RetrievedChunk], gen: Generate
+    system: str, user: str, subject: str, sources: list[RetrievedChunk], gen: Generate,
+    on_text: Callable[[str], None] | None = None, stream_fn=generate_stream,
 ) -> TutorAnswer:
-    result = gen(
-        [{"role": "system", "content": system}, {"role": "user", "content": user}],
-        max_tokens=1500,
-    )
+    messages = [{"role": "system", "content": system}, {"role": "user", "content": user}]
+    if on_text is None:
+        result = gen(messages, max_tokens=1500)
+    else:                                   # same prompt, same post-processing; the text is also handed on piece by piece (voice speaks while it is written)
+        stream = stream_fn(messages, max_tokens=1500)
+        for piece in stream:
+            on_text(piece)
+        result = stream.result
     rendered, cited = resolve_citations(result.text, sources)
     return TutorAnswer(subject, sources, rendered, result.text, cited,
                        is_abstention(result.text), result.truncated)
 
 
 def ask(question: str, chunks: list[RetrievedChunk] | None = None,
-        *, gen: Generate = generate) -> TutorAnswer:
+        *, gen: Generate = generate, on_text: Callable[[str], None] | None = None, stream_fn=generate_stream) -> TutorAnswer:
     """Grounded RAG answer over the frozen top-5. Pass `chunks` to reuse a
     retrieval that was already done for the atlas."""
     chunks = chunks if chunks is not None else retrieve(question, k=DEFAULT_K)
     user = f"QUESTION:\n{question}\n\nRETRIEVED SOURCES:\n{format_sources(chunks)}"
-    return _grounded_answer(ASK_SYSTEM_PROMPT, user, question, chunks, gen)
+    return _grounded_answer(ASK_SYSTEM_PROMPT, user, question, chunks, gen, on_text, stream_fn)
 
 
 def explain_sources(subject: str, sources: list[RetrievedChunk],
@@ -773,17 +795,19 @@ def _with_lead(turn: TurnResult, question: str) -> TurnResult:
 
 
 def handle_turn(message: str, *, quiz: QuizQuestion | None = None, corpus: Corpus | None = None,
-                retrieve_fn=retrieve, gen: Generate = generate, snap_fn=snap_to_bank, offered: list[str] | None = None) -> TurnResult:
+                retrieve_fn=retrieve, gen: Generate = generate, snap_fn=snap_to_bank, offered: list[str] | None = None,
+                on_text: Callable[[str], None] | None = None, stream_fn=generate_stream) -> TurnResult:
     """Handle one confirmed learner message. With an open `quiz` question the message is an ANSWER to it (graded by the
     existing graders); otherwise it is a question answered from the guide. Blank text never reaches retrieval or the LLM.
     If the guide has no match and `corpus` is given, the reply offers up to 3 "did you mean…" questions from the guide's own question
     bank (one LLM call to guess the intent, then an embedding lookup; best effort). `offered` is what the previous reply suggested: a bare
-    "yes, that one" / "the second" then means that question instead of going to the guide as the word "that"."""
+    "yes, that one" / "the second" then means that question instead of going to the guide as the word "that". `on_text` (voice) receives the
+    answer's text as it is written; the finished TurnResult is the same as without it."""
     t0 = time.perf_counter()
     message = (message or "").strip()
     chosen = pick_offered(message, offered or []) if quiz is None else None
     if chosen:
-        return _with_lead(handle_turn(chosen, corpus=corpus, retrieve_fn=retrieve_fn, gen=gen, snap_fn=snap_fn), chosen)
+        return _with_lead(handle_turn(chosen, corpus=corpus, retrieve_fn=retrieve_fn, gen=gen, snap_fn=snap_fn, on_text=on_text, stream_fn=stream_fn), chosen)
     if not message:
         return TurnResult("clarify", "I didn't catch anything. Please say or type your question.",
                           "I didn't catch anything. Please say or type your question.")
@@ -809,7 +833,7 @@ def handle_turn(message: str, *, quiz: QuizQuestion | None = None, corpus: Corpu
     chunks = retrieve_fn(query, k=DEFAULT_K)
     retrieval_s = time.perf_counter() - r0
     g0 = time.perf_counter()
-    ans = ask(message, chunks, gen=gen)
+    ans = ask(message, chunks, gen=gen, on_text=on_text, stream_fn=stream_fn)
     gen_s = time.perf_counter() - g0
     if not ans.abstained:
         return replace(answer_turn(ans, {"retrieval": retrieval_s, "generation": gen_s, "total": time.perf_counter() - t0}), retrieval_query=query)

@@ -13,7 +13,7 @@ The frozen ChromaDB, chunk corpus, MiniLM embeddings and Variant A top-5 retriev
 | Wake-word detection latency | **Not performed** | Milestone 3 is not built. |
 | ASR accuracy (WER, CER, names, retrieval impact) | **Measured on synthetic speech only** | Text-to-speech voices are cleaner and more regular than people. Treat every figure as a **lower bound** on the real error rate. No human recordings were available. |
 | Wake-word reliability, false activations, tutor-speech activations | **Not performed** | Milestone 3 is not built. Protocol recorded in `run_wake_barge.py`. |
-| Barge-in (time to interrupt, stop-and-listen, state after interruption) | **Not performed** | Milestone 3 is not built. |
+| Barge-in (time to interrupt, stop-and-listen, state after interruption) | **Not performed** | Barge-in (talking over the tutor, for headphones) was added to the Live page AFTER this baseline was taken and has only been exercised with unit tests and a small real-detector check; the harness has not measured it with people or rooms. |
 | Quiet vs moderately noisy conditions | **ASR only**, clean and 15 dB pink noise | Pink noise is not a real room, a fan or other talkers. |
 | Conversational task success | **Measured**, scripted, one synthetic voice | [[tasks_attempted]] attempted steps; a small, hand-written set, not a user study. |
 | RAG grounding of the spoken answer | **Measured**, automatic checks | No human grading and no LLM judge; "supported" is a proxy (section 8). |
@@ -32,7 +32,7 @@ Champlain, Louis-Joseph Papineau, Sir Wilfrid Laurier and Confederation, five qu
 real LLM) → Kokoro (PyTorch). Nothing in the app was changed to take these measurements; the harness reads the existing timers (`VoiceTimings`) and the sample clock.
 
 **Definitions.**
-* *Latency* = from the last sample of the learner's speech to the first sample of the tutor's reply. The app does not stream speech yet, so "time to first audio" equals synthesising the whole (≤350-character) reply.
+* *Latency* = from the last sample of the learner's speech to the first sample of the tutor's reply. In the first (warm/cold) runs the app did not stream speech, so "time to first audio" equals synthesising the whole (≤350-character) reply; the "streaming path" run later in section 4 measures the Live page after speech was streamed.
 * *Endpoint* is measured on the **audio sample clock**: how long after speech stops the VAD declares the turn over (this is the configured 0.8 s pause, by design, plus up to one frame).
 * *Real-time factor* (seconds of compute per second of audio) is reported **separately** and is not a latency.
 * *Cold* = a fresh Python process (models loaded from disk, files most likely in the OS cache). A reboot or never-opened-model cold disk start was **not** measured.
@@ -94,7 +94,8 @@ sequenceDiagram
 * The learner waits a median of **[[warm_total_med]] s** (p90 [[warm_total_p90]] s, p95 [[warm_total_p95]] s; range [[warm_total_min]]–[[warm_total_max]] s over [[warm_n]] warm turns) between finishing a sentence and hearing the first word of the reply. That is slow for a conversation.
 * Speech synthesis is the largest fixed cost (median [[warm_tts_med]] s) because the whole reply is generated before playback starts, then the pause ([[warm_endpoint_med]] s, by design), then Whisper ([[warm_asr_med]] s). The LLM is usually quick (median [[warm_gen_med]] s) but has a long tail (p95 [[warm_gen_p95]] s), and the tail is what moves p90/p95 of the total.
 * **TTS speed is not conversational latency.** The real-time factor is [[tts_rtf_med]]× (compute seconds per second of audio), which sounds fast, yet a 350-character reply still costs [[warm_tts_med]] s before the first sound because nothing is played until it is finished.
-* Streaming the reply sentence by sentence **would** bring the median to about [[warm_streamed_med]] s (p95 [[warm_streamed_p95]] s) by starting playback after the first sentence (median [[warm_first_med]] s to synthesise). That figure is a **projection from measured first-sentence synthesis, not a measurement of a streaming implementation.**
+* Streaming the reply sentence by sentence **would** bring the median to about [[warm_streamed_med]] s (p95 [[warm_streamed_p95]] s) by starting playback after the first sentence (median [[warm_first_med]] s to synthesise). That figure was a **projection from measured first-sentence synthesis** made before streaming existed; the streaming path was then built and measured (next paragraph).
+* **After streaming (measured; same questions and voices, [[stream_n]] turns).** Median **[[stream_first_med]] s** (p90 [[stream_first_p90]] s, p95 [[stream_first_p95]] s; range [[stream_first_min]]–[[stream_first_max]] s) from the end of speech to the first audio of the reply, against [[warm_total_med]] s before: [[stream_gain_med]] s sooner at the median and [[stream_gain_p95]] s at p95. The spoken reply is also shorter (240-character budget, median [[stream_audio_med]] s of audio). The whole spoken reply was synthesised by a median [[stream_done_med]] s. Short acknowledgement phrases are queued at the end of speech ([[stream_ack_n]] turns); they do not change these numbers, they only fill the wait. This measures the Python path with a recording speaker in place of the browser: WebRTC transport, jitter buffering and playback start are **not** included, and the answers differ run to run (the LLM is not perfectly repeatable at temperature 0), so a before/after on 24 turns is indicative, not a controlled trial.
 * Cold start: loading all models takes a median [[cold_load_med]] s; the first turn afterwards took [[cold_turn_med]] s, about the same as a warm turn, so the penalty of a cold start is the load time ([[cold_all_med]] s from process start to first reply), not slower inference. The warm set contained [[warm_abstained]] abstentions, so the abstain path (which adds an LLM call) is under-represented in the latency numbers.
 * The VAD itself is negligible: [[vad_ms_med]] ms per 32 ms frame.
 
@@ -114,7 +115,7 @@ Whisper `small` (the app's model), identical audio through three pipelines: **ra
 
 ## 6. Wake word and barge-in reliability
 
-**Not performed.** Milestone 3 (wake word "Hey Moose" and barge-in) is not built, so wake-word detection rate, missed wake words, false activations in ordinary conversation, false activations from the tutor's own voice, time to interrupt TTS, whether the tutor stops and listens, and dialogue state after an interruption have **no measurements** in this report. `run_wake_barge.py` records the protocol (quiet and moderately noisy conditions, speakers plus microphone for the echo path) and writes `performed: false` so a later report cannot quote a number that was never taken.
+**Not performed.** The wake word ("Hey Moose", Milestone 3) is not built, and barge-in was added after this baseline and is not measured here, so wake-word detection rate, missed wake words, false activations in ordinary conversation, false activations from the tutor's own voice, time to interrupt TTS, whether the tutor stops and listens, and dialogue state after an interruption have **no measurements** in this report. `run_wake_barge.py` records the protocol (quiet and moderately noisy conditions, speakers plus microphone for the echo path) and writes `performed: false` so a later report cannot quote a number that was never taken.
 
 What is established today, from Milestone 2: while the tutor is thinking or speaking the microphone gate is closed and everything heard is discarded, and playing the tutor's own reply back into the microphone produced no turn. That is a single check of the half-duplex gate with synthetic playback, not a reliability measurement.
 
@@ -148,7 +149,7 @@ A harness bug found and fixed during this milestone is worth recording: the grou
 ## 10. Known limitations
 
 * **No human speech, no real room, one machine, one browser path.** All audio is synthetic; the browser microphone (WebRTC, echo cancellation, device quirks) was not exercised; only an Apple M4 Pro laptop was used. Deployed-server hardware (2 GB droplet, no GPU) will be slower.
-* Wake word, barge-in and everything that depends on them: not measured (Milestone 3).
+* Wake word: not built. Barge-in: built after this baseline, not measured here (see section 6).
 * Small samples: [[warm_n]] warm turns, [[cold_n]] cold starts, 21 scripted task steps, 28 grounding questions. Percentiles beyond the median are rough.
 * The "meaning-affecting" classification is an objective proxy (name wrong and top-1 passage lost), not a human judgement of meaning.
 * The support check is a proxy; it does not grade the quality of a paraphrase. No LLM judge or human grading was used.
@@ -157,7 +158,7 @@ A harness bug found and fixed during this milestone is worth recording: the grou
 
 ## 11. What the measurements suggest (not done in this milestone)
 
-1. **Stream the spoken reply sentence by sentence.** The largest single lever on perceived latency; projected, not yet measured as an implementation.
+1. ~~Stream the spoken reply sentence by sentence.~~ Done after this baseline was taken and measured in section 4 (streaming path). Still open: Kokoro through ONNX, and listening tests with real people.
 2. Add "Michif", "Mi'kmaq" and similar to the name fixer's sound-alike rules, or treat low-confidence key terms by asking the learner to confirm — only after checking them against real recordings.
 3. Collect real recordings (`--recordings`) from several people and rooms before drawing any accuracy conclusion.
 4. Re-run this harness after Milestone 3 and after any streaming change; the harness is written so the same commands produce the comparison.

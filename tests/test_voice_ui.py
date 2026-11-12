@@ -51,6 +51,9 @@ def stub_webrtc(monkeypatch):
     import streamlit_webrtc
     from types import SimpleNamespace
     monkeypatch.setattr(streamlit_webrtc, "webrtc_streamer", lambda **kw: SimpleNamespace(state=SimpleNamespace(playing=False), audio_processor=None))
+    monkeypatch.setattr(streamlit_webrtc, "create_audio_sink_track", lambda callback, key, on_ended=None: SimpleNamespace(callback=callback))
+    monkeypatch.setattr(streamlit_webrtc, "create_pcm_audio_source_track",
+                        lambda key, sample_rate, **kw: SimpleNamespace(track=None, push=lambda pcm: None, clear=lambda: None))
 
 
 def run_atlas(monkeypatch, voice: bool) -> AppTest:

@@ -336,3 +336,29 @@ sequenceDiagram
     Note over T,S: [tts] = whole-reply synthesis = time to first audio today
     Note over L,S: [total] = endpoint + asr + tutor total + tts. NOT included: wake word (M3), browser/WebRTC, playback start. TTS real-time factor is reported apart from [total].
 ```
+
+## L. A streamed spoken turn on the Live page (voice answer starts while the LLM is still writing)
+
+```mermaid
+sequenceDiagram
+    autonumber
+    actor L as Learner
+    participant E as LiveEngine (audio thread)
+    participant U as Live page (send_turn → handle_turn)
+    participant G as LLM stream (generate_stream)
+    participant S as SpeechStreamer worker (Kokoro, per sentence)
+    participant B as Browser (voice track)
+    L->>E: speech, then the pause
+    E-->>B: acknowledgement phrase queued at once (if enabled); gate closed
+    E-->>U: utterance → Whisper → name fixes
+    U->>G: question + frozen top-5 passages (retrieval is unchanged)
+    G-->>U: text piece 1, 2, 3 … (on_text)
+    U-->>S: speak_verdict: real answer? then whole sentences, cleaned for speech
+    S-->>B: sentence 1 audio (first reply sound), then 2, 3 … until the spoken budget
+    G-->>U: end of stream: result → citations resolved, abstention decided, TurnResult
+    U-->>S: finish(): remaining sentences + "There is more on the screen." if cut
+    S-->>U: the spoken reply as one WAV (replay widget)
+    Note over E,B: LiveEngine.speak(seconds) on every pushed sentence keeps the microphone closed until the queue has played + margin
+```
+
+If the reply is the "I don't know" one, nothing from the stream is spoken; the turn's own abstention text (with any "Did you mean…" suggestions) is spoken by `finish()`. Talk page and Voice tab are unchanged (whole reply, then play).

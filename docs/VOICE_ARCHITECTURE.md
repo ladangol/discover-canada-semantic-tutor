@@ -2,7 +2,7 @@
 
 Milestone 1 adds **explicit-recording voice** to the learner app (`study_app.py`): record → transcribe locally → learner edits and
 confirms the text → the *same* tutor code as the text UI answers or grades → the reply is shown with citations and spoken with a
-local neural voice. Wake word, streaming/VAD turn-taking and barge-in are **not** implemented (Milestones 2–3). Retrieval is
+local neural voice. The wake word is **not** implemented (Milestone 3); streaming/VAD turn-taking and talk-over (barge-in, for headphones) exist on the Atlas Live page only. Retrieval is
 frozen and unchanged.
 
 ## What was inspected (the real architecture)
@@ -192,7 +192,7 @@ stateDiagram-v2
     Listening --> Hearing: speech frames for ≥ 250 ms
     Hearing --> Listening: a dip shorter than the pause (hysteresis)
     Hearing --> Thinking: silence for the pause (default 0.8 s) = end of turn
-    Thinking --> Speaking: transcribed, names fixed, tutor answered, speech made
+    Thinking --> Speaking: first sentence of the reply is ready (the reply streams while it is still being written)
     Speaking --> Listening: reply finished playing + a margin (default 0.8 s)
     Thinking --> Listening: nothing usable heard / tutor failed
     Listening --> Stopped: no speech for the idle timeout (default 3 min)
@@ -200,30 +200,62 @@ stateDiagram-v2
 
 ```mermaid
 sequenceDiagram
-    participant B as Browser mic (WebRTC)
-    participant P as LiveAudioProcessor (audio thread)
+    participant B as Browser (WebRTC: mic in, voice out)
+    participant P as LiveAudioPipe (worker thread)
     participant E as LiveEngine + Endpointer + Silero VAD
     participant U as Live page fragment (every 0.5 s)
-    participant A as Whisper → name fix → tutor.handle_turn → TTS
-    B->>P: 20 ms frames, 48 kHz (echo cancellation + noise suppression on)
+    participant A as Whisper → name fix → tutor.handle_turn
+    participant G as LLM stream (generation.generate_stream)
+    participant S as SpeechStreamer + Kokoro (worker thread)
+    B->>P: 20 ms mic frames, 48 kHz (echo cancellation + noise suppression on)
     P->>E: resample to 16 kHz mono, 32 ms frames
     E-->>E: speech probability per frame, hysteresis, pre-roll, hangover
+    E-->>P: utterance (the moment the pause ends)
+    P-->>B: acknowledgement ("One moment.", pre-synthesised) at once; the gate closes
     E-->>U: utterance (kept in memory only)
     U->>E: hold(): close the gate, forget anything half-heard
-    U->>A: transcribe → fix names → send (same send_turn as the Talk page)
-    A-->>U: reply text + audio
-    U->>E: release(reply length): the mic stays closed while it speaks (+ margin)
-    U-->>B: autoplay the reply; show text, sources, timings
+    U->>A: transcribe → fix names → handle_turn(on_text=…) (same code as the Talk page)
+    A->>G: question + the frozen top-5 passages
+    G-->>S: text pieces as they are written
+    S-->>B: each finished sentence → Kokoro → voice track (the gate stays shut for the queued length)
+    G-->>A: complete answer → citations resolved, abstention checked, as before
+    A-->>U: TurnResult (+ the whole spoken reply as one WAV for replay)
+    U->>E: release(0): audio already queued keeps the mic closed (+ margin)
 ```
 
+**Speaking while the answer is written (Live page only).** The learner no longer waits for the whole answer and then the whole synthesis. `tutor.handle_turn(on_text=…)` hands the LLM's text on
+as it arrives (`generation.generate_stream`: same key check, daily budget, retries and safe errors as `generate`; `<think>` blocks removed). `src/voice/speak.py: SpeechStreamer` cleans it exactly
+like the one-shot path (`prepare_speech_text`: no citations, markup or JSON read aloud; spoken forms), cuts it into sentences and a worker thread synthesises them one at a time
+(`tts.KokoroSynthesizer.pcm`), so sentence 1 plays while sentence 2 is still being written. Safeguards: the "I don't know" reply is recognised from its first words (`tutor.speak_verdict`) and
+is never read out (the abstention turn's own text is spoken instead); a half-written citation is never spoken or split at; the spoken part is capped (Short 240 / Medium 500 characters or the
+full reply) and ends with "There is more on the screen."; the answer, citations, grading and budget are the same code as without streaming, and the text on screen is unchanged. The voice goes
+back to the browser over the same WebRTC connection (`streamlit-webrtc`: a `PcmAudioSource` output track plus a sink for the microphone), which also lets the browser's echo canceller know what is playing.
+
+**Acknowledgement.** A few short phrases are synthesised once in the background (`speak.Acks`); the moment the engine decides you have finished (`LiveEngine(on_utterance=…)`, on the audio thread) one is
+queued, so there is sound within a fraction of a second while Whisper and the LLM work. It does not make the answer sooner; it fills the wait. It can be switched off on the page and is off in Quiz mode.
+
 * **Modules:** `src/voice/vad.py` (Silero ONNX, energy fallback), `src/voice/endpointing.py` (turn-taking logic, pure Python), `src/voice/live.py` (the engine: status, gate, queue),
-  `ui/live_audio.py` (WebRTC frames → 16 kHz), `ui/voice_live.py` (the page), shared `voice_tutor.send_turn` (the SAME answer/grade/charge code as the Talk page).
+  `src/voice/speak.py` (sentence streaming, speaker, acknowledgements), `ui/live_audio.py` (WebRTC frames → 16 kHz, worker thread), `ui/voice_live.py` (the page), shared `voice_tutor.send_turn` (the SAME answer/grade/charge code as the Talk page).
 * **Turn-taking:** speech starts after ≥ 250 ms of speech frames (a cough never starts a turn), keeps 320 ms of lead-in, ends after the pause, keeps a 200 ms tail, cuts at 30 s;
   hysteresis (start ≥ 0.5, end < 0.35) stops a short dip inside a word from splitting a turn. Pause, sensitivity and idle timeout are sliders on the page.
-* **Half-duplex, not barge-in:** while the tutor is thinking or speaking the microphone is gated shut *and the endpointer forgets everything*, so the tutor's own voice can never be taken as
-  a question (tested by streaming the tutor's reply back into the microphone: 0 turns). The cost is that you cannot interrupt it; that is Milestone 3. Browser echo cancellation is also on.
+* **Half-duplex by default, talk-over with headphones.** While the tutor is *thinking*, or playing a short phrase ("One moment."), the microphone is gated shut and the endpointer forgets everything (tested by
+  streaming the tutor's reply back into the microphone: 0 turns). While it is *speaking a reply* the page has a switch, **"Let me talk over it (use headphones)"**, on by default: the microphone then stays open in a
+  stricter mode (clear speech for ≥ 0.6 s, threshold ≥ 0.65; a cough, a breath, an "um" or a leak of the tutor's own voice does not count). When you do speak over it, the engine fires `on_interrupt`: the speaker's queue
+  is cleared and its *epoch* advances (so a sentence that finishes synthesising a moment later is dropped, never spoken), the rest of the reply is aborted, and what you were saying, from its first word (it was in the pre-roll),
+  becomes your next utterance. The screen still shows the whole answer. A **Stop talking** button does the same by hand. With loudspeakers, switch talk-over off (the tutor could hear itself); browser echo cancellation is on
+  either way. Wake word ("Hey Moose") is still Milestone 3. Checked with the real Silero detector: real speech over the tutor interrupts after ≈ 0.6 s of speech; 3 s of breath-like noise and a 0.4 s "um" do not.
+* **No "one moment" for noise.** Whisper runs first; "One moment." is spoken only once the words are recognised and are a real request, so breathing, "um", "cool" or "let me think about it" get no reply at all.
+* **Everything is by voice (Live page).** There is no Ask/Quiz switch to click. `src/voice/intents.py` (plain rules, no model) turns a *short* utterance into a command: "ask me a multiple choice question" /
+  "ask me an open question" / "quiz me" starts a question that is generated and read aloud with its options; "another question" / "skip" starts the next one (same kind); "stop the quiz" / "never mind" leaves it.
+  While a question is open the words are its answer (a letter, "the second one", or the answer itself); once it is graded the page is back to normal questions automatically (earlier the page stayed in
+  Quiz mode and ignored speech). A real question about the guide is never mistaken for a command (a test covers that).
+* **Breathing, "um", noise.** A transcript that is only a hesitation (however stretched: "uuuuum"), a reaction ("cool", "nice"), thinking out loud ("let me think about it", "I'm thinking about my next question") or a word Whisper
+  invents on near-silence ("you", "thank you") is dropped silently and gets no "one moment" (`intents.is_noise`; commands such as "next question" are checked first, and "yes"/"okay" count when a question or a "did you mean…?" is waiting). If the room is noisy, raise "Speech sensitivity".
+* **"I'm still looking."** If nothing real has been spoken 5 s after you stopped (then every 6 s, at most 3 times) a short phrase is played (`speak.Patience`); it stops the moment the reply begins.
+* **Spoken length.** Default is the whole answer ("Everything"; Medium ≈ 30 s, Short ≈ 15 s). Because the voice is streamed, reading everything does not delay the first word, but the microphone stays closed until it
+  has finished, so the page has a **Stop talking** button (cuts the audio and reopens the microphone). Interrupting by voice is Milestone 3.
 * **Automatic or reviewed:** by default a finished turn is sent automatically (names fixed, original kept). Untick "send automatically" to get the editable box back (Milestone 1's confirmation).
-* **Spoken reply length** (Short ≈ 25 s / Medium ≈ 45 s / Full): the mic is closed while it talks, so long answers mean long waits. The full text and sources are always on screen.
+* **Spoken reply length** (Short ≈ 15 s / Medium ≈ 30 s / Full): the mic is closed while it talks, so long answers mean long waits. The full text and sources are always on screen.
 * **Privacy:** audio is processed in memory on the inference host and a finished turn is dropped after transcription; nothing is written to disk or sent to Venice (only the transcribed text is, as before).
   WebRTC uses **no public STUN server by default** (`VOICE_LIVE_STUN=1` to enable Google's); on localhost the browser and server connect directly. The microphone is on only after you press START.
 
@@ -241,7 +273,7 @@ Silero is the default; the energy detector is a fallback for quiet rooms only. *
 
 ### Evaluation: streamlit-webrtc
 
-* Works for audio-only receive (`WebRtcMode.SENDONLY`) with a per-stream processor; the processor runs on its own thread and the page polls it from an `st.fragment(run_every=0.5)`.
+* Since the streaming change the page uses `WebRtcMode.SENDRECV` with `create_audio_sink_track` (microphone in; frames are queued and processed on our own thread, so voice detection cannot stall the audio going out) and `create_pcm_audio_source_track` (the tutor's voice out, 24 kHz mono); the page polls the engine from an `st.fragment(run_every=0.5)`. Earlier (Milestone 2) it used `SENDONLY` with a per-stream processor.
 * The browser sends 48 kHz stereo 20 ms frames; PyAV resamples them. Tested with real `av.AudioFrame`s (48/44.1/16/8 kHz, mono/stereo).
 * **Streamlit's test harness cannot run it** (it needs a live session), so the page tests use a stand-in and the streaming path is tested with real frames.
 * **Deployment caveat:** on localhost it needs nothing else. On a remote server WebRTC usually needs a TURN server (and TLS) for visitors behind NAT; the server also processes every learner's live audio

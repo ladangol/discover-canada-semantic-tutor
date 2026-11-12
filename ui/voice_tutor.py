@@ -116,9 +116,10 @@ def _show_turn(turn: vsession.VoiceTurn, *, accent: str, cite, latest: bool, sty
             st.caption(turn.audio_note)
 
 
-def send_turn(c, vs: vsession.VoiceState, text: str, *, mode: str, q, quiz_state, open_q: bool, record, voice_ok: bool, speech_chars: int | None = None):
+def send_turn(c, vs: vsession.VoiceState, text: str, *, mode: str, q, quiz_state, open_q: bool, record, voice_ok: bool, speech_chars: int | None = None, streamer=None):
     """Send confirmed text to the shared tutor exactly once and return the new turn (None if blocked or it failed). No redraw.
-    Used by the Talk page and by the Live page, so both answer, grade, charge and refund through the same code."""
+    Used by the Talk page and by the Live page, so both answer, grade, charge and refund through the same code. With a `streamer` (Live page) the
+    reply is spoken sentence by sentence while it is still being written; the answer, citations and grading are the same."""
     answering = mode == QUIZ and open_q
     needs_llm = (not answering) or q.kind == "free"
     if needs_llm and not charge():
@@ -129,8 +130,8 @@ def send_turn(c, vs: vsession.VoiceState, text: str, *, mode: str, q, quiz_state
     offered = list(last.suggestions) if last is not None and not answering else []     # "yes, that one" answers the last "Did you mean…?"
     turn = generate_or_explain(
         vsession.submit_turn, vs, text, mode="quiz" if answering else "ask",
-        turn_fn=lambda t: tutor.handle_turn(t, quiz=active_q, corpus=c, offered=offered),
-        synth_fn=(lambda t: _speak(t, speech_chars)) if voice_ok else None)
+        turn_fn=lambda t: tutor.handle_turn(t, quiz=active_q, corpus=c, offered=offered, on_text=streamer.feed if streamer is not None else None),
+        synth_fn=streamer.finish if streamer is not None else ((lambda t: _speak(t, speech_chars)) if voice_ok else None))
     if turn is None:
         if needs_llm:
             refund()
